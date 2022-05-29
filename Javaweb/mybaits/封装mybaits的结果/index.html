@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+  <meta name="baidu-site-verification" content="code-lxFYCNZmSO" /><meta name="generator" content="Hexo 6.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+  <meta name="msvalidate.01" content="49069189E5FDF1A8F0DAFA738FB2146D">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"moonshuo.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <meta name="description" content="ResultTypeResultType结果类型，sql语句执行完毕之后，转换的Java对象，但是Java的类型是任意的，只要能够对应结果的参数即可，比如我们对表查询一个student对象，既有姓名，email和电话等等，而我们使用另外一个people类进行接受，但是people仅仅有姓名和电话，这样仍旧可以接受，只要参数名称类型对应即可 mybaits执行sql语句，mybaits调用类的无参构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装mybaits的结果">
+<meta property="og:url" content="https://moonshuo.cn/Javaweb/mybaits/%E5%B0%81%E8%A3%85mybaits%E7%9A%84%E7%BB%93%E6%9E%9C/index.html">
+<meta property="og:site_name" content="偷掉月亮">
+<meta property="og:description" content="ResultTypeResultType结果类型，sql语句执行完毕之后，转换的Java对象，但是Java的类型是任意的，只要能够对应结果的参数即可，比如我们对表查询一个student对象，既有姓名，email和电话等等，而我们使用另外一个people类进行接受，但是people仅仅有姓名和电话，这样仍旧可以接受，只要参数名称类型对应即可 mybaits执行sql语句，mybaits调用类的无参构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-29T11:19:35.366Z">
+<meta property="article:modified_time" content="2022-05-03T03:02:27.166Z">
+<meta property="article:author" content="偷掉月亮的阿硕">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://moonshuo.cn/Javaweb/mybaits/%E5%B0%81%E8%A3%85mybaits%E7%9A%84%E7%BB%93%E6%9E%9C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://moonshuo.cn/Javaweb/mybaits/%E5%B0%81%E8%A3%85mybaits%E7%9A%84%E7%BB%93%E6%9E%9C/","path":"Javaweb/mybaits/封装mybaits的结果/","title":"封装mybaits的结果"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>封装mybaits的结果 | 偷掉月亮</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">偷掉月亮</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">月是故乡明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ResultType"><span class="nav-number">1.</span> <span class="nav-text">ResultType</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%AE%80%E5%8D%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">返回简单类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D"><span class="nav-number">1.2.</span> <span class="nav-text">自定义别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9EMap"><span class="nav-number">1.3.</span> <span class="nav-text">查询返回Map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#resultMap"><span class="nav-number">2.</span> <span class="nav-text">resultMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.</span> <span class="nav-text">模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">3.1.</span> <span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-number">3.2.</span> <span class="nav-text">方式2</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">偷掉月亮的阿硕</p>
+  <div class="site-description" itemprop="description">温故而知新</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">137</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moonshuo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moonshuo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zss200101@qq.com" title="E-Mail → mailto:zss200101@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/Javaweb/mybaits/%E5%B0%81%E8%A3%85mybaits%E7%9A%84%E7%BB%93%E6%9E%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="封装mybaits的结果 | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          封装mybaits的结果
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 11:02:27" itemprop="dateModified" datetime="2022-05-03T11:02:27+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBaits/" itemprop="url" rel="index"><span itemprop="name">MyBaits</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="ResultType"><a href="#ResultType" class="headerlink" title="ResultType"></a>ResultType</h1><p>ResultType结果类型，sql语句执行完毕之后，转换的Java对象，但是Java的类型是任意的，只要能够对应结果的参数即可，比如我们对表查询一个student对象，既有姓名，email和电话等等，而我们使用另外一个people类进行接受，但是people仅仅有姓名和电话，这样仍旧可以接受，只要参数名称类型对应即可</p>
+<p>mybaits执行sql语句，mybaits调用类的无参构造函数，创建对象，mybaits把resultset指定列值付给同名的属性</p>
+<p>我们返回的people名称，但是执行的是查询student表格，而student表格还是拥有好多的其他的people没有拥有的属性，但是还是可以进行转换</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectPeople&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.People&quot;</span>&gt;</span></span><br><span class="line">    select * from student ;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="返回简单类型"><a href="#返回简单类型" class="headerlink" title="返回简单类型"></a>返回简单类型</h2><p>比如我们查询列数，则可以使用int来进行接受</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectCount&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;int&quot;</span> &gt;</span></span><br><span class="line">    select count(*) from student ;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">( String[] args )</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    SqlSession sqlSession= MyBaitsUtils.getSqlSession();</span><br><span class="line">    StudentDAO dao=sqlSession.getMapper(StudentDAO.class);</span><br><span class="line">    <span class="type">int</span> people=dao.selectCount();</span><br><span class="line">    System.out.println(people);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h2><p>我们在resultType&#x3D;”com.zss.pojo.People”中有时候会很长，而且在多个之中可能都要同时用到，那么我们可以在主配置文件中自定义别名</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--自定义别名--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--type表示全限定名称，而alias表示自定义的别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span> <span class="attr">alias</span>=<span class="string">&quot;stu&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是上面的这种方式我们使用多了就容易造成混淆，所以我们可以采用将包名提前注释的方式，这样我们就可以在ResultType中使用类名</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--提前说明包名--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.zss.pojo&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span>  <span class="attr">resultType</span>=<span class="string">&quot;Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;arg0&#125; and name=#&#123;arg1&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查询返回Map"><a href="#查询返回Map" class="headerlink" title="查询返回Map"></a>查询返回Map</h2><p>但是不建议使用map，map由于其中的key能重复，那么当我们使用map的时候，最多仅仅查询一行数据</p>
+<h1 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h1><p>结果映射，指定列明和Java对象属性的对应关系</p>
+<ol>
+<li>自定义列值赋值给哪一个属性</li>
+<li>当你的列名和属性名不一样时</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--定义resultmap</span></span><br><span class="line"><span class="comment">    id自定义名称，表示你定义的这个resultMap</span></span><br><span class="line"><span class="comment">    type表示Java的全限定名称--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;studentMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--如是主键，则使用id进行命名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--非主键使用result,将得到的name赋值给Java对象的myname--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;name&quot;</span> <span class="attr">property</span>=<span class="string">&quot;myname&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span>  <span class="attr">resultMap</span>=<span class="string">&quot;studentMap&quot;</span>&gt;</span></span><br><span class="line">        select * from student</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然我们也可以在sql查询的时候，使用as方法直接将将值给予转换</p>
+<h1 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h1><h2 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">( String[] args )</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    SqlSession sqlSession= MyBaitsUtils.getSqlSession();</span><br><span class="line">    StudentDAO dao=sqlSession.getMapper(StudentDAO.class);</span><br><span class="line">    List&lt;Student&gt; student=dao.selectLikeStudent(<span class="string">&quot;%张%&quot;</span>);</span><br><span class="line">    System.out.println(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectLikeStudent&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span> &gt;</span></span><br><span class="line">    select * from student where name like #&#123;name&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h2><p>在mybaits的执行语句中进行拼接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> name <span class="keyword">like</span> <span class="operator">%</span> #&#123;name&#125; <span class="operator">%</span>;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>偷掉月亮的阿硕
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://moonshuo.cn/Javaweb/mybaits/%E5%B0%81%E8%A3%85mybaits%E7%9A%84%E7%BB%93%E6%9E%9C/" title="封装mybaits的结果">https://moonshuo.cn/Javaweb/mybaits/封装mybaits的结果/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Javaweb/mybaits/%E6%A1%86%E6%9E%B6%E7%9A%84%E6%A6%82%E8%BF%B0%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B/" rel="prev" title="框架的概述以及入门案例">
+                  <i class="fa fa-chevron-left"></i> 框架的概述以及入门案例
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Javaweb/mybaits/%E5%8A%A8%E6%80%81sql/" rel="next" title="动态sql">
+                  动态sql <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NTY5My8zMjE2MA=="></div>
+</div>
+  </main>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -900px;"></div>
+<link rel="stylesheet" type="text/css" href="/css/szgotop.css" />
+<script type="text/javascript" src="/js/szgotop.js"></script>
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-moon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">偷掉月亮的阿硕</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+<div>
+<!--添加网站运行时间-->
+<span>小破站已经安全运行了</span>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    function createtime() {
+        const startTime = '03/05/2022 00:00:00',
+            start = new Date(startTime)
+        let mill = new Date() - start,
+            seconds = Math.floor(mill / 1000),
+            mins = Math.floor(seconds / 60),
+            hours = Math.floor(mins / 60),
+            days = Math.floor(hours / 24)
+        const time = {
+            seconds: seconds - mins * 60,
+            mins: mins - hours * 60,
+            hours: hours - days * 24,
+        }
+        for (const k in time) {
+            time[k] = `${time[k]}`.padStart(2, '0')
+        }
+        document.getElementById("timeDate").innerHTML = ` ${days} 天`
+        document.getElementById("times").innerHTML = ` ${time.hours} 小时 ${time.mins} 分 ${time.seconds} 秒`
+    }
+    setInterval(createtime, 500)
+</script>
+</div>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>

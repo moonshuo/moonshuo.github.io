@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+  <meta name="baidu-site-verification" content="code-lxFYCNZmSO" /><meta name="generator" content="Hexo 6.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+  <meta name="msvalidate.01" content="49069189E5FDF1A8F0DAFA738FB2146D">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"moonshuo.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <meta name="description" content="v-bind绑定vue可以使用对象的方式，来我们常规中js的寻找方法 12345678910111213141516171819202122232425262728293031&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;zh_CN&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue学习">
+<meta property="og:url" content="https://moonshuo.cn/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Vue%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="偷掉月亮">
+<meta property="og:description" content="v-bind绑定vue可以使用对象的方式，来我们常规中js的寻找方法 12345678910111213141516171819202122232425262728293031&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;zh_CN&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &amp;l">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624982.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624983.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624984.png">
+<meta property="article:published_time" content="2022-05-29T11:19:35.491Z">
+<meta property="article:modified_time" content="2022-04-22T11:37:24.458Z">
+<meta property="article:author" content="偷掉月亮的阿硕">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624982.png">
+
+
+<link rel="canonical" href="https://moonshuo.cn/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Vue%E5%AD%A6%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://moonshuo.cn/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Vue%E5%AD%A6%E4%B9%A0/","path":"前端基础复习/Vue学习/","title":"Vue学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vue学习 | 偷掉月亮</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">偷掉月亮</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">月是故乡明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#v-bind%E7%BB%91%E5%AE%9A"><span class="nav-number">1.</span> <span class="nav-text">v-bind绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v-model%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="nav-number">1.1.</span> <span class="nav-text">v-model双向绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="nav-number">2.</span> <span class="nav-text">条件渲染</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E8%BF%AD%E4%BB%A3"><span class="nav-number">3.</span> <span class="nav-text">vue迭代</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">事件驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v-on-click"><span class="nav-number">4.1.</span> <span class="nav-text">v-on:click</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%A6%E5%90%AC%E5%B1%9E%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">侦听属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">6.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E4%B8%8E%E5%90%8E%E5%8F%B0%E8%BF%9B%E8%A1%8C%E7%BB%91%E5%AE%9A%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text">vue与后台进行绑定的实例</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">偷掉月亮的阿硕</p>
+  <div class="site-description" itemprop="description">温故而知新</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">137</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moonshuo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moonshuo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zss200101@qq.com" title="E-Mail → mailto:zss200101@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Vue%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vue学习 | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-22 19:37:24" itemprop="dateModified" datetime="2022-04-22T19:37:24+08:00">2022-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">前端基础复习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="v-bind绑定"><a href="#v-bind绑定" class="headerlink" title="v-bind绑定"></a>v-bind绑定</h1><p>vue可以使用对象的方式，来我们常规中js的寻找方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh_CN&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--导入vue文件--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>  <span class="attr">src</span>=<span class="string">&quot;static/script/vue.js&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> &gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span> (<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//创建vue对象</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> vue=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">/*设置键值对*/</span></span></span><br><span class="line"><span class="language-javascript">          <span class="string">&quot;el&quot;</span>: <span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">msg</span>: <span class="string">&quot;hello&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">uname</span>:<span class="string">&quot;张三&quot;</span></span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--v-bind表示绑定，也可以省略--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-bind:value</span>=<span class="string">&quot;uname&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624982.png" alt="image-20220421160634426"></p>
+<h2 id="v-model双向绑定"><a href="#v-model双向绑定" class="headerlink" title="v-model双向绑定"></a>v-model双向绑定</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script &gt;</span><br><span class="line">      window.onload=function ()&#123;</span><br><span class="line">        <span class="comment">//创建vue对象</span></span><br><span class="line">        <span class="keyword">var</span> vue=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">          <span class="comment">/*设置键值对*/</span></span><br><span class="line">          <span class="string">&quot;el&quot;</span>: <span class="string">&quot;#div0&quot;</span>,</span><br><span class="line">          data:&#123;</span><br><span class="line">            msg: <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">            uname:<span class="string">&quot;张三&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body &gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;div0&quot;</span>&gt;</span><br><span class="line">    &lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;text&quot;</span> v-model:value=<span class="string">&quot;msg&quot;</span>&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624983.gif" alt="动画3"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model.trim</span>=<span class="string">&quot;msg&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>value值也可以进行省略，而且trim会帮助我们去除前面的空格，而仅仅专注于他的值</p>
+<h1 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> &gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span> (<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//创建vue对象</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> vue=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">/*设置键值对*/</span></span></span><br><span class="line"><span class="language-javascript">          <span class="string">&quot;el&quot;</span>: <span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">msg</span>: <span class="number">2</span>,</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model.trim</span>=<span class="string">&quot;msg&quot;</span>&gt;</span></span><br><span class="line">      如果msg是偶数，就显示后面的文字，如果不是则不显示，但是注意if与else之间不可以有其他的东西</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;msg%2==0&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: red&quot;</span> &gt;</span> haha <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>=<span class="string">&quot;msg%2==0&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: black&quot;</span>&gt;</span>nn<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      v-show在查看源代码中只是将结果给display：none，但是其实还是存在的</span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-show</span>=<span class="string">&quot;msg%2==0&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: black&quot;</span>&gt;</span>nn<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vue迭代"><a href="#vue迭代" class="headerlink" title="vue迭代"></a>vue迭代</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;script/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;el&quot;</span>:<span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">fruitList</span>:[</span></span><br><span class="line"><span class="language-javascript">                        &#123;<span class="attr">fname</span>:<span class="string">&quot;苹果&quot;</span>,<span class="attr">price</span>:<span class="number">5</span>,<span class="attr">fcount</span>:<span class="number">100</span>,<span class="attr">remark</span>:<span class="string">&quot;苹果很好吃&quot;</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">                        &#123;<span class="attr">fname</span>:<span class="string">&quot;菠萝&quot;</span>,<span class="attr">price</span>:<span class="number">3</span>,<span class="attr">fcount</span>:<span class="number">120</span>,<span class="attr">remark</span>:<span class="string">&quot;菠萝很好吃&quot;</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">                        &#123;<span class="attr">fname</span>:<span class="string">&quot;香蕉&quot;</span>,<span class="attr">price</span>:<span class="number">4</span>,<span class="attr">fcount</span>:<span class="number">50</span>,<span class="attr">remark</span>:<span class="string">&quot;香蕉很好吃&quot;</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">                        &#123;<span class="attr">fname</span>:<span class="string">&quot;西瓜&quot;</span>,<span class="attr">price</span>:<span class="number">6</span>,<span class="attr">fcount</span>:<span class="number">100</span>,<span class="attr">remark</span>:<span class="string">&quot;西瓜很好吃&quot;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ]</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">&quot;1&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">cellpadding</span>=<span class="string">&quot;4&quot;</span> <span class="attr">cellspacing</span>=<span class="string">&quot;0&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>名称<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>单价<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>库存<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>备注<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- v-for表示迭代 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;fruit in fruitList&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;fruit.fname&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;fruit.price&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;fruit.fcount&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;fruit.remark&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204221624984.png" alt="image-20220421163104731"></p>
+<h1 id="事件驱动"><a href="#事件驱动" class="headerlink" title="事件驱动"></a>事件驱动</h1><h2 id="v-on-click"><a href="#v-on-click" class="headerlink" title="v-on:click"></a>v-on:click</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;script/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;el&quot;</span>:<span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">msg</span>:<span class="string">&quot;hello world!&quot;</span></span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">myReverse</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="variable language_">this</span>.<span class="property">msg</span> = <span class="variable language_">this</span>.<span class="property">msg</span>.<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- v-on:click 表示绑定点击事件 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- v-on可以省略，变成 @click --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;input type=&quot;button&quot; value=&quot;反转&quot; v-on:click=&quot;myReverse&quot;/&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;反转&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;myReverse&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="侦听属性"><a href="#侦听属性" class="headerlink" title="侦听属性"></a>侦听属性</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;script/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;el&quot;</span>:<span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">num1</span>:<span class="number">1</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">num2</span>:<span class="number">2</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">num3</span>:<span class="number">0</span></span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">watch</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">//侦听属性num1和num2</span></span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">//当num1的值有改动时，那么需要调用后面定义的方法 , newValue指的是num1的新值</span></span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">num1</span>:<span class="keyword">function</span>(<span class="params">newValue</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="variable language_">this</span>.<span class="property">num3</span> = <span class="built_in">parseInt</span>(newValue) + <span class="built_in">parseInt</span>(<span class="variable language_">this</span>.<span class="property">num2</span>);</span></span><br><span class="line"><span class="language-javascript">                    &#125;,</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">num2</span>:<span class="keyword">function</span>(<span class="params">newValue</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="variable language_">this</span>.<span class="property">num3</span> = <span class="built_in">parseInt</span>(<span class="variable language_">this</span>.<span class="property">num1</span>) + <span class="built_in">parseInt</span>(newValue) ;</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;num1&quot;</span> <span class="attr">size</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">        +</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;num2&quot;</span> <span class="attr">size</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">        =</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;num3&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;script/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;el&quot;</span>:<span class="string">&quot;#div0&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">msg</span>:<span class="number">1</span></span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">changeMsg</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="variable language_">this</span>.<span class="property">msg</span> = <span class="variable language_">this</span>.<span class="property">msg</span> + <span class="number">1</span> ;</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">/*vue对象创建之前*/</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">beforeCreate</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;beforeCreate:vue对象创建之前---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg:&quot;</span>+<span class="variable language_">this</span>.<span class="property">msg</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">/*vue对象创建之后*/</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">created</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;created:vue对象创建之后---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg:&quot;</span>+<span class="variable language_">this</span>.<span class="property">msg</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">/*数据装载之前*/</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">beforeMount</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;beforeMount:数据装载之前---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span:&quot;</span>+<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;span&quot;</span>).<span class="property">innerText</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">/*数据装载之后*/</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">mounted</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;mounted:数据装载之后---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span:&quot;</span>+<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;span&quot;</span>).<span class="property">innerText</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">beforeUpdate</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;beforeUpdate:数据更新之前---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg:&quot;</span>+<span class="variable language_">this</span>.<span class="property">msg</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span:&quot;</span>+<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;span&quot;</span>).<span class="property">innerText</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">updated</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Updated:数据更新之后---------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg:&quot;</span>+<span class="variable language_">this</span>.<span class="property">msg</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span:&quot;</span>+<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;span&quot;</span>).<span class="property">innerText</span>);</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;span&quot;</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;改变msg的值&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;changeMsg&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vue与后台进行绑定的实例"><a href="#vue与后台进行绑定的实例" class="headerlink" title="vue与后台进行绑定的实例"></a>vue与后台进行绑定的实例</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">        <span class="comment">//绑定id为div_cart</span></span><br><span class="line">        <span class="attr">el</span>:<span class="string">&quot;#div_cart&quot;</span>,</span><br><span class="line">        <span class="comment">//拥有一个属性cart</span></span><br><span class="line">        <span class="attr">data</span>:&#123;</span><br><span class="line">            <span class="attr">cart</span>:&#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">methods</span>:&#123;</span><br><span class="line">            <span class="comment">//拥有三个方法</span></span><br><span class="line">            <span class="attr">getCart</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">//采用异步的方法，</span></span><br><span class="line">                <span class="title function_">axios</span>(&#123;</span><br><span class="line">                    <span class="attr">method</span>:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">                    <span class="attr">url</span>:<span class="string">&quot;cart.do&quot;</span>,</span><br><span class="line">                    <span class="attr">params</span>:&#123;</span><br><span class="line">                        <span class="attr">operate</span>:<span class="string">&#x27;cartInfo&#x27;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                    .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">                        <span class="keyword">var</span> cart = value.<span class="property">data</span> ;</span><br><span class="line">                        vue.<span class="property">cart</span> = cart ;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">reason</span>) &#123;  &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">addBook</span>:<span class="keyword">function</span> (<span class="params">bookId</span>)&#123;</span><br><span class="line">                <span class="title function_">axios</span>(&#123;</span><br><span class="line">                    <span class="attr">method</span>:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">                    <span class="attr">url</span>:<span class="string">&quot;cart.do&quot;</span>,</span><br><span class="line">                    <span class="attr">params</span>:&#123;</span><br><span class="line">                        <span class="attr">operate</span>: <span class="string">&#x27;addBook&#x27;</span>,</span><br><span class="line">                        <span class="attr">bookId</span>:bookId</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">value</span>)&#123;</span><br><span class="line">                    vue.<span class="title function_">getCart</span>();</span><br><span class="line">                &#125;).<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">reason</span>)&#123;</span><br><span class="line"></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">reduceBook</span>:<span class="keyword">function</span> (<span class="params">bookId</span>)&#123;</span><br><span class="line">                <span class="title function_">axios</span>(&#123;</span><br><span class="line">                    <span class="attr">method</span>:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">                    <span class="attr">url</span>:<span class="string">&quot;cart.do&quot;</span>,</span><br><span class="line">                    <span class="attr">params</span>:&#123;</span><br><span class="line">                        <span class="attr">operate</span>: <span class="string">&#x27;reduceBook&#x27;</span>,</span><br><span class="line">                        <span class="attr">bookId</span>:bookId</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">value</span>)&#123;</span><br><span class="line">                    vue.<span class="title function_">getCart</span>();</span><br><span class="line">                &#125;).<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">reason</span>)&#123;</span><br><span class="line"></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">mounted</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">getCart</span>() ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个处理的函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">cartInfo</span><span class="params">(HttpSession session)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    User user=(User)session.getAttribute(<span class="string">&quot;currUser&quot;</span>) ;</span><br><span class="line">    Cart cart= cartItemService.getCart(user);</span><br><span class="line">    cart.getTotalCount();</span><br><span class="line">    cart.getTotalBookCount();</span><br><span class="line">    cart.getTotalMoney();</span><br><span class="line">    Gson gson=<span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line">    String cartJsonStr=gson.toJson(cart);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;json:&quot;</span>+cartJsonStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断并进行局部刷新</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(methodReturnStr.startsWith(<span class="string">&quot;json:&quot;</span>))&#123;</span><br><span class="line">    String jsonStr=methodReturnStr.substring(<span class="string">&quot;json:&quot;</span>.length());</span><br><span class="line">    PrintWriter out=response.getWriter();</span><br><span class="line">    out.print(jsonStr);</span><br><span class="line">    <span class="comment">//刷新</span></span><br><span class="line">    out.flush();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>偷掉月亮的阿硕
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://moonshuo.cn/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Vue%E5%AD%A6%E4%B9%A0/" title="Vue学习">https://moonshuo.cn/前端基础复习/Vue学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="HTML复习">
+                  <i class="fa fa-chevron-left"></i> HTML复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/Thymeleaf(%E8%A7%86%E5%9B%BE%E6%A8%A1%E6%9D%BF%E6%8A%80%E6%9C%AF)/" rel="next" title="Thymeleaf(视图模板技术)">
+                  Thymeleaf(视图模板技术) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NTY5My8zMjE2MA=="></div>
+</div>
+  </main>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -900px;"></div>
+<link rel="stylesheet" type="text/css" href="/css/szgotop.css" />
+<script type="text/javascript" src="/js/szgotop.js"></script>
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-moon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">偷掉月亮的阿硕</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+<div>
+<!--添加网站运行时间-->
+<span>小破站已经安全运行了</span>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    function createtime() {
+        const startTime = '03/05/2022 00:00:00',
+            start = new Date(startTime)
+        let mill = new Date() - start,
+            seconds = Math.floor(mill / 1000),
+            mins = Math.floor(seconds / 60),
+            hours = Math.floor(mins / 60),
+            days = Math.floor(hours / 24)
+        const time = {
+            seconds: seconds - mins * 60,
+            mins: mins - hours * 60,
+            hours: hours - days * 24,
+        }
+        for (const k in time) {
+            time[k] = `${time[k]}`.padStart(2, '0')
+        }
+        document.getElementById("timeDate").innerHTML = ` ${days} 天`
+        document.getElementById("times").innerHTML = ` ${time.hours} 小时 ${time.mins} 分 ${time.seconds} 秒`
+    }
+    setInterval(createtime, 500)
+</script>
+</div>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>
