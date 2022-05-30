@@ -656,6 +656,111 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/46362.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/46362.html" class="post-title-link" itemprop="url">实现页面的国际化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-19 16:08:42" itemprop="dateModified" datetime="2022-05-19T16:08:42+08:00">2022-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="确定编码，建立文件"><a href="#确定编码，建立文件" class="headerlink" title="确定编码，建立文件"></a>确定编码，建立文件</h1><p> 首先确定我们的编码都是UTF-8</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191517954.png" alt="image-20220519151709577"></p>
+<p>建立文件i18n（internationalization，表示18个字母，i开始，n结束）</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191519374.png" alt="image-20220519151957745"></p>
+<h1 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191523068.png" alt="image-20220519152305416"></p>
+<p>下载插件，进行可视化配置</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191529454.png" alt="image-20220519152944226"></p>
+<p>我们自己添加一个属性之后，会出现如图页面</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191531776.png" alt="image-20220519153107460"></p>
+<p>在这里设置翻译的语句等等，每当我们设置一个，需要重新新建一个变量</p>
+<p><img data-src="/image-20220519153404436.png" alt="image-20220519153404436"></p>
+<p>我们全部配置完毕之后，查看login.properties</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191536720.png" alt="image-20220519153647754"></p>
+<h1 id="配置文件配置"><a href="#配置文件配置" class="headerlink" title="配置文件配置"></a>配置文件配置</h1><p>找到application.yml</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191539644.png" alt="image-20220519153903087"></p>
+<h1 id="更改前端页面"><a href="#更改前端页面" class="headerlink" title="更改前端页面"></a>更改前端页面</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191546225.png" alt="image-20220519154631731"></p>
+<p>前端页面自动检测到我们的配置文件，打开网页，会发现我们的页面的显示的根据我们的设置的原文，更改为相应的文本，但是此时仅仅 实现了展示原文，并没有实现切换</p>
+<p>接下来我们需要加上前端的请求，我们写入两个按钮button，点击之后分别发送请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th:href=&quot;@&#123;/index(language=&#x27;zh_CN&#x27;)&#125;中文&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="获得请求"><a href="#获得请求" class="headerlink" title="获得请求"></a>获得请求</h1><p>我们接受到按钮的请求，更改返回的语言</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.rbacproject.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.LocaleResolver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLocalResolver</span> <span class="keyword">implements</span> <span class="title class_">LocaleResolver</span> &#123;</span><br><span class="line">    <span class="comment">//放到bean里面</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> LocaleResolver <span class="title function_">localeResolver</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyLocalResolver</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Locale <span class="title function_">resolveLocale</span><span class="params">(HttpServletRequest request)</span> &#123;</span><br><span class="line">        <span class="comment">//获取语言参数请求</span></span><br><span class="line">        String language=request.getParameter(<span class="string">&quot;language&quot;</span>);</span><br><span class="line">        <span class="comment">//获得默认的编码</span></span><br><span class="line">        Locale locale=Locale.getDefault();</span><br><span class="line">        <span class="comment">//如果携带了国际化参数</span></span><br><span class="line">        <span class="keyword">if</span> (language!=<span class="literal">null</span>||language!=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">            String []split=language.split(<span class="string">&quot;_&quot;</span>);</span><br><span class="line">            <span class="comment">//新建立国家地区</span></span><br><span class="line">            locale=<span class="keyword">new</span> <span class="title class_">Locale</span>(split[<span class="number">0</span>],split[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> locale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setLocale</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Locale locale)</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/43108.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -746,111 +851,6 @@
 <p>进入到mvc自动装配的类WebMvcAutoConfiguration.class，我们查看到@ConditionalOnMissingBean({WebMvcConfigurationSupport.class})，当缺失这个类的时候，注解才会生效，但是@EnableWebMvc又间接的使用了这个类，会导致所有的配置全部失效。</p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191431458.png" alt="image-20220519143115055"></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/46362.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/46362.html" class="post-title-link" itemprop="url">实现页面的国际化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-19 16:08:42" itemprop="dateModified" datetime="2022-05-19T16:08:42+08:00">2022-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="确定编码，建立文件"><a href="#确定编码，建立文件" class="headerlink" title="确定编码，建立文件"></a>确定编码，建立文件</h1><p> 首先确定我们的编码都是UTF-8</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191517954.png" alt="image-20220519151709577"></p>
-<p>建立文件i18n（internationalization，表示18个字母，i开始，n结束）</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191519374.png" alt="image-20220519151957745"></p>
-<h1 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191523068.png" alt="image-20220519152305416"></p>
-<p>下载插件，进行可视化配置</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191529454.png" alt="image-20220519152944226"></p>
-<p>我们自己添加一个属性之后，会出现如图页面</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191531776.png" alt="image-20220519153107460"></p>
-<p>在这里设置翻译的语句等等，每当我们设置一个，需要重新新建一个变量</p>
-<p><img data-src="/image-20220519153404436.png" alt="image-20220519153404436"></p>
-<p>我们全部配置完毕之后，查看login.properties</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191536720.png" alt="image-20220519153647754"></p>
-<h1 id="配置文件配置"><a href="#配置文件配置" class="headerlink" title="配置文件配置"></a>配置文件配置</h1><p>找到application.yml</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191539644.png" alt="image-20220519153903087"></p>
-<h1 id="更改前端页面"><a href="#更改前端页面" class="headerlink" title="更改前端页面"></a>更改前端页面</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205191546225.png" alt="image-20220519154631731"></p>
-<p>前端页面自动检测到我们的配置文件，打开网页，会发现我们的页面的显示的根据我们的设置的原文，更改为相应的文本，但是此时仅仅 实现了展示原文，并没有实现切换</p>
-<p>接下来我们需要加上前端的请求，我们写入两个按钮button，点击之后分别发送请求</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th:href=&quot;@&#123;/index(language=&#x27;zh_CN&#x27;)&#125;中文&quot;</span><br></pre></td></tr></table></figure>
-
-<h1 id="获得请求"><a href="#获得请求" class="headerlink" title="获得请求"></a>获得请求</h1><p>我们接受到按钮的请求，更改返回的语言</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.rbacproject.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.LocaleResolver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLocalResolver</span> <span class="keyword">implements</span> <span class="title class_">LocaleResolver</span> &#123;</span><br><span class="line">    <span class="comment">//放到bean里面</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> LocaleResolver <span class="title function_">localeResolver</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyLocalResolver</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Locale <span class="title function_">resolveLocale</span><span class="params">(HttpServletRequest request)</span> &#123;</span><br><span class="line">        <span class="comment">//获取语言参数请求</span></span><br><span class="line">        String language=request.getParameter(<span class="string">&quot;language&quot;</span>);</span><br><span class="line">        <span class="comment">//获得默认的编码</span></span><br><span class="line">        Locale locale=Locale.getDefault();</span><br><span class="line">        <span class="comment">//如果携带了国际化参数</span></span><br><span class="line">        <span class="keyword">if</span> (language!=<span class="literal">null</span>||language!=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">            String []split=language.split(<span class="string">&quot;_&quot;</span>);</span><br><span class="line">            <span class="comment">//新建立国家地区</span></span><br><span class="line">            locale=<span class="keyword">new</span> <span class="title class_">Locale</span>(split[<span class="number">0</span>],split[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> locale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setLocale</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Locale locale)</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
