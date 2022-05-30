@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+  <meta name="baidu-site-verification" content="code-lxFYCNZmSO" /><meta name="generator" content="Hexo 6.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+  <meta name="msvalidate.01" content="49069189E5FDF1A8F0DAFA738FB2146D">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"moonshuo.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+    <meta name="description" content="servlet拥有四个声明周期：实例化，初始化，服务，销毁 init初始化有参数1234public void init(ServletConfig config) throws ServletException &amp;#123;    this.config &#x3D; config;    this.init();&amp;#125;  无参数12public void init() throws Servle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="业务层与获取初始化数据">
+<meta property="og:url" content="https://moonshuo.cn/posts/11062.html">
+<meta property="og:site_name" content="偷掉月亮">
+<meta property="og:description" content="servlet拥有四个声明周期：实例化，初始化，服务，销毁 init初始化有参数1234public void init(ServletConfig config) throws ServletException &amp;#123;    this.config &#x3D; config;    this.init();&amp;#125;  无参数12public void init() throws Servle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081723776.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081734417.png">
+<meta property="article:published_time" content="2022-05-29T11:19:35.303Z">
+<meta property="article:modified_time" content="2022-05-03T06:52:27.046Z">
+<meta property="article:author" content="偷掉月亮的阿硕">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081723776.png">
+
+
+<link rel="canonical" href="https://moonshuo.cn/posts/11062.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://moonshuo.cn/posts/11062.html","path":"posts/11062.html","title":"业务层与获取初始化数据"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>业务层与获取初始化数据 | 偷掉月亮</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">偷掉月亮</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">月是故乡明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#init%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">init初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">有参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">无参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%B1%82"><span class="nav-number">2.</span> <span class="nav-text">业务层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC"><span class="nav-number">2.1.</span> <span class="nav-text">MVC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IOC"><span class="nav-number">3.</span> <span class="nav-text">IOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IoC-%E5%AE%B9%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">IoC 容器</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">偷掉月亮的阿硕</p>
+  <div class="site-description" itemprop="description">温故而知新</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">137</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/moonshuo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;moonshuo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zss200101@qq.com" title="E-Mail → mailto:zss200101@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11062.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="业务层与获取初始化数据 | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          业务层与获取初始化数据
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:52:27" itemprop="dateModified" datetime="2022-05-03T14:52:27+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p> servlet拥有四个声明周期：实例化，初始化，服务，销毁</p>
+<h1 id="init初始化"><a href="#init初始化" class="headerlink" title="init初始化"></a>init初始化</h1><h2 id="有参数"><a href="#有参数" class="headerlink" title="有参数"></a>有参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">    <span class="built_in">this</span>.config = config;</span><br><span class="line">    <span class="built_in">this</span>.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="无参数"><a href="#无参数" class="headerlink" title="无参数"></a>无参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在servlet初始化时做一些工作，我们重写init方法，并且可以获得初始化的数据</p>
+<p>首先获取config对象，其次再后去初始化值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.Demo01Servlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是初始化参数<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/Demo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081723776.png" alt="image-20220408172332726"></p>
+<p>下面的这种方式亦可以进行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &#123;&quot;/Demo01&quot;&#125;,</span></span><br><span class="line"><span class="meta">     initParams = &#123;</span></span><br><span class="line"><span class="meta">        @WebInitParam(name = &quot;参数&quot;,value = &quot;我是参数&quot;)</span></span><br><span class="line"><span class="meta">     &#125;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而同样我们也可以获取到上下文的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是参数1<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081734417.png" alt="image-20220408173417402"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServletContext servletContext=getServletContext();</span><br><span class="line">String text=servletContext.getInitParameter(<span class="string">&quot;参数1&quot;</span>);</span><br><span class="line">System.out.println(text);</span><br></pre></td></tr></table></figure>
+
+<h1 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC&#x3D;Model（模型）+View（视图）+Controller（控制器）</p>
+<p>视图层：御用做数据展示和用户交互的界面</p>
+<p>控制层：能够接受客户端的请求，具体的业务功能还是需要借助于模型组件完成</p>
+<p>模型层：包括pojo，业务模型组件，数据访问层组件</p>
+<p>​				opjo：值对象</p>
+<p>​				DAO:数据访问对象，是一个单精度对象，一个方法只考虑一个操作，比如添加，修改等等</p>
+<p>​				BO:业务对象，实际业务方法是比较复杂的，因此业务方法的粒度是比较粗的</p>
+<p>比如：注册属于业务功能，属于业务方法，而这个业务方法中包含了多个DAO方法</p>
+<h1 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h1><h2 id="IoC-容器"><a href="#IoC-容器" class="headerlink" title="IoC 容器"></a>IoC 容器</h2><p>Spring 容器是 Spring 框架的核心。容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。Spring 容器使用依赖注入（DI）来管理组成一个应用程序的组件。这些对象被称为 Spring Beans，我们将在下一章中进行讨论。</p>
+<p>通过阅读配置元数据提供的指令，容器知道对哪些对象进行实例化，配置和组装。配置元数据可以通过 XML，Java 注释或 Java 代码来表示。下图是 Spring 如何工作的高级视图。 Spring IoC 容器利用 Java 的 POJO 类和配置元数据来生成完全配置和可执行的系统或应用程序。</p>
+<p><strong>IOC 容器</strong>具有依赖注入功能的容器，它可以创建对象，IOC 容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。通常new一个实例，控制权由程序员控制，而”控制反转”是指new实例工作不由程序员来做而是交给Spring容器来做。在Spring中<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/wkspring/j3181mm3.html">BeanFactory</a>是IOC容器的实际代表者</p>
+<ul>
+<li><p>耦合&#x2F;依赖：层层之间存在相互的依赖，但是我们的设计规则是：高内聚，低耦合，层内部的组成应该是高度聚合的，而层层之间的关系应该是低耦合的。</p>
+<p>而我们为了降低耦合度，比如controller于serviceimpl之间的关系，这两层之间是相互影响的，而为了使我们下一层的改动不会影响到上一层，</p>
+<p><strong>控制反转：</strong>FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();如果在方法中，属于方法级别（结束之后会被销毁），如果属于成员变量，则其属于servlet的作用域（整个生命周期）<strong>但是在后面在spplicationContext中.xml中，通过解析xml文件，产生实例，存放在beanMap中，而beanMap在一个BeanFactory之中，也就是说其实例的生命周期放在容器中了，控制权交给容器，这个现象为控制反转</strong></p>
+<p>**依赖注入:**FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();<strong>存在耦合，而后面该为null，在xml文件中进行配置</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="keyword">new</span> <span class="title class_">FruitServiceImpl</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这一层重新定义实例化了一个FruitServiceImpl();，而我们为了使其之间没有相互影响，我们应该</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样会出现空指针错误，那么我们可以在xml文件进行设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--比如说通过fruit进行init初始化，同时调用了ClassPathXmlApplicationContext() 构造器</span></span><br><span class="line"><span class="comment">  在map中存储了键值对，而检测到property，比如fruitServiceImpl，则去寻找</span></span><br><span class="line"><span class="comment">   com.zss.myssm.BaseDAO.impl.FruitServiceImpl并且利用反射将fruitServiceImpl赋值</span></span><br><span class="line"><span class="comment">   其余也相同</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.dao.BaseDAO&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--说明含有那些依赖关系,property表示属性，name表示属性名字，而ref表示引用那个的属性名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;baseDAO&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.myspringmvc.controller.FruitController&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;fruitServiceImpl&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title class_">BeanFactory</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String ,Object&gt; beanMap=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ClassPathXmlApplicationContext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">            <span class="type">DocumentBuilderFactory</span> <span class="variable">documentBuilderFactory</span> <span class="operator">=</span> DocumentBuilderFactory.newInstance();</span><br><span class="line">            <span class="type">DocumentBuilder</span> <span class="variable">documentBuilder</span> <span class="operator">=</span> documentBuilderFactory.newDocumentBuilder();</span><br><span class="line">            <span class="comment">//获取document对象</span></span><br><span class="line">            <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> documentBuilder.parse(inputStream);</span><br><span class="line">            <span class="comment">//获取所有bean节点</span></span><br><span class="line">            <span class="type">NodeList</span> <span class="variable">beanNodeList</span> <span class="operator">=</span> document.getElementsByTagName(<span class="string">&quot;bean&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">className</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">                    Class&lt;?&gt; clas = Class.forName(className);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">beanObj</span> <span class="operator">=</span> clas.newInstance();</span><br><span class="line">                    beanMap.put(beamId, beanObj);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//组装bean之间的依赖关系</span></span><br><span class="line">            <span class="comment">/*Node节点包含：</span></span><br><span class="line"><span class="comment">             *       Element：元素节点</span></span><br><span class="line"><span class="comment">             *       Text：文本节点</span></span><br><span class="line"><span class="comment">             *   其实下面还是拥有三个子节点，拥有两个空白的节点（或者说换行节点）</span></span><br><span class="line"><span class="comment">             *</span></span><br><span class="line"><span class="comment">             * */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    NodeList beanChildNodeList=beanElement.getChildNodes();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;beanChildNodeList.getLength();j++)&#123;</span><br><span class="line">                        Node beanChildNode=beanChildNodeList.item(j);</span><br><span class="line">                        <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE&amp;&amp; <span class="string">&quot;property&quot;</span>.equals(beanChildNode.getNodeName())) &#123;</span><br><span class="line">                            <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                            Element propertyElement=(Element) beanChildNode;</span><br><span class="line">                            String propertyName=propertyElement.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                            String propertyRef=propertyElement.getAttribute(<span class="string">&quot;ref&quot;</span>);</span><br><span class="line">                            Object refObj=beanMap.get(propertyRef);</span><br><span class="line">                            Object beanObj=beanMap.get(beamId);</span><br><span class="line">                            <span class="comment">//设置到对应的实例中</span></span><br><span class="line">                            Class&lt;?&gt; beanCla=beanObj.getClass();</span><br><span class="line">                            Field propertyFiled=beanCla.getDeclaredField(propertyName);</span><br><span class="line">                            propertyFiled.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                            <span class="comment">//通过反射设置值</span></span><br><span class="line">                            propertyFiled.set(beanObj, refObj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParserConfigurationException | ClassNotFoundException | InstantiationException | IllegalAccessException | SAXException | IOException | NoSuchFieldException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getBean</span><span class="params">(String id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> beanMap.get(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;*.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ViewBaseServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> BeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.init();</span><br><span class="line">        beanFactory=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">//如果说url是：http://localhost:8080/fruit/fruit.do</span></span><br><span class="line">        <span class="comment">//servletPath是: /fruit.do</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">servletPath</span> <span class="operator">=</span> req.getServletPath();</span><br><span class="line">        <span class="comment">//而我接下来需要得到fruit/fruit.do中第二个fruit</span></span><br><span class="line">        <span class="comment">//先找到最后一个/的索引位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastslash</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;/&quot;</span>) + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获得最后一个点的位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastpoint</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        servletPath = servletPath.substring(lastslash, lastpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使fruit与fruitcontroller对应,先得到controller</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">controllerObj</span> <span class="operator">=</span> beanFactory.getBean(servletPath);</span><br><span class="line">        <span class="type">String</span> <span class="variable">operate</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;operate&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (operate == <span class="literal">null</span> | Objects.equals(operate, <span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">            operate = <span class="string">&quot;inquire&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Method[] methods = controllerObj.getClass().getDeclaredMethods();</span><br><span class="line">            <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (method.getName().equals(operate)) &#123;</span><br><span class="line">                    <span class="comment">//获取所有的参数</span></span><br><span class="line">                    Parameter[] parameters = method.getParameters();</span><br><span class="line">                    <span class="comment">//设计一个用于存放参数值的数组</span></span><br><span class="line">                    Object []objectParameters=<span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;objectParameters.length;i++ )&#123;</span><br><span class="line">                        Parameter parameter=parameters[i];</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;req&quot;</span>.equals(parameter.getName()))&#123;</span><br><span class="line">                            objectParameters[i]=req;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        String parameValue=req.getParameter(parameter.getName());</span><br><span class="line">                        objectParameters[i]=parameValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                    method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> method.invoke(controllerObj, objectParameters);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">meth</span> <span class="operator">=</span> (String) obj;</span><br><span class="line">                    <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>)) &#123;</span><br><span class="line">                        <span class="type">String</span> <span class="variable">sendRedStr</span> <span class="operator">=</span> meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                        resp.sendRedirect(sendRedStr);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="built_in">super</span>.processTemplate(servletPath + <span class="string">&quot;/&quot;</span> + meth, req, resp);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>偷掉月亮的阿硕
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://moonshuo.cn/posts/11062.html" title="业务层与获取初始化数据">https://moonshuo.cn/posts/11062.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/4780.html" rel="prev" title="SpringMVC初识">
+                  <i class="fa fa-chevron-left"></i> SpringMVC初识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/18158.html" rel="next" title="MVC">
+                  MVC <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NTY5My8zMjE2MA=="></div>
+</div>
+  </main>
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -900px;"></div>
+<link rel="stylesheet" type="text/css" href="/css/szgotop.css" />
+<script type="text/javascript" src="/js/szgotop.js"></script>
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-moon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">偷掉月亮的阿硕</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+<div>
+<!--添加网站运行时间-->
+<span>小破站已经安全运行了</span>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    function createtime() {
+        const startTime = '03/05/2022 00:00:00',
+            start = new Date(startTime)
+        let mill = new Date() - start,
+            seconds = Math.floor(mill / 1000),
+            mins = Math.floor(seconds / 60),
+            hours = Math.floor(mins / 60),
+            days = Math.floor(hours / 24)
+        const time = {
+            seconds: seconds - mins * 60,
+            mins: mins - hours * 60,
+            hours: hours - days * 24,
+        }
+        for (const k in time) {
+            time[k] = `${time[k]}`.padStart(2, '0')
+        }
+        document.getElementById("timeDate").innerHTML = ` ${days} 天`
+        document.getElementById("times").innerHTML = ` ${time.hours} 小时 ${time.mins} 分 ${time.seconds} 秒`
+    }
+    setInterval(createtime, 500)
+</script>
+</div>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>
