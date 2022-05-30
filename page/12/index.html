@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"moonshuo.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"use":"valine","style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"moonshuo.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -751,139 +751,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/15202.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/15202.html" class="post-title-link" itemprop="url">Java中Type类</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-03 19:00:32" itemprop="dateModified" datetime="2022-04-03T19:00:32+08:00">2022-04-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中Type"><a href="#Java中Type" class="headerlink" title="Java中Type"></a>Java中Type</h1><p>Type时Java语言中所有类型的公共高级接口，也就是Java中所有类型的“爹”；其中所有的类型并不是我们经常使用的int，String等类型，而是对基本数据类型，引用类型向上的抽象。</p>
-<p>Type体系中的类型包括：原始类型(Class)、参数化类型(ParameterizedType)、数组类型(GenericArrayType)、类型变量(TypeVariable)、基本类型(Class);</p>
-<p>原始类型，不仅仅包含我们平常所指的类，还包括枚举、数组、注解等；</p>
-<p>参数化类型，就是我们平常所用到的泛型List、Map；</p>
-<p>数组类型，并不是我们工作中所使用的数组String[] 、byte[]，而是带有泛型的数组，即T[] ；</p>
-<p>基本类型，也就是我们所说的java的基本类型，即int,float,double等</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051707.png" alt="image-20220402174243766"></p>
-<h2 id="ParameterizedType"><a href="#ParameterizedType" class="headerlink" title="ParameterizedType"></a>ParameterizedType</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022055796.png" alt="image-20220402205408958"></p>
-<p>分别为获得实际的类型，获得前面的类型，这个类型是否某个类型所属，获得这个所有者的类型，否则返回null</p>
-<p>参数泛型化，即泛型；例如List<T>等带有参数化的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;T&gt; set=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field field= Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        <span class="comment">//获取该属性的泛型类型</span></span><br><span class="line">        Type typeList= field.getGenericType();</span><br><span class="line">        System.out.println(typeList.getClass().getName());</span><br><span class="line">        </span><br><span class="line">        Field field1=Test.class.getDeclaredField(<span class="string">&quot;set&quot;</span>);</span><br><span class="line">        Type typeSet=field1.getGenericType();</span><br><span class="line">        System.out.println(typeSet.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051708.png" alt="image-20220402175104947"></p>
-<h3 id="getActualTypeArguments"><a href="#getActualTypeArguments" class="headerlink" title="getActualTypeArguments"></a>getActualTypeArguments</h3><p>当我们包含有多个泛型的时候，会返回一个数组用来保存这些数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line"></span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) typeMap;</span><br><span class="line"></span><br><span class="line">        Type []types= parameterizedType.getActualTypeArguments();</span><br><span class="line">        System.out.println(types[<span class="number">0</span>].getClass().getName());</span><br><span class="line">        System.out.println(types[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051709.png" alt="image-20220402202515214"></p>
-<h3 id="getRawType"><a href="#getRawType" class="headerlink" title="getRawType"></a>getRawType</h3><p>获取声明泛型或者接口，就是泛型中&lt;&gt;前面的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type types= parameterizedType.getRawType();</span><br><span class="line">System.out.println(types);</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051710.png" alt="image-20220402202731695"></p>
-<h3 id="getOwnerType"><a href="#getOwnerType" class="headerlink" title="getOwnerType"></a>getOwnerType</h3><p>获得内部类的拥有者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map.Entry&lt;String,Integer&gt; map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) typeMap;</span><br><span class="line">        Type types= parameterizedType.getOwnerType();</span><br><span class="line">        System.out.println(types);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051711.png" alt="image-20220402203021430"></p>
-<h2 id="GenericArrayType"><a href="#GenericArrayType" class="headerlink" title="GenericArrayType"></a>GenericArrayType</h2><p>泛型数组类型List<String>[]等</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; []map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line"></span><br><span class="line">        System.out.println(typeMap);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051712.png" alt="image-20220402203344305"></p>
-<h3 id="getGenericComponentType"><a href="#getGenericComponentType" class="headerlink" title="getGenericComponentType"></a>getGenericComponentType</h3><p>返回数组中元素的Type类型，即去除数组之后的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; []map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        GenericArrayType genericArrayType=(GenericArrayType) typeMap;</span><br><span class="line">        System.out.println(genericArrayType);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051713.png" alt="image-20220402203711073"></p>
-<h1 id="TypeVariable"><a href="#TypeVariable" class="headerlink" title="TypeVariable"></a>TypeVariable</h1><p>指List<T>等值的概念</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> List&lt;String&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        Type type=fieldMap.getGenericType();</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) type;</span><br><span class="line">        System.out.println(parameterizedType);</span><br><span class="line"></span><br><span class="line">        Type[] types=parameterizedType.getActualTypeArguments();</span><br><span class="line">        System.out.println(types[<span class="number">0</span>].getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然还有别的方法进行调整</p>
-<p>在TypeVariable接口中，有3个方法，分别为getBounds()、getGenericDeclaration()、getName()；</p>
-<h2 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h2><p>Type接口的实现类，是我们工作中常用到的一个对象；在Java中，<strong>每个.class文件在程序运行期间，都对应着一个Class对象，这个对象保存有这个类的全部信息；</strong>因此，Class对象也称之为Java反射的基础；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> List&lt;String&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field field=Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        Type type=field.getGenericType();</span><br><span class="line">        System.out.println(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051714.png" alt="image-20220402205125524"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&lt;T,W&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_">Person</span>&lt;Integer, Boolean&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;rawtypes&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Test</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> student.getClass();</span><br><span class="line">        System.out.println(clazz);</span><br><span class="line">        System.out.println(<span class="string">&quot;获取父类对象：&quot;</span> + clazz.getSuperclass());</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">         * Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">Type</span> <span class="variable">type</span> <span class="operator">=</span> clazz.getGenericSuperclass();</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">        <span class="type">ParameterizedType</span> <span class="variable">p</span> <span class="operator">=</span> (ParameterizedType)type;</span><br><span class="line">        <span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c1</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">        System.out.println(c1);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">c2</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">1</span>];</span><br><span class="line">        System.out.println(c2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 运行结果：</span></span><br><span class="line"><span class="comment"> * 获取父类对象：class com.mycode.test.Person</span></span><br><span class="line"><span class="comment"> * com.mycode.test.Person&lt;java.lang.Integer, java.lang.Boolean&gt;</span></span><br><span class="line"><span class="comment"> * class java.lang.Integer</span></span><br><span class="line"><span class="comment"> * class java.lang.Boolean</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022105105.png" alt="image-20220402210538555"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/19773.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1012,6 +879,139 @@
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741642.png" alt="image-20220322084840211"></p>
 <p>注意：</p>
 <p>如果我们使用enum关键字之后，就不可以继承其他类了，Java是单继承机制。但是实质上enum还是一个类，所以可以继承实现接口。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/15202.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/15202.html" class="post-title-link" itemprop="url">Java中Type类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-03 19:00:32" itemprop="dateModified" datetime="2022-04-03T19:00:32+08:00">2022-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中Type"><a href="#Java中Type" class="headerlink" title="Java中Type"></a>Java中Type</h1><p>Type时Java语言中所有类型的公共高级接口，也就是Java中所有类型的“爹”；其中所有的类型并不是我们经常使用的int，String等类型，而是对基本数据类型，引用类型向上的抽象。</p>
+<p>Type体系中的类型包括：原始类型(Class)、参数化类型(ParameterizedType)、数组类型(GenericArrayType)、类型变量(TypeVariable)、基本类型(Class);</p>
+<p>原始类型，不仅仅包含我们平常所指的类，还包括枚举、数组、注解等；</p>
+<p>参数化类型，就是我们平常所用到的泛型List、Map；</p>
+<p>数组类型，并不是我们工作中所使用的数组String[] 、byte[]，而是带有泛型的数组，即T[] ；</p>
+<p>基本类型，也就是我们所说的java的基本类型，即int,float,double等</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051707.png" alt="image-20220402174243766"></p>
+<h2 id="ParameterizedType"><a href="#ParameterizedType" class="headerlink" title="ParameterizedType"></a>ParameterizedType</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022055796.png" alt="image-20220402205408958"></p>
+<p>分别为获得实际的类型，获得前面的类型，这个类型是否某个类型所属，获得这个所有者的类型，否则返回null</p>
+<p>参数泛型化，即泛型；例如List<T>等带有参数化的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.ParameterizedType;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;T&gt; set=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field field= Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        <span class="comment">//获取该属性的泛型类型</span></span><br><span class="line">        Type typeList= field.getGenericType();</span><br><span class="line">        System.out.println(typeList.getClass().getName());</span><br><span class="line">        </span><br><span class="line">        Field field1=Test.class.getDeclaredField(<span class="string">&quot;set&quot;</span>);</span><br><span class="line">        Type typeSet=field1.getGenericType();</span><br><span class="line">        System.out.println(typeSet.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051708.png" alt="image-20220402175104947"></p>
+<h3 id="getActualTypeArguments"><a href="#getActualTypeArguments" class="headerlink" title="getActualTypeArguments"></a>getActualTypeArguments</h3><p>当我们包含有多个泛型的时候，会返回一个数组用来保存这些数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line"></span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) typeMap;</span><br><span class="line"></span><br><span class="line">        Type []types= parameterizedType.getActualTypeArguments();</span><br><span class="line">        System.out.println(types[<span class="number">0</span>].getClass().getName());</span><br><span class="line">        System.out.println(types[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051709.png" alt="image-20220402202515214"></p>
+<h3 id="getRawType"><a href="#getRawType" class="headerlink" title="getRawType"></a>getRawType</h3><p>获取声明泛型或者接口，就是泛型中&lt;&gt;前面的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type types= parameterizedType.getRawType();</span><br><span class="line">System.out.println(types);</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051710.png" alt="image-20220402202731695"></p>
+<h3 id="getOwnerType"><a href="#getOwnerType" class="headerlink" title="getOwnerType"></a>getOwnerType</h3><p>获得内部类的拥有者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map.Entry&lt;String,Integer&gt; map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) typeMap;</span><br><span class="line">        Type types= parameterizedType.getOwnerType();</span><br><span class="line">        System.out.println(types);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051711.png" alt="image-20220402203021430"></p>
+<h2 id="GenericArrayType"><a href="#GenericArrayType" class="headerlink" title="GenericArrayType"></a>GenericArrayType</h2><p>泛型数组类型List<String>[]等</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; []map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line"></span><br><span class="line">        System.out.println(typeMap);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051712.png" alt="image-20220402203344305"></p>
+<h3 id="getGenericComponentType"><a href="#getGenericComponentType" class="headerlink" title="getGenericComponentType"></a>getGenericComponentType</h3><p>返回数组中元素的Type类型，即去除数组之后的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> Map&lt;String,Integer&gt; []map=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        Type typeMap= fieldMap.getGenericType();</span><br><span class="line">        GenericArrayType genericArrayType=(GenericArrayType) typeMap;</span><br><span class="line">        System.out.println(genericArrayType);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051713.png" alt="image-20220402203711073"></p>
+<h1 id="TypeVariable"><a href="#TypeVariable" class="headerlink" title="TypeVariable"></a>TypeVariable</h1><p>指List<T>等值的概念</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> List&lt;String&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field fieldMap=Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        Type type=fieldMap.getGenericType();</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">        ParameterizedType parameterizedType=(ParameterizedType) type;</span><br><span class="line">        System.out.println(parameterizedType);</span><br><span class="line"></span><br><span class="line">        Type[] types=parameterizedType.getActualTypeArguments();</span><br><span class="line">        System.out.println(types[<span class="number">0</span>].getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然还有别的方法进行调整</p>
+<p>在TypeVariable接口中，有3个方法，分别为getBounds()、getGenericDeclaration()、getName()；</p>
+<h2 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h2><p>Type接口的实现类，是我们工作中常用到的一个对象；在Java中，<strong>每个.class文件在程序运行期间，都对应着一个Class对象，这个对象保存有这个类的全部信息；</strong>因此，Class对象也称之为Java反射的基础；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">       <span class="keyword">private</span> List&lt;String&gt; list=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException &#123;</span><br><span class="line">        Field field=Test.class.getDeclaredField(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">        Type type=field.getGenericType();</span><br><span class="line">        System.out.println(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022051714.png" alt="image-20220402205125524"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&lt;T,W&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_">Person</span>&lt;Integer, Boolean&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;rawtypes&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Test</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> student.getClass();</span><br><span class="line">        System.out.println(clazz);</span><br><span class="line">        System.out.println(<span class="string">&quot;获取父类对象：&quot;</span> + clazz.getSuperclass());</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">         * Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">Type</span> <span class="variable">type</span> <span class="operator">=</span> clazz.getGenericSuperclass();</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">        <span class="type">ParameterizedType</span> <span class="variable">p</span> <span class="operator">=</span> (ParameterizedType)type;</span><br><span class="line">        <span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c1</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">        System.out.println(c1);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">c2</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">1</span>];</span><br><span class="line">        System.out.println(c2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 运行结果：</span></span><br><span class="line"><span class="comment"> * 获取父类对象：class com.mycode.test.Person</span></span><br><span class="line"><span class="comment"> * com.mycode.test.Person&lt;java.lang.Integer, java.lang.Boolean&gt;</span></span><br><span class="line"><span class="comment"> * class java.lang.Integer</span></span><br><span class="line"><span class="comment"> * class java.lang.Boolean</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022105105.png" alt="image-20220402210538555"></p>
 
       
     </div>
