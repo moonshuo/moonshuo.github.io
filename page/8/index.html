@@ -391,134 +391,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59454.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/59454.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:35:55" itemprop="dateModified" datetime="2022-03-30T17:35:55+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>作用</th>
-<th>举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&amp;</td>
-<td>与，两边判断值都为真才为真</td>
-<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
-</tr>
-<tr>
-<td>||</td>
-<td>或，只要一边为真，结果就为真</td>
-<td>true||false&#x3D;true</td>
-</tr>
-<tr>
-<td>！</td>
-<td>取反，结果与原来相反</td>
-<td>！true&#x3D;fasle</td>
-</tr>
-<tr>
-<td>^</td>
-<td>异或，不相同的时候取反</td>
-<td>fasle^true&#x3D;true</td>
-</tr>
-</tbody></table>
-<h1 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h1><p>&#x3D;，简单的将右边的值赋值给左边</p>
-<h1 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h1><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
-<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
-<p>运行以下代码，可以查看出相应的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732725.png" alt="image-20220313171047502"></p>
-<h1 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h1><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732273.png" alt="image-20220313171106169"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/43612.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -636,6 +508,134 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a==b);</span><br><span class="line">    System.out.println(a!=b);</span><br><span class="line">    System.out.println(a&gt;=b);</span><br><span class="line">    System.out.println(a&lt;=b);</span><br><span class="line">    System.out.println(a&gt;b);</span><br><span class="line">    System.out.println(a&lt;b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732173.png" alt="image-20220306175303656"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59454.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/59454.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:35:55" itemprop="dateModified" datetime="2022-03-30T17:35:55+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>与，两边判断值都为真才为真</td>
+<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或，只要一边为真，结果就为真</td>
+<td>true||false&#x3D;true</td>
+</tr>
+<tr>
+<td>！</td>
+<td>取反，结果与原来相反</td>
+<td>！true&#x3D;fasle</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或，不相同的时候取反</td>
+<td>fasle^true&#x3D;true</td>
+</tr>
+</tbody></table>
+<h1 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h1><p>&#x3D;，简单的将右边的值赋值给左边</p>
+<h1 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h1><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
+<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
+<p>运行以下代码，可以查看出相应的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732725.png" alt="image-20220313171047502"></p>
+<h1 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h1><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732273.png" alt="image-20220313171106169"></p>
 
       
     </div>
