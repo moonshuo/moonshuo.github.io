@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
-  <meta name="baidu-site-verification" content="code-lxFYCNZmSO" /><meta name="generator" content="Hexo 6.2.0">
+  <meta name="baidu-site-verification" content="code-lxFYCNZmSO" />
+
+  <meta name="google-site-verification" content="VnyM_-4pYoRUVjrTE0oAezk4f_JIs7pYgX37RmVDMU0" /><meta name="generator" content="Hexo 6.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
@@ -1013,6 +1015,123 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41590.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/41590.html" class="post-title-link" itemprop="url">动态代理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-07 10:37:39" itemprop="dateModified" datetime="2022-05-07T10:37:39+08:00">2022-05-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">Java设计模式</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HI&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;GOOD&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        testService.sayHi();</span><br><span class="line">        testService.sayGood();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现在我需要在以上的两个方法之前分别要求输出现在的时间，以及在执行完之后输出“完成”。我们拥有以下几个方法</p>
+<ol>
+<li>直接在sayHi，与saygood方法中添加</li>
+<li>写一个工具类，调用工具类进行添加</li>
+</ol>
+<p>以上的两个方法虽然有效，但是如果需要我们更改100个这样的方法，那样岂不是要更改100行</p>
+<h2 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h2><p>动态代理可以在程序的执行过程创建代理对象，通过代理对象执行方法，增加额外方法</p>
+<h3 id="实现IncocationHandler，功能增加"><a href="#实现IncocationHandler，功能增加" class="headerlink" title="实现IncocationHandler，功能增加"></a>实现IncocationHandler，功能增加</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyIncation</span> <span class="keyword">implements</span> <span class="title class_">InvocationHandler</span> &#123;</span><br><span class="line">    <span class="comment">//动态代理的目标对象</span></span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyIncation</span><span class="params">(Object object)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        Object res=<span class="literal">null</span>;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        <span class="comment">//通过代理对象执行方法shi，会执行这个invoke</span></span><br><span class="line">        res=method.invoke(object,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;完成&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建代理"><a href="#创建代理" class="headerlink" title="创建代理"></a>创建代理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//创建目标对象</span></span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        InvocationHandler invocationHandler=<span class="keyword">new</span> <span class="title class_">MyIncation</span>(testService);</span><br><span class="line">        <span class="comment">//使用Proxy创建代理</span></span><br><span class="line">        TestService proxy=(TestService) Proxy.newProxyInstance(testService.getClass().getClassLoader(), testService.getClass().getInterfaces(),invocationHandler);</span><br><span class="line">        proxy.sayGood();</span><br><span class="line">        proxy.sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205051548261.png" alt="image-20220505154812603"></p>
+<p>当然如果我们不想要sayhi方法执行一些代码，我们可以在实现IncocationHandler通过判断方法的名称，来选择执行哪一些代码</p>
+<p>JDK动态代理是需要声明接口的，创建一个动态代理类必须得给这个”虚拟“的类一个接口。可以看到，这时候经动态代理类创造之后的每个bean已经不是原来那个对象了。</p>
+<p>参考：</p>
+<p>动态代理实际上是程序在运行中，根据被代理的接口来动态生成代理类的class文件，并加载class文件运行的过程，通过<strong>反编译</strong>被生成的**$Proxy0.class**文件发现：</p>
+<p>  class类定义为：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ee9582c00eda">为何jdk动态代理必须有接口，不支持仅实现类的代理 - 简书 (jianshu.com)</a></p>
+<p>  public final class $Proxy0 <strong>extends</strong> Proxy <strong>implements</strong> Interface {</p>
+<p>​    *<strong>public $Proxy0(InvocationHandler paramInvocationHandler) {*</strong> </p>
+<p>​      *<strong>super(paramInvocationHandler);*</strong> </p>
+<p>​     ***}*** </p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>原理不清楚，插眼！！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/25104.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1106,123 +1225,6 @@
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745123.png" alt="image-20220322090118858"></p>
 <h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>饿汉式：在类加载时创建，可能存在资源浪费的问题</p>
 <p>懒汉式：线程安全问题，多个线程同时访问，会发生冲突</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41590.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/41590.html" class="post-title-link" itemprop="url">动态代理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-07 10:37:39" itemprop="dateModified" datetime="2022-05-07T10:37:39+08:00">2022-05-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">Java设计模式</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HI&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;GOOD&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>main</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        testService.sayHi();</span><br><span class="line">        testService.sayGood();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现在我需要在以上的两个方法之前分别要求输出现在的时间，以及在执行完之后输出“完成”。我们拥有以下几个方法</p>
-<ol>
-<li>直接在sayHi，与saygood方法中添加</li>
-<li>写一个工具类，调用工具类进行添加</li>
-</ol>
-<p>以上的两个方法虽然有效，但是如果需要我们更改100个这样的方法，那样岂不是要更改100行</p>
-<h2 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h2><p>动态代理可以在程序的执行过程创建代理对象，通过代理对象执行方法，增加额外方法</p>
-<h3 id="实现IncocationHandler，功能增加"><a href="#实现IncocationHandler，功能增加" class="headerlink" title="实现IncocationHandler，功能增加"></a>实现IncocationHandler，功能增加</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyIncation</span> <span class="keyword">implements</span> <span class="title class_">InvocationHandler</span> &#123;</span><br><span class="line">    <span class="comment">//动态代理的目标对象</span></span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyIncation</span><span class="params">(Object object)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        Object res=<span class="literal">null</span>;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        <span class="comment">//通过代理对象执行方法shi，会执行这个invoke</span></span><br><span class="line">        res=method.invoke(object,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;完成&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建代理"><a href="#创建代理" class="headerlink" title="创建代理"></a>创建代理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//创建目标对象</span></span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        InvocationHandler invocationHandler=<span class="keyword">new</span> <span class="title class_">MyIncation</span>(testService);</span><br><span class="line">        <span class="comment">//使用Proxy创建代理</span></span><br><span class="line">        TestService proxy=(TestService) Proxy.newProxyInstance(testService.getClass().getClassLoader(), testService.getClass().getInterfaces(),invocationHandler);</span><br><span class="line">        proxy.sayGood();</span><br><span class="line">        proxy.sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205051548261.png" alt="image-20220505154812603"></p>
-<p>当然如果我们不想要sayhi方法执行一些代码，我们可以在实现IncocationHandler通过判断方法的名称，来选择执行哪一些代码</p>
-<p>JDK动态代理是需要声明接口的，创建一个动态代理类必须得给这个”虚拟“的类一个接口。可以看到，这时候经动态代理类创造之后的每个bean已经不是原来那个对象了。</p>
-<p>参考：</p>
-<p>动态代理实际上是程序在运行中，根据被代理的接口来动态生成代理类的class文件，并加载class文件运行的过程，通过<strong>反编译</strong>被生成的**$Proxy0.class**文件发现：</p>
-<p>  class类定义为：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ee9582c00eda">为何jdk动态代理必须有接口，不支持仅实现类的代理 - 简书 (jianshu.com)</a></p>
-<p>  public final class $Proxy0 <strong>extends</strong> Proxy <strong>implements</strong> Interface {</p>
-<p>​    *<strong>public $Proxy0(InvocationHandler paramInvocationHandler) {*</strong> </p>
-<p>​      *<strong>super(paramInvocationHandler);*</strong> </p>
-<p>​     ***}*** </p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>原理不清楚，插眼！！</p>
 
       
     </div>
