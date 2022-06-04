@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=华文新魏:300,300italic,400,400italic,700,700italic%7C华文楷体:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -179,7 +179,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -230,6 +230,104 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/29385.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/29385.html" class="post-title-link" itemprop="url">CRM客户管理系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-04 14:05:45 / 修改时间：16:31:04" itemprop="dateCreated datePublished" datetime="2022-06-04T14:05:45+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/29385.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/29385.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="主键字段"><a href="#主键字段" class="headerlink" title="主键字段"></a>主键字段</h2><p>在数据库设计中，如果有一组字段能够唯一确定一条记录，则可以把他们设计成表的主键，推荐使用一个字段做主键，而且推荐使用没有业务含义的字段做主键。</p>
+<p>设置主键有两种方式</p>
+<ol>
+<li>数据库自增，但是这个数据库自增，数据库会开辟出一个线程专门管理数据库自增的信息，当我们有多个并发的进程需要进行插入操作时，数据库会上锁，只允许一个一个的进行，效率比较低下<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45701550/article/details/106751381">你真的懂自增主键(auto_increment)？_wind_huise的博客-CSDN博客_自增主键</a></li>
+<li>使用uuid，uuid使jdk自带的字段，我们可以使用这个类生成32位的不重复的字段作为主键，而且速度快，并不会引起效率降低</li>
+</ol>
+<h2 id="外键字段"><a href="#外键字段" class="headerlink" title="外键字段"></a>外键字段</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38432.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -266,7 +364,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-03 10:32:56" itemprop="dateModified" datetime="2022-06-03T10:32:56+08:00">2022-06-03</time>
+      <time title="修改时间：2022-06-04 17:04:25" itemprop="dateModified" datetime="2022-06-04T17:04:25+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,17 +400,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="简单基础"><a href="#简单基础" class="headerlink" title="简单基础"></a>简单基础</h1><h2 id="sql语句去重"><a href="#sql语句去重" class="headerlink" title="sql语句去重"></a>sql语句去重</h2><p><img data-src="/sql%E8%AF%AD%E5%8F%A5%E5%A4%8D%E4%B9%A0/image-20220602201107144.png" alt="image-20220602201107144"></p>
+          <h1 id="简单基础"><a href="#简单基础" class="headerlink" title="简单基础"></a>简单基础</h1><h2 id="sql语句去重"><a href="#sql语句去重" class="headerlink" title="sql语句去重"></a>sql语句去重</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041407196.png" alt="image-20220602201107144"></p>
 <p>查询出所有大学</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> university <span class="keyword">from</span> user_profile</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span>  university <span class="keyword">from</span> user_profile <span class="keyword">group</span> <span class="keyword">by</span> university</span><br></pre></td></tr></table></figure>
 
-<h2 id="查询出某个范围的数据"><a href="#查询出某个范围的数据" class="headerlink" title="查询出某个范围的数据"></a>查询出某个范围的数据</h2><p><img data-src="/sql%E8%AF%AD%E5%8F%A5%E5%A4%8D%E4%B9%A0/image-20220602202431393.png" alt="image-20220602202431393"></p>
+<h2 id="查询出某个范围的数据"><a href="#查询出某个范围的数据" class="headerlink" title="查询出某个范围的数据"></a>查询出某个范围的数据</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041407197.png" alt="image-20220602202431393"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> device_id,gender,age <span class="keyword">from</span> user_profile <span class="keyword">where</span> age<span class="operator">&gt;=</span><span class="number">20</span> <span class="keyword">and</span> age<span class="operator">&lt;=</span><span class="number">23</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> device_id,gender,age <span class="keyword">from</span> user_profile <span class="keyword">where</span> age <span class="keyword">between</span> <span class="number">20</span> <span class="keyword">and</span> <span class="number">23</span></span><br></pre></td></tr></table></figure>
 
 <p>当然也可以使用not between来进行操作</p>
-<h2 id="排除列查询"><a href="#排除列查询" class="headerlink" title="排除列查询"></a>排除列查询</h2><p><img data-src="/sql%E8%AF%AD%E5%8F%A5%E5%A4%8D%E4%B9%A0/image-20220602203024174.png" alt="image-20220602203024174"></p>
+<h2 id="排除列查询"><a href="#排除列查询" class="headerlink" title="排除列查询"></a>排除列查询</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041407198.png" alt="image-20220602203024174"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> device_id,gender,age,university <span class="keyword">from</span> user_profile <span class="keyword">where</span> university <span class="operator">!=</span> <span class="string">&#x27;复旦大学&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> device_id,gender,age,university <span class="keyword">from</span> user_profile <span class="keyword">where</span> university <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">&#x27;复旦大学&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="数据内连接与外连接"><a href="#数据内连接与外连接" class="headerlink" title="数据内连接与外连接"></a>数据内连接与外连接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/johnhan9/article/details/88686288">MySQL—内连接和外连接区别_leon.han的博客-CSDN博客_mysql内连接和外连接的区别</a></p>
+<p>内连接：取出按照条件的数据，匹配不到的不进行保留</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users as u inner join topics as t on u.id=t.user_id</span><br></pre></td></tr></table></figure>
+
+<p>外连接：取出连接表中匹配到的数据，匹配不到的也会保留，值为null</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#左边的表为主</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">as</span> u <span class="keyword">left</span> <span class="keyword">join</span> topics <span class="keyword">as</span> t <span class="keyword">on</span> u.id<span class="operator">=</span>t.user_id;</span><br><span class="line">#右边的表为主</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> topics <span class="keyword">as</span> t <span class="keyword">right</span> <span class="keyword">join</span> users <span class="keyword">as</span> u <span class="keyword">on</span> u.id<span class="operator">=</span>t.user_id;</span><br></pre></td></tr></table></figure>
+
+<p>当然还有全外链接</p>
 
       
     </div>
@@ -339,7 +445,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/29833.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/6722.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -357,115 +463,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/29833.html" class="post-title-link" itemprop="url">众筹网</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-06-02 15:36:04" itemprop="dateCreated datePublished" datetime="2022-06-02T15:36:04+08:00">2022-06-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-03 10:33:16" itemprop="dateModified" datetime="2022-06-03T10:33:16+08:00">2022-06-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">项目实战</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/29833.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/29833.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>建立子父工程</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929112.png" alt="image-20220602162120980"></p>
-<p>建立依赖</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929114.png" alt="image-20220602162506200"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929115.png" alt="image-20220602163319616"></p>
-<h1 id="建立表格"><a href="#建立表格" class="headerlink" title="建立表格"></a>建立表格</h1><p>由于这里是后台管理功能，所以我们首先建立一个管理员的账户表格</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- auto-generated definition</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_admin</span><br><span class="line">(</span><br><span class="line">    id          <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    login_acct  <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    login_pswd  <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    user_name   <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    create_time datetime     <span class="keyword">null</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h1 id="建立-对象"><a href="#建立-对象" class="headerlink" title="建立 对象"></a>建立 对象</h1><p><a href="https://moonshuo.cn/posts/38368.html">https://moonshuo.cn/posts/38368.html</a></p>
-<p>我们使用mybatis的逆向工程进行构建对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!-- https:<span class="comment">//mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core --&gt;</span></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.4</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.2</span><span class="number">.9</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- 增加相关依赖包 --&gt;</span><br><span class="line">    &lt;!-- MySQL驱动包 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">8.0</span><span class="number">.29</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/0.html" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/posts/6722.html" class="post-title-link" itemprop="url">稀疏数组与队列</a>
         </h2>
 
         <div class="post-meta-container">
@@ -483,7 +481,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-03 10:32:56" itemprop="dateModified" datetime="2022-06-03T10:32:56+08:00">2022-06-03</time>
+      <time title="修改时间：2022-06-04 14:06:03" itemprop="dateModified" datetime="2022-06-04T14:06:03+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -504,8 +502,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/0.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/0.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/6722.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/6722.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -524,14 +522,30 @@
 <li>记录数组一共有几行几列，有多少个不同的值</li>
 <li>把具有不同值的元素的行列及值记录在一个小规模数组中，从而缩小程序的规模</li>
 </ol>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img data-src="/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84%E4%B8%8E%E9%98%9F%E5%88%97/image-20220602095921065.png" alt="image-20220602095921065"></p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910194.png" alt="image-20220602095921065"></p>
 <p>我们可以看出上面的图片中6*7的数组大小，存储之后可以编程9行3列的数组，缩小了数组的大小</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="二维数组转稀疏数组"><a href="#二维数组转稀疏数组" class="headerlink" title="二维数组转稀疏数组"></a>二维数组转稀疏数组</h4><p>我们首先遍历二维数组，得到有效数据的个数和行列数，然后得到有效数组的位置存储到稀疏数组中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpareArray</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建二维的原始数组</span></span><br><span class="line">        <span class="type">int</span> [][]arrays=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">6</span>][<span class="number">7</span>];</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">3</span>]=<span class="number">22</span>;</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">6</span>]=<span class="number">15</span>;</span><br><span class="line">        arrays[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">11</span>;</span><br><span class="line">        <span class="comment">//输出原始二维数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]row:arrays)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(row));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//转化稀疏数组</span></span><br><span class="line">        <span class="comment">//首先需要获得值的个数确定行数，同时收集二维数组的行与列</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的行</span></span><br><span class="line">        <span class="type">int</span> row=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的列</span></span><br><span class="line">        <span class="type">int</span> col=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> []rows:arrays)&#123;</span><br><span class="line">            <span class="comment">//获得行</span></span><br><span class="line">            row=arrays.length;</span><br><span class="line">            <span class="comment">//获得列</span></span><br><span class="line">            col=rows.length;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i:rows)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//获得稀疏数组的行数</span></span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> [][]spareArray=<span class="keyword">new</span> <span class="title class_">int</span>[count+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">//开始赋值</span></span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">0</span>]=row;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">1</span>]=col;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">2</span>]=count;</span><br><span class="line">        <span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;col;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arrays[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">                    spareArray[flag][<span class="number">0</span>]=i;</span><br><span class="line">                    spareArray[flag][<span class="number">1</span>]=j;</span><br><span class="line">                    spareArray[flag][<span class="number">2</span>]=arrays[i][j];</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]rows:spareArray)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(rows));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84%E4%B8%8E%E9%98%9F%E5%88%97/image-20220602104331351.png" alt="image-20220602104331351"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910195.png" alt="image-20220602104331351"></p>
 <h4 id="稀疏数组转二维数组"><a href="#稀疏数组转二维数组" class="headerlink" title="稀疏数组转二维数组"></a>稀疏数组转二维数组</h4><p>得到行和列，还原二维数组，将有效数据还原到二维数组中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//稀疏数组转换为二维数组</span></span><br><span class="line">    <span class="type">int</span> [][]newArray=<span class="keyword">new</span> <span class="title class_">int</span>[spareArray[<span class="number">0</span>][<span class="number">0</span>]][spareArray[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">    <span class="comment">//将有效值进行赋值，开始的行数</span></span><br><span class="line">    <span class="type">int</span> flag1=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;spareArray[<span class="number">0</span>][<span class="number">2</span>];i++)&#123;</span><br><span class="line">        newArray[spareArray[flag1][<span class="number">0</span>]][spareArray[flag1][<span class="number">1</span>]]=spareArray[flag1][<span class="number">2</span>];</span><br><span class="line">        flag1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span>[]rows:newArray)&#123;</span><br><span class="line">        System.out.println(Arrays.toString(rows));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列是一个有序列表，可以用数组（有序数组）或者链表（有序链表）来实现，遵从先入先出的原则</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040927082.png" alt="image-20220604092742372"></p>
+<p>第一张图片没有存入数据的时候，rear与front都为-1，当我们加入数据的时候，rear+1，而front不变，当我们取出数据的时候，是从前面开始取出，那么front就开始+1</p>
+<h2 id="队列实现方法"><a href="#队列实现方法" class="headerlink" title="队列实现方法"></a>队列实现方法</h2><h3 id="数组方式普通实现"><a href="#数组方式普通实现" class="headerlink" title="数组方式普通实现"></a>数组方式普通实现</h3><p>而数组队列需要一个front与rear还有maxsize表示最大的容量，当我们加入一个队列的时候，rear+1，而取出的时候，front+1，但是如果rear&#x3D;&#x3D;maxsize-1的时候，就已经满了</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayQueue</span> &#123;</span><br><span class="line">    <span class="type">int</span> maxSize=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> front;</span><br><span class="line">    <span class="type">int</span> rear;</span><br><span class="line">    <span class="type">int</span> []array;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ArrayQueue</span><span class="params">(<span class="type">int</span> maxSize)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">        front=-<span class="number">1</span>;</span><br><span class="line">        rear=-<span class="number">1</span>;</span><br><span class="line">        array=<span class="keyword">new</span> <span class="title class_">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**判断是否为空*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> front==rear;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断是否满了*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> rear==maxSize-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**取出一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">takeNum</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;为空，没有数据可取出&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            front++;</span><br><span class="line">            System.out.println(<span class="string">&quot;取出成功，取出了&quot;</span>+array[front]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**插入一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertNum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列已经满了，无法插入数据&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            rear++;</span><br><span class="line">            array[rear]=n;</span><br><span class="line">            System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**打印当前队列*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=front;i&lt;rear;)&#123;</span><br><span class="line">            System.out.println(array[++i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayQueue arrayQueue=<span class="keyword">new</span> <span class="title class_">ArrayQueue</span>(<span class="number">3</span>);</span><br><span class="line">        System.out.println(arrayQueue.isFull());</span><br><span class="line">        System.out.println(arrayQueue.isEmpty());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//插入数据</span></span><br><span class="line">        arrayQueue.insertNum(<span class="number">1</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">2</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">3</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">4</span>);</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出数据</span></span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041006457.png" alt="image-20220604100621473"></p>
+<p>当然我们这个也是存在错误的，因为我们这个实现方法并没有完成取模，形成环形队列，只能使用一次</p>
+<h3 id="数组方式环形队列实现"><a href="#数组方式环形队列实现" class="headerlink" title="数组方式环形队列实现"></a>数组方式环形队列实现</h3><p>初始情况下front&#x3D;rear&#x3D;0，此时并没有插入数，但是一旦插入数，front指向当前数，即front&#x3D;0，而rear指向最后一个数的下一个位置</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041151875.png" alt="image-20220604115123217"></p>
+<p>此时我们对判断满的条件进行观察，查看两种情况</p>
+<p>插入1234</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041152858.png" alt="image-20220604115236805"></p>
+<p>插入1234，取出12，插入56</p>
+
       
     </div>
 
@@ -772,7 +786,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 18:27:07" itemprop="dateModified" datetime="2022-04-07T18:27:07+08:00">2022-04-07</time>
+      <time title="修改时间：2022-06-04 14:12:52" itemprop="dateModified" datetime="2022-06-04T14:12:52+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -781,10 +795,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">问题集合</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/%E5%89%8D%E7%AB%AF%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">前端问题</span></a>
         </span>
     </span>
 
@@ -1081,7 +1091,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:59:00" itemprop="dateModified" datetime="2022-03-30T17:59:00+08:00">2022-03-30</time>
+      <time title="修改时间：2022-06-04 14:12:15" itemprop="dateModified" datetime="2022-06-04T14:12:15+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1090,10 +1100,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a>
         </span>
     </span>
 
@@ -1205,7 +1211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-31 12:18:46" itemprop="dateModified" datetime="2022-03-31T12:18:46+08:00">2022-03-31</time>
+      <time title="修改时间：2022-06-04 14:12:20" itemprop="dateModified" datetime="2022-06-04T14:12:20+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1214,10 +1220,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a>
         </span>
     </span>
 
@@ -1337,7 +1339,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 18:00:25" itemprop="dateModified" datetime="2022-03-30T18:00:25+08:00">2022-03-30</time>
+      <time title="修改时间：2022-06-04 14:12:24" itemprop="dateModified" datetime="2022-06-04T14:12:24+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1346,10 +1348,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a>
         </span>
     </span>
 
@@ -1478,7 +1476,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 18:00:28" itemprop="dateModified" datetime="2022-03-30T18:00:28+08:00">2022-03-30</time>
+      <time title="修改时间：2022-06-04 14:12:11" itemprop="dateModified" datetime="2022-06-04T14:12:11+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1487,10 +1485,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a>
         </span>
     </span>
 

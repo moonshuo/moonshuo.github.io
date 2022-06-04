@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=华文新魏:300,300italic,400,400italic,700,700italic%7C华文楷体:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -36,31 +36,27 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-    <meta name="description" content="环境搭建建立子父工程  建立依赖   建立表格由于这里是后台管理功能，所以我们首先建立一个管理员的账户表格 12345678910-- auto-generated definitioncreate table t_admin(    id          int auto_increment        primary key,    login_acct  varchar(255) not">
+    <meta name="description" content="数据库主键字段在数据库设计中，如果有一组字段能够唯一确定一条记录，则可以把他们设计成表的主键，推荐使用一个字段做主键，而且推荐使用没有业务含义的字段做主键。 设置主键有两种方式  数据库自增，但是这个数据库自增，数据库会开辟出一个线程专门管理数据库自增的信息，当我们有多个并发的进程需要进行插入操作时，数据库会上锁，只允许一个一个的进行，效率比较低下你真的懂自增主键(auto_increment)？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="众筹网">
-<meta property="og:url" content="https://moonshuo.cn/posts/29833.html">
+<meta property="og:title" content="CRM客户管理系统">
+<meta property="og:url" content="https://moonshuo.cn/posts/29385.html">
 <meta property="og:site_name" content="偷掉月亮">
-<meta property="og:description" content="环境搭建建立子父工程  建立依赖   建立表格由于这里是后台管理功能，所以我们首先建立一个管理员的账户表格 12345678910-- auto-generated definitioncreate table t_admin(    id          int auto_increment        primary key,    login_acct  varchar(255) not">
+<meta property="og:description" content="数据库主键字段在数据库设计中，如果有一组字段能够唯一确定一条记录，则可以把他们设计成表的主键，推荐使用一个字段做主键，而且推荐使用没有业务含义的字段做主键。 设置主键有两种方式  数据库自增，但是这个数据库自增，数据库会开辟出一个线程专门管理数据库自增的信息，当我们有多个并发的进程需要进行插入操作时，数据库会上锁，只允许一个一个的进行，效率比较低下你真的懂自增主键(auto_increment)？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929112.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929114.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929115.png">
-<meta property="article:published_time" content="2022-06-02T07:36:04.407Z">
-<meta property="article:modified_time" content="2022-06-03T02:33:16.445Z">
+<meta property="article:published_time" content="2022-06-04T06:05:45.662Z">
+<meta property="article:modified_time" content="2022-06-04T08:31:04.964Z">
 <meta property="article:author" content="偷掉月亮的阿硕">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929112.png">
 
 
-<link rel="canonical" href="https://moonshuo.cn/posts/29833.html">
+<link rel="canonical" href="https://moonshuo.cn/posts/29385.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://moonshuo.cn/posts/29833.html","path":"posts/29833.html","title":"众筹网"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://moonshuo.cn/posts/29385.html","path":"posts/29385.html","title":"CRM客户管理系统"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>众筹网 | 偷掉月亮</title>
+<title>CRM客户管理系统 | 偷掉月亮</title>
   
 
 
@@ -167,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%A1%A8%E6%A0%BC"><span class="nav-number">2.</span> <span class="nav-text">建立表格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.</span> <span class="nav-text">建立 对象</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E5%AD%97%E6%AE%B5"><span class="nav-number">1.1.</span> <span class="nav-text">主键字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%94%AE%E5%AD%97%E6%AE%B5"><span class="nav-number">1.2.</span> <span class="nav-text">外键字段</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,7 +182,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -238,7 +234,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/29833.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/29385.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -251,12 +247,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="众筹网 | 偷掉月亮">
+      <meta itemprop="name" content="CRM客户管理系统 | 偷掉月亮">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          众筹网
+          CRM客户管理系统
         </h1>
 
         <div class="post-meta-container">
@@ -266,15 +262,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-06-02 15:36:04" itemprop="dateCreated datePublished" datetime="2022-06-02T15:36:04+08:00">2022-06-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-03 10:33:16" itemprop="dateModified" datetime="2022-06-03T10:33:16+08:00">2022-06-03</time>
+      <time title="创建时间：2022-06-04 14:05:45 / 修改时间：16:31:04" itemprop="dateCreated datePublished" datetime="2022-06-04T14:05:45+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,7 +272,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">项目实战</span></a>
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
         </span>
     </span>
 
@@ -302,8 +292,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/29833.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/29833.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/29385.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/29385.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -317,17 +307,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>建立子父工程</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929112.png" alt="image-20220602162120980"></p>
-<p>建立依赖</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929114.png" alt="image-20220602162506200"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206030929115.png" alt="image-20220602163319616"></p>
-<h1 id="建立表格"><a href="#建立表格" class="headerlink" title="建立表格"></a>建立表格</h1><p>由于这里是后台管理功能，所以我们首先建立一个管理员的账户表格</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- auto-generated definition</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_admin</span><br><span class="line">(</span><br><span class="line">    id          <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    login_acct  <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    login_pswd  <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    user_name   <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    create_time datetime     <span class="keyword">null</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h1 id="建立-对象"><a href="#建立-对象" class="headerlink" title="建立 对象"></a>建立 对象</h1><p><a href="https://moonshuo.cn/posts/38368.html">https://moonshuo.cn/posts/38368.html</a></p>
-<p>我们使用mybatis的逆向工程进行构建对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!-- https:<span class="comment">//mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core --&gt;</span></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.4</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.2</span><span class="number">.9</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- 增加相关依赖包 --&gt;</span><br><span class="line">    &lt;!-- MySQL驱动包 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">8.0</span><span class="number">.29</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="主键字段"><a href="#主键字段" class="headerlink" title="主键字段"></a>主键字段</h2><p>在数据库设计中，如果有一组字段能够唯一确定一条记录，则可以把他们设计成表的主键，推荐使用一个字段做主键，而且推荐使用没有业务含义的字段做主键。</p>
+<p>设置主键有两种方式</p>
+<ol>
+<li>数据库自增，但是这个数据库自增，数据库会开辟出一个线程专门管理数据库自增的信息，当我们有多个并发的进程需要进行插入操作时，数据库会上锁，只允许一个一个的进行，效率比较低下<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45701550/article/details/106751381">你真的懂自增主键(auto_increment)？_wind_huise的博客-CSDN博客_自增主键</a></li>
+<li>使用uuid，uuid使jdk自带的字段，我们可以使用这个类生成32位的不重复的字段作为主键，而且速度快，并不会引起效率降低</li>
+</ol>
+<h2 id="外键字段"><a href="#外键字段" class="headerlink" title="外键字段"></a>外键字段</h2>
     </div>
 
     
@@ -344,7 +330,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://moonshuo.cn/posts/29833.html" title="众筹网">https://moonshuo.cn/posts/29833.html</a>
+      <a href="https://moonshuo.cn/posts/29385.html" title="CRM客户管理系统">https://moonshuo.cn/posts/29385.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -357,14 +343,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/0.html" rel="prev" title="">
-                  <i class="fa fa-chevron-left"></i> 
+                <a href="/posts/38432.html" rel="prev" title="sql语句复习">
+                  <i class="fa fa-chevron-left"></i> sql语句复习
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/38432.html" rel="next" title="sql语句复习">
-                  sql语句复习 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -468,7 +451,7 @@
 
 
 
-<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"7D5IMT8UyIKF3s69dwOCthAl-MdYXbMMI","appKey":"rz25m98pwD0JtSr3hp8mFwVc","serverURLs":"https://7d5imt8u.api.lncldglobal.com","placeholder":"欢迎批评指正","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":true,"enableQQ":true,"requiredFields":[],"el":"#valine-comments","path":"/posts/29833.html"}</script>
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"7D5IMT8UyIKF3s69dwOCthAl-MdYXbMMI","appKey":"rz25m98pwD0JtSr3hp8mFwVc","serverURLs":"https://7d5imt8u.api.lncldglobal.com","placeholder":"欢迎批评指正","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":true,"enableQQ":true,"requiredFields":[],"el":"#valine-comments","path":"/posts/29385.html"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.valine.el)

@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=华文新魏:300,300italic,400,400italic,700,700italic%7C华文楷体:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -179,7 +179,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -340,7 +340,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/48485.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/22134.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -358,7 +358,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/48485.html" class="post-title-link" itemprop="url">SpringMVC的执行流程 - SpringMVC</a>
+          <a href="/posts/22134.html" class="post-title-link" itemprop="url">Class类以及相关方法和获取的方式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -376,7 +376,20 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 11:30:17" itemprop="dateModified" datetime="2022-05-02T11:30:17+08:00">2022-05-02</time>
+      <time title="修改时间：2022-03-30 17:45:19" itemprop="dateModified" datetime="2022-03-30T17:45:19+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
+        </span>
     </span>
 
   
@@ -388,8 +401,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/48485.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/48485.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/22134.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/22134.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -403,32 +416,536 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="mvc常用组件"><a href="#mvc常用组件" class="headerlink" title="mvc常用组件"></a>mvc常用组件</h1><ul>
-<li>DispatcherServlet：<strong>前端控制器</strong>，不需要工程师开发，由框架提供</li>
-</ul>
-<p>作用：统一处理请求和响应，整个流程控制的中心，由它调用其它组件处理用户的请求</p>
-<ul>
-<li>HandlerMapping：<strong>处理器映射器</strong>，不需要工程师开发，由框架提供</li>
-</ul>
-<p>作用：根据请求的url、method等信息查找Handler，即控制器方法</p>
-<ul>
-<li>Handler：<strong>处理器</strong>，需要工程师开发</li>
-</ul>
-<p>作用：在DispatcherServlet的控制下Handler对具体的用户请求进行处理</p>
-<ul>
-<li>HandlerAdapter：<strong>处理器适配器</strong>，不需要工程师开发，由框架提供</li>
-</ul>
-<p>作用：通过HandlerAdapter对处理器（控制器方法）进行执行</p>
-<ul>
-<li>ViewResolver：<strong>视图解析器</strong>，不需要工程师开发，由框架提供</li>
-</ul>
-<p>作用：进行视图解析，得到相应的视图，例如：ThymeleafView、InternalResourceView、RedirectView</p>
-<ul>
-<li>View：<strong>视图</strong></li>
-</ul>
-<p>作用：将模型数据通过页面展示给用户</p>
-<h1 id="DispatcherServlet初始化过程"><a href="#DispatcherServlet初始化过程" class="headerlink" title="DispatcherServlet初始化过程"></a>DispatcherServlet初始化过程</h1><p>插眼，没有听懂</p>
+          <h1 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h1><ol>
+<li>Class也是类，因此继承Object类</li>
+<li>Class类对象不是new出来的，而是系统创建的</li>
+<li>对于某个类的Class类对象，在内存中只有一份，因此类只加载一次</li>
+<li>每一个类的实例都会记得自己由那个Class实例化生成</li>
+<li>通过Class可以得到一个类的完整结构</li>
+<li>Class对象是放在堆中的</li>
+<li><strong>注意在方法区中，会存在cat类的二进制字节码数据</strong></li>
+</ol>
+<p><strong>传统对象debug与我们反射对象的debug可以发现都是通过ClassLoader类的loadClass加载到堆中，而且我们cat.class对象只会存在份，不管我们new多少次，还是会存在一次，类不同才会不同</strong></p>
+<p>class拥有许多的方法，可以得到对象的很多的信息。</p>
+<h1 id="Class类的常用方法"><a href="#Class类的常用方法" class="headerlink" title="Class类的常用方法"></a>Class类的常用方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> String name=<span class="string">&quot;asac&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> String sex=<span class="string">&quot;娜娜&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Cat&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, sex=&#x27;&quot;</span> + sex + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException &#123;</span><br><span class="line">        String classPath=<span class="string">&quot;com.zss.reflact.Cat&quot;</span>;</span><br><span class="line">        <span class="comment">//?代表不确定的类型</span></span><br><span class="line">        Class&lt;?&gt; cla=Class.forName(classPath);</span><br><span class="line">        <span class="comment">//尝试输出cla,这里显示那个类的Class对象</span></span><br><span class="line">        System.out.println(cla);</span><br><span class="line">        <span class="comment">//得到其运行类型</span></span><br><span class="line">        System.out.println(cla.getClass());</span><br><span class="line">        <span class="comment">//得到包名</span></span><br><span class="line">        System.out.println(cla.getPackage().getName());</span><br><span class="line">        <span class="comment">//得到全类名</span></span><br><span class="line">        System.out.println(cla.getName());</span><br><span class="line">        <span class="comment">//创建对象实例</span></span><br><span class="line">        Cat cat=(Cat) cla.newInstance();</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        <span class="comment">//通过反射获取属性</span></span><br><span class="line">        Field name=cla.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(name.get(cat));</span><br><span class="line">        <span class="comment">//通过反射设置值</span></span><br><span class="line">        name.set(cat,<span class="string">&quot;sec&quot;</span>);</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        <span class="comment">//得到所有的字段属性</span></span><br><span class="line">        Field[] fields=cla.getFields();</span><br><span class="line">        <span class="comment">//System.out.println(fields);</span></span><br><span class="line">        <span class="keyword">for</span> (Field f:fields)&#123;</span><br><span class="line">            System.out.println(f.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745359.png" alt="image-20220321172447804"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/3.html" class="post-title-link" itemprop="url">动态和静态加载以及流程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:44:20" itemprop="dateModified" datetime="2022-03-30T17:44:20+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/3.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/3.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="动态和静态加载"><a href="#动态和静态加载" class="headerlink" title="动态和静态加载"></a>动态和静态加载</h1><h2 id="静态加载"><a href="#静态加载" class="headerlink" title="静态加载"></a>静态加载</h2><p>编译时加载相关的类，如果没有则报错，依赖性太强。</p>
+<p>下面的代码，我们不会使用到Dog这个类，但是编译会给我们直接报错，依赖性太强，要求所有的类必须被加载好。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">1</span>)&#123;</span><br><span class="line">        Dog dog=<span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">        dog.cry();&#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;你对的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744311.png" alt="image-20220321193758779"></p>
+<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><p>运行时需要加载的类，如果运行时不要该类，则不报错，降低了依赖性.下面的这一段代码，路径根本不存在，但是在运行过程中不会使用到该代码，所以不会本加载，当使用时才会被加载。<strong>反射属于动态加载</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">1</span>)&#123;</span><br><span class="line">          Class cls=Class.forName(<span class="string">&quot;java//不存在&quot;</span>);</span><br><span class="line">          Object O=cls.newInstance();</span><br><span class="line">          Method method=cls.getMethod(<span class="string">&quot;HI&quot;</span>);</span><br><span class="line">          method.invoke(O);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;你对的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744256.png" alt="image-20220321194532855"></p>
+<h2 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h2><ol>
+<li>创建对象时new</li>
+<li>子类被加载时，父类也被加载</li>
+<li>调用类中静态成员时</li>
+<li>通过反射时</li>
+</ol>
+<h1 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744341.png" alt="image-20220321200304845"></p>
+<p>在加载中，将类的class文件读入内存，并且为之创建一个java.lang.Class对象，此过程由类加载器完成。验证与文件安全性（字节码等）进行验证，准备阶段分配空间，解析阶段把符号引用转成字节引用。<strong>初始化过程中可以由程序员进行控制，JVM负责对类进行初始化，这里主要指静态成员</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744547.png" alt="image-20220321200557645"></p>
+<h2 id="类加载的五个阶段"><a href="#类加载的五个阶段" class="headerlink" title="类加载的五个阶段"></a>类加载的五个阶段</h2><h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>JVM在该阶段主要目的是将字节码从不同的数据源（.class文件，jar包，网络文件等）转换为二进制字节流加载到内存中，并且生成一个代表该类的java.lang.Class对象</p>
+<h3 id="验证阶段"><a href="#验证阶段" class="headerlink" title="验证阶段"></a>验证阶段</h3><ol>
+<li>保证Class为文件的字节流中包含信息符合虚拟机的要求，并且不会危害虚拟机自身安全</li>
+<li>文件格式验证（是否以魔数oxcafebabe开头）、元数据验证，字节码验证和符号引用验证</li>
+<li>可以考虑使用-Xverify:none 参数关闭大部分验证措施，缩短虚拟机加载的时间</li>
+</ol>
+<h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>JVM对在该阶段对静态变量，分配内存并默认初始化（对应数据类型的默认初始化值比如int为0，String为null等），这些变量所使用的内存都将在方法区中进行分配。<strong>在这里只会对静态变量分配内存，实例变量不会分配，而对于final的常量会一次性分配</strong></p>
+<h3 id="解析阶段"><a href="#解析阶段" class="headerlink" title="解析阶段"></a>解析阶段</h3><p>虚拟机将常量池的符号引用变成直接引用，直接引用利用地址进行相互引用</p>
+<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><ol>
+<li><p>初始化阶段才是真正执行类中定义的java程序代码，此阶段是执行<clinit>()方法的过程</p>
+</li>
+<li><p><clinit>() 方法是由编译器按语句在源文件出现的顺序，<strong>依次自动收集类中所有静态变量的赋值动作和静态代码块中的语句并进行合并</strong>,比如会将其进行合并，而最终num&#x3D;200</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="keyword">static</span> num=<span class="number">100</span>;</span><br><span class="line">num=<span class="number">200</span>;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>虚拟机会保证一个类<clinit>()方法在多线程中被正确的枷锁，同步，如果多个线程同时初始化一个类，那么只会有一个线程去执行这个类的<clinit>()方法，其他线程都需要阻塞等待，直到活动线程执行<clnit>()方法完毕</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/12882.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/12882.html" class="post-title-link" itemprop="url">反射操作对象以及爆破</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-08 15:23:50" itemprop="dateModified" datetime="2022-04-08T15:23:50+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/12882.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/12882.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Cat示范类"><a href="#Cat示范类" class="headerlink" title="Cat示范类"></a>Cat示范类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String name=<span class="string">&quot;asac&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> he=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> tall=<span class="number">15</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cry</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HI&quot;</span>+name);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;NIAO&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sex</span> <span class="operator">=</span> <span class="string">&quot;娜娜&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Cat&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, sex=&#x27;&quot;</span> + sex + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String name, <span class="type">int</span> age, <span class="type">int</span> tall)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.tall = tall;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Cat</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="反射创建实例"><a href="#反射创建实例" class="headerlink" title="反射创建实例"></a>反射创建实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        Class&lt;?&gt; cla= Class.forName(<span class="string">&quot;com.zss.reflact.Cat&quot;</span>);</span><br><span class="line">        <span class="comment">//通过无参构造器</span></span><br><span class="line">        Object o=cla.newInstance();</span><br><span class="line">        System.out.println(o);</span><br><span class="line">        <span class="comment">//有参构造器</span></span><br><span class="line">        Constructor&lt;?&gt; constructor=cla.getConstructor(String.class,<span class="type">int</span>.class,<span class="type">int</span>.class);</span><br><span class="line">        constructor.newInstance(<span class="string">&quot;java&quot;</span>,<span class="number">12</span>,<span class="number">56</span>);</span><br><span class="line">        System.out.println(constructor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过私有构造器</span></span><br><span class="line">        Constructor&lt;?&gt; constructor1=cla.getDeclaredConstructor(String.class);</span><br><span class="line">        <span class="comment">//进行爆破，造成私有可以调用，使用反射可以访问私有的构造器</span></span><br><span class="line">        constructor1.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        constructor1.newInstance(<span class="string">&quot;HAHA&quot;</span>);</span><br><span class="line">        System.out.println(constructor1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744957.png" alt="image-20220321214920927"></p>
+<h1 id="反射访问类的成员"><a href="#反射访问类的成员" class="headerlink" title="反射访问类的成员"></a>反射访问类的成员</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException &#123;</span><br><span class="line">        Class&lt;?&gt; cla= Class.forName(<span class="string">&quot;com.zss.reflact.Cat&quot;</span>);</span><br><span class="line">        Object o=cla.newInstance();</span><br><span class="line">        Field name=cla.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="comment">//如果name为静态static，则下面的o也可以是null，静态也是对象的</span></span><br><span class="line">        name.set(o,<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        <span class="comment">//通过反射得到真实内容</span></span><br><span class="line">        System.out.println(name.get(o));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Field he=cla.getDeclaredField(<span class="string">&quot;he&quot;</span>);</span><br><span class="line">        <span class="comment">//爆破</span></span><br><span class="line">        he.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        System.out.println(he.get(o));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744487.png" alt="image-20220321220059624"></p>
+<h1 id="反射访问方法"><a href="#反射访问方法" class="headerlink" title="反射访问方法"></a>反射访问方法</h1><p>当然私有方法也可以爆破调用，其余用法与成员相同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException &#123;</span><br><span class="line">        Class&lt;?&gt; cla= Class.forName(<span class="string">&quot;com.zss.reflact.Cat&quot;</span>);</span><br><span class="line">        Object o=cla.newInstance();</span><br><span class="line">        Method method=cla.getMethod(<span class="string">&quot;cry&quot;</span>,String.class);</span><br><span class="line">        method.invoke(o,<span class="string">&quot;你好啊啊&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744925.png" alt="image-20220321220535697"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/2.html" class="post-title-link" itemprop="url">反射的引入以及原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:44:32" itemprop="dateModified" datetime="2022-03-30T17:44:32+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/2.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="反射的作用"><a href="#反射的作用" class="headerlink" title="反射的作用"></a>反射的作用</h1><p>反射可以使我们通过外部文件配置，在不修改源码的情况下，来控制程序，也符合设计模式ocp的原则（在不修改源码的条件下，扩容功能）</p>
+<p>简单示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;你好啊小猫猫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cry</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;小猫咪哭泣&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744511.png" alt="image-20220321151517509"></p>
+<p>我想要通过配置文件另外一个程序调用Cat的对象，并且调用其cry方法，接下来我们只需要通过更改配置文件的method方法指向的方法即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src/com/zss/reflact/test.properties&quot;</span>));</span><br><span class="line">        String classPath=properties.getProperty(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">        String method=properties.getProperty(<span class="string">&quot;method&quot;</span>);</span><br><span class="line">        <span class="comment">//首先我们得到了类名称以及方法，但是在这里我们无法创建新的类和调用方法</span></span><br><span class="line">        <span class="comment">//使用反射机制，第一步加载类，返回Class了类型的对象clas</span></span><br><span class="line">        Class clas=Class.forName(classPath);</span><br><span class="line">        <span class="comment">//通过clas得到加载类，Cat的实例对象</span></span><br><span class="line">        Object o=clas.newInstance();</span><br><span class="line">        System.out.println(<span class="string">&quot;运行类型为&quot;</span>+o.getClass());</span><br><span class="line">        <span class="comment">//通过clas得到加载类的方法,在反射机制中将方法视为对象（万物皆对象）</span></span><br><span class="line">        Method method1=clas.getMethod(method);</span><br><span class="line">        <span class="comment">//通过方法对象类调用对象</span></span><br><span class="line">        method1.invoke(o);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744048.png" alt="image-20220321152608448"></p>
+<h1 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h1><p>反射机制允许程序在执行期间借助ReflectionAPI得到任何类的内部信息（比如成员变量，构造器，成员方法等），并能操作对象属性以及方法。加载完类之后，<strong>在堆中产生了一个Class类型的对象（一个类只能有一个），这个对象包含类的完整结构信息，通过这个对象得到类的结构，这个对象就像一面镜子，通过镜子看到类的结构</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744458.png" alt="image-20220321154203831"></p>
+<ol>
+<li>首先，通过Javac 方法编译文件，编译成为.class的文件，包含其方法，构造器等信息。</li>
+<li>当我们在运行阶段new一个对象的时候，类会进行加载，将.class字节码文件通过类加载机制加载到class类对象堆中，以数据结构的方式进行存储，而且方法等不为一个,所以以数组的方法进行保存。</li>
+<li>而生成的Cat对象，知道他是属于哪一个class对象的</li>
+<li>而我们得到class对象时，我们可以创建对象，调用方法等等</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/1.html" class="post-title-link" itemprop="url">反射的相关类以及调用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:45:11" itemprop="dateModified" datetime="2022-03-30T17:45:11+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/1.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/1.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="反射相关类"><a href="#反射相关类" class="headerlink" title="反射相关类"></a>反射相关类</h1><ol>
+<li>Class代表一个类，Class对象表示某个类加载后在堆中的对象</li>
+<li>Method：代表类的方法</li>
+<li>Field：代表类的成员变量</li>
+<li>Constructor：代表类的构造方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src/com/zss/reflact/test.properties&quot;</span>));</span><br><span class="line">        String classPath=properties.getProperty(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">        String method=properties.getProperty(<span class="string">&quot;method&quot;</span>);</span><br><span class="line">        <span class="comment">//首先我们得到了类名称以及方法，但是在这里我们无法创建新的类和调用方法</span></span><br><span class="line">        <span class="comment">//使用反射机制，第一步加载类，返回Class了类型的对象clas</span></span><br><span class="line">        Class clas=Class.forName(classPath);</span><br><span class="line">        <span class="comment">//通过clas得到加载类，Cat的实例对象</span></span><br><span class="line">        Object o=clas.newInstance();</span><br><span class="line">        System.out.println(<span class="string">&quot;运行类型为&quot;</span>+o.getClass());</span><br><span class="line">        <span class="comment">//通过clas得到加载类的方法,在反射机制中将方法视为对象（万物皆对象）</span></span><br><span class="line">        Method method1=clas.getMethod(method);</span><br><span class="line">        <span class="comment">//通过方法对象类调用对象</span></span><br><span class="line">        method1.invoke(o);</span><br><span class="line">        <span class="comment">//只能得到公有的</span></span><br><span class="line">        Field name=clas.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        <span class="comment">//得到值</span></span><br><span class="line">        System.out.println(name.get(o));</span><br><span class="line">        <span class="comment">//得到构造器</span></span><br><span class="line">        Constructor constructor=clas.getConstructor();</span><br><span class="line">        <span class="comment">//得到有形参的构造器</span></span><br><span class="line">        <span class="type">Constructor</span> <span class="variable">constructor1</span> <span class="operator">=</span> clas.getConstructor(String.class, <span class="type">int</span>.class);</span><br><span class="line">        System.out.println(constructor1);</span><br><span class="line">        System.out.println(constructor);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744914.png" alt="image-20220321161913538"></p>
+<h1 id="反射的优化"><a href="#反射的优化" class="headerlink" title="反射的优化"></a>反射的优化</h1><p>反射的优点：可以动态创建和使用对象（也是框架底层核心），使用灵活，没有反射机制，框架机制失去底层支撑。</p>
+<p>反射缺点：使用反射基本时&#x3D;是解释执行，对执行的速度有影响，直接调用方法与与反射调用方法的速度可能会相差上百倍。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src/com/zss/reflact/test.properties&quot;</span>));</span><br><span class="line">        String classPath=properties.getProperty(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">        String method=properties.getProperty(<span class="string">&quot;method&quot;</span>);</span><br><span class="line">        Class clas=Class.forName(classPath);</span><br><span class="line">        Object o=clas.newInstance();</span><br><span class="line">        Method method1=clas.getMethod(method);</span><br><span class="line">        <span class="type">long</span> startTime=System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">900000000</span>;i++) &#123;</span><br><span class="line">            method1.invoke(o);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> endTime=System.currentTimeMillis();</span><br><span class="line">        System.out.println(endTime-startTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745644.png" alt="image-20220321163324656"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Cat cat=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        <span class="type">long</span> <span class="variable">startTime</span> <span class="operator">=</span>System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">900000000</span>;i++)&#123;</span><br><span class="line">        cat.hi();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="variable">endTime</span> <span class="operator">=</span>System.currentTimeMillis();</span><br><span class="line">        System.out.println(endTime-startTime);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">public</span> String name=<span class="string">&quot;阿华&quot;</span>;</span><br><span class="line">   <span class="keyword">private</span>  <span class="type">int</span> age=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;你好啊小猫猫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cry</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println(&quot;小猫咪哭泣&quot;);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745857.png" alt="image-20220321163403286"></p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>在反射之中，拥有一个方法可以关闭反射的安全检查机制，提高运行的速度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method1.setAccessible(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745780.png" alt="image-20220321163737496"></p>
+<h1 id="获取Class对象的方式"><a href="#获取Class对象的方式" class="headerlink" title="获取Class对象的方式"></a>获取Class对象的方式</h1><h2 id="方式一：在代码编译阶段"><a href="#方式一：在代码编译阶段" class="headerlink" title="方式一：在代码编译阶段"></a>方式一：在代码编译阶段</h2><p>使用Class.forName（）,但是此时已经知道了一个类的全类名和该类在类路径下。可以通过Class类的静态方法获取 。<strong>多用于全类名，了解类的全路径，加载类等</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String classPath=<span class="string">&quot;com.zss.reflact.Cat&quot;</span>;</span><br><span class="line">Class&lt;?&gt; cla=Class.forName(classPath);</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式二：在类加载阶段"><a href="#方式二：在类加载阶段" class="headerlink" title="方式二：在类加载阶段"></a>方式二：在类加载阶段</h2><p>类.class，多用于参数的传递，比如通过反射得到对应构造器的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class cla2=Cat.class;</span><br><span class="line">System.out.println(cla2);</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式三：在运行阶段"><a href="#方式三：在运行阶段" class="headerlink" title="方式三：在运行阶段"></a>方式三：在运行阶段</h2><p>对象.getClass()，此时已经知道了实例化对象，将其对应的运行类型进行传递。<strong>而我们学到这里也可以了解到所谓的运行类型其实也是通过反射指向了我们.class文件加载之后真正的类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cat cat=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">Class cla3=cat.getClass();</span><br><span class="line">System.out.println(cla3);</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式四：在类加载器中"><a href="#方式四：在类加载器中" class="headerlink" title="方式四：在类加载器中"></a>方式四：在类加载器中</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cat cat=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line"><span class="comment">//第一步：先得到类加载器</span></span><br><span class="line">ClassLoader classLoader=cat.getClass().getClassLoader();</span><br><span class="line"><span class="comment">//通过类加载其得到Class对象,得到路径</span></span><br><span class="line">Class cla4=classLoader.loadClass(classPath);</span><br><span class="line">System.out.println(cla4);</span><br></pre></td></tr></table></figure>
+
+<h1 id="那些类拥有Class对象"><a href="#那些类拥有Class对象" class="headerlink" title="那些类拥有Class对象"></a>那些类拥有Class对象</h1><ol>
+<li>外部类，内部类</li>
+<li>接口，数组</li>
+<li>枚举，注解</li>
+<li>基本数据类型</li>
+<li>void</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Class&lt;String&gt; cls=String.class;</span><br><span class="line">        Class&lt;Serializable&gt; cls2=Serializable.class;</span><br><span class="line">        Class&lt;Integer[]&gt; cls3=Integer[].class;</span><br><span class="line">        Class&lt;Deprecated&gt; cls4=Deprecated.class;</span><br><span class="line">        System.out.println(cls);</span><br><span class="line">        System.out.println(cls2);</span><br><span class="line">        System.out.println(cls3);</span><br><span class="line">        System.out.println(cls4);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -751,6 +1268,120 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/48485.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/48485.html" class="post-title-link" itemprop="url">SpringMVC的执行流程 - SpringMVC</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-02 11:30:17" itemprop="dateModified" datetime="2022-05-02T11:30:17+08:00">2022-05-02</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/48485.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/48485.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mvc常用组件"><a href="#mvc常用组件" class="headerlink" title="mvc常用组件"></a>mvc常用组件</h1><ul>
+<li>DispatcherServlet：<strong>前端控制器</strong>，不需要工程师开发，由框架提供</li>
+</ul>
+<p>作用：统一处理请求和响应，整个流程控制的中心，由它调用其它组件处理用户的请求</p>
+<ul>
+<li>HandlerMapping：<strong>处理器映射器</strong>，不需要工程师开发，由框架提供</li>
+</ul>
+<p>作用：根据请求的url、method等信息查找Handler，即控制器方法</p>
+<ul>
+<li>Handler：<strong>处理器</strong>，需要工程师开发</li>
+</ul>
+<p>作用：在DispatcherServlet的控制下Handler对具体的用户请求进行处理</p>
+<ul>
+<li>HandlerAdapter：<strong>处理器适配器</strong>，不需要工程师开发，由框架提供</li>
+</ul>
+<p>作用：通过HandlerAdapter对处理器（控制器方法）进行执行</p>
+<ul>
+<li>ViewResolver：<strong>视图解析器</strong>，不需要工程师开发，由框架提供</li>
+</ul>
+<p>作用：进行视图解析，得到相应的视图，例如：ThymeleafView、InternalResourceView、RedirectView</p>
+<ul>
+<li>View：<strong>视图</strong></li>
+</ul>
+<p>作用：将模型数据通过页面展示给用户</p>
+<h1 id="DispatcherServlet初始化过程"><a href="#DispatcherServlet初始化过程" class="headerlink" title="DispatcherServlet初始化过程"></a>DispatcherServlet初始化过程</h1><p>插眼，没有听懂</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/42317.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -870,604 +1501,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38313.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/38313.html" class="post-title-link" itemprop="url">异常处理器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 11:30:17" itemprop="dateModified" datetime="2022-05-02T11:30:17+08:00">2022-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/38313.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/38313.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基于配置的异常处理器"><a href="#基于配置的异常处理器" class="headerlink" title="基于配置的异常处理器"></a>基于配置的异常处理器</h1><p>HandlerExceptionResolver接口的实现类有：DefaultHandlerExceptionResolver（默认异常处理）和SimpleMappingExceptionResolver（自定义异常处理）</p>
-<h2 id="在xml文件进行配置"><a href="#在xml文件进行配置" class="headerlink" title="在xml文件进行配置"></a>在xml文件进行配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--配置异常处理器--&gt;</span><br><span class="line">&lt;bean class=<span class="string">&quot;org.springframework.web.servlet.handler.SimpleMappingExceptionResolver&quot;</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">&quot;exceptionMappings&quot;</span>&gt;</span><br><span class="line">        &lt;props&gt;</span><br><span class="line">            &lt;!--</span><br><span class="line">                properties的键表示处理器方法执行过程中出现的异常</span><br><span class="line">                properties的值表示若出现指定异常时，设置一个新的视图名称，跳转到指定页面</span><br><span class="line">            --&gt;</span><br><span class="line">            &lt;prop key=<span class="string">&quot;java.lang.ArithmeticException&quot;</span>&gt;error&lt;/prop&gt;</span><br><span class="line">        &lt;/props&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">        exceptionAttribute属性设置一个属性名，将出现的异常信息在请求域中进行共享</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;property name=<span class="string">&quot;exceptionAttribute&quot;</span> value=<span class="string">&quot;ex&quot;</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="controller进行配置"><a href="#controller进行配置" class="headerlink" title="controller进行配置"></a>controller进行配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/test&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//故意出现错误</span></span><br><span class="line">    System.out.println(<span class="number">1</span>/<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;target&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="C:\Users\21050\AppData\Roaming\Typora\typora-user-images\image-20220501100452968.png" alt="image-20220501100452968"></p>
-<h1 id="基于注解的异常处理器"><a href="#基于注解的异常处理器" class="headerlink" title="基于注解的异常处理器"></a>基于注解的异常处理器</h1><p>&#x2F;&#x2F;@ControllerAdvice将当前类标识为异常处理的组件<br>@ControllerAdvice<br>public class ExceptionController {</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@ExceptionHandler用于设置所标识方法处理的异常</span></span><br><span class="line"><span class="meta">@ExceptionHandler(ArithmeticException.class)</span></span><br><span class="line"><span class="comment">//ex表示当前请求处理中出现的异常对象</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">handleArithmeticException</span><span class="params">(Exception ex, Model model)</span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;ex&quot;</span>, ex);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;error&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/26048.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/26048.html" class="post-title-link" itemprop="url">拦截器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-09 23:06:02" itemprop="dateModified" datetime="2022-05-09T23:06:02+08:00">2022-05-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/26048.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/26048.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="拦截器配置"><a href="#拦截器配置" class="headerlink" title="拦截器配置"></a>拦截器配置</h1><p>[SpringMvc servlet 拦截器 过滤器关系和区别及执行顺序 - Jomini - 博客园 (cnblogs.com)](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jomini/p/13839743.html#:~:text=%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A,1%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E6%98%AF%E5%9F%BA%E4%BA%8E%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%EF%BC%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E6%98%AF%E5%9F%BA%E4%BA%8Ejava%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E3%80%82">https://www.cnblogs.com/Jomini/p/13839743.html#:~:text=过滤器和拦截器的区别：,1、过滤器是基于函数回调，拦截器是基于java的反射机制的。</a> 2、过滤器是servlet规范规定的，只能用于web程序中，而拦截器是在spring容器中，它不依赖servlet容器。)</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69060111#:~:text=%E6%8B%A6%E6%88%AA%E5%99%A8%E6%98%AF%E5%9C%A8%E9%9D%A2%E5%90%91%E5%88%87,%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%82">过滤器、监听器、拦截器的区别 - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/spring/">Spring</a> MVC 的拦截器（Interceptor）与 <a target="_blank" rel="noopener" href="http://c.biancheng.net/java/">Java</a> <a target="_blank" rel="noopener" href="http://c.biancheng.net/servlet/">Servlet</a> 的过滤器（Filter）类似，它主要用于拦截用户的请求并做相应的处理，通常应用在权限验证、记录请求信息的日志、判断用户是否登录等功能上。</p>
-<p>SpringMVC中的拦截器用于拦截控制器方法的执行</p>
-<p>SpringMVC中的拦截器需要实现HandlerInterceptor</p>
-<p>SpringMVC的拦截器必须在SpringMVC的配置文件中进行配置：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!mappedHandler.applyPreHandle(processedRequest, response)) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"><span class="comment">//这是 在modelandview之前进行的</span></span><br><span class="line">                    mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">                    <span class="keyword">if</span> (asyncManager.isConcurrentHandlingStarted()) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="built_in">this</span>.applyDefaultViewName(processedRequest, mv);</span><br><span class="line">                    mappedHandler.applyPostHandle(processedRequest, response, mv);</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.mvc.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//crtl+o执行方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;preHandle&quot;</span>);</span><br><span class="line">        <span class="comment">//返回true进行拦截</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;postHandle&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterCompletion&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="xml文件配置"><a href="#xml文件配置" class="headerlink" title="xml文件配置"></a>xml文件配置</h2><h3 id="全部拦截1"><a href="#全部拦截1" class="headerlink" title="全部拦截1"></a>全部拦截1</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.mvc.interceptor.FirstInterceptor&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="全部拦截2"><a href="#全部拦截2" class="headerlink" title="全部拦截2"></a>全部拦截2</h3><p>在拦截器进行标记为普通组件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标记为普通组件</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br></pre></td></tr></table></figure>
-
-<p>同时也需要xml文件进行扫描</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--扫描组件，扫描整个大包--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.zss.mvc&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;firstInterceptor&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="精准拦截"><a href="#精准拦截" class="headerlink" title="精准拦截"></a>精准拦截</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--拦截所有--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--排除--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">&quot;/target&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;firstInterceptor&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>当然也可以在路径中进行精确定位进行拦截</p>
-<h1 id="三个抽象方法"><a href="#三个抽象方法" class="headerlink" title="三个抽象方法"></a>三个抽象方法</h1><p>SpringMVC中的拦截器有三个抽象方法：</p>
-<p>preHandle：控制器方法执行之前执行preHandle()，其boolean类型的返回值表示是否拦截或放行，返回true为放行，即调用控制器方法；返回false表示拦截，即不调用控制器方法</p>
-<p>postHandle：控制器方法执行之后执行postHandle()</p>
-<p>afterComplation：处理完视图和模型数据，渲染视图完毕之后执行afterComplation()</p>
-<h1 id="多个拦截器的顺序"><a href="#多个拦截器的顺序" class="headerlink" title="多个拦截器的顺序"></a>多个拦截器的顺序</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;firstInterceptor&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;secondInterceptor&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//crtl+o执行方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--preHandle&quot;</span>);</span><br><span class="line">        <span class="comment">//返回true进行拦截</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--postHandle&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--afterCompletion&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305872.png" alt="image-20220428160643972"></p>
-<p>首先和我们的配置的顺序相关，其次会，是一个逐层紧密闭合的过程</p>
-<p>pre</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">applyPreHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="built_in">this</span>.interceptorList.size(); <span class="built_in">this</span>.interceptorIndex = i++) &#123;</span><br><span class="line">        <span class="type">HandlerInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> (HandlerInterceptor)<span class="built_in">this</span>.interceptorList.get(i);</span><br><span class="line">        <span class="keyword">if</span> (!interceptor.preHandle(request, response, <span class="built_in">this</span>.handler)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.triggerAfterCompletion(request, response, (Exception)<span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>post</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="built_in">this</span>.interceptorList.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="type">HandlerInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> (HandlerInterceptor)<span class="built_in">this</span>.interceptorList.get(i);</span><br><span class="line">    interceptor.postHandle(request, response, <span class="built_in">this</span>.handler, mv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="return-false"><a href="#return-false" class="headerlink" title="return false"></a>return false</h2><p>如果我将第二个拦截器返回false，那么</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305874.png" alt="image-20220428162725939"></p>
-<p>其实在第二个返回false的时候，第二个的post与after都不会执行了，</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/64387.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/64387.html" class="post-title-link" itemprop="url">注解配置Springmvc - SpringMVC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 11:30:17" itemprop="dateModified" datetime="2022-05-02T11:30:17+08:00">2022-05-02</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/64387.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/64387.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="创建初始化类，代替web-xml"><a href="#创建初始化类，代替web-xml" class="headerlink" title="创建初始化类，代替web.xml"></a>创建初始化类，代替web.xml</h1><p>public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 指定spring的配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;SpringConfig.class&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 指定SpringMVC的配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;WebConfig.class&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 指定DispatcherServlet的映射规则，即url-pattern</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;/&quot;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加过滤器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">    <span class="type">CharacterEncodingFilter</span> <span class="variable">encodingFilter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CharacterEncodingFilter</span>();</span><br><span class="line">    encodingFilter.setEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">    encodingFilter.setForceRequestEncoding(<span class="literal">true</span>);</span><br><span class="line">    <span class="type">HiddenHttpMethodFilter</span> <span class="variable">hiddenHttpMethodFilter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HiddenHttpMethodFilter</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Filter</span>[]&#123;encodingFilter, hiddenHttpMethodFilter&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="配置代替springmvc的文件"><a href="#配置代替springmvc的文件" class="headerlink" title="配置代替springmvc的文件"></a>配置代替springmvc的文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标记为配置文件</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="comment">//扫描组件</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;com.atguigu.mvc.controller&quot;)</span></span><br><span class="line"><span class="comment">//开启MVC注解驱动</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用默认的servlet处理静态资源</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configureDefaultServletHandling</span><span class="params">(DefaultServletHandlerConfigurer configurer)</span> &#123;</span><br><span class="line">        <span class="comment">//使默认的处理可用</span></span><br><span class="line">        configurer.enable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置文件上传解析器</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> CommonsMultipartResolver <span class="title function_">multipartResolver</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommonsMultipartResolver</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置拦截器</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">        <span class="comment">//创建拦截器规则</span></span><br><span class="line">        <span class="type">FirstInterceptor</span> <span class="variable">firstInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FirstInterceptor</span>();</span><br><span class="line">       <span class="comment">//添加拦截路径，拦截所有，与/*不同</span></span><br><span class="line">        registry.addInterceptor(firstInterceptor).addPathPatterns(<span class="string">&quot;/**&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置视图控制</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> &#123;</span><br><span class="line">       <span class="comment">//找到/时，对应index羊肉面</span></span><br><span class="line">        registry.addViewController(<span class="string">&quot;/&quot;</span>).setViewName(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置异常映射</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configureHandlerExceptionResolvers</span><span class="params">(List&lt;HandlerExceptionResolver&gt; resolvers)</span> &#123;</span><br><span class="line">        <span class="type">SimpleMappingExceptionResolver</span> <span class="variable">exceptionResolver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleMappingExceptionResolver</span>();</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        <span class="comment">//设置异常对应的对象，以及将要对应的页面</span></span><br><span class="line">        prop.setProperty(<span class="string">&quot;java.lang.ArithmeticException&quot;</span>, <span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="comment">//设置异常映射</span></span><br><span class="line">        exceptionResolver.setExceptionMappings(prop);</span><br><span class="line">        <span class="comment">//设置共享异常信息的键</span></span><br><span class="line">        exceptionResolver.setExceptionAttribute(<span class="string">&quot;ex&quot;</span>);</span><br><span class="line">        resolvers.add(exceptionResolver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置生成模板解析器</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ITemplateResolver <span class="title function_">templateResolver</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">WebApplicationContext</span> <span class="variable">webApplicationContext</span> <span class="operator">=</span> ContextLoader.getCurrentWebApplicationContext();</span><br><span class="line">        <span class="comment">// ServletContextTemplateResolver需要一个ServletContext作为构造参数，可通过WebApplicationContext 的方法获得</span></span><br><span class="line">        <span class="type">ServletContextTemplateResolver</span> <span class="variable">templateResolver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServletContextTemplateResolver</span>(</span><br><span class="line">                webApplicationContext.getServletContext());</span><br><span class="line">        templateResolver.setPrefix(<span class="string">&quot;/WEB-INF/templates/&quot;</span>);</span><br><span class="line">        templateResolver.setSuffix(<span class="string">&quot;.html&quot;</span>);</span><br><span class="line">        templateResolver.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        templateResolver.setTemplateMode(TemplateMode.HTML);</span><br><span class="line">        <span class="keyword">return</span> templateResolver;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生成模板引擎并为模板引擎注入模板解析器</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SpringTemplateEngine <span class="title function_">templateEngine</span><span class="params">(ITemplateResolver templateResolver)</span> &#123;</span><br><span class="line">        <span class="type">SpringTemplateEngine</span> <span class="variable">templateEngine</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SpringTemplateEngine</span>();</span><br><span class="line">        templateEngine.setTemplateResolver(templateResolver);</span><br><span class="line">        <span class="keyword">return</span> templateEngine;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生成视图解析器并未解析器注入模板引擎</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ViewResolver <span class="title function_">viewResolver</span><span class="params">(SpringTemplateEngine templateEngine)</span> &#123;</span><br><span class="line">        <span class="type">ThymeleafViewResolver</span> <span class="variable">viewResolver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThymeleafViewResolver</span>();</span><br><span class="line">        viewResolver.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        viewResolver.setTemplateEngine(templateEngine);</span><br><span class="line">        <span class="keyword">return</span> viewResolver;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/22134.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/22134.html" class="post-title-link" itemprop="url">Class类以及相关方法和获取的方式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:45:19" itemprop="dateModified" datetime="2022-03-30T17:45:19+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/22134.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/22134.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h1><ol>
-<li>Class也是类，因此继承Object类</li>
-<li>Class类对象不是new出来的，而是系统创建的</li>
-<li>对于某个类的Class类对象，在内存中只有一份，因此类只加载一次</li>
-<li>每一个类的实例都会记得自己由那个Class实例化生成</li>
-<li>通过Class可以得到一个类的完整结构</li>
-<li>Class对象是放在堆中的</li>
-<li><strong>注意在方法区中，会存在cat类的二进制字节码数据</strong></li>
-</ol>
-<p><strong>传统对象debug与我们反射对象的debug可以发现都是通过ClassLoader类的loadClass加载到堆中，而且我们cat.class对象只会存在份，不管我们new多少次，还是会存在一次，类不同才会不同</strong></p>
-<p>class拥有许多的方法，可以得到对象的很多的信息。</p>
-<h1 id="Class类的常用方法"><a href="#Class类的常用方法" class="headerlink" title="Class类的常用方法"></a>Class类的常用方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> String name=<span class="string">&quot;asac&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> String sex=<span class="string">&quot;娜娜&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Cat&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, sex=&#x27;&quot;</span> + sex + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException &#123;</span><br><span class="line">        String classPath=<span class="string">&quot;com.zss.reflact.Cat&quot;</span>;</span><br><span class="line">        <span class="comment">//?代表不确定的类型</span></span><br><span class="line">        Class&lt;?&gt; cla=Class.forName(classPath);</span><br><span class="line">        <span class="comment">//尝试输出cla,这里显示那个类的Class对象</span></span><br><span class="line">        System.out.println(cla);</span><br><span class="line">        <span class="comment">//得到其运行类型</span></span><br><span class="line">        System.out.println(cla.getClass());</span><br><span class="line">        <span class="comment">//得到包名</span></span><br><span class="line">        System.out.println(cla.getPackage().getName());</span><br><span class="line">        <span class="comment">//得到全类名</span></span><br><span class="line">        System.out.println(cla.getName());</span><br><span class="line">        <span class="comment">//创建对象实例</span></span><br><span class="line">        Cat cat=(Cat) cla.newInstance();</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        <span class="comment">//通过反射获取属性</span></span><br><span class="line">        Field name=cla.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(name.get(cat));</span><br><span class="line">        <span class="comment">//通过反射设置值</span></span><br><span class="line">        name.set(cat,<span class="string">&quot;sec&quot;</span>);</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        <span class="comment">//得到所有的字段属性</span></span><br><span class="line">        Field[] fields=cla.getFields();</span><br><span class="line">        <span class="comment">//System.out.println(fields);</span></span><br><span class="line">        <span class="keyword">for</span> (Field f:fields)&#123;</span><br><span class="line">            System.out.println(f.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745359.png" alt="image-20220321172447804"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/3.html" class="post-title-link" itemprop="url">动态和静态加载以及流程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:44:20" itemprop="dateModified" datetime="2022-03-30T17:44:20+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">Java反射机制</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/3.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/3.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="动态和静态加载"><a href="#动态和静态加载" class="headerlink" title="动态和静态加载"></a>动态和静态加载</h1><h2 id="静态加载"><a href="#静态加载" class="headerlink" title="静态加载"></a>静态加载</h2><p>编译时加载相关的类，如果没有则报错，依赖性太强。</p>
-<p>下面的代码，我们不会使用到Dog这个类，但是编译会给我们直接报错，依赖性太强，要求所有的类必须被加载好。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">1</span>)&#123;</span><br><span class="line">        Dog dog=<span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">        dog.cry();&#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;你对的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744311.png" alt="image-20220321193758779"></p>
-<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><p>运行时需要加载的类，如果运行时不要该类，则不报错，降低了依赖性.下面的这一段代码，路径根本不存在，但是在运行过程中不会使用到该代码，所以不会本加载，当使用时才会被加载。<strong>反射属于动态加载</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.reflact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">1</span>)&#123;</span><br><span class="line">          Class cls=Class.forName(<span class="string">&quot;java//不存在&quot;</span>);</span><br><span class="line">          Object O=cls.newInstance();</span><br><span class="line">          Method method=cls.getMethod(<span class="string">&quot;HI&quot;</span>);</span><br><span class="line">          method.invoke(O);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;你对的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744256.png" alt="image-20220321194532855"></p>
-<h2 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h2><ol>
-<li>创建对象时new</li>
-<li>子类被加载时，父类也被加载</li>
-<li>调用类中静态成员时</li>
-<li>通过反射时</li>
-</ol>
-<h1 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744341.png" alt="image-20220321200304845"></p>
-<p>在加载中，将类的class文件读入内存，并且为之创建一个java.lang.Class对象，此过程由类加载器完成。验证与文件安全性（字节码等）进行验证，准备阶段分配空间，解析阶段把符号引用转成字节引用。<strong>初始化过程中可以由程序员进行控制，JVM负责对类进行初始化，这里主要指静态成员</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301744547.png" alt="image-20220321200557645"></p>
-<h2 id="类加载的五个阶段"><a href="#类加载的五个阶段" class="headerlink" title="类加载的五个阶段"></a>类加载的五个阶段</h2><h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>JVM在该阶段主要目的是将字节码从不同的数据源（.class文件，jar包，网络文件等）转换为二进制字节流加载到内存中，并且生成一个代表该类的java.lang.Class对象</p>
-<h3 id="验证阶段"><a href="#验证阶段" class="headerlink" title="验证阶段"></a>验证阶段</h3><ol>
-<li>保证Class为文件的字节流中包含信息符合虚拟机的要求，并且不会危害虚拟机自身安全</li>
-<li>文件格式验证（是否以魔数oxcafebabe开头）、元数据验证，字节码验证和符号引用验证</li>
-<li>可以考虑使用-Xverify:none 参数关闭大部分验证措施，缩短虚拟机加载的时间</li>
-</ol>
-<h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>JVM对在该阶段对静态变量，分配内存并默认初始化（对应数据类型的默认初始化值比如int为0，String为null等），这些变量所使用的内存都将在方法区中进行分配。<strong>在这里只会对静态变量分配内存，实例变量不会分配，而对于final的常量会一次性分配</strong></p>
-<h3 id="解析阶段"><a href="#解析阶段" class="headerlink" title="解析阶段"></a>解析阶段</h3><p>虚拟机将常量池的符号引用变成直接引用，直接引用利用地址进行相互引用</p>
-<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><ol>
-<li><p>初始化阶段才是真正执行类中定义的java程序代码，此阶段是执行<clinit>()方法的过程</p>
-</li>
-<li><p><clinit>() 方法是由编译器按语句在源文件出现的顺序，<strong>依次自动收集类中所有静态变量的赋值动作和静态代码块中的语句并进行合并</strong>,比如会将其进行合并，而最终num&#x3D;200</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="keyword">static</span> num=<span class="number">100</span>;</span><br><span class="line">num=<span class="number">200</span>;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>虚拟机会保证一个类<clinit>()方法在多线程中被正确的枷锁，同步，如果多个线程同时初始化一个类，那么只会有一个线程去执行这个类的<clinit>()方法，其他线程都需要阻塞等待，直到活动线程执行<clnit>()方法完毕</p>
-</li>
-</ol>
 
       
     </div>
