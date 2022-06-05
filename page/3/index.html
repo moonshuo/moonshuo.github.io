@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">140</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,139 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/25104.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/25104.html" class="post-title-link" itemprop="url">单例设计模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:45:35" itemprop="dateModified" datetime="2022-03-30T17:45:35+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">Java设计模式</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/25104.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/25104.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="什么是单例设计模式"><a href="#什么是单例设计模式" class="headerlink" title="什么是单例设计模式"></a>什么是单例设计模式</h1><p>所谓单例设计模式，就是采取一定的方法保证整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法。</p>
+<p>目的：使用着在main方法中就不可以自己创建实例对象以及定义一些变量。</p>
+<p>单例设计模式的两种方法：饿汉式，懒汉式</p>
+<h1 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h1><ol>
+<li>将我们的构造器私有化，防止我们在类的外部可以直接new一个对象</li>
+<li>在类的内部直接创建该静态对象（否则下面的static方法无法调用）</li>
+<li>提供一个公共的static方法，返回我们想要的对象</li>
+<li>实现代码</li>
+</ol>
+<p>疑问：</p>
+<p>为什么getInsatnce方法要用静态static？？？</p>
+<p>如果我们不使用静态方法，想要调用我们的方法时，就必须首先new一个实例对象，与我们的最初使用的目的相违背。</p>
+<p>为什么叫饿汉式？？</p>
+<p>我们可能在以后的使用中不会使用到dog的名字，但是我们的类的内部已经给出了相应的属性元素。</p>
+<p>查看以下一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Dog dog=Dog.getInstance();</span><br><span class="line">        System.out.println(dog.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Dog ming=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;小狼&quot;</span>);</span><br><span class="line">    <span class="comment">/**创建一个私有的构造器*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Dog</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**创建一个公共的静态方法*/</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> Dog <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ming;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745503.png" alt="image-20220322090055669"></p>
+<h1 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h1><p>基于上述的饿汉式的缺点：创建对象却可以没有被使用，下面我们看看懒汉式</p>
+<ol>
+<li>构造器私有化</li>
+<li>定义一个静态属性，但是不去创建</li>
+<li>提供一个公共的静态方法</li>
+<li>只有用户使用对象时，才会返回这个对象，如果我们再次去调用这个函数，我们会返回上一次我们创建的对象。</li>
+</ol>
+<p>我们来查看以下代码：可以发现我们在使用dog.age时，并未创建新的实例对象，也就没有占用空间，如果我们不使用name就不会去调用instannce方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Dog.age);</span><br><span class="line">        Dog dog=Dog.getInstance();</span><br><span class="line">        System.out.println(dog.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> age=<span class="number">10</span>;</span><br><span class="line">    <span class="comment">/** 创建一个私有的对象却不进行初始化*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Dog ming;</span><br><span class="line">    <span class="comment">/**创建一个私有的构造器*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Dog</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造器被调用&quot;</span>);</span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**创建一个公共的静态方法*/</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> Dog <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ming==<span class="literal">null</span>)&#123;</span><br><span class="line">            ming=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;小狼&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="keyword">return</span> ming;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301745123.png" alt="image-20220322090118858"></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>饿汉式：在类加载时创建，可能存在资源浪费的问题</p>
+<p>懒汉式：线程安全问题，多个线程同时访问，会发生冲突</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1356,151 +1489,6 @@
 </ul>
 <p>作用：将模型数据通过页面展示给用户</p>
 <h1 id="DispatcherServlet初始化过程"><a href="#DispatcherServlet初始化过程" class="headerlink" title="DispatcherServlet初始化过程"></a>DispatcherServlet初始化过程</h1><p>插眼，没有听懂</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/42317.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/42317.html" class="post-title-link" itemprop="url">域对象共享数据SpringMVC视图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-21 15:33:16" itemprop="dateModified" datetime="2022-05-21T15:33:16+08:00">2022-05-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/42317.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/42317.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="域对象共享数据"><a href="#域对象共享数据" class="headerlink" title="域对象共享数据"></a>域对象共享数据</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42331499/article/details/108428684">session和model的区别_qq_42331499的博客-CSDN博客_model和session有什么不同</a></p>
-<h2 id="session的创建于销毁"><a href="#session的创建于销毁" class="headerlink" title="session的创建于销毁"></a>session的创建于销毁</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hotwater1015/article/details/84096013">session 创建和销毁时机_hotwater1015的博客-CSDN博客</a></p>
-<p>当我们关闭浏览器，再打开它，连接服务器时，服务器端会分配一个新的session，也就是说会启动一个新的会话。那么原来的session是不是被销毁了呢？<br>通过实现一个SessionListener可以发现，当浏览器关闭时，原session并没有被销毁（destory方法没有执行），而是等到timeout到期，才销毁这个session。关闭浏览器只是在客户端的内存中清除了与原会话相关的cookie，再次打开浏览器进行连接时，浏览器无法发送cookie信息，所以服务器会认为是一个新的会话。因此，如果有某些与session关联的资源想在关闭浏览器时就进行清理（如临时文件等），那么应该发送特定的请求到服务器端，而不是等到session的自动清理。</p>
-<p>session的作用域只与浏览器是否关闭有问题，当tomcat服务器关闭时，此时session会保存到磁盘中，当服务器再次开启的时候，session会活化到浏览器中，但是只要不关闭浏览器，session就不会改变。但是注意如果cookie已经销毁了，就找不到对应的session了，哪怕时间并没有超出。</p>
-<h2 id="使用ModelAndView向request域对象共享数据"><a href="#使用ModelAndView向request域对象共享数据" class="headerlink" title="使用ModelAndView向request域对象共享数据"></a>使用ModelAndView向request域对象共享数据</h2><p>ModelAndView拥有两个功能，一个是共享数据，另外一个设置视图名称</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/target&#125;&quot;</span>&gt;</span>跳转<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/target&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">toTarget</span><span class="params">()</span>&#123;</span><br><span class="line">    ModelAndView mav=<span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    <span class="comment">//存储数据</span></span><br><span class="line">    mav.addObject(<span class="string">&quot;test&quot;</span>,<span class="string">&quot;test ModelAndView&quot;</span>);</span><br><span class="line">    <span class="comment">//设置视图</span></span><br><span class="line">    mav.setViewName(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mav;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;test&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用Model传递域对象"><a href="#使用Model传递域对象" class="headerlink" title="使用Model传递域对象"></a>使用Model传递域对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/target&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">target</span><span class="params">(Model model)</span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;model&quot;</span>,<span class="string">&quot;model&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;target&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用map共享域对象"><a href="#使用map共享域对象" class="headerlink" title="使用map共享域对象"></a>使用map共享域对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/target&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">target</span><span class="params">(Map&lt;String ,Object&gt; map)</span>&#123;</span><br><span class="line">    map.put(<span class="string">&quot;map&quot;</span>,<span class="string">&quot;hello map&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;target&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用ModelMap"><a href="#使用ModelMap" class="headerlink" title="使用ModelMap"></a>使用ModelMap</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/target&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">target</span><span class="params">(ModelMap modelMap)</span>&#123;</span><br><span class="line">    modelMap.addAttribute(<span class="string">&quot;modelmap&quot;</span>,<span class="string">&quot;hello modelmap&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;target&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上述四种获取域对象的方法中，除了ModelAndView之外，其实其他的三个方法都是被同一个对象进行了实例化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/target&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">target</span><span class="params">(ModelMap modelMap)</span>&#123;</span><br><span class="line">    modelMap.addAttribute(<span class="string">&quot;modelmap&quot;</span>,<span class="string">&quot;hello modelmap&quot;</span>);</span><br><span class="line">    System.out.println(modelMap.getClass().getName());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;target&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251023469.png" alt="image-20220425102258113"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251024539.png" alt="image-20220425102421872"></p>
-<p>而modelMap继承了 LinkedHashMap，LinkedHashMap实现了接口map</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251225745.png" alt="image-20220425102605199"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Model</span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ModelMap</span> <span class="keyword">extends</span> <span class="title class_">LinkedHashMap</span>&lt;String, Object&gt; &#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExtendedModelMap</span> <span class="keyword">extends</span> <span class="title class_">ModelMap</span> <span class="keyword">implements</span> <span class="title class_">Model</span> &#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BindingAwareModelMap</span> <span class="keyword">extends</span> <span class="title class_">ExtendedModelMap</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>我们在SpringMvc中启动debug模式，并在dispathcher中打断点，其实不管我们使用什么方法进行域对象的保存或者打开什么网页，我们都会经过ModelANDView<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251225746.png" alt="image-20220425105123718"></p>
-<h2 id="Session共享数据"><a href="#Session共享数据" class="headerlink" title="Session共享数据"></a>Session共享数据</h2><p>使用原生的api，HttpSession session</p>
-<h2 id="application共享数据"><a href="#application共享数据" class="headerlink" title="application共享数据"></a>application共享数据</h2><p>对应整个工程，在服务器启动时就创建了，使用方法域Session相同</p>
-<h1 id="SpringMVC视图"><a href="#SpringMVC视图" class="headerlink" title="SpringMVC视图"></a>SpringMVC视图</h1><p><a href="https://moonshuo.cn/Javaweb/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%86%85%E9%83%A8%E8%BD%AC%E5%8F%91%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91/?highlight=%E8%BD%AC%E5%8F%91#%E9%87%8D%E5%AE%9A%E5%90%91">服务器内部转发与客户端重定向 | 偷掉月亮 (moonshuo.cn)</a>转发是服务器的一次请求，而重定向则是两次请求，同时重定向可以重定向到任何页面，但是转发只能转发给系统的组件进行处理，<strong>而WEB-INF的文件资源是不能被直接访问的，也就是不能通过重定向进行访问，但是注意虽然转发与重定向的看起来效果相同，但是地址栏的信息不会一样</strong></p>
-<h2 id="转发视图"><a href="#转发视图" class="headerlink" title="转发视图"></a>转发视图</h2><p>SpringMVC中默认的转发视图是InternalResourceView，转发是浏览器的一次请求，最终的地址为最终要展现的地址</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个的逻辑处理满足不了条件，需要交给另外 一个子组件进行处理，使用forward:/请求的功能对应的操作，此过程会产生两次视图请求，但是浏览器仅仅响应了一次</span></span><br><span class="line"> <span class="meta">@RequestMapping(&quot;/InternalResource&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">InternalResource</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;forward:/testHello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/testHello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;转发目标页面&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/InternalResource&#125;&quot;</span>&gt;</span>转发<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/Redirect&#125;&quot;</span>&gt;</span>重定向<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251225747.png" alt="image-20220425122155614"></p>
-<h2 id="重定向视图"><a href="#重定向视图" class="headerlink" title="重定向视图"></a>重定向视图</h2><p>SpringMVC中默认的重定向视图是RedirectView，重定向是两次请求，发送之后，最终的地址为？？？&#x2F;&#x2F;testHello，<strong>在这个过程中浏览器发送了两次请求，？？？&#x2F;Redirect地址进行了重定向，告诉浏览器去访问？？？&#x2F;testHello</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/Redirect&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">Redirect</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:/testHello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/testHello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;重定向的目标页面&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204251225748.png" alt="image-20220425122352589"></p>
-<h2 id="视图控制器"><a href="#视图控制器" class="headerlink" title="视图控制器"></a>视图控制器</h2><p>当控制器方法中，仅仅用来实现页面跳转，即只需要设置视图名称时，可以将处理器方法使用view-controller标签进行表示，即下面的两个程序效果相同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping( value = &#123;&quot;/hi&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:view-controller</span> <span class="attr">path</span>=<span class="string">&quot;/hi&quot;</span> <span class="attr">view-name</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:view-controller</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果浏览器发送的信息，dispatcherservlet处理不了，则交给defaultservlet处理，开启对静态资源的访问和默认驱动--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--开启注解驱动，要这两个标签同时使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
 
       
     </div>

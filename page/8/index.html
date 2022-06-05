@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">140</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,127 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/60271.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/60271.html" class="post-title-link" itemprop="url">Java中可变参数与作用域使用细节</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-17 12:06:30" itemprop="dateModified" datetime="2022-04-17T12:06:30+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/60271.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/60271.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h1><p> 概念：Java中允许将同一个类中多个同名同功能但是参数个数不同的方法，封装成一个方法，可以通过可变参数实现。一个形参列表中只能有一个可变参数。</p>
+<p>基本语法：</p>
+<p>访问修饰符 返回类型 方法名（数据类型 …形参名）{</p>
+<p>}</p>
+<p>举个例子</p>
+<p>首先大家看一下以下一段代码，如果想要求得100个，那岂不是很麻烦，这个时候就可以使用可变参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Function</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2, <span class="type">int</span> n3)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2 + n3;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2, <span class="type">int</span> n3, <span class="type">int</span> n4)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2 + n3 + n4;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用可变参数进行实现，这个时候就可以把参数当作数组来进行对待，其用法与数组类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**利用递归求取斐波那契数，数量大于2*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.sums(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sums</span><span class="params">(<span class="type">int</span> ...num)</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;参数的个数为&quot;</span>+num.length);</span><br><span class="line">            <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">                res=res+num[i];</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;和为&quot;</span>+res);</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171148171.png" alt="image-20220417114801844"></p>
+<h1 id="作用域使用细节"><a href="#作用域使用细节" class="headerlink" title="作用域使用细节"></a>作用域使用细节</h1><ol>
+<li>Java中，主要的变量就是属性（成员变量）与局部变量</li>
+<li>局部变量一般是指成员方法中定义的变量。</li>
+<li>作用域分类：全局变量：就是属性，作用域为整个类体，局部变量：也就是除了属性之外的其他变量，作用域为定义他的代码块</li>
+<li>全局变量使用可以不赋值，系统自动匹配默认值，而局部变量必须赋值后才能使用。</li>
+<li>全局变量可以加上修饰符，但是局部变量不可加修饰符。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1477,132 +1598,6 @@
 <h1 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Scanner lineAccept=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您想要查看的杨辉三角的行数&quot;</span>);</span><br><span class="line">        <span class="type">int</span> lineNum=lineAccept.nextInt();</span><br><span class="line">        <span class="type">int</span>[][] pascalTriangle =<span class="keyword">new</span> <span class="title class_">int</span>[lineNum][];</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;lineNum;i++)&#123;</span><br><span class="line">           <span class="comment">//将每一行中每一列的值定义下来</span></span><br><span class="line">           System.out.println();</span><br><span class="line">           <span class="type">int</span> columnNum=i+<span class="number">1</span>;</span><br><span class="line">           pascalTriangle[i]=<span class="keyword">new</span> <span class="title class_">int</span>[columnNum];</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;columnNum;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span> (j==<span class="number">0</span>||j==i)&#123;pascalTriangle[i][j]=<span class="number">1</span>;&#125;</span><br><span class="line">               <span class="keyword">else</span> &#123;pascalTriangle[i][j]=pascalTriangle[i-<span class="number">1</span>][j-<span class="number">1</span>]+pascalTriangle[i-<span class="number">1</span>][j];&#125;</span><br><span class="line">               System.out.print(pascalTriangle[i][j]);</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071817910.png" alt="image-20220407181632501"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2894.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/2894.html" class="post-title-link" itemprop="url">Java中数组基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-12 20:53:06" itemprop="dateModified" datetime="2022-04-12T20:53:06+08:00">2022-04-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">Java数组</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/2894.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/2894.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p> 数组可以存放多个同一类型的数据，数组也可以认为是一种数据类型，是引用类型。</p>
-<h1 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h1><p>动态初始化：数据类型 数组名[] &#x3D;new 数据类型[大小]</p>
-<p>int a[]&#x3D;new int[5];创建了一个数组，名字为a，可以存放五个数据，数据可以后面定义。可以发现当定义之后默认为int类型数组每个数默认为0，自己可以采用循环的方式对其进行重新定义。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []array=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">            array[i]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071806591.png" alt="image-20220407180622715"></p>
-<p>静态初始化：数据类型 数组名[]&#x3D;{元素1，元素2，元素3…..}；</p>
-<p>int []array&#x3D;{1,2,3,4,5,6},表示int类型的数组，名称为array，包含1，2，3，4，5，6这六个元素，数组的大小不可以改变，但是数组的每一个值可以重新赋值改变。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []array=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">            array[i]=i+<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071806592.png" alt="image-20220407180652678"></p>
-<h1 id="数组使用细节"><a href="#数组使用细节" class="headerlink" title="数组使用细节"></a>数组使用细节</h1><ol>
-<li><p>数组是多个相同的类型数据的集合，实现对这些数据的统一管理。（如果为不同类型，则数组类型的精度要可以大于数组包含的值的精度） </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double []array=&#123;1.1,12,15&#125;;可以   int []array=&#123;1.1,12,15&#125;;不可以</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组创建后，如果没有赋值，则都是有默认值的。注意：boolean默认false，String默认为null，char默认为<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071806593.png" alt="img"><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">。</p>
-</li>
-<li><p>数组的下标都是从0开始的</p>
-</li>
-<li><p>数组的下表不要出现越界异常。</p>
-</li>
-<li><p>数组属于引用数据类型，数组型数据的对象为object。</p>
-</li>
-</ol>
 
       
     </div>

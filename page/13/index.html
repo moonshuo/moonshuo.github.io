@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">140</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,184 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/30838.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/30838.html" class="post-title-link" itemprop="url">StringBuffer与StringBuild</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:42:44" itemprop="dateModified" datetime="2022-03-30T17:42:44+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/30838.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/30838.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="StringBuffer结构解析"><a href="#StringBuffer结构解析" class="headerlink" title="StringBuffer结构解析"></a>StringBuffer结构解析</h2><ul>
+<li>我们查看以下的结果，可以看出StringBuffer的父类以及相应的接口，表示该对象可以进行串行化以及可以用来比较</li>
+</ul>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742247.png" alt="image-20220301193814501"></p>
+<ul>
+<li>我们查看StringBuffer的父类AbstractStringBuilder,可以看到源码中存在着byte[] value,而且不是final类型，而该value数组存放着我们的字符串内容，<strong>因此可以了解到该字符存放在堆中，并不是存放在常量池中</strong>，所以对比前面学到的String，String保存的是字符串常量，里面的值并不能更改，每次更改需要改变地址。而StringBuffer保存的是字符串变量，里面的值可以更改，每一次更新实际可以更新内容，不用每一次更新地址（到我们的地址指向的空间不够时，地址才会改变），效率比较高。</li>
+</ul>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742360.png" alt="image-20220301194352958"></p>
+<ul>
+<li>StringBuffer是一个final类，并不能被继承</li>
+</ul>
+<h2 id="StringBuffer的转换"><a href="#StringBuffer的转换" class="headerlink" title="StringBuffer的转换"></a>StringBuffer的转换</h2><ul>
+<li>StringBuffer的构造方法</li>
+</ul>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742234.png" alt="image-20220301195420797"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">StringBuffer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="number">16</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//创建一个大小为16的char[]数组，用于存放字符内容</span></span><br><span class="line">    <span class="type">StringBuffer</span> <span class="variable">stringBuffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">StringBuffer</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(capacity);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//创建一个初始容量为100的char[]数组</span></span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">stringBuffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">StringBuffer</span><span class="params">(String str)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(str);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//创建一个容量为stringBuffer.length+16的char[]数组，用于存放字符</span></span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">stringBuffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;ascvcacv&quot;</span>);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">StringBuffer</span><span class="params">(CharSequence seq)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(seq);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>String与StringBuffer相互转换</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//string转换为StringBuffer</span></span><br><span class="line">        String str=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        <span class="comment">//方法1:使用构造器，对str本身没有影响</span></span><br><span class="line">        StringBuffer stringBuffer1=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(str);</span><br><span class="line">        <span class="comment">//方法2：使用append的方法</span></span><br><span class="line">        StringBuffer stringBuffer2=stringBuffer1.append(str);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//StringBuffer转换为String</span></span><br><span class="line">        StringBuffer stringBuffer=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">        <span class="comment">//方法1：tostring</span></span><br><span class="line">        String str1=stringBuffer.toString();</span><br><span class="line">        <span class="comment">//方法2：使用构造器</span></span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(stringBuffer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="StringBuffer的常见方法"><a href="#StringBuffer的常见方法" class="headerlink" title="StringBuffer的常见方法"></a>StringBuffer的常见方法</h2><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>append</td>
+<td>增</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>改</td>
+</tr>
+<tr>
+<td>indexOf</td>
+<td>查</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插入</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        StringBuffer stringBuffer=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">        stringBuffer.append(<span class="string">&quot;ee&quot;</span>);</span><br><span class="line">        System.out.println(stringBuffer);</span><br><span class="line">        stringBuffer.delete(<span class="number">4</span>,<span class="number">6</span>);</span><br><span class="line">        System.out.println(stringBuffer);</span><br><span class="line">        stringBuffer.replace(<span class="number">0</span>,<span class="number">1</span>,<span class="string">&quot;ha&quot;</span>);</span><br><span class="line">        System.out.println(stringBuffer);</span><br><span class="line">        System.out.println(stringBuffer.indexOf(<span class="string">&quot;v&quot;</span>));</span><br><span class="line">        stringBuffer.insert(<span class="number">1</span>,<span class="string">&quot;ha&quot;</span>);</span><br><span class="line">        System.out.println(stringBuffer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742428.png" alt="image-20220301201856495"></p>
+<p>练习：</p>
+<p>一步一步调试，追溯源码，可以看出最终两个的差别。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       String str=<span class="literal">null</span>;</span><br><span class="line">       StringBuffer stringBuffer=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">       stringBuffer.append(str);</span><br><span class="line">       System.out.println(stringBuffer.length());</span><br><span class="line">       System.out.println(stringBuffer);</span><br><span class="line"></span><br><span class="line">        StringBuffer stringBuffer1=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(str);</span><br><span class="line">        System.out.println(stringBuffer1.length());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742577.png" alt="image-20220301202739437"></p>
+<p>学会利用StringBuffer格式化输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        String name=scanner.next();</span><br><span class="line">        String price=scanner.nextDouble()+<span class="string">&quot;&quot;</span>;</span><br><span class="line">        StringBuffer price1=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(price);</span><br><span class="line">        <span class="type">int</span> i=price1.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span> (i&gt;=<span class="number">3</span>)&#123;</span><br><span class="line">            price1.insert(i-<span class="number">3</span>,<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            i=i-<span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(price1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742843.png" alt="image-20220301204926140"></p>
+<h2 id="StringBuilder结构剖析"><a href="#StringBuilder结构剖析" class="headerlink" title="StringBuilder结构剖析"></a>StringBuilder结构剖析</h2><ol>
+<li>StringBuilder是一个可变的字符序列。此类提供一个与StringBuffer兼容的API,但是不保证同步（StringBuilder不是线程安全的，所有的方法都没有做互斥处理）。该类被设计用作StringBuffer的一个简易的替换，<strong>用在字符串缓冲区被单个线程使用时候，可以优先采用此类，大多数线程中比StringBuffer快</strong></li>
+<li>下面的图表明StringBuilder与StringBuffer继承了相同的类与接口，<strong>StringBuilder也是final的，不可以被继承</strong></li>
+</ol>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742658.png" alt="image-20220301205717395"></p>
+<h2 id="StringBuilder速度比较"><a href="#StringBuilder速度比较" class="headerlink" title="StringBuilder速度比较"></a>StringBuilder速度比较</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       StringBuffer stringBuffer=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;花花&quot;</span>);</span><br><span class="line">       <span class="type">long</span> startTime=System.currentTimeMillis();</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2000</span>;i++)&#123;</span><br><span class="line">           stringBuffer=stringBuffer.append(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="type">long</span> endTime=System.currentTimeMillis();</span><br><span class="line">        <span class="type">long</span> totalTime=endTime-startTime;</span><br><span class="line">        System.out.println(<span class="string">&quot;时间为&quot;</span>+totalTime);</span><br><span class="line"></span><br><span class="line">        StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;花花&quot;</span>);</span><br><span class="line">         startTime=System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2000</span>;i++)&#123;</span><br><span class="line">            stringBuilder=stringBuilder.append(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">         endTime=System.currentTimeMillis();</span><br><span class="line">         totalTime=endTime-startTime;</span><br><span class="line">        System.out.println(<span class="string">&quot;时间为&quot;</span>+totalTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742580.png" alt="image-20220301211620315"></p>
+<h2 id="String，StringBuffer与StringBuilder比较"><a href="#String，StringBuffer与StringBuilder比较" class="headerlink" title="String，StringBuffer与StringBuilder比较"></a>String，StringBuffer与StringBuilder比较</h2><ol>
+<li>StringBuffer与StringBuilder非常类似，均可以表示可变的字符序列，方法也一样</li>
+<li>String不可变的字符序列，效率低，复用性高，如果我们对String做大量的修改，不要使用String</li>
+<li>StringBuffer可变的字符序列，效率比较高，线程安全</li>
+<li>StringBuilder可变，效率最高，线程不安全</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1407,151 +1585,6 @@
           <h1 id="利用主线程控制子线程"><a href="#利用主线程控制子线程" class="headerlink" title="利用主线程控制子线程"></a>利用主线程控制子线程</h1><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> windowSale;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WindowSale1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>  countTicket=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>  &#123;</span><br><span class="line">        <span class="type">Window1</span> <span class="variable">window1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Window1</span>();</span><br><span class="line">        Thread thread=<span class="keyword">new</span> <span class="title class_">Thread</span>(window1);</span><br><span class="line">        thread.start();</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (countTicket&lt;=<span class="number">5</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;小于5张，请停止售票&quot;</span>);</span><br><span class="line">                window1.setJudge(<span class="literal">false</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;System.out.println(<span class="string">&quot;不要停下来&quot;</span>);&#125;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                Thread.sleep(<span class="number">50</span>);</span><br><span class="line">            &#125;<span class="keyword">catch</span> (InterruptedException interruptedException)&#123;</span><br><span class="line">                interruptedException.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Window1</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> judge=<span class="literal">true</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (judge)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">50</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;售卖一张票&quot;</span>);</span><br><span class="line">            WindowSale1.countTicket=WindowSale1.countTicket-<span class="number">1</span>;</span><br><span class="line">            System.out.println(<span class="string">&quot;还剩&quot;</span>+WindowSale1.countTicket);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setJudge</span><span class="params">(<span class="type">boolean</span> judge)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.judge = judge;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739974.png" alt="image-20220317153122728"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/52377.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/52377.html" class="post-title-link" itemprop="url">Java中接口</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:33:42" itemprop="dateModified" datetime="2022-03-30T17:33:42+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="index"><span itemprop="name">Java中接口</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/52377.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/52377.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>接口就是给出一次额没有实现的方法，封装到一起，到某个类要使用的时候，根据具体的情况把这些方法写出来。</p>
-<p>语法：interface 接口名{</p>
-<p>属性+方法</p>
-<p>}</p>
-<p>class 类名 implements 接口{</p>
-<p>自己的属性&#x2F;&#x2F;方法</p>
-<p>}</p>
-<p>注意：在jdk7以前都没有接口中的方法都没有方法体，而在8.0之后可以有静态方法，默认方法（需要用default进行标记），也就是说接口中有方法的具体实现，在接口中抽象方法可以进行省略。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">InterfaxeTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sum</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">default</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">ok</span><span class="params">()</span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="接口的简单用法"><a href="#接口的简单用法" class="headerlink" title="接口的简单用法"></a>接口的简单用法</h1><ul>
-<li>规范我们的书写，方便调用。比如，我们现需要写出三个类，分别链接mysql数据库，oracle数据库。我们程序员1写的链接mysql数据库链接方法定义为f1，断开为f2。而程序员2写的链接oracle数据库的方法为connect，与close方法。这样会导致我们使用不同的数据库时，调用函数的麻烦，但是当我我们使用接口，就可以规范每一个的命名，举个简单例子：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DBInterface</span> &#123;</span><br><span class="line">    <span class="comment">/**定义链接方法*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">/**定义关闭方法*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Oracle</span> <span class="keyword">implements</span> <span class="title class_">DBInterface</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;链接oracle数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;断开链接oracle数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MySql</span> <span class="keyword">implements</span> <span class="title class_">DBInterface</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;链接mysql数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;断开链接mysql数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">MySql</span> <span class="variable">mySql</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MySql</span>();</span><br><span class="line">        mySql.connect();</span><br><span class="line">        mySql.stop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="接口的注意事项"><a href="#接口的注意事项" class="headerlink" title="接口的注意事项"></a>接口的注意事项</h1><ul>
-<li>接口本身并不能被实例化</li>
-<li>接口中所有方法都为public方法，接口中的抽象方法，可以不用abstract修饰</li>
-<li>一个类继承该接口，就必须实现接口的所有方法</li>
-<li>一个类可以实现多个接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Oracle</span> <span class="keyword">implements</span> <span class="title class_">DBInterface</span>,InterfaxeTest&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;链接oracle数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;断开链接oracle数据库&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sum</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi</span><span class="params">()</span> &#123;</span><br><span class="line">        InterfaxeTest.<span class="built_in">super</span>.hi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接口中的属性只能是final，而且是public static final修饰符，比如int a&#x3D;1；实际上为public static int a&#x3D;1；</li>
-</ul>
-<p>证明：</p>
-<p>我们在刚才的接口中定义int a&#x3D;0；</p>
-<p>在main方法中输出如下；如果不报错并且可以正常输出，说明这个为public并且为static，我们并没有创建实例化对象。而final只需要我们尝试改变以下值即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(MySql.a);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>做个练习：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(DBInterface.a);</span><br><span class="line">        System.out.println(MySql.a);</span><br><span class="line">        MySql mySql=<span class="keyword">new</span> <span class="title class_">MySql</span>();</span><br><span class="line">        System.out.println(mySql.a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301733037.png" alt="image-20220322085140364"></p>
 
       
     </div>
