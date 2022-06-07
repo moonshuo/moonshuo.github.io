@@ -173,13 +173,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -221,6 +221,271 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/25534.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/25534.html" class="post-title-link" itemprop="url">数据库事务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 14:12:20" itemprop="dateModified" datetime="2022-06-04T14:12:20+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/25534.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/25534.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> 事务集应该作为一个整体进行操作，而不是单个语句的执行，一个逻辑操作单元。</p>
+<p><strong>要么所有的事物都被提交，否则就发生事务回滚</strong></p>
+<p>那些操作发生数据提交：</p>
+<ol>
+<li>增删改一旦执行，就会提交</li>
+<li>关闭链接，也会自动</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一步：事务是自动提交的我们 手动关闭自动提交</span><br><span class="line">conn.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">第二步：如果没有异常就提交事务</span><br><span class="line">conn.commit();</span><br><span class="line">第三步：如果抛出异常 我们我们就让他回滚</span><br><span class="line">conn.rollback();</span><br></pre></td></tr></table></figure>
+
+<p>在以下这个表格中，AA与BB进行相互转账，为保证操作的可靠性，我们需要通过事务保障操作的可行性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TransferAccount</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, SQLException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src\\Information.properties&quot;</span>));</span><br><span class="line">        String jdbc= properties.getProperty(<span class="string">&quot;jdbcJar&quot;</span>);</span><br><span class="line">        String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String password= properties.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        Class.forName(jdbc);</span><br><span class="line">        Connection connection= DriverManager.getConnection(url,user,password);</span><br><span class="line">        String sql1=<span class="string">&quot;update user_table set balance=balance-100 where user=(?) &quot;</span>;</span><br><span class="line">        String sql2=<span class="string">&quot;update user_table set balance=balance+100 where user=(?) &quot;</span>;</span><br><span class="line">        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);</span><br><span class="line">        PreparedStatement preparedStatement2= connection.prepareStatement(sql2);</span><br><span class="line">        preparedStatement1.setString(<span class="number">1</span>,<span class="string">&quot;AA&quot;</span>);</span><br><span class="line">        preparedStatement2.setString(<span class="number">1</span>,<span class="string">&quot;BB&quot;</span>);</span><br><span class="line">        <span class="comment">//AA转账</span></span><br><span class="line">        preparedStatement1.executeUpdate();</span><br><span class="line">        <span class="comment">//发生故障</span></span><br><span class="line">        System.out.println(<span class="number">10</span>/<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//BB接受账单</span></span><br><span class="line">        preparedStatement2.executeUpdate();</span><br><span class="line">        preparedStatement1.close();</span><br><span class="line">        preparedStatement2.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301711325.png" alt="image-20220330160902140"></p>
+<p>我们可以发现一笔钱无缘无故的消失了，但是当我们使用事务进行处理时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TransferAccount</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, SQLException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src\\Information.properties&quot;</span>));</span><br><span class="line">        String jdbc= properties.getProperty(<span class="string">&quot;jdbcJar&quot;</span>);</span><br><span class="line">        String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String password= properties.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        Class.forName(jdbc);</span><br><span class="line">        Connection connection= DriverManager.getConnection(url,user,password);</span><br><span class="line">        connection.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">        String sql1=<span class="string">&quot;update user_table set balance=balance-100 where user=(?) &quot;</span>;</span><br><span class="line">        String sql2=<span class="string">&quot;update user_table set balance=balance+100 where user=(?) &quot;</span>;</span><br><span class="line">        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);</span><br><span class="line">        PreparedStatement preparedStatement2= connection.prepareStatement(sql2);</span><br><span class="line">        preparedStatement1.setString(<span class="number">1</span>,<span class="string">&quot;AA&quot;</span>);</span><br><span class="line">        preparedStatement2.setString(<span class="number">1</span>,<span class="string">&quot;BB&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//AA转账</span></span><br><span class="line">        preparedStatement1.executeUpdate();</span><br><span class="line">        <span class="comment">//发生故障</span></span><br><span class="line">        <span class="comment">//System.out.println(10/0);</span></span><br><span class="line">        <span class="comment">//BB接受账单</span></span><br><span class="line">        preparedStatement2.executeUpdate();&#125;<span class="keyword">catch</span> (ArithmeticException arithmeticException)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;交易发生异常，事务进行回滚&quot;</span>);</span><br><span class="line">            connection.rollback();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有发生异常则提交数据</span></span><br><span class="line">        connection.commit();</span><br><span class="line">        preparedStatement1.close();</span><br><span class="line">        preparedStatement2.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301711326.png" alt="image-20220330161443587"></p>
+<p>我们可以看出数据交易正常进行</p>
+<h1 id="事务的属性"><a href="#事务的属性" class="headerlink" title="事务的属性"></a>事务的属性</h1><p>ACID:</p>
+<ol>
+<li>原子性：事务不可分割，要么都发生，要么都不发生。</li>
+<li>一致性：必须使数据库从一个一致性状态变换到另外一个一致性状态，比如金钱的总数</li>
+<li>隔离性：事务不可以被其他事务干扰，内部操作必须是不被其他事务影响</li>
+<li>持久性：数据一旦提交，数据中的改变是永久性的，其他操作均无法对其产生影响</li>
+</ol>
+<h2 id="数据库的并发问题"><a href="#数据库的并发问题" class="headerlink" title="数据库的并发问题"></a>数据库的并发问题</h2><ol>
+<li>脏读：1与2两个事务，1读取了2已经更改但是还没有提交的字段，但是随后2发生了回滚，1读取的内容就变的无根据</li>
+<li>不可重复读：1读取一个字段，2对其进行了更改，后来1再次重新读取时，值不相同</li>
+<li>幻读：1对表中的全部行进行了同一操作，2又插入了一行，但是新插入的行并没有更改，和幻觉一样，也包含两次读取表格的数据不一致</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/45742.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/45742.html" class="post-title-link" itemprop="url">JDBC基础一</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 14:12:24" itemprop="dateModified" datetime="2022-06-04T14:12:24+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/45742.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/45742.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JDBC链接步骤"><a href="#JDBC链接步骤" class="headerlink" title="JDBC链接步骤"></a>JDBC链接步骤</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://localhost:3306/userinformation</span></span><br><span class="line"><span class="attr">user</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">passWord</span>=<span class="string">200101</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注册驱动"><a href="#注册驱动" class="headerlink" title="注册驱动"></a>注册驱动</h2><p>驱动：即我们从官网下载的jar包，没有jar包，我们可以编译程序，但是程序无法运行，将jar包添加到依赖。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747715.png" alt="image-20220322143653633"></p>
+<p>注册驱动的两种方式</p>
+<ul>
+<li>多层注册，为了保证代码的整洁，这里将抛出异常的语句删除（<strong>com.mysql.jdbc.Driver()来源于我们刚刚导入的jar包，并不是idea自带的</strong>）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Driver driver=<span class="keyword">new</span> <span class="title class_">Driver</span>();</span><br><span class="line">DriverManager.registerDriver(driver);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>利用反射机制注册（最常用）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取链接与获取数据库操作对象"><a href="#获取链接与获取数据库操作对象" class="headerlink" title="获取链接与获取数据库操作对象"></a>获取链接与获取数据库操作对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取链接</span></span><br><span class="line">Connection connection=DriverManager.getConnection(url,user,password);</span><br><span class="line"><span class="comment">//获取数据库操作对象</span></span><br><span class="line">Statement  statement=connection.createStatement();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取链接</span></span><br><span class="line">Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src/Mysql.properties&quot;</span>));</span><br><span class="line">String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">String passWord= properties.getProperty(<span class="string">&quot;passWord&quot;</span>);</span><br><span class="line">Connection connection=DriverManager.getConnection(url,user,passWord);</span><br><span class="line"><span class="comment">//获得数据库的操作对象</span></span><br><span class="line">Statement statement=connection.createStatement();</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义sql语句以及结果判断"><a href="#定义sql语句以及结果判断" class="headerlink" title="定义sql语句以及结果判断"></a>定义sql语句以及结果判断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义操作语句</span></span><br><span class="line">String insertSql=<span class="string">&quot;insert into usersimple values (&#x27;张山峰&#x27;,12,&#x27;高管&#x27;)&quot;</span>;</span><br><span class="line">String insertSql1=<span class="string">&quot;insert into usersimple values (&#x27;丽丽&#x27;,25,&#x27;职员&#x27;)&quot;</span>;</span><br><span class="line">String updateSql=<span class="string">&quot;update usersimple set 职位=&#x27;职员&#x27; where 职位=&#x27;高管&#x27; &quot;</span>;</span><br><span class="line">String deleteSql=<span class="string">&quot;delete from usersimple where 用户名称=&#x27;丽丽&#x27; &quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结果判断statement-executeUpdate-插入，更新，删除"><a href="#结果判断statement-executeUpdate-插入，更新，删除" class="headerlink" title="结果判断statement.executeUpdate(插入，更新，删除)"></a>结果判断statement.executeUpdate(插入，更新，删除)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结果判断</span></span><br><span class="line"><span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">count=statement.executeUpdate(insertSql);</span><br><span class="line">System.out.println(count==<span class="number">1</span>?<span class="string">&quot;插入成功&quot;</span>:<span class="string">&quot;插入失败&quot;</span>);</span><br><span class="line">count=statement.executeUpdate(insertSql1);</span><br><span class="line">System.out.println(count==<span class="number">1</span>?<span class="string">&quot;插入成功&quot;</span>:<span class="string">&quot;插入失败&quot;</span>);</span><br><span class="line">count=statement.executeUpdate(updateSql);</span><br><span class="line">System.out.println(count==<span class="number">1</span>?<span class="string">&quot;更新成功&quot;</span>:<span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">count=statement.executeUpdate(deleteSql);</span><br><span class="line">System.out.println(count==<span class="number">1</span>?<span class="string">&quot;删除成功&quot;</span>:<span class="string">&quot;删除失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747237.png" alt="image-20220322151646099"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747915.png" alt="image-20220322151658855"></p>
+<h2 id="结果判断statement-executeQuery"><a href="#结果判断statement-executeQuery" class="headerlink" title="结果判断statement.executeQuery"></a>结果判断statement.executeQuery</h2><p>在Java中，有一个ResultSet的数据类型，专门用于存储select的语句的结果，而且还拥有一个resultSet.next（）的类似c语言中指针类型的操作。</p>
+<p>next的初始位置在标题位置，next指向下一行，如果有则返回true否则为fasle</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String selectSql=<span class="string">&quot;select * from usersimple&quot;</span>;</span><br><span class="line">ResultSet resultSet=statement.executeQuery(selectSql);</span><br><span class="line"><span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">    String userName=resultSet.getString(<span class="string">&quot;用户名称&quot;</span>);</span><br><span class="line">    <span class="type">int</span> age=resultSet.getInt(<span class="string">&quot;年龄&quot;</span>);</span><br><span class="line">    String position=resultSet.getString(<span class="string">&quot;职位&quot;</span>);</span><br><span class="line">    System.out.println(userName+age+position);</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭通道"><a href="#关闭通道" class="headerlink" title="关闭通道"></a>关闭通道</h2><ul>
+<li>当我们执行jdbc时，这个时候是多个线程在同时运行，如果我们结束时候没有结束这些线程，他们会一直保存着，这个连接是与数据库服务器的一个连接，虽然你的方法结束了，但是这个资源依然存在数据库连接并没有释放，如果不设置close，长时间使用，你会发现自己的电脑卡的飞起。👻</li>
+<li>线程结束的顺序（就像栈那样，先进行链接，在获取对象，最后看结果，而关闭时，先进后出）：</li>
+</ul>
+<p>打开时：Connection -&gt; PreparedStatement -&gt; ResultSet<br> 关闭时：ResultSet-&gt; PreparedStatement -&gt; Connection</p>
+<ul>
+<li>代码演示(要在finally语句中进行，保证结束后不会在进行其他操作)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resultSet!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;</span><br><span class="line">                resultSet.close();</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (statement!=<span class="literal">null</span>) &#123;</span><br><span class="line">                    statement.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (connection!=<span class="literal">null</span>)&#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="整体实例"><a href="#整体实例" class="headerlink" title="整体实例"></a>整体实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mysql.jdbc.Driver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcLearn</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IOException, SQLException &#123;</span><br><span class="line">        <span class="comment">/*Driver driver=new Driver();</span></span><br><span class="line"><span class="comment">        DriverManager.registerDriver(driver);*/</span></span><br><span class="line">        Class cla=Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="comment">//获取链接</span></span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src/Mysql.properties&quot;</span>));</span><br><span class="line">        String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        String passWord= properties.getProperty(<span class="string">&quot;passWord&quot;</span>);</span><br><span class="line">        Connection connection=DriverManager.getConnection(url,user,passWord);</span><br><span class="line">        <span class="comment">//获得数据库的操作对象</span></span><br><span class="line">        Statement statement=connection.createStatement();</span><br><span class="line">        <span class="comment">//定义操作语句</span></span><br><span class="line">        String insertSql=<span class="string">&quot;insert into usersimple values (&#x27;张山峰&#x27;,12,&#x27;高管&#x27;)&quot;</span>;</span><br><span class="line">        String insertSql1=<span class="string">&quot;insert into usersimple values (&#x27;丽丽&#x27;,25,&#x27;职员&#x27;)&quot;</span>;</span><br><span class="line">        String updateSql=<span class="string">&quot;update usersimple set 职位=&#x27;职员&#x27; where 职位=&#x27;高管&#x27; &quot;</span>;</span><br><span class="line">        String deleteSql=<span class="string">&quot;delete from usersimple where 用户名称=&#x27;丽丽&#x27; &quot;</span>;</span><br><span class="line">        <span class="comment">//结果判断</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        count=statement.executeUpdate(insertSql);</span><br><span class="line">        System.out.println(count==<span class="number">1</span>?<span class="string">&quot;插入成功&quot;</span>:<span class="string">&quot;插入失败&quot;</span>);</span><br><span class="line">        count=statement.executeUpdate(insertSql1);</span><br><span class="line">        System.out.println(count==<span class="number">1</span>?<span class="string">&quot;插入成功&quot;</span>:<span class="string">&quot;插入失败&quot;</span>);</span><br><span class="line">        count=statement.executeUpdate(updateSql);</span><br><span class="line">        System.out.println(count==<span class="number">1</span>?<span class="string">&quot;更新成功&quot;</span>:<span class="string">&quot;更新失败&quot;</span>);</span><br><span class="line">        count=statement.executeUpdate(deleteSql);</span><br><span class="line">        System.out.println(count==<span class="number">1</span>?<span class="string">&quot;删除成功&quot;</span>:<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line"></span><br><span class="line">        String selectSql=<span class="string">&quot;select * from usersimple&quot;</span>;</span><br><span class="line">        ResultSet resultSet=statement.executeQuery(selectSql);</span><br><span class="line">        <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">            String userName=resultSet.getString(<span class="string">&quot;用户名称&quot;</span>);</span><br><span class="line">            <span class="type">int</span> age=resultSet.getInt(<span class="string">&quot;年龄&quot;</span>);</span><br><span class="line">            String position=resultSet.getString(<span class="string">&quot;职位&quot;</span>);</span><br><span class="line">            System.out.println(userName+age+position);</span><br><span class="line">        &#125;</span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1297,277 +1562,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/52598.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/52598.html" class="post-title-link" itemprop="url">数组类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-20 23:13:49" itemprop="dateModified" datetime="2022-04-20T23:13:49+08:00">2022-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/52598.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/52598.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>刷题路线和资料来自：<a target="_blank" rel="noopener" href="https://programmercarl.com/other/kstar.html">代码随想录知识星球 | 代码随想录 (programmercarl.com)</a></p>
-<h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>数组在Java中的存储与赋值机制<a href="https://moonshuo.cn/JavaSE/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/Java%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%B5%8B%E5%80%BC%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E8%B5%8B%E5%80%BC%E6%9C%BA%E5%88%B6/index.html?_sw-precache=2346726dfff272cb3c9f9073cc45aade">Java中基本数据类型赋值机制与数组的赋值机制 | 偷掉月亮 (moonshuo.cn)</a></p>
-<p>可以知道在Java中数组值存储在堆中，<strong>而在栈空间中存储的是数组的地址，与基本数据类型不同</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204181959206.png" alt="image-20220331123609262"></p>
-<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search/">704. 二分查找 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">search</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span>(left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (target&gt;nums[mid])&#123;</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的二分查找用法是两边都闭合的，所以可以肯定int right&#x3D;nums.length-1;如果是两边的闭合不同，需要使right值取值不同。</p>
-<h1 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-element/">27. 移除元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h2 id="巧妙交换"><a href="#巧妙交换" class="headerlink" title="巧妙交换"></a>巧妙交换</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">每一次找到之后，将找到的数与最后一个数交换，并将length--，防止死循环，同时i--，将交换过来的数在检查一次！！！</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i]==val)&#123;</span><br><span class="line">                <span class="type">int</span> temp=nums[length-<span class="number">1</span>];</span><br><span class="line">                nums[nums.length-<span class="number">1</span>]=nums[i];</span><br><span class="line">                nums[i]=temp;</span><br><span class="line">                i--;</span><br><span class="line">                length--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="双指针法"><a href="#双指针法" class="headerlink" title="双指针法"></a>双指针法</h2><p>快慢指针都从0开始，如果遇到目标的数，看快指针增加一，满指针不改变，但是一旦遇到不是目标的数，慢指针立即接受快指针的数，将的目标数覆盖。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 快慢指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">fastIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> slowIndex;</span><br><span class="line">        <span class="keyword">for</span> (slowIndex = <span class="number">0</span>; fastIndex &lt; nums.length; fastIndex++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fastIndex] != val) &#123;</span><br><span class="line">                nums[slowIndex] = nums[fastIndex];</span><br><span class="line">                slowIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slowIndex;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="有序数组的平方"><a href="#有序数组的平方" class="headerlink" title="有序数组的平方"></a>有序数组的平方</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/squares-of-a-sorted-array/">977. 有序数组的平方 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h2 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            nums[i]=nums[i]*nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="type">int</span> []array=<span class="keyword">new</span> <span class="title class_">int</span>[length];</span><br><span class="line">        <span class="type">int</span> right=array.length-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> flag=array.length-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right&gt;=left) &#123;</span><br><span class="line">            <span class="keyword">if</span> (Math.abs(nums[right]) &gt;= Math.abs(nums[left])) &#123;</span><br><span class="line">                array[flag]=nums[right]*nums[right];</span><br><span class="line">                flag--;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                array[flag]=nums[left]*nums[left];</span><br><span class="line">                flag--;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h1><h2 id="暴力解法-1"><a href="#暴力解法-1" class="headerlink" title="暴力解法"></a>暴力解法</h2><p>这里是求连续的数组，所以可以确定开始的位置，和结束的位置，就可以确定所有的情况，不需要去考虑太多情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="type">int</span> result=length;</span><br><span class="line">        <span class="type">boolean</span> flag=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=i;j&lt;length;j++)&#123;</span><br><span class="line">                sum=sum+nums[j];</span><br><span class="line">                <span class="keyword">if</span> (sum&gt;=target)&#123;</span><br><span class="line">                    <span class="keyword">if</span> (result&gt;=j-i+<span class="number">1</span>)&#123;</span><br><span class="line">                        flag=<span class="literal">true</span>;</span><br><span class="line">                        result=j-i+<span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>我的错误解法，忽略的窗口滑动过程中窗口的逐渐缩小的过程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> slowIndex;</span><br><span class="line">    <span class="type">int</span> fastIndex=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> result=nums.length;</span><br><span class="line">    <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="type">boolean</span> flag=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (slowIndex=<span class="number">0</span>;fastIndex&lt;nums.length;fastIndex++)&#123;</span><br><span class="line">        sum=sum+nums[fastIndex];</span><br><span class="line">        <span class="keyword">if</span> (sum&gt;=target&amp;&amp;result&gt;=fastIndex-slowIndex+<span class="number">1</span>)&#123;</span><br><span class="line">            flag=<span class="literal">true</span>;</span><br><span class="line">            sum=sum-nums[slowIndex]-nums[fastIndex];</span><br><span class="line">            result=fastIndex-slowIndex+<span class="number">1</span>;</span><br><span class="line">            slowIndex++;</span><br><span class="line">            fastIndex--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 滑动窗口</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> s, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//利用result的赋值巧妙赋值避开result=num.length的错误</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; right &lt; nums.length; right++) &#123;</span><br><span class="line">            sum += nums[right];</span><br><span class="line">            <span class="keyword">while</span> (sum &gt;= s) &#123;</span><br><span class="line">                result = Math.min(result, right - left + <span class="number">1</span>);</span><br><span class="line">                sum -= nums[left++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">return</span> <span class="variable">result</span> <span class="operator">=</span>= Integer.MAX_VALUE ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95">代码随想录 (programmercarl.com)</a></p>
-<h1 id="螺旋矩阵"><a href="#螺旋矩阵" class="headerlink" title="螺旋矩阵"></a>螺旋矩阵</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">/*我们</span></span><br><span class="line"><span class="comment">    1.首先需要确定在何时转弯</span></span><br><span class="line"><span class="comment">    2.向什么方向放生转弯*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> [][]array=<span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">        <span class="comment">//代表当前填充的数</span></span><br><span class="line">        <span class="type">int</span> num=<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//代表每一组已经填充的数</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//flag代表圈数</span></span><br><span class="line">        <span class="type">int</span> flag=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//代表方向</span></span><br><span class="line">        <span class="type">int</span> position=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> hang=n;</span><br><span class="line">        <span class="type">int</span> temp=n;</span><br><span class="line">        <span class="keyword">if</span> (n%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">            array[n/<span class="number">2</span>][n/<span class="number">2</span>]=hang*hang;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (num&lt;=hang*hang&amp;&amp;temp&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            count=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (position==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                array[flag][flag+count]=num;</span><br><span class="line">                num++;</span><br><span class="line">                count++;</span><br><span class="line">                &#125;</span><br><span class="line">                position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>) &#123;</span><br><span class="line">                array[count+flag][n - flag-<span class="number">1</span>] = num;</span><br><span class="line">                num++;</span><br><span class="line">                count++;</span><br><span class="line">                &#125;</span><br><span class="line">            position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">3</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                    array[n-flag-<span class="number">1</span>][n-count-flag-<span class="number">1</span>]=num;</span><br><span class="line">                    count++;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                    array[n-count-flag-<span class="number">1</span>][flag]=num;</span><br><span class="line">                    num++;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">                position=<span class="number">1</span>;</span><br><span class="line">                flag++;</span><br><span class="line">                temp=temp-<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       Solution solution=<span class="keyword">new</span> <span class="title class_">Solution</span>();</span><br><span class="line">       System.out.println(Arrays.deepToString(solution.generateMatrix(<span class="number">3</span>)));</span><br><span class="line">       <span class="comment">//System.out.println(solution.minSubArrayLe2(4, new int[]&#123;1,4,4&#125;));</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在判断时候，一定要对其进行分组，并且注意二维数组的行列等等</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li><p>对于数组要删除的元素，是不能完成删除的，但是可以将这个进行覆盖，利用双指针方法可以巧妙将删除的数进行覆盖（图片来自<a target="_blank" rel="noopener" href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html#%E6%80%9D%E8%B7%AF">代码随想录 (programmercarl.com)</a>），当然也可以将其和最后的一个交换。<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204202311244.gif" alt="27.移除元素-双指针法"></p>
-</li>
-<li><p>而对于要求数组连续的值，可以使用双指针的变形，滑动窗口方法进行破解。图片来自<a target="_blank" rel="noopener" href="https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3">代码随想录 (programmercarl.com)</a></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204202311245.gif" alt="209.长度最小的子数组"></p>
-</li>
-<li><p>而对于螺旋矩阵，需要思路清晰，分析好每一个方向的情况，同样比较复杂的其他情况要进行分类。</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41590.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/41590.html" class="post-title-link" itemprop="url">动态代理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-07 10:37:39" itemprop="dateModified" datetime="2022-05-07T10:37:39+08:00">2022-05-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">Java进阶</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E8%BF%9B%E9%98%B6/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">Java设计模式</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/41590.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/41590.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HI&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayGood</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;GOOD&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>main</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        testService.sayHi();</span><br><span class="line">        testService.sayGood();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现在我需要在以上的两个方法之前分别要求输出现在的时间，以及在执行完之后输出“完成”。我们拥有以下几个方法</p>
-<ol>
-<li>直接在sayHi，与saygood方法中添加</li>
-<li>写一个工具类，调用工具类进行添加</li>
-</ol>
-<p>以上的两个方法虽然有效，但是如果需要我们更改100个这样的方法，那样岂不是要更改100行</p>
-<h2 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h2><p>动态代理可以在程序的执行过程创建代理对象，通过代理对象执行方法，增加额外方法</p>
-<h3 id="实现IncocationHandler，功能增加"><a href="#实现IncocationHandler，功能增加" class="headerlink" title="实现IncocationHandler，功能增加"></a>实现IncocationHandler，功能增加</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyIncation</span> <span class="keyword">implements</span> <span class="title class_">InvocationHandler</span> &#123;</span><br><span class="line">    <span class="comment">//动态代理的目标对象</span></span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyIncation</span><span class="params">(Object object)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        Object res=<span class="literal">null</span>;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        <span class="comment">//通过代理对象执行方法shi，会执行这个invoke</span></span><br><span class="line">        res=method.invoke(object,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;完成&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建代理"><a href="#创建代理" class="headerlink" title="创建代理"></a>创建代理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//创建目标对象</span></span><br><span class="line">        TestService testService=<span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>();</span><br><span class="line">        InvocationHandler invocationHandler=<span class="keyword">new</span> <span class="title class_">MyIncation</span>(testService);</span><br><span class="line">        <span class="comment">//使用Proxy创建代理</span></span><br><span class="line">        TestService proxy=(TestService) Proxy.newProxyInstance(testService.getClass().getClassLoader(), testService.getClass().getInterfaces(),invocationHandler);</span><br><span class="line">        proxy.sayGood();</span><br><span class="line">        proxy.sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205051548261.png" alt="image-20220505154812603"></p>
-<p>当然如果我们不想要sayhi方法执行一些代码，我们可以在实现IncocationHandler通过判断方法的名称，来选择执行哪一些代码</p>
-<p>JDK动态代理是需要声明接口的，创建一个动态代理类必须得给这个”虚拟“的类一个接口。可以看到，这时候经动态代理类创造之后的每个bean已经不是原来那个对象了。</p>
-<p>参考：</p>
-<p>动态代理实际上是程序在运行中，根据被代理的接口来动态生成代理类的class文件，并加载class文件运行的过程，通过<strong>反编译</strong>被生成的**$Proxy0.class**文件发现：</p>
-<p>  class类定义为：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ee9582c00eda">为何jdk动态代理必须有接口，不支持仅实现类的代理 - 简书 (jianshu.com)</a></p>
-<p>  public final class $Proxy0 <strong>extends</strong> Proxy <strong>implements</strong> Interface {</p>
-<p>​    *<strong>public $Proxy0(InvocationHandler paramInvocationHandler) {*</strong> </p>
-<p>​      *<strong>super(paramInvocationHandler);*</strong> </p>
-<p>​     ***}*** </p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>原理不清楚，插眼！！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

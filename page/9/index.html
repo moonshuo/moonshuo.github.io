@@ -173,13 +173,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -221,6 +221,329 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/29038.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/29038.html" class="post-title-link" itemprop="url">Java中位逻辑运算符与位移运算符（从原理进行解释）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:36:35" itemprop="dateModified" datetime="2022-03-30T17:36:35+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/29038.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/29038.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="位逻辑运算符"><a href="#位逻辑运算符" class="headerlink" title="位逻辑运算符"></a>位逻辑运算符</h1><p><strong>计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+<th>举例</th>
+<th>解释</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>位与运算符</td>
+<td>4&amp;5</td>
+<td>0000 0100(4的补码，不是源码)&amp;0000 0101（5的补码），对应的位进行与逻辑运算</td>
+<td>0000 0100（4的补码，其结果与源码相同）–&gt;4</td>
+</tr>
+<tr>
+<td>|</td>
+<td>位或运算符</td>
+<td>-4|5</td>
+<td>-4补码：11111111 11111111 11111111 11111100 			5补码:00000000 00000000 00000000 00000101</td>
+<td>11111111 11111111 11111111 11111101（此为结果的补码，转换成相应的源码）—&gt;1…….00000011&#x3D;-3</td>
+</tr>
+<tr>
+<td>^</td>
+<td>位异或逻辑</td>
+<td>4^5</td>
+<td>0000 0100^0000 0101,对应位置进行异或逻辑运算</td>
+<td>0000 0001(此为结果的补码)——&gt;源码表示为1</td>
+</tr>
+<tr>
+<td>~</td>
+<td></td>
+<td>~4</td>
+<td>看下面</td>
+<td>-5</td>
+</tr>
+</tbody></table>
+<p><strong>解释：</strong></p>
+<ol>
+<li>4表示为00000000 00000000 00000000 00000100，第一位为符号位，0表示正数，1表示负数。</li>
+<li>4的补码&#x3D;4的源码，为00000000 00000000 00000000 00000100。</li>
+<li>~4操作，得到的是结果的补码：11111111 11111111 11111111 11111011</li>
+<li>源码为：10000000 00000000 00000000 00000101—-&gt;-5</li>
+</ol>
+<p>我们再来推导以下~（-2）做练习</p>
+<ol>
+<li>先得到-2源码：10000000 00000000 00000000 00000010</li>
+<li>-2得反码：11111111 11111111 11111111 11111101</li>
+<li>-2得补码：11111111 11111111 11111111 11111110</li>
+<li>~（-2）操作（得到的是结果的补码）：00000000 00000000 00000000 00000001</li>
+<li>结果的源码为：00000000 00000000 00000000 00000001—&gt;1</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        System.out.println(<span class="number">4</span>&amp;<span class="number">5</span>);</span><br><span class="line">        System.out.println(-<span class="number">4</span>|<span class="number">5</span>);</span><br><span class="line">        System.out.println(<span class="number">4</span>^<span class="number">5</span>);</span><br><span class="line">        System.out.println(~<span class="number">4</span>);</span><br><span class="line">        System.out.println(~-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732076.png" alt="image-20220306180819275"></p>
+<h1 id="位移运算符"><a href="#位移运算符" class="headerlink" title="位移运算符"></a>位移运算符</h1><p><strong>这里位运算也都是按照补码进行位运算</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>举例</th>
+<th>解释</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;&gt;</td>
+<td>右移位运算,负数补充1，正数补充0</td>
+<td>8&gt;&gt;1</td>
+<td>8右移1位（1000）——0100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>-8&gt;&gt;4</td>
+<td>-8右移四位</td>
+<td>-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移位运算</td>
+<td>9&lt;&lt;2</td>
+<td>9左移两位（0000 1001）——0010 0100</td>
+<td>36</td>
+</tr>
+<tr>
+<td>&gt;&gt;&gt;</td>
+<td>逻辑右移，也叫无符号右移，高位补充0</td>
+<td>-8&gt;&gt;&gt;2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>这里举一个简单的例子：</p>
+<ol>
+<li>-8的源码为：10000000 00000000 00000000 00001000</li>
+<li>-8反码为：11111111 11111111 11111111 11110111，其补码为11111111 11111111 11111111 11111000</li>
+<li>位移二位，高位补0，得到结果的补码：00111111 11111111 11111111 11111110</li>
+<li>则结果的反码为：11000000 00000000 00000000 00000001，源码为001111111 11111111 11111111 11111110&#x3D;1073741822</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        System.out.println(-<span class="number">8</span>&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="number">9</span>&lt;&lt;<span class="number">2</span>);</span><br><span class="line">        System.out.println(-<span class="number">8</span>&gt;&gt;&gt;<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732957.png" alt="image-20220306180849901"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/37453.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/37453.html" class="post-title-link" itemprop="url">Java中二维数组</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-12 20:53:06" itemprop="dateModified" datetime="2022-04-12T20:53:06+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">Java数组</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/37453.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/37453.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>二维数组可以看成一维数组的每一个元素都包含一个一维数组。</p>
+<p>尝试定义并且输出一个二维数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> [] []array = &#123;</span><br><span class="line">                &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">                &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//这里的array.length表示的是二维数组的行数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">            System.out.println();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;array[i].length;j++)&#123;</span><br><span class="line">                System.out.print(array[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071816972.png" alt="image-20220407181552628"></p>
+<p>二维数组的静态初始化：int a[][]&#x3D;new int[2][3];建立一个两行三列的二维数组</p>
+<p>二维数组的动态初始化：int a[][];a[][]&#x3D;new int[2][3];</p>
+<p>动态初始化-列数不确定性：int a[][]&#x3D;new int[2][];即其列数可以不确定</p>
+<h1 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Scanner lineAccept=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您想要查看的杨辉三角的行数&quot;</span>);</span><br><span class="line">        <span class="type">int</span> lineNum=lineAccept.nextInt();</span><br><span class="line">        <span class="type">int</span>[][] pascalTriangle =<span class="keyword">new</span> <span class="title class_">int</span>[lineNum][];</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;lineNum;i++)&#123;</span><br><span class="line">           <span class="comment">//将每一行中每一列的值定义下来</span></span><br><span class="line">           System.out.println();</span><br><span class="line">           <span class="type">int</span> columnNum=i+<span class="number">1</span>;</span><br><span class="line">           pascalTriangle[i]=<span class="keyword">new</span> <span class="title class_">int</span>[columnNum];</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;columnNum;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span> (j==<span class="number">0</span>||j==i)&#123;pascalTriangle[i][j]=<span class="number">1</span>;&#125;</span><br><span class="line">               <span class="keyword">else</span> &#123;pascalTriangle[i][j]=pascalTriangle[i-<span class="number">1</span>][j-<span class="number">1</span>]+pascalTriangle[i-<span class="number">1</span>][j];&#125;</span><br><span class="line">               System.out.print(pascalTriangle[i][j]);</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071817910.png" alt="image-20220407181632501"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -874,7 +1197,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-31 12:40:20" itemprop="dateModified" datetime="2022-03-31T12:40:20+08:00">2022-03-31</time>
+      <time title="修改时间：2022-06-06 21:59:55" itemprop="dateModified" datetime="2022-06-06T21:59:55+08:00">2022-06-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -954,6 +1277,10 @@
 <td>至少1字节</td>
 </tr>
 </tbody></table>
+<p>从Java7开始，加上前缀0b或者0B就可以写二进制数，0b1001表示9。</p>
+<p>一个byte的值b可以不表示范围-128-127，如果表示0-255，也可以使用byte</p>
+<p>下面的这种情况，没有出现我们期望的0.9，主要原因是浮点数采用二进制系统表示，在二进制系统中无法精确表示1&#x2F;10，就好像十进制无法表示分数1&#x2F;3一样。所以这种情况我们 使用大数表示。<a href="https://moonshuo.cn/posts/30946.html">https://moonshuo.cn/posts/30946.html</a></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206062152168.png" alt="image-20220606215246295"></p>
 <h1 id="整数型"><a href="#整数型" class="headerlink" title="整数型"></a>整数型</h1><p>首先Java中默认的整数型为int数据类型，其取值范围为2^31-1——-2^31,而其中long类型的取值范围为2^63-1——-2^63,如果运行以下一段程序，会出现值损失的情况，是因为long表示的数据范围大于int可表示的数据范围，int的类型值存储不了long类型的值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">1</span>;</span><br><span class="line">        <span class="type">long</span> b=<span class="number">2</span>;</span><br><span class="line">        a=b;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1244,311 +1571,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/18686.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/18686.html" class="post-title-link" itemprop="url">Java中控制结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-06 21:19:17" itemprop="dateModified" datetime="2022-04-06T21:19:17+08:00">2022-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">Java控制结构</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/18686.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/18686.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="顺序控制"><a href="#顺序控制" class="headerlink" title="顺序控制"></a>顺序控制</h1><p>程序自上而下的执行，中间没有任何判断和跳转</p>
-<p>观察以下两个程序，可以发现程序2违反了正常的逻辑规则，在未知的情况下num1的情况下就运行num2</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> num1=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> num2=num1+<span class="number">1</span>;</span><br><span class="line">        System.out.println(num2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117995.png" alt="image-20220406210619646"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> num2=num1+<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> num1=<span class="number">1</span>;</span><br><span class="line">        System.out.println(num2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117996.png" alt="image-20220406210704637"></p>
-<h1 id="分支控制（if-else与switch）"><a href="#分支控制（if-else与switch）" class="headerlink" title="分支控制（if-else与switch）"></a>分支控制（if-else与switch）</h1><h2 id="分支控制if-else（让程序有选择的执行）"><a href="#分支控制if-else（让程序有选择的执行）" class="headerlink" title="分支控制if-else（让程序有选择的执行）"></a>分支控制if-else（让程序有选择的执行）</h2><p> 单分支&#x2F;双分支：</p>
-<p>if（满足条件）{执行代码块，可以有多个语句}；else{执行代码块（不满足条件时）}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">0</span>)&#123;System.out.println(<span class="string">&quot;满足前面的表达式，a为0&quot;</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;System.out.println(<span class="string">&quot;a不为0，不满足if表达式&quot;</span>);&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117997.png" alt="image-20220406210904375"></p>
-<p>多分枝：if ——else if——elseif……else</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">0</span>)&#123;System.out.println(<span class="string">&quot;满足前面的表达式，a为0&quot;</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a==<span class="number">1</span>)&#123;System.out.println(<span class="string">&quot;a=1&quot;</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a==<span class="number">2</span>)&#123;System.out.println(<span class="string">&quot;a=2&quot;</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;System.out.println(<span class="string">&quot;a不为0，不满足if表达式&quot;</span>);&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117998.png" alt="image-20220406210934024"></p>
-<p> 嵌套分支：if（表达式）{if（表达式）{};}——else,建议嵌套不要超过三层</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> b=<span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span> (a==<span class="number">2</span>)&#123;<span class="keyword">if</span> (b==<span class="number">3</span>)&#123;System.out.println(<span class="string">&quot;a等于2，并且b等于3&quot;</span>);&#125;&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;System.out.println(<span class="string">&quot;ab其中一个不满足条件&quot;</span>);&#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117999.png" alt="image-20220406211004644"></p>
-<h2 id="Switch分支结构"><a href="#Switch分支结构" class="headerlink" title="Switch分支结构"></a>Switch分支结构</h2><p>用一个大家经常见到的例子来讲解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Scanner testNumJudge=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的成绩&quot;</span>);</span><br><span class="line">        <span class="type">int</span> testNum=testNumJudge.nextInt();</span><br><span class="line">        <span class="keyword">switch</span> (testNum/<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">9</span>:System.out.println(<span class="string">&quot;你考的非常好&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">8</span>:System.out.println(<span class="string">&quot;你考的不错&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">7</span>:System.out.println(<span class="string">&quot;你考的还可以&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">6</span>:System.out.println(<span class="string">&quot;你刚刚及格&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:System.out.println(<span class="string">&quot;准备补考吧，小伙子&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117000.png" alt="image-20220406211045822"></p>
-<h1 id="循环控制结构"><a href="#循环控制结构" class="headerlink" title="循环控制结构"></a>循环控制结构</h1><h2 id="for循环控制结构"><a href="#for循环控制结构" class="headerlink" title="for循环控制结构"></a>for循环控制结构</h2><p>for（循环变量初始化；循环条件：循环变量迭代）{操作语句</p>
-<p>}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>, k=<span class="number">1</span>;i&lt;<span class="number">10</span>&amp;k&lt;<span class="number">11</span>;i++,k++)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是i=&quot;</span>+i+<span class="string">&quot;\t我是k=&quot;</span>+k);</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117001.png" alt="image-20220406211217834"></p>
-<h2 id="while循环控制结构"><a href="#while循环控制结构" class="headerlink" title="while循环控制结构"></a>while循环控制结构</h2><p>while（循环条件）{循环体（语句）；循环变量迭代}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;<span class="type">int</span> j=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;<span class="number">10</span>&amp;j&lt;<span class="number">11</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是i=&quot;</span>+i+<span class="string">&quot;\t我是j=&quot;</span>+j);</span><br><span class="line">            i++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117002.png" alt="image-20220406211247803"></p>
-<h2 id="do-while循环控制"><a href="#do-while循环控制" class="headerlink" title="do while循环控制"></a>do while循环控制</h2><p>do{循环体，循环迭代变量}while（循环条件），先循环一次在进行判断，一定会执行一次。看以下下面这个程序，发现根本不符合条件，但是还是执行了一次。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;<span class="type">int</span> j=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是i=&quot;</span>+i+<span class="string">&quot;\t我是j=&quot;</span>+j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117003.png" alt="image-20220406211318207"></p>
-<h2 id="多重循环控制"><a href="#多重循环控制" class="headerlink" title="多重循环控制"></a>多重循环控制</h2><p>上述三种循环控制结构相互嵌套包含</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是i=&quot;</span>+i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">2</span>;j++)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;我是第&quot;</span>+i+<span class="string">&quot;个i下面的第&quot;</span>+j+<span class="string">&quot;个j&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117004.png" alt="image-20220406211349923"></p>
-<h2 id="break需求"><a href="#break需求" class="headerlink" title="break需求"></a>break需求</h2><p>结束这个循环，可以看出输出到5就不在进行输出了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            <span class="keyword">if</span> (i==<span class="number">5</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117005.png" alt="image-20220406211422910"></p>
-<h2 id="continue需求"><a href="#continue需求" class="headerlink" title="continue需求"></a>continue需求</h2><p>结束本次循环，可以看出本次循环中5并没有输出，直接跳出了本次循环</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (i==<span class="number">5</span>)&#123;</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117006.png" alt="image-20220406211455317"></p>
-<h1 id="利用循环结构打印出三种进阶的金字塔"><a href="#利用循环结构打印出三种进阶的金字塔" class="headerlink" title="利用循环结构打印出三种进阶的金字塔"></a>利用循环结构打印出三种进阶的金字塔</h1><h2 id="难看的金字塔"><a href="#难看的金字塔" class="headerlink" title="难看的金字塔"></a>难看的金字塔</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i=i+<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">            System.out.printf(<span class="string">&quot;*&quot;</span>);&#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117007.png" alt="image-20220406211627758"></p>
-<h2 id="真-实心金字塔"><a href="#真-实心金字塔" class="headerlink" title="真. 实心金字塔"></a>真. 实心金字塔</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i=i+<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k=(<span class="number">10</span>-i)/<span class="number">2</span>;k&gt;=<span class="number">0</span>&amp;j==<span class="number">0</span>;k--)&#123;</span><br><span class="line">                    System.out.printf(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.printf(<span class="string">&quot;*&quot;</span>);&#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117008.png" alt="image-20220406211659777"></p>
-<h2 id="真-空心金字塔"><a href="#真-空心金字塔" class="headerlink" title="真.空心金字塔"></a>真.空心金字塔</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i=i+<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k=(<span class="number">10</span>-i)/<span class="number">2</span>;k&gt;=<span class="number">0</span>&amp;j==<span class="number">0</span>;k--)&#123;</span><br><span class="line">                    System.out.printf(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j==<span class="number">0</span>|j==i-<span class="number">1</span>|i==<span class="number">10</span>-<span class="number">1</span>)&#123;System.out.printf(<span class="string">&quot;*&quot;</span>);&#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;System.out.printf(<span class="string">&quot; &quot;</span>);&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204062117009.png" alt="image-20220406211725174"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/46332.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/46332.html" class="post-title-link" itemprop="url">Java中异常</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:31:47" itemprop="dateModified" datetime="2022-03-30T17:31:47+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">Java异常</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/46332.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/46332.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>在Java语言中，将程序执行中发生的不正常情况称为“异常”。</p>
-<ul>
-<li>执行过程中所发生的异常事件可分为两类</li>
-</ul>
-<p>1.错误：Java虚拟机无法解决的严重问题，比如jvm系统内部错误，资源耗尽等情况。</p>
-<p>2.异常：其他因编程错误或者偶然外在因素导致的一般性问题，可以使用针对性的代码进行处理。比如空指针的访问，访问不存在的文件等等。异常也可以分为两个大类：运行时的异常和编译时的异常。</p>
-<h1 id="异常体系图"><a href="#异常体系图" class="headerlink" title="异常体系图"></a>异常体系图</h1><p>对于不同的jdk版本异常体系图显示的会有所不同，但是Throwable是Error与Exception的父类。而我们所说的编译异常与运行异常，编译异常是在生成class文件时发现的，而运行异常则是在class文件运行时发生的。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731724.png" alt="image-20220317191419708"></p>
-<h1 id="常见五个运行时的异常"><a href="#常见五个运行时的异常" class="headerlink" title="常见五个运行时的异常"></a>常见五个运行时的异常</h1><ul>
-<li>NullPointException空指针异常，当程序试图在需要对象使用null时，抛出该异常。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span><span class="literal">null</span>;</span><br><span class="line">      System.out.println(name.length());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731914.png" alt="image-20220317191533864"></p>
-<p>AritmeticException数字运行异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">int</span> a=<span class="number">10</span>/<span class="number">0</span>;</span><br><span class="line">      System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731869.png" alt="image-20220317191603337"></p>
-<ul>
-<li>ArrayIndexOutOfBoundsException数组下标越界异常</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">     <span class="type">int</span> []a=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">     System.out.println(a[<span class="number">4</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731726.png" alt="image-20220317191633363"></p>
-<ul>
-<li>ClassCastException类型转换异常</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       A b=<span class="keyword">new</span> <span class="title class_">B</span>();</span><br><span class="line">       C c=(C) b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> <span class="keyword">extends</span> <span class="title class_">A</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731069.png" alt="image-20220317191702645"></p>
-<p> NumberFormatException数字格式不正确</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">  String name=<span class="string">&quot;鲁迅&quot;</span>;</span><br><span class="line">  <span class="type">int</span> num=Integer.parseInt(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301731035.png" alt="image-20220317191734038"></p>
-<h1 id="常见的编译异常"><a href="#常见的编译异常" class="headerlink" title="常见的编译异常"></a>常见的编译异常</h1><ul>
-<li>SQLException 操作数据库发生的异常</li>
-<li>IOException 操作文件时发生的异常</li>
-<li>FileNotFoundException 操作不存在文件时，发生的异常</li>
-<li>ClassNotFoundException 加载类不存在时，发生异常</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
