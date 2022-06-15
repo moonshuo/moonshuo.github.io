@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,387 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/18158.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/18158.html" class="post-title-link" itemprop="url">MVC</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:52:22" itemprop="dateModified" datetime="2022-05-03T14:52:22+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/18158.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/18158.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>前面的<a href="https://moonshuo.cn/%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%B0%8F%E6%B0%B4%E6%9E%9C%E6%91%8A/index.html?_sw-precache=bd1ac0a31a9f490a80e049c361210096">小小水果摊 </a>虽然完成了全部功能，但是整体结构比较复杂，一个页面对应的请求需要多个Servlet进行响应，代码量重复复杂。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081525806.png" alt="image-20220406195831872"></p>
+<h2 id="优化1"><a href="#优化1" class="headerlink" title="优化1"></a>优化1</h2><p>将所有的代码集成为私有函数，页面都对同一个fruit.do进行响应，但是同时传入一个operate操作符，用于判断对页面的操作，<strong>同时利用反射，优化调用函数的代码量</strong>，将所有的反射方法调用到dispatchServlet中，同时将一个负责判断转发的操作交给该类进行，而fruitservlet变为控制器，只保存一些调用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**对所有的.do结尾的进行响应，fruit.do，user.do等等都可以*/</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;*.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ViewBaseServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String ,Object&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">	<span class="comment">//初始化方法，在xml文件中通过反射获得响应的类，利用map存储关系</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//需要同时也初始化ViewBaseServlet的方法，否则themeleaf无法进行使用</span></span><br><span class="line">            <span class="built_in">super</span>.init();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            InputStream inputStream=getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">            DocumentBuilderFactory documentBuilderFactory= DocumentBuilderFactory.newInstance();</span><br><span class="line">            DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();</span><br><span class="line">            <span class="comment">//获取document对象</span></span><br><span class="line">            Document document=  documentBuilder.parse(inputStream);</span><br><span class="line">            <span class="comment">//获取所有bean节点</span></span><br><span class="line">            NodeList beanNodeList=document.getElementsByTagName(<span class="string">&quot;bean&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;beanNodeList.getLength();i++)&#123;</span><br><span class="line">                Node beanNode=beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType()== Node.ELEMENT_NODE)&#123;</span><br><span class="line">                    Element beanElement=(Element) beanNode;</span><br><span class="line">                    String beamId=beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                    String className=beanElement.getAttribute(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">                    Class clas=Class.forName(className);</span><br><span class="line">                    Object beanObj=clas.newInstance();</span><br><span class="line"></span><br><span class="line">                    map.put(beamId,beanObj);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParserConfigurationException | ClassNotFoundException | InstantiationException | IllegalAccessException | SAXException | IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">//如果说url是：http://localhost:8080/fruit/fruit.do</span></span><br><span class="line">        <span class="comment">//servletPath是: /fruit.do</span></span><br><span class="line">       String servletPath=req.getServletPath();</span><br><span class="line">       <span class="comment">//而我接下来需要得到fruit/fruit.do中第二个fruit</span></span><br><span class="line">        <span class="comment">//先找到最后一个/的索引位置</span></span><br><span class="line">        <span class="type">int</span> lastslash=servletPath.lastIndexOf(<span class="string">&quot;/&quot;</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获得最后一个点的位置</span></span><br><span class="line">        <span class="type">int</span> lastpoint=servletPath.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        servletPath=servletPath.substring(lastslash,lastpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使fruit与fruitcontroller对应,先得到controller</span></span><br><span class="line">        Object  controllerObj=map.get(servletPath);</span><br><span class="line">        System.out.println(servletPath);</span><br><span class="line">        <span class="type">String</span> <span class="variable">operate</span> <span class="operator">=</span>req.getParameter(<span class="string">&quot;operate&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (operate == <span class="literal">null</span> | Objects.equals(operate, <span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">            operate=<span class="string">&quot;inquire&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入参数，得到对应的方法</span></span><br><span class="line">            Method method=controllerObj.getClass().getDeclaredMethod(operate,HttpServletRequest.class);</span><br><span class="line">            method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            <span class="comment">//获得参数返回的对象</span></span><br><span class="line">            Object obj=method.invoke(controllerObj,req);</span><br><span class="line">            String meth=(String) obj;</span><br><span class="line">            <span class="comment">//判定是组件内转发，还是重新定向</span></span><br><span class="line">            <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>))&#123;</span><br><span class="line">                String sendRedStr=meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                resp.sendRedirect(sendRedStr);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">super</span>.processTemplate(servletPath+<span class="string">&quot;/&quot;</span>+meth,req,resp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;operate非法&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span> <span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span> <span class="attr">encodeing</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--因为是可扩展的标签，所以任何标签都可以自己定义--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--下面代表fruit与该controller相对应--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.myspringmvc.controller.FruitController&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    html是超文本标记语言</span></span><br><span class="line"><span class="comment">    而xml是可扩展的标记语言</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    xml包含三个</span></span><br><span class="line"><span class="comment">    1.xml声明，而且必须在第一啊很难过</span></span><br><span class="line"><span class="comment">    2.DTD支持文档类型</span></span><br><span class="line"><span class="comment">    3.XML正文</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String  <span class="title function_">inquire</span><span class="params">(HttpServletRequest req)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">    <span class="type">int</span> pageNum;</span><br><span class="line">    String pagePer=req.getParameter(<span class="string">&quot;pagePer&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pagePer == <span class="literal">null</span>|pagePer==<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        pagePer=<span class="string">&quot;1&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pageNum=Integer.parseInt(pagePer);</span><br><span class="line">    List&lt;Fruit&gt; list=fruitDAO.inquFruit(<span class="keyword">new</span> <span class="title class_">Fruit</span>(),pageNum);</span><br><span class="line">    <span class="type">int</span> lastPageNum=((fruitDAO.getColumn()-<span class="number">1</span>)/<span class="number">5</span>)+<span class="number">1</span>;</span><br><span class="line">    HttpSession session=req.getSession();</span><br><span class="line">    session.setAttribute(<span class="string">&quot;lastPage&quot;</span>,lastPageNum);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;pageNo&quot;</span>,pageNum);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;fruitList&quot;</span>,list);</span><br><span class="line">    <span class="comment">//给中央控制器传入是转发，还是重定向操作</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;FruitShow&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化2"><a href="#优化2" class="headerlink" title="优化2"></a>优化2</h2><p>虽然我们将这些方法进行了集成，但是可以发现，我们的fruitcontroller中仍旧还是有重复的的参数需要获取，而且每一个参数都不相同，假如我们有user，还需要给他单独设置参数，那么就不能在设置转发方法的时候，同时完成参数的转发吗？？？<br>于是我们更改service方法部分代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Method[] methods = controllerObj.getClass().getDeclaredMethods();</span><br><span class="line">    <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (method.getName().equals(operate)) &#123;</span><br><span class="line">            <span class="comment">//获取所有的参数</span></span><br><span class="line">            Parameter[] parameters = method.getParameters();</span><br><span class="line">            <span class="comment">//设计一个用于存放参数值的数组</span></span><br><span class="line">            Object []objectParameters=<span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;objectParameters.length;i++ )&#123;</span><br><span class="line">                Parameter parameter=parameters[i];</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&quot;req&quot;</span>.equals(parameter.getName()))&#123;</span><br><span class="line">                    objectParameters[i]=req;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//获取网页端的值</span></span><br><span class="line">                String parameValue=req.getParameter(parameter.getName());</span><br><span class="line">                <span class="comment">//将参数赋值</span></span><br><span class="line">                objectParameters[i]=parameValue;</span><br><span class="line">            &#125;</span><br><span class="line">            method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> method.invoke(controllerObj, objectParameters);</span><br><span class="line">            <span class="type">String</span> <span class="variable">meth</span> <span class="operator">=</span> (String) obj;</span><br><span class="line">            <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>)) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">sendRedStr</span> <span class="operator">=</span> meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                resp.sendRedirect(sendRedStr);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">super</span>.processTemplate(servletPath + <span class="string">&quot;/&quot;</span> + meth, req, resp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11062.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/11062.html" class="post-title-link" itemprop="url">业务层与获取初始化数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:52:27" itemprop="dateModified" datetime="2022-05-03T14:52:27+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/11062.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/11062.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> servlet拥有四个声明周期：实例化，初始化，服务，销毁</p>
+<h1 id="init初始化"><a href="#init初始化" class="headerlink" title="init初始化"></a>init初始化</h1><h2 id="有参数"><a href="#有参数" class="headerlink" title="有参数"></a>有参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">    <span class="built_in">this</span>.config = config;</span><br><span class="line">    <span class="built_in">this</span>.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="无参数"><a href="#无参数" class="headerlink" title="无参数"></a>无参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在servlet初始化时做一些工作，我们重写init方法，并且可以获得初始化的数据</p>
+<p>首先获取config对象，其次再后去初始化值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.Demo01Servlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是初始化参数<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/Demo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081723776.png" alt="image-20220408172332726"></p>
+<p>下面的这种方式亦可以进行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &#123;&quot;/Demo01&quot;&#125;,</span></span><br><span class="line"><span class="meta">     initParams = &#123;</span></span><br><span class="line"><span class="meta">        @WebInitParam(name = &quot;参数&quot;,value = &quot;我是参数&quot;)</span></span><br><span class="line"><span class="meta">     &#125;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而同样我们也可以获取到上下文的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是参数1<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081734417.png" alt="image-20220408173417402"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServletContext servletContext=getServletContext();</span><br><span class="line">String text=servletContext.getInitParameter(<span class="string">&quot;参数1&quot;</span>);</span><br><span class="line">System.out.println(text);</span><br></pre></td></tr></table></figure>
+
+<h1 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC&#x3D;Model（模型）+View（视图）+Controller（控制器）</p>
+<p>视图层：御用做数据展示和用户交互的界面</p>
+<p>控制层：能够接受客户端的请求，具体的业务功能还是需要借助于模型组件完成</p>
+<p>模型层：包括pojo，业务模型组件，数据访问层组件</p>
+<p>​				opjo：值对象</p>
+<p>​				DAO:数据访问对象，是一个单精度对象，一个方法只考虑一个操作，比如添加，修改等等</p>
+<p>​				BO:业务对象，实际业务方法是比较复杂的，因此业务方法的粒度是比较粗的</p>
+<p>比如：注册属于业务功能，属于业务方法，而这个业务方法中包含了多个DAO方法</p>
+<h1 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h1><h2 id="IoC-容器"><a href="#IoC-容器" class="headerlink" title="IoC 容器"></a>IoC 容器</h2><p>Spring 容器是 Spring 框架的核心。容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。Spring 容器使用依赖注入（DI）来管理组成一个应用程序的组件。这些对象被称为 Spring Beans，我们将在下一章中进行讨论。</p>
+<p>通过阅读配置元数据提供的指令，容器知道对哪些对象进行实例化，配置和组装。配置元数据可以通过 XML，Java 注释或 Java 代码来表示。下图是 Spring 如何工作的高级视图。 Spring IoC 容器利用 Java 的 POJO 类和配置元数据来生成完全配置和可执行的系统或应用程序。</p>
+<p><strong>IOC 容器</strong>具有依赖注入功能的容器，它可以创建对象，IOC 容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。通常new一个实例，控制权由程序员控制，而”控制反转”是指new实例工作不由程序员来做而是交给Spring容器来做。在Spring中<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/wkspring/j3181mm3.html">BeanFactory</a>是IOC容器的实际代表者</p>
+<ul>
+<li><p>耦合&#x2F;依赖：层层之间存在相互的依赖，但是我们的设计规则是：高内聚，低耦合，层内部的组成应该是高度聚合的，而层层之间的关系应该是低耦合的。</p>
+<p>而我们为了降低耦合度，比如controller于serviceimpl之间的关系，这两层之间是相互影响的，而为了使我们下一层的改动不会影响到上一层，</p>
+<p><strong>控制反转：</strong>FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();如果在方法中，属于方法级别（结束之后会被销毁），如果属于成员变量，则其属于servlet的作用域（整个生命周期）<strong>但是在后面在spplicationContext中.xml中，通过解析xml文件，产生实例，存放在beanMap中，而beanMap在一个BeanFactory之中，也就是说其实例的生命周期放在容器中了，控制权交给容器，这个现象为控制反转</strong></p>
+<p>**依赖注入:**FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();<strong>存在耦合，而后面该为null，在xml文件中进行配置</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="keyword">new</span> <span class="title class_">FruitServiceImpl</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这一层重新定义实例化了一个FruitServiceImpl();，而我们为了使其之间没有相互影响，我们应该</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样会出现空指针错误，那么我们可以在xml文件进行设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--比如说通过fruit进行init初始化，同时调用了ClassPathXmlApplicationContext() 构造器</span></span><br><span class="line"><span class="comment">  在map中存储了键值对，而检测到property，比如fruitServiceImpl，则去寻找</span></span><br><span class="line"><span class="comment">   com.zss.myssm.BaseDAO.impl.FruitServiceImpl并且利用反射将fruitServiceImpl赋值</span></span><br><span class="line"><span class="comment">   其余也相同</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.dao.BaseDAO&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--说明含有那些依赖关系,property表示属性，name表示属性名字，而ref表示引用那个的属性名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;baseDAO&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.myspringmvc.controller.FruitController&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;fruitServiceImpl&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title class_">BeanFactory</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String ,Object&gt; beanMap=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ClassPathXmlApplicationContext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">            <span class="type">DocumentBuilderFactory</span> <span class="variable">documentBuilderFactory</span> <span class="operator">=</span> DocumentBuilderFactory.newInstance();</span><br><span class="line">            <span class="type">DocumentBuilder</span> <span class="variable">documentBuilder</span> <span class="operator">=</span> documentBuilderFactory.newDocumentBuilder();</span><br><span class="line">            <span class="comment">//获取document对象</span></span><br><span class="line">            <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> documentBuilder.parse(inputStream);</span><br><span class="line">            <span class="comment">//获取所有bean节点</span></span><br><span class="line">            <span class="type">NodeList</span> <span class="variable">beanNodeList</span> <span class="operator">=</span> document.getElementsByTagName(<span class="string">&quot;bean&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">className</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">                    Class&lt;?&gt; clas = Class.forName(className);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">beanObj</span> <span class="operator">=</span> clas.newInstance();</span><br><span class="line">                    beanMap.put(beamId, beanObj);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//组装bean之间的依赖关系</span></span><br><span class="line">            <span class="comment">/*Node节点包含：</span></span><br><span class="line"><span class="comment">             *       Element：元素节点</span></span><br><span class="line"><span class="comment">             *       Text：文本节点</span></span><br><span class="line"><span class="comment">             *   其实下面还是拥有三个子节点，拥有两个空白的节点（或者说换行节点）</span></span><br><span class="line"><span class="comment">             *</span></span><br><span class="line"><span class="comment">             * */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    NodeList beanChildNodeList=beanElement.getChildNodes();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;beanChildNodeList.getLength();j++)&#123;</span><br><span class="line">                        Node beanChildNode=beanChildNodeList.item(j);</span><br><span class="line">                        <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE&amp;&amp; <span class="string">&quot;property&quot;</span>.equals(beanChildNode.getNodeName())) &#123;</span><br><span class="line">                            <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                            Element propertyElement=(Element) beanChildNode;</span><br><span class="line">                            String propertyName=propertyElement.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                            String propertyRef=propertyElement.getAttribute(<span class="string">&quot;ref&quot;</span>);</span><br><span class="line">                            Object refObj=beanMap.get(propertyRef);</span><br><span class="line">                            Object beanObj=beanMap.get(beamId);</span><br><span class="line">                            <span class="comment">//设置到对应的实例中</span></span><br><span class="line">                            Class&lt;?&gt; beanCla=beanObj.getClass();</span><br><span class="line">                            Field propertyFiled=beanCla.getDeclaredField(propertyName);</span><br><span class="line">                            propertyFiled.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                            <span class="comment">//通过反射设置值</span></span><br><span class="line">                            propertyFiled.set(beanObj, refObj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParserConfigurationException | ClassNotFoundException | InstantiationException | IllegalAccessException | SAXException | IOException | NoSuchFieldException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getBean</span><span class="params">(String id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> beanMap.get(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;*.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ViewBaseServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> BeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.init();</span><br><span class="line">        beanFactory=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">//如果说url是：http://localhost:8080/fruit/fruit.do</span></span><br><span class="line">        <span class="comment">//servletPath是: /fruit.do</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">servletPath</span> <span class="operator">=</span> req.getServletPath();</span><br><span class="line">        <span class="comment">//而我接下来需要得到fruit/fruit.do中第二个fruit</span></span><br><span class="line">        <span class="comment">//先找到最后一个/的索引位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastslash</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;/&quot;</span>) + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获得最后一个点的位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastpoint</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        servletPath = servletPath.substring(lastslash, lastpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使fruit与fruitcontroller对应,先得到controller</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">controllerObj</span> <span class="operator">=</span> beanFactory.getBean(servletPath);</span><br><span class="line">        <span class="type">String</span> <span class="variable">operate</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;operate&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (operate == <span class="literal">null</span> | Objects.equals(operate, <span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">            operate = <span class="string">&quot;inquire&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Method[] methods = controllerObj.getClass().getDeclaredMethods();</span><br><span class="line">            <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (method.getName().equals(operate)) &#123;</span><br><span class="line">                    <span class="comment">//获取所有的参数</span></span><br><span class="line">                    Parameter[] parameters = method.getParameters();</span><br><span class="line">                    <span class="comment">//设计一个用于存放参数值的数组</span></span><br><span class="line">                    Object []objectParameters=<span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;objectParameters.length;i++ )&#123;</span><br><span class="line">                        Parameter parameter=parameters[i];</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;req&quot;</span>.equals(parameter.getName()))&#123;</span><br><span class="line">                            objectParameters[i]=req;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        String parameValue=req.getParameter(parameter.getName());</span><br><span class="line">                        objectParameters[i]=parameValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                    method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> method.invoke(controllerObj, objectParameters);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">meth</span> <span class="operator">=</span> (String) obj;</span><br><span class="line">                    <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>)) &#123;</span><br><span class="line">                        <span class="type">String</span> <span class="variable">sendRedStr</span> <span class="operator">=</span> meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                        resp.sendRedirect(sendRedStr);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="built_in">super</span>.processTemplate(servletPath + <span class="string">&quot;/&quot;</span> + meth, req, resp);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/1125.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/1125.html" class="post-title-link" itemprop="url">Servlet继承关系与生命周期</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:53:12" itemprop="dateModified" datetime="2022-05-03T14:53:12+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/1125.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/1125.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Servlet的继承关系"><a href="#Servlet的继承关系" class="headerlink" title="Servlet的继承关系"></a>Servlet的继承关系</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203312231701.png" alt="image-20220331223030179"></p>
+<p>可以看出Servlet下面有GenericServlet，而HttpServlet继承了GenericServlet</p>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javax.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Servlet</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig var1)</span> <span class="keyword">throws</span> ServletException;</span><br><span class="line"></span><br><span class="line">    ServletConfig <span class="title function_">getServletConfig</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest var1, ServletResponse var2)</span> <span class="keyword">throws</span> ServletException, IOException;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">getServletInfo</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> service发起请求该方法会被自动调用，而在器Httpservlet中service方法中方法不是抽象的，而在 service方法中，会首先获取表单请求的方法，进行判断调用相关的方法</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021024377.png" alt="image-20220402102213041"></p>
+<p>doget与dopost方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> lStrings.getString(<span class="string">&quot;http.method_post_not_supported&quot;</span>);</span><br><span class="line">    <span class="built_in">this</span>.sendMethodNotAllowed(req, resp, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在调用的sendMethodNotAllowed的方法，会给出响应的操作</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021024379.png" alt="image-20220402102433764"></p>
+<p><strong>而对于405方法，httpsServlet中这些do方法都是405的实现风格，否则会报405错误</strong>，因此在新建servlet时，我们会区重写do方法。</p>
+<h1 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h1><p><strong>首先我们的Servlet方法是Tomact容器去调用的，</strong>而servlet的生命周期init，service，destory正是者三个方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.servlets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest servletRequest, ServletResponse response)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在服务中&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021101474.png" alt="image-20220402104250832"></p>
+<p>当我们启动tomcat时，并且发送请求，容器自动初始化，并且开启服务，而当我们刷新了页面，相当于我们重新提交了一次请求，会再一次调用service方法，当我们销毁的时候，也就是tomcat关闭的时候，会调用destroy方法。</p>
+<p><strong>而其实在底层时tomcat服务器通过反射给与我们进行实例化，所有的请求只会通过一个实例进行操作。</strong></p>
+<p>这样的好处是，我们的系统初始化比较快，但是第一次请求比较慢，如果需要提高servlet的效应速度，则应该初始化响应的时机</p>
+<p><strong>Servlet的初始化时机</strong>：</p>
+<ol>
+<li>默认第一次进行初始化</li>
+<li>通过servletload进行初始化，值最小，初始化越前，tomcat会自动进行服务，最小值为0</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.TestServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/add<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Servlet在容器中是单例的，线程不安全的</strong>，因为所有的实例都是通过一个实例进行请求，<strong>所以尽量不要在servlet中设置成员变量，也不要通过servlet的值进行一些逻辑判断</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1279,381 +1660,6 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先创建xmlhttprequest</span></span><br><span class="line"><span class="keyword">var</span> xmlHttpRequest;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createXmlHttpRequest</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>)&#123;</span><br><span class="line">        <span class="comment">//符合dom2标准的浏览器</span></span><br><span class="line">        xmlHttpRequest=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable language_">window</span>.<span class="property">ActiveXObject</span>)&#123;</span><br><span class="line">        <span class="comment">//ie浏览器</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            xmlHttpRequest = <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (e)&#123;</span><br><span class="line">            xmlHttpRequest=<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Msxm12.XMLHTTP&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ckUname</span>(<span class="params">uname</span>)&#123;</span><br><span class="line">        <span class="title function_">createXmlHttpRequest</span>();</span><br><span class="line">        <span class="keyword">var</span> url=<span class="string">&quot;user.do?operate=ckUname&amp;uname=&quot;</span>+uname;</span><br><span class="line">        xmlHttpRequest.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,url,<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">//设置回调函数</span></span><br><span class="line">        xmlHttpRequest.<span class="property">onreadystatechange</span>=ckUnameCB;</span><br><span class="line">        <span class="comment">//发送请求</span></span><br><span class="line">        xmlHttpRequest.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ckUnameCB</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlHttpRequest.<span class="title function_">ready</span>()==<span class="number">4</span>&amp;&amp;xmlHttpRequest.<span class="property">status</span>==<span class="number">200</span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;用户名存在&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们需要在后台进行相应的信号值，交给前端接受，比如返回1表示可以注册，返回0表示不可以注册</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38312.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/38312.html" class="post-title-link" itemprop="url">Java中类与对象以及存在形式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 11:53:16" itemprop="dateModified" datetime="2022-04-17T11:53:16+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/38312.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/38312.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中类与对象"><a href="#Java中类与对象" class="headerlink" title="Java中类与对象"></a>Java中类与对象</h1><p>在Java程序中<strong>类</strong>可以认为成一种自定义发数据类型，而例如int类型是由Java提供的数据类型。比如人类，可以认为是一种包含一个鼻子两个眼睛等等属性和会直立行走等等行为的一个类，而猫类可以认为成由毛茸茸的毛四条腿等等属性和吃老鼠等等行为构成的一个生物集合，也可以认为一个数据类型。</p>
-<p>而对象可以是类中一个具体的示例，比如张奶奶家里的小花猫就是猫类的一个对象，你我也是人类中的其中一个对象。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130948459.png" alt="image-20220413094813438"></p>
-<p> 观察以下代码：可以发现一个cat类可以定义好多对象，而且将来可以灵活添加很多属性。类是对象的抽象，对象是类的具体实例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130948244.png" alt="image-20220413094840226"></p>
-<h1 id="在内存中的存在形式"><a href="#在内存中的存在形式" class="headerlink" title="在内存中的存在形式"></a>在内存中的存在形式</h1><ol>
-<li>栈：一般存放基本数据类型。</li>
-<li>堆：用于存放对象。</li>
-<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
-</ol>
-<p>根据图中可知，Cat类存在于栈中，存储着cat1的地址信息，而cat1在堆中，存储着其属性的地址信息，而真正的属性值在方法区的常量池中。所有类的属性值都存储在方法区中，采用套娃的方式进行存储。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130950761.png" alt="image-20220413095040736"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> <span class="keyword">extends</span> <span class="title class_">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130951884.png" alt="image-20220413095113870"></p>
-<p> 接下来我们执行一下下一段代码，注意其中对象的机制。直接将对象cat1赋值给cat2，其实相当于将cat1的地址给予的cat2，</p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130951773.png" alt="image-20220413095134754">![点击并拖拽以移动](</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130952399.png" alt="image-20220413095217379"></p>
-<p> 最终我们更改cat2的值，看看是否cat1的值也是否会发生改变？？？我们更改了cat2的name，可以发现最终cat1也发生了改变，是因为这里改变直接改变了方法区中的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        cat2.name=<span class="string">&quot;旺旺&quot;</span>;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130952900.png" alt="image-20220413095240876"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41249.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/41249.html" class="post-title-link" itemprop="url">Java对象中的方法调用机制以及传参陷阱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:46" itemprop="dateModified" datetime="2022-04-17T12:06:46+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/41249.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/41249.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">doubleSum</span><span class="params">(<span class="type">int</span> num1,<span class="type">int</span> num2)</span>&#123;</span><br><span class="line">        <span class="type">int</span> sum=num1+num2;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130954188.png" alt="image-20220413095415163"></p>
-<p>执行上述代码得到结果为30.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line"><span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br></pre></td></tr></table></figure>
-
-<p>这一段代码在main栈里面执行，Test test&#x3D;new Test();执行之后其内存结构如图，会在堆中创建一个对象。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130954371.png" alt="image-20220413095448347"></p>
-<p> 而当执行int sumNum&#x3D;test.doubleSum(10,20);时候，栈中会产生一个独立的栈用于运行函数doubleSum。结构如下：</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130955269.png" alt="image-20220413095514244"></p>
-<p> 而当在栈中运行到return时，独立的栈运算结束，独立的空间栈被释放，将最终得到的值根据原来保留的地址传回main栈中，并且将值读给sumNum。</p>
-<h1 id="方法传参机制常见陷阱"><a href="#方法传参机制常见陷阱" class="headerlink" title="方法传参机制常见陷阱"></a>方法传参机制常见陷阱</h1><p>首先说明，Java中分为值传递机制与引用传递机制。</p>
-<p> 首先我们回顾以下Java中jvm的虚拟内存存储机制，其中包括栈，堆和方法区</p>
-<ol>
-<li>栈：一般存放基本数据类型。</li>
-<li>堆：用于存放对象。</li>
-<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
-</ol>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130957530.png" alt="image-20220413095710506"></p>
-<p> 而当我们更改时，如果调用的方法仅仅涉及独立方法栈（即运行方法时独立开辟的栈）时，除了return值可以将其结果保存下来之外，其他都不会将更改的结果保存，是因为方法栈在中的方法在运行结束后，就立即释放掉。其保存子啊方法栈中所有的信息都会释放掉，但是如果方法栈云运行的数据信息更改到堆或者方法区时，就可以永久保存。</p>
-<p>查看以下的例子：可以发现在运行过程中num1[0]&#x3D;200; num2[0]&#x3D;100;这两个语句的运行结果100，200是保存在堆中，即使方法执行完毕释放，也没有影响到堆中的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        num1[<span class="number">0</span>]=<span class="number">200</span>;</span><br><span class="line">        num2[<span class="number">0</span>]=<span class="number">100</span>;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130957909.png" alt="image-20220413095741889"></p>
-<p>最后我们来观察以下这个例子：可以发现a数组与b数组的交换只是在栈中的独立方法栈中运行的，exchansum函数结束之后，该栈被立即释放掉。虽然a数组与b数组的地址发生了交换，但是这些改变仅仅在方法栈中运行，并没有传回到堆或者main栈，所以改变并不会被记录。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958256.png" alt="image-20220413095807232"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        <span class="type">int</span> []temp=num1;</span><br><span class="line">        num1=num2;</span><br><span class="line">        num2=temp;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958886.png" alt="image-20220413095834868"></p>
-<p>我们再来运行一段代码，发现函数的作用是将对象置空，这样输出t.name会发生报错，但是结果却是正常的输出，其原因是因为这个过程仅仅在独立方法栈中运行，并没有影响到main中的作用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test t=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        t.exchangeSum(t);</span><br><span class="line">        System.out.println(t.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(Test test)</span>&#123;</span><br><span class="line">       test=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958626.png" alt="image-20220413095856606"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/28724.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/28724.html" class="post-title-link" itemprop="url">递归方法调用中内存细节以及代码运行顺序</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:19" itemprop="dateModified" datetime="2022-04-17T12:06:19+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/28724.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/28724.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p> 首先运行以下代码块，观察其运行结果，输出1234，4321而不是。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171143875.png" alt="image-20220417114327853"></p>
-<p>我们来仔细看一下代码的运行情况以及运行顺序，可以发现在递归调用的过程中，会占用大量的空间。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171143964.png" alt="image-20220417114354935"></p>
-<p> 最后我们加深一下理解，运行一下以下代码，仅仅在方法区加上了一个else，发现结果仅仅输出了一个1，是因为在其他满足的条件下，就不会区执行输出语句了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171145737.png" alt="image-20220417114447564"></p>
 
       
     </div>

@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,453 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2216.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/2216.html" class="post-title-link" itemprop="url">基于注解的DI</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-05 14:56:04" itemprop="dateModified" datetime="2022-05-05T14:56:04+08:00">2022-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/2216.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/2216.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>加入此注解，也会间接加入spring-aop依赖</p>
+<h1 id="注解-创建对象"><a href="#注解-创建对象" class="headerlink" title="注解-创建对象"></a>注解-创建对象</h1><h2 id="component"><a href="#component" class="headerlink" title="@component"></a>@component</h2><p>用于创建对象，等同于bean功能，value是bean的id值，value值是唯一的，创建的对象在spring容器中就一个</p>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//我们也可以不指定对象名称，spring默认指定对象名称，第一个字母小写</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component(value = &quot;myStudent&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    Integer age;</span><br><span class="line">    School school;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name, Integer age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(Integer age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setSchool</span><span class="params">(School school)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.school = school;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, school=&quot;</span> + school +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="扫描组件"><a href="#扫描组件" class="headerlink" title="扫描组件"></a>扫描组件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--声明组件扫描器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.zss.pojo&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">config</span> <span class="operator">=</span> <span class="string">&quot;applicationContext.xml&quot;</span>;</span><br><span class="line">    <span class="comment">//通过无参构造方法进行设置</span></span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">applicationContext</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(config);</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> (Student) applicationContext.getBean(<span class="string">&quot;myStudent&quot;</span>);</span><br><span class="line">    System.out.println(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205051033685.png" alt="image-20220505103302621"></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li>@Repository（用在持久层上面）：放在dao的实现类上面，表示创建dao对象，dao对象访问数据库</li>
+<li>@Service（用在业务层上面，放在service实现类上面），创建service对象，service对象是做业务处理，可以有事务等功能</li>
+<li>@Controller，用在控制器上面，创建控制器对象，接受用户的参数，显示请求的处理结果</li>
+</ol>
+<p>以上的三个和@Component一样的，都能创建对象，但是还有额外的功能</p>
+<h1 id="注解-赋值"><a href="#注解-赋值" class="headerlink" title="注解-赋值"></a>注解-赋值</h1><h2 id="Value简单类型赋值"><a href="#Value简单类型赋值" class="headerlink" title="@Value简单类型赋值"></a>@Value简单类型赋值</h2><p>在属性定义上，不需要set方法,当然也可以放到set方法上进行赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;张三&quot;)</span></span><br><span class="line">String name;</span><br><span class="line"><span class="meta">@Value(&quot;15&quot;)</span></span><br><span class="line">Integer age;</span><br></pre></td></tr></table></figure>
+
+<h2 id="引用数据类型赋值"><a href="#引用数据类型赋值" class="headerlink" title="引用数据类型赋值"></a>引用数据类型赋值</h2><h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><p>自动注入，<strong>默认使用bytype注入</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component(&quot;myschool&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">School</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;北京大学&quot;)</span></span><br><span class="line">    String name;</span><br><span class="line">    <span class="meta">@Value(&quot;北京&quot;)</span></span><br><span class="line">    String address;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAddress</span><span class="params">(String address)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;School&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, address=&#x27;&quot;</span> + address + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;张三&quot;)</span></span><br><span class="line">String name;</span><br><span class="line"><span class="meta">@Value(&quot;15&quot;)</span></span><br><span class="line">Integer age;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">School school;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205051107012.png" alt="image-20220505110723199"></p>
+<p><strong>我们也可以设置为ByName的方式</strong>，需要加入@Qualifier进行指定@Qualifier（value&#x3D;“bean的id”）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">        <span class="meta">@Qualifier(&quot;myschool&quot;)</span></span><br><span class="line">School school;</span><br></pre></td></tr></table></figure>
+
+<p>@Autowired拥有一个required的属性，默认为true，表示如果是没有这个属性值，则控制台报告错误，如果我们更改成为false，则表示如果没有这个值，则不会给该值赋值</p>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.annotation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.annotation-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个注解来源于jdk，并不是来源于spring，默认byname，首先会使用byname，如果不符合，自动使用bytype方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">School school;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们一定要使用byname类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource(name = &quot;myschool&quot;)</span></span><br><span class="line">School school;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>xml文件和注解的方式，xml文件可以与源代码类独立分开，更改时比较简单，而注解的方法比较适合不经常更改的方式。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/6244.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/6244.html" class="post-title-link" itemprop="url">AOP</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-07 22:04:13" itemprop="dateModified" datetime="2022-05-07T22:04:13+08:00">2022-05-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/6244.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/6244.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="AOP简介"><a href="#AOP简介" class="headerlink" title="AOP简介"></a>AOP简介</h1><p>AOP的底层是基于动态代理实现的，而动态代理实现有以下两种方式</p>
+<ol>
+<li>jdk动态代理：使用jdk中的Proxy，InvocationHanderl以及反射进行处理（jdk动态代理要求目标类必须实现接口）</li>
+<li>Oglib动态代理：第三方的工具库，创建代理对象，原理是继承，通过继承目标类，创建子类，但是目标类与方法都不是final的</li>
+</ol>
+<p>动态代理可以在目标类源代码不改变的原来方法下进行更改，减少代码的重复，专注代码的逻辑，解耦合（使事务与非事务进行分离）</p>
+<p>AOP:面向切面编程，可以使用以上的两种代理方法，把动态代理的实现步骤，方式都定义好了，让开发人员使用一种统一的方式</p>
+<p>切面（Aspect）：给目标类增加的功能就是切面，切面一般都是非业务方法，可以独立使用的。</p>
+<p>AOP的使用注意事项：</p>
+<ol>
+<li>什么功能下使用切面</li>
+<li>合理安排切面的执行时间（哪一个方法之前，哪一个方法之后）</li>
+<li>合理的安全切面的执行位置，对哪一类，哪一个方法增加功能</li>
+</ol>
+<h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><p>Aspect：切面，表示增强的功能</p>
+<p>JoinPoint：连接点，链接业务方法和切面的位置</p>
+<p>PointOut：连接点方法的集合</p>
+<p>目标对象：哪一个类增加功能</p>
+<p>Advice：通知，切面功能执行的时间</p>
+<h1 id="AOP的实现"><a href="#AOP的实现" class="headerlink" title="AOP的实现"></a>AOP的实现</h1><p>spring内部实现了AOP，在进行事务处理的时候使用了aop，但是在项目的开发的时候不使用spring的aop，springaop太过于笨重。<strong>我们经常使用aspectJ，一个专门做aop的框架，当然spring框架也集成了aspectj</strong></p>
+<h2 id="切入点表达式-aspectj"><a href="#切入点表达式-aspectj" class="headerlink" title="切入点表达式(aspectj)"></a>切入点表达式(aspectj)</h2><p>execution（权限名 返回值 方法名（参数））</p>
+<p>execution(public * * (…)):指定切入点为任意公共方法</p>
+<p>execution（* set*（…））：任意一个set方法</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205070903738.png" alt="image-20220507090311046"></p>
+<p>任意类中的任意方法，比如service包中的userservice的index方法</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205070909998.png" alt="image-20220507090606468">:在service包或者子包里面任意类的任意方法。..出现在类名的时候，后面必须跟*，表示包或者子包下面的所有类</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205070909999.png" alt="image-20220507090859800">：表示所有包service子包所有类（接口中所有方法都为切入点)</p>
+<h2 id="加入依赖项"><a href="#加入依赖项" class="headerlink" title="加入依赖项"></a>加入依赖项</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjrt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>@Aspect是框架注解，表示当前的类是切面类，在此类中定义方法，要求是公共方法，方法名可以自定义，但是如果含有参数，只有一些参数类型卡哇伊使用</p>
+<h3 id="Before前置通知注解"><a href="#Before前置通知注解" class="headerlink" title="@Before前置通知注解"></a>@Before前置通知注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyIncation</span>  &#123;</span><br><span class="line">    <span class="comment">//在目标方法之前进行执行,value表示切入点位置,在saygood（方法前面执行），如果拥有参数的话，需要在参数的位置使用Interger，String等等类型，不需要参数名称</span></span><br><span class="line">    <span class="meta">@Before(value = &quot;execution( void com.zss.service.impl.TestServiceImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myBefore</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是前置方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AfterReturning后置通知"><a href="#AfterReturning后置通知" class="headerlink" title="@AfterReturning后置通知"></a>@AfterReturning后置通知</h3><p>属性value表示切入点表达式，returning自定义变量，表示目标方法的返回值，自定义变量名必须和通知方法的形参名一样，当然也可以不接受返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//res是目标方法的返回值，可以根据返回值做切面的处理,如果没有返回值则为空，Object res相当于首先执行了sayhi等方法，之后拿到返回值进行后续处理</span></span><br><span class="line"><span class="meta">@AfterReturning(value = &quot;execution( void com.zss.service.impl.TestServiceImpl.*(..))&quot;,returning = &quot;res&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myAfter</span><span class="params">(Object res)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;我是后置方法&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (res==<span class="literal">null</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;返回值为空&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Around环绕通知"><a href="#Around环绕通知" class="headerlink" title="@Around环绕通知"></a>@Around环绕通知</h3><p>环绕通知必须含有一个返回值,此时发环绕通知首先调用时，不是执行测试中的方法，而是执行了这里定义的myAround方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*可以在方法执行前，执行后都能增强功能，可以控制目标方法是否被执行，修改原来目标方法的执行结果，影响最后的调用</span></span><br><span class="line"><span class="comment">* ProceedingJoinPoint相当于jdk动态代理的method，执行目标方法，获得返回值*/</span></span><br><span class="line"><span class="meta">@Around(value = &quot;execution( * com.zss.service.impl.TestServiceImpl.*(..))&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">myAround</span><span class="params">(ProceedingJoinPoint point)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    <span class="comment">//实现环绕通知</span></span><br><span class="line">    Object result;</span><br><span class="line">    System.out.println(<span class="string">&quot;环绕通知前&quot;</span>);</span><br><span class="line">    <span class="comment">//目标方法调用</span></span><br><span class="line">    result=point.proceed();</span><br><span class="line">    System.out.println(<span class="string">&quot;提交事务&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么我们如何控制该方法是否执行那？？？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JoinPoint表示切入点</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我们可以对这个进行判断，再去决定是否调用原方法</span></span><br><span class="line"><span class="keyword">if</span> (point==<span class="literal">null</span>)&#123;</span><br><span class="line"><span class="comment">//目标方法调用</span></span><br><span class="line">result=point.proceed();&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然我们也可以根据这个方法改变我们目标方法的返回值，<strong>环绕通知经常用于做事务，在执行前开启事务，执行完毕后关闭事务</strong></p>
+<h3 id="AfterThrowing"><a href="#AfterThrowing" class="headerlink" title="@AfterThrowing"></a>@AfterThrowing</h3><p>在程序发生异常时，执行的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing(value = &quot;execution( * com.zss.service.impl.TestServiceImpl.*(..))&quot;,throwing = &quot;ex&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myThrowing</span><span class="params">(Exception ex)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;发生了异常，发送短信&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205071101016.png" alt="image-20220507110115922"></p>
+<h3 id="After"><a href="#After" class="headerlink" title="@After"></a>@After</h3><p>最终通知，总是会执行，可以用来清除资源，不管中间是否会发生异常</p>
+<h2 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--声明目标--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;someService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.service.impl.TestServiceImpl&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--声明切面--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;myAspect&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.handle.MyIncation&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--声明自动代理生成器，使用aspectj框架内部的功能，创建目标对象的代理对象，创建代理对象</span></span><br><span class="line"><span class="comment">是在内存中实现的，修改目标对象的内存中的结构。创建为代理对象，所以目标对象就是被修改之后的代理对象，会把容器中所有的符合条件对象一次性生成代理对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppTest</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test01</span><span class="params">()</span> &#123;</span><br><span class="line">        String config=<span class="string">&quot;applicationContext.xml&quot;</span>;</span><br><span class="line">        ApplicationContext applicationContext=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(config);</span><br><span class="line">        <span class="comment">//从容器中获取目标对象</span></span><br><span class="line">        TestService proxy=(TestService) applicationContext.getBean(<span class="string">&quot;testService&quot;</span>);</span><br><span class="line">        System.out.println(proxy.getClass().getName());</span><br><span class="line">        <span class="comment">//通过代理的对象执行方法，实现目标方法执行时，增强功能</span></span><br><span class="line">        proxy.sayGood();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205070952380.png" alt="image-20220507095210535"></p>
+<p>可以看出，此时的对象已经不再是testservice对象了，而是jdk动态代理生成的。</p>
+<h2 id="Pointcut注解"><a href="#Pointcut注解" class="headerlink" title="@Pointcut注解"></a>@Pointcut注解</h2><p>如果切入点表达式含有多个重复的切入点。可以 使用此注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut(value = &quot;execution( * com.zss.service.impl.TestServiceImpl.*(..))&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mypt</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//无需代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当别的使用时，可以直接进行引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing(value = &quot;mypt()&quot;,throwing = &quot;ex&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myThrowing</span><span class="params">(Exception ex)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;发生了异常，发送短信&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>此时我们使用接口，此时aop使用的是jdk的动态代理方式，如果我们去除接口，此时使用的是cglib的动态代理。当然如果我们使用接口，也仍旧可以使用cglib的动态代理方式，但是需要在xml文件进行配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span> <span class="attr">proxy-target-class</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38783.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/38783.html" class="post-title-link" itemprop="url">mybaits传参</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 11:00:55" itemprop="dateModified" datetime="2022-05-03T11:00:55+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBaits/" itemprop="url" rel="index"><span itemprop="name">MyBaits</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/38783.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/38783.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ParameterType"><a href="#ParameterType" class="headerlink" title="ParameterType"></a>ParameterType</h1><p>写在mapper文件中的一个属性，表示dao接口方法的参数的数据类型</p>
+<p>比如我要查询一个id为1的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student student=dao.selectStudent(<span class="number">1</span>);</span><br><span class="line">System.out.println(student);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>ParameterType里面可以存储mybaits的别名，也可以存储全类型，</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205031100410.png" alt="image-20220502111313219"></p>
+<p><strong>但是注意ParameterType不是强制的，通过反射机制也可以获得的参数类型</strong></p>
+<h1 id="简单数据类型"><a href="#简单数据类型" class="headerlink" title="简单数据类型"></a>简单数据类型</h1><p>mybaits把Java的基本数据类型和String都叫做简单类型，在mapper文件中就是一个#{任意字符}，也就是说不必与传入参数的名称必须相同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询单个student对象</span></span><br><span class="line">Student <span class="title function_">selectStudent</span><span class="params">(Integer id)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;studentid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们使用mybaits实际还是使用了jdbc进行操作，只不过是在mybaits内部进行操作，</p>
+<ol>
+<li>mybaits创建connection对象，preparedStatement</li>
+<li>执行封装为resultType的对象，设置参数，并且返回该对象</li>
+</ol>
+<h1 id="多个参数传值方式"><a href="#多个参数传值方式" class="headerlink" title="多个参数传值方式"></a>多个参数传值方式</h1><h2 id="使用-Param"><a href="#使用-Param" class="headerlink" title="使用@Param"></a>使用@Param</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询单个student对象</span></span><br><span class="line">Student <span class="title function_">selectStudent</span><span class="params">(<span class="meta">@Param(&quot;myid&quot;)</span> Integer id,<span class="meta">@Param(&quot;myname&quot;)</span>String name)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span>  <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;myid&#125; and name=#&#123;myname&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用参数对象"><a href="#使用参数对象" class="headerlink" title="使用参数对象"></a>使用参数对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询单个student对象</span></span><br><span class="line">Student <span class="title function_">selectStudent</span><span class="params">(Student student)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">( String[] args )</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    SqlSession sqlSession= MyBaitsUtils.getSqlSession();</span><br><span class="line">    StudentDAO dao=sqlSession.getMapper(StudentDAO.class);</span><br><span class="line">    Student student=dao.selectStudent(<span class="keyword">new</span> <span class="title class_">Student</span>(<span class="number">1003</span>,<span class="string">&quot;haha&quot;</span>));</span><br><span class="line">    System.out.println(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--多个参数，使用Java对象的属性值，作为参数的实际值</span></span><br><span class="line"><span class="comment">使用对象语法#&#123;属性名，Javatype=类型名称，jdbctype=数据类型&#125;</span></span><br><span class="line"><span class="comment">Javatype指Java中属性的数据类型</span></span><br><span class="line"><span class="comment">jdbctype在数据库中的数据类型</span></span><br><span class="line"><span class="comment">例如：#&#123;myid，Javatype=java.lang.Integer,jdbctype=Integer&#125;</span></span><br><span class="line"><span class="comment">简化方式：其中的Javatype与jdbctype的值我们可以通过反射获取，所以只需要传入属性即可</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span>  <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;id&#125; and name=#&#123;name&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用按位置获取"><a href="#使用按位置获取" class="headerlink" title="使用按位置获取"></a>使用按位置获取</h2><p>但是这种方法缺陷明显，位置一旦调换就会出错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询单个student对象</span></span><br><span class="line">Student <span class="title function_">selectStudent</span><span class="params">(Integer id,String name)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span>  <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id=#&#123;arg0&#125; and name=#&#123;arg1&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然我们也可以使用map获取值，但是这种方式传参太繁琐</p>
+<h1 id="与"><a href="#与" class="headerlink" title="#与$"></a>#与$</h1><p>#：占位符，告诉mybaits使用实际的参数值代替。并使用preparestatement执行sql语句，#{}代替sql语句的？，更加安全</p>
+<p>而$字符串替换，告诉mybaits使用$字符串替换所在的位置，使用statement把sql语句和${}的内容链接起来。<strong>主要用在替换表名字，列名字，不同列排序等操作</strong></p>
+<p>那么我们说起$与#的区别，其实就是说preparestatement与statement的区别，那么</p>
+<ol>
+<li>#在sql语句中做到占位的，使用preparestatement执行sql，效率高</li>
+<li>#能够避免sql注入</li>
+<li>$不适用占位符，是字符串的链接方式，使用statement对象执行sql效率低</li>
+<li>$可以替换列名和表名</li>
+</ol>
+<h2 id="的使用"><a href="#的使用" class="headerlink" title="$的使用"></a>$的使用</h2><p>首先我们需要确定数据是安全的，比如现在我需要进行排序，但是不清楚现在是按照姓名排序，还是按照email排序，所以现在的order by后面的参数不能明确</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">selectStudents</span><span class="params">(String col)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudents&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.zss.pojo.Student&quot;</span>&gt;</span></span><br><span class="line">    select * from student order by $&#123;col&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在这里我们只需要更改这个参数即可，而xml文件的order by语句不用再去改变</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">( String[] args )</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    SqlSession sqlSession= MyBaitsUtils.getSqlSession();</span><br><span class="line">    StudentDAO dao=sqlSession.getMapper(StudentDAO.class);</span><br><span class="line">    List&lt;Student&gt; students=dao.selectStudents(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    System.out.println(students);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1105,387 +1552,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.zss.FruitDAO;</span><br><span class="line"><span class="keyword">import</span> com.zss.dao.BaseDAO;</span><br><span class="line"><span class="keyword">import</span> com.zss.object.Fruit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FruitDAOImpl</span> <span class="keyword">extends</span> <span class="title class_">BaseDAO</span> <span class="keyword">implements</span> <span class="title class_">FruitDAO</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addFruit</span><span class="params">(Fruit fruit)</span> <span class="keyword">throws</span> SQLException, ClassNotFoundException &#123;</span><br><span class="line">        String sql=<span class="string">&quot;insert into t_fruit values (?,?,?,?,?)&quot;</span>;</span><br><span class="line">        <span class="type">int</span> count=addFruitCount(sql,fruit.getfName(),fruit.getPrice(),fruit.getfCount(),fruit.getRemark(),fruit.getFid());</span><br><span class="line">        System.out.println(count);</span><br><span class="line">        <span class="keyword">return</span> count&gt;<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>最终实现的类与方法</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/18158.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/18158.html" class="post-title-link" itemprop="url">MVC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-03 14:52:22" itemprop="dateModified" datetime="2022-05-03T14:52:22+08:00">2022-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/18158.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/18158.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>前面的<a href="https://moonshuo.cn/%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%B0%8F%E6%B0%B4%E6%9E%9C%E6%91%8A/index.html?_sw-precache=bd1ac0a31a9f490a80e049c361210096">小小水果摊 </a>虽然完成了全部功能，但是整体结构比较复杂，一个页面对应的请求需要多个Servlet进行响应，代码量重复复杂。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081525806.png" alt="image-20220406195831872"></p>
-<h2 id="优化1"><a href="#优化1" class="headerlink" title="优化1"></a>优化1</h2><p>将所有的代码集成为私有函数，页面都对同一个fruit.do进行响应，但是同时传入一个operate操作符，用于判断对页面的操作，<strong>同时利用反射，优化调用函数的代码量</strong>，将所有的反射方法调用到dispatchServlet中，同时将一个负责判断转发的操作交给该类进行，而fruitservlet变为控制器，只保存一些调用方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**对所有的.do结尾的进行响应，fruit.do，user.do等等都可以*/</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;*.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ViewBaseServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String ,Object&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">	<span class="comment">//初始化方法，在xml文件中通过反射获得响应的类，利用map存储关系</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//需要同时也初始化ViewBaseServlet的方法，否则themeleaf无法进行使用</span></span><br><span class="line">            <span class="built_in">super</span>.init();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            InputStream inputStream=getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">            DocumentBuilderFactory documentBuilderFactory= DocumentBuilderFactory.newInstance();</span><br><span class="line">            DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();</span><br><span class="line">            <span class="comment">//获取document对象</span></span><br><span class="line">            Document document=  documentBuilder.parse(inputStream);</span><br><span class="line">            <span class="comment">//获取所有bean节点</span></span><br><span class="line">            NodeList beanNodeList=document.getElementsByTagName(<span class="string">&quot;bean&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;beanNodeList.getLength();i++)&#123;</span><br><span class="line">                Node beanNode=beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType()== Node.ELEMENT_NODE)&#123;</span><br><span class="line">                    Element beanElement=(Element) beanNode;</span><br><span class="line">                    String beamId=beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                    String className=beanElement.getAttribute(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">                    Class clas=Class.forName(className);</span><br><span class="line">                    Object beanObj=clas.newInstance();</span><br><span class="line"></span><br><span class="line">                    map.put(beamId,beanObj);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParserConfigurationException | ClassNotFoundException | InstantiationException | IllegalAccessException | SAXException | IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">//如果说url是：http://localhost:8080/fruit/fruit.do</span></span><br><span class="line">        <span class="comment">//servletPath是: /fruit.do</span></span><br><span class="line">       String servletPath=req.getServletPath();</span><br><span class="line">       <span class="comment">//而我接下来需要得到fruit/fruit.do中第二个fruit</span></span><br><span class="line">        <span class="comment">//先找到最后一个/的索引位置</span></span><br><span class="line">        <span class="type">int</span> lastslash=servletPath.lastIndexOf(<span class="string">&quot;/&quot;</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获得最后一个点的位置</span></span><br><span class="line">        <span class="type">int</span> lastpoint=servletPath.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        servletPath=servletPath.substring(lastslash,lastpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使fruit与fruitcontroller对应,先得到controller</span></span><br><span class="line">        Object  controllerObj=map.get(servletPath);</span><br><span class="line">        System.out.println(servletPath);</span><br><span class="line">        <span class="type">String</span> <span class="variable">operate</span> <span class="operator">=</span>req.getParameter(<span class="string">&quot;operate&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (operate == <span class="literal">null</span> | Objects.equals(operate, <span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">            operate=<span class="string">&quot;inquire&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入参数，得到对应的方法</span></span><br><span class="line">            Method method=controllerObj.getClass().getDeclaredMethod(operate,HttpServletRequest.class);</span><br><span class="line">            method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            <span class="comment">//获得参数返回的对象</span></span><br><span class="line">            Object obj=method.invoke(controllerObj,req);</span><br><span class="line">            String meth=(String) obj;</span><br><span class="line">            <span class="comment">//判定是组件内转发，还是重新定向</span></span><br><span class="line">            <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>))&#123;</span><br><span class="line">                String sendRedStr=meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                resp.sendRedirect(sendRedStr);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">super</span>.processTemplate(servletPath+<span class="string">&quot;/&quot;</span>+meth,req,resp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;operate非法&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span> <span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span> <span class="attr">encodeing</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--因为是可扩展的标签，所以任何标签都可以自己定义--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--下面代表fruit与该controller相对应--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.myspringmvc.controller.FruitController&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    html是超文本标记语言</span></span><br><span class="line"><span class="comment">    而xml是可扩展的标记语言</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    xml包含三个</span></span><br><span class="line"><span class="comment">    1.xml声明，而且必须在第一啊很难过</span></span><br><span class="line"><span class="comment">    2.DTD支持文档类型</span></span><br><span class="line"><span class="comment">    3.XML正文</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String  <span class="title function_">inquire</span><span class="params">(HttpServletRequest req)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">    <span class="type">int</span> pageNum;</span><br><span class="line">    String pagePer=req.getParameter(<span class="string">&quot;pagePer&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pagePer == <span class="literal">null</span>|pagePer==<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        pagePer=<span class="string">&quot;1&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pageNum=Integer.parseInt(pagePer);</span><br><span class="line">    List&lt;Fruit&gt; list=fruitDAO.inquFruit(<span class="keyword">new</span> <span class="title class_">Fruit</span>(),pageNum);</span><br><span class="line">    <span class="type">int</span> lastPageNum=((fruitDAO.getColumn()-<span class="number">1</span>)/<span class="number">5</span>)+<span class="number">1</span>;</span><br><span class="line">    HttpSession session=req.getSession();</span><br><span class="line">    session.setAttribute(<span class="string">&quot;lastPage&quot;</span>,lastPageNum);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;pageNo&quot;</span>,pageNum);</span><br><span class="line">    session.setAttribute(<span class="string">&quot;fruitList&quot;</span>,list);</span><br><span class="line">    <span class="comment">//给中央控制器传入是转发，还是重定向操作</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;FruitShow&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="优化2"><a href="#优化2" class="headerlink" title="优化2"></a>优化2</h2><p>虽然我们将这些方法进行了集成，但是可以发现，我们的fruitcontroller中仍旧还是有重复的的参数需要获取，而且每一个参数都不相同，假如我们有user，还需要给他单独设置参数，那么就不能在设置转发方法的时候，同时完成参数的转发吗？？？<br>于是我们更改service方法部分代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Method[] methods = controllerObj.getClass().getDeclaredMethods();</span><br><span class="line">    <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (method.getName().equals(operate)) &#123;</span><br><span class="line">            <span class="comment">//获取所有的参数</span></span><br><span class="line">            Parameter[] parameters = method.getParameters();</span><br><span class="line">            <span class="comment">//设计一个用于存放参数值的数组</span></span><br><span class="line">            Object []objectParameters=<span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;objectParameters.length;i++ )&#123;</span><br><span class="line">                Parameter parameter=parameters[i];</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&quot;req&quot;</span>.equals(parameter.getName()))&#123;</span><br><span class="line">                    objectParameters[i]=req;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//获取网页端的值</span></span><br><span class="line">                String parameValue=req.getParameter(parameter.getName());</span><br><span class="line">                <span class="comment">//将参数赋值</span></span><br><span class="line">                objectParameters[i]=parameValue;</span><br><span class="line">            &#125;</span><br><span class="line">            method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> method.invoke(controllerObj, objectParameters);</span><br><span class="line">            <span class="type">String</span> <span class="variable">meth</span> <span class="operator">=</span> (String) obj;</span><br><span class="line">            <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>)) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">sendRedStr</span> <span class="operator">=</span> meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                resp.sendRedirect(sendRedStr);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">super</span>.processTemplate(servletPath + <span class="string">&quot;/&quot;</span> + meth, req, resp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11062.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/11062.html" class="post-title-link" itemprop="url">业务层与获取初始化数据</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-03 14:52:27" itemprop="dateModified" datetime="2022-05-03T14:52:27+08:00">2022-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/11062.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/11062.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p> servlet拥有四个声明周期：实例化，初始化，服务，销毁</p>
-<h1 id="init初始化"><a href="#init初始化" class="headerlink" title="init初始化"></a>init初始化</h1><h2 id="有参数"><a href="#有参数" class="headerlink" title="有参数"></a>有参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">    <span class="built_in">this</span>.config = config;</span><br><span class="line">    <span class="built_in">this</span>.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="无参数"><a href="#无参数" class="headerlink" title="无参数"></a>无参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在servlet初始化时做一些工作，我们重写init方法，并且可以获得初始化的数据</p>
-<p>首先获取config对象，其次再后去初始化值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.Demo01Servlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是初始化参数<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/Demo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081723776.png" alt="image-20220408172332726"></p>
-<p>下面的这种方式亦可以进行</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &#123;&quot;/Demo01&quot;&#125;,</span></span><br><span class="line"><span class="meta">     initParams = &#123;</span></span><br><span class="line"><span class="meta">        @WebInitParam(name = &quot;参数&quot;,value = &quot;我是参数&quot;)</span></span><br><span class="line"><span class="meta">     &#125;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//获取config对象</span></span><br><span class="line">        ServletConfig servletConfig=getServletConfig();</span><br><span class="line">        String initStr=servletConfig.getInitParameter(<span class="string">&quot;参数&quot;</span>);</span><br><span class="line">        System.out.println(initStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而同样我们也可以获取到上下文的配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>参数1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>我是参数1<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204081734417.png" alt="image-20220408173417402"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServletContext servletContext=getServletContext();</span><br><span class="line">String text=servletContext.getInitParameter(<span class="string">&quot;参数1&quot;</span>);</span><br><span class="line">System.out.println(text);</span><br></pre></td></tr></table></figure>
-
-<h1 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC&#x3D;Model（模型）+View（视图）+Controller（控制器）</p>
-<p>视图层：御用做数据展示和用户交互的界面</p>
-<p>控制层：能够接受客户端的请求，具体的业务功能还是需要借助于模型组件完成</p>
-<p>模型层：包括pojo，业务模型组件，数据访问层组件</p>
-<p>​				opjo：值对象</p>
-<p>​				DAO:数据访问对象，是一个单精度对象，一个方法只考虑一个操作，比如添加，修改等等</p>
-<p>​				BO:业务对象，实际业务方法是比较复杂的，因此业务方法的粒度是比较粗的</p>
-<p>比如：注册属于业务功能，属于业务方法，而这个业务方法中包含了多个DAO方法</p>
-<h1 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h1><h2 id="IoC-容器"><a href="#IoC-容器" class="headerlink" title="IoC 容器"></a>IoC 容器</h2><p>Spring 容器是 Spring 框架的核心。容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。Spring 容器使用依赖注入（DI）来管理组成一个应用程序的组件。这些对象被称为 Spring Beans，我们将在下一章中进行讨论。</p>
-<p>通过阅读配置元数据提供的指令，容器知道对哪些对象进行实例化，配置和组装。配置元数据可以通过 XML，Java 注释或 Java 代码来表示。下图是 Spring 如何工作的高级视图。 Spring IoC 容器利用 Java 的 POJO 类和配置元数据来生成完全配置和可执行的系统或应用程序。</p>
-<p><strong>IOC 容器</strong>具有依赖注入功能的容器，它可以创建对象，IOC 容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。通常new一个实例，控制权由程序员控制，而”控制反转”是指new实例工作不由程序员来做而是交给Spring容器来做。在Spring中<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/wkspring/j3181mm3.html">BeanFactory</a>是IOC容器的实际代表者</p>
-<ul>
-<li><p>耦合&#x2F;依赖：层层之间存在相互的依赖，但是我们的设计规则是：高内聚，低耦合，层内部的组成应该是高度聚合的，而层层之间的关系应该是低耦合的。</p>
-<p>而我们为了降低耦合度，比如controller于serviceimpl之间的关系，这两层之间是相互影响的，而为了使我们下一层的改动不会影响到上一层，</p>
-<p><strong>控制反转：</strong>FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();如果在方法中，属于方法级别（结束之后会被销毁），如果属于成员变量，则其属于servlet的作用域（整个生命周期）<strong>但是在后面在spplicationContext中.xml中，通过解析xml文件，产生实例，存放在beanMap中，而beanMap在一个BeanFactory之中，也就是说其实例的生命周期放在容器中了，控制权交给容器，这个现象为控制反转</strong></p>
-<p>**依赖注入:**FruitServiceImpl fruitService&#x3D;new FruitServiceImpl();<strong>存在耦合，而后面该为null，在xml文件中进行配置</strong></p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="keyword">new</span> <span class="title class_">FruitServiceImpl</span>();</span><br></pre></td></tr></table></figure>
-
-<p>这一层重新定义实例化了一个FruitServiceImpl();，而我们为了使其之间没有相互影响，我们应该</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FruitServiceImpl fruitService=<span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-
-<p>但是这样会出现空指针错误，那么我们可以在xml文件进行设置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--比如说通过fruit进行init初始化，同时调用了ClassPathXmlApplicationContext() 构造器</span></span><br><span class="line"><span class="comment">  在map中存储了键值对，而检测到property，比如fruitServiceImpl，则去寻找</span></span><br><span class="line"><span class="comment">   com.zss.myssm.BaseDAO.impl.FruitServiceImpl并且利用反射将fruitServiceImpl赋值</span></span><br><span class="line"><span class="comment">   其余也相同</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.dao.BaseDAO&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--说明含有那些依赖关系,property表示属性，name表示属性名字，而ref表示引用那个的属性名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;baseDAO&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;baseDAO&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.myspringmvc.controller.FruitController&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;fruitServiceImpl&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;fruitServiceImpl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zss.myssm.BaseDAO.impl.FruitServiceImpl&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title class_">BeanFactory</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String ,Object&gt; beanMap=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ClassPathXmlApplicationContext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">            <span class="type">DocumentBuilderFactory</span> <span class="variable">documentBuilderFactory</span> <span class="operator">=</span> DocumentBuilderFactory.newInstance();</span><br><span class="line">            <span class="type">DocumentBuilder</span> <span class="variable">documentBuilder</span> <span class="operator">=</span> documentBuilderFactory.newDocumentBuilder();</span><br><span class="line">            <span class="comment">//获取document对象</span></span><br><span class="line">            <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> documentBuilder.parse(inputStream);</span><br><span class="line">            <span class="comment">//获取所有bean节点</span></span><br><span class="line">            <span class="type">NodeList</span> <span class="variable">beanNodeList</span> <span class="operator">=</span> document.getElementsByTagName(<span class="string">&quot;bean&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">className</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;class&quot;</span>);</span><br><span class="line">                    Class&lt;?&gt; clas = Class.forName(className);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">beanObj</span> <span class="operator">=</span> clas.newInstance();</span><br><span class="line">                    beanMap.put(beamId, beanObj);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//组装bean之间的依赖关系</span></span><br><span class="line">            <span class="comment">/*Node节点包含：</span></span><br><span class="line"><span class="comment">             *       Element：元素节点</span></span><br><span class="line"><span class="comment">             *       Text：文本节点</span></span><br><span class="line"><span class="comment">             *   其实下面还是拥有三个子节点，拥有两个空白的节点（或者说换行节点）</span></span><br><span class="line"><span class="comment">             *</span></span><br><span class="line"><span class="comment">             * */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; beanNodeList.getLength(); i++) &#123;</span><br><span class="line">                <span class="type">Node</span> <span class="variable">beanNode</span> <span class="operator">=</span> beanNodeList.item(i);</span><br><span class="line">                <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    <span class="type">Element</span> <span class="variable">beanElement</span> <span class="operator">=</span> (Element) beanNode;</span><br><span class="line">                    NodeList beanChildNodeList=beanElement.getChildNodes();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;beanChildNodeList.getLength();j++)&#123;</span><br><span class="line">                        Node beanChildNode=beanChildNodeList.item(j);</span><br><span class="line">                        <span class="keyword">if</span> (beanNode.getNodeType() == Node.ELEMENT_NODE&amp;&amp; <span class="string">&quot;property&quot;</span>.equals(beanChildNode.getNodeName())) &#123;</span><br><span class="line">                            <span class="type">String</span> <span class="variable">beamId</span> <span class="operator">=</span> beanElement.getAttribute(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                            Element propertyElement=(Element) beanChildNode;</span><br><span class="line">                            String propertyName=propertyElement.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                            String propertyRef=propertyElement.getAttribute(<span class="string">&quot;ref&quot;</span>);</span><br><span class="line">                            Object refObj=beanMap.get(propertyRef);</span><br><span class="line">                            Object beanObj=beanMap.get(beamId);</span><br><span class="line">                            <span class="comment">//设置到对应的实例中</span></span><br><span class="line">                            Class&lt;?&gt; beanCla=beanObj.getClass();</span><br><span class="line">                            Field propertyFiled=beanCla.getDeclaredField(propertyName);</span><br><span class="line">                            propertyFiled.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                            <span class="comment">//通过反射设置值</span></span><br><span class="line">                            propertyFiled.set(beanObj, refObj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParserConfigurationException | ClassNotFoundException | InstantiationException | IllegalAccessException | SAXException | IOException | NoSuchFieldException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getBean</span><span class="params">(String id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> beanMap.get(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;*.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ViewBaseServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> BeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.init();</span><br><span class="line">        beanFactory=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">//如果说url是：http://localhost:8080/fruit/fruit.do</span></span><br><span class="line">        <span class="comment">//servletPath是: /fruit.do</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">servletPath</span> <span class="operator">=</span> req.getServletPath();</span><br><span class="line">        <span class="comment">//而我接下来需要得到fruit/fruit.do中第二个fruit</span></span><br><span class="line">        <span class="comment">//先找到最后一个/的索引位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastslash</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;/&quot;</span>) + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获得最后一个点的位置</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastpoint</span> <span class="operator">=</span> servletPath.lastIndexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        servletPath = servletPath.substring(lastslash, lastpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使fruit与fruitcontroller对应,先得到controller</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">controllerObj</span> <span class="operator">=</span> beanFactory.getBean(servletPath);</span><br><span class="line">        <span class="type">String</span> <span class="variable">operate</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;operate&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (operate == <span class="literal">null</span> | Objects.equals(operate, <span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">            operate = <span class="string">&quot;inquire&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Method[] methods = controllerObj.getClass().getDeclaredMethods();</span><br><span class="line">            <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (method.getName().equals(operate)) &#123;</span><br><span class="line">                    <span class="comment">//获取所有的参数</span></span><br><span class="line">                    Parameter[] parameters = method.getParameters();</span><br><span class="line">                    <span class="comment">//设计一个用于存放参数值的数组</span></span><br><span class="line">                    Object []objectParameters=<span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;objectParameters.length;i++ )&#123;</span><br><span class="line">                        Parameter parameter=parameters[i];</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;req&quot;</span>.equals(parameter.getName()))&#123;</span><br><span class="line">                            objectParameters[i]=req;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        String parameValue=req.getParameter(parameter.getName());</span><br><span class="line">                        objectParameters[i]=parameValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                    method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                    <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> method.invoke(controllerObj, objectParameters);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">meth</span> <span class="operator">=</span> (String) obj;</span><br><span class="line">                    <span class="keyword">if</span> (meth.startsWith(<span class="string">&quot;sendRedirect&quot;</span>)) &#123;</span><br><span class="line">                        <span class="type">String</span> <span class="variable">sendRedStr</span> <span class="operator">=</span> meth.substring(<span class="string">&quot;sendRedirect&quot;</span>.length());</span><br><span class="line">                        resp.sendRedirect(sendRedStr);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="built_in">super</span>.processTemplate(servletPath + <span class="string">&quot;/&quot;</span> + meth, req, resp);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException | IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/1125.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/1125.html" class="post-title-link" itemprop="url">Servlet继承关系与生命周期</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-03 14:53:12" itemprop="dateModified" datetime="2022-05-03T14:53:12+08:00">2022-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/1125.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/1125.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Servlet的继承关系"><a href="#Servlet的继承关系" class="headerlink" title="Servlet的继承关系"></a>Servlet的继承关系</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203312231701.png" alt="image-20220331223030179"></p>
-<p>可以看出Servlet下面有GenericServlet，而HttpServlet继承了GenericServlet</p>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javax.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Servlet</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig var1)</span> <span class="keyword">throws</span> ServletException;</span><br><span class="line"></span><br><span class="line">    ServletConfig <span class="title function_">getServletConfig</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest var1, ServletResponse var2)</span> <span class="keyword">throws</span> ServletException, IOException;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">getServletInfo</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> service发起请求该方法会被自动调用，而在器Httpservlet中service方法中方法不是抽象的，而在 service方法中，会首先获取表单请求的方法，进行判断调用相关的方法</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021024377.png" alt="image-20220402102213041"></p>
-<p>doget与dopost方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> lStrings.getString(<span class="string">&quot;http.method_post_not_supported&quot;</span>);</span><br><span class="line">    <span class="built_in">this</span>.sendMethodNotAllowed(req, resp, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而在调用的sendMethodNotAllowed的方法，会给出响应的操作</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021024379.png" alt="image-20220402102433764"></p>
-<p><strong>而对于405方法，httpsServlet中这些do方法都是405的实现风格，否则会报405错误</strong>，因此在新建servlet时，我们会区重写do方法。</p>
-<h1 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h1><p><strong>首先我们的Servlet方法是Tomact容器去调用的，</strong>而servlet的生命周期init，service，destory正是者三个方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.servlets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest servletRequest, ServletResponse response)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在服务中&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021101474.png" alt="image-20220402104250832"></p>
-<p>当我们启动tomcat时，并且发送请求，容器自动初始化，并且开启服务，而当我们刷新了页面，相当于我们重新提交了一次请求，会再一次调用service方法，当我们销毁的时候，也就是tomcat关闭的时候，会调用destroy方法。</p>
-<p><strong>而其实在底层时tomcat服务器通过反射给与我们进行实例化，所有的请求只会通过一个实例进行操作。</strong></p>
-<p>这样的好处是，我们的系统初始化比较快，但是第一次请求比较慢，如果需要提高servlet的效应速度，则应该初始化响应的时机</p>
-<p><strong>Servlet的初始化时机</strong>：</p>
-<ol>
-<li>默认第一次进行初始化</li>
-<li>通过servletload进行初始化，值最小，初始化越前，tomcat会自动进行服务，最小值为0</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.TestServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/add<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Servlet在容器中是单例的，线程不安全的</strong>，因为所有的实例都是通过一个实例进行请求，<strong>所以尽量不要在servlet中设置成员变量，也不要通过servlet的值进行一些逻辑判断</strong></p>
 
       
     </div>

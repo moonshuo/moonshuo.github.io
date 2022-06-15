@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,401 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59454.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/59454.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:35:55" itemprop="dateModified" datetime="2022-03-30T17:35:55+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/59454.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/59454.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>与，两边判断值都为真才为真</td>
+<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或，只要一边为真，结果就为真</td>
+<td>true||false&#x3D;true</td>
+</tr>
+<tr>
+<td>！</td>
+<td>取反，结果与原来相反</td>
+<td>！true&#x3D;fasle</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或，不相同的时候取反</td>
+<td>fasle^true&#x3D;true</td>
+</tr>
+</tbody></table>
+<h1 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h1><p>&#x3D;，简单的将右边的值赋值给左边</p>
+<h1 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h1><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
+<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
+<p>运行以下代码，可以查看出相应的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732725.png" alt="image-20220313171047502"></p>
+<h1 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h1><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732273.png" alt="image-20220313171106169"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59455.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/59455.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:36:40" itemprop="dateModified" datetime="2022-03-30T17:36:40+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/59455.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/59455.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>与，两边判断值都为真才为真</td>
+<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或，只要一边为真，结果就为真</td>
+<td>true||false&#x3D;true</td>
+</tr>
+<tr>
+<td>！</td>
+<td>取反，结果与原来相反</td>
+<td>！true&#x3D;fasle</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或，不相同的时候取反</td>
+<td>fasle^true&#x3D;true</td>
+</tr>
+</tbody></table>
+<h1 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h1><p>&#x3D;，简单的将右边的值赋值给左边</p>
+<h1 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h1><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
+<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
+<p>运行以下代码，可以查看出相应的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732778.png" alt="image-20220306180359221"></p>
+<h1 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h1><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732387.png" alt="image-20220306180331339"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/24753.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/24753.html" class="post-title-link" itemprop="url">Java如何键盘输入</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:33:06" itemprop="dateModified" datetime="2022-03-30T17:33:06+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/24753.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/24753.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>导入该类所在的包，Java中键盘输入的函数在所在的包为java.util.Scanner;scanner类表示一个简单的用户扫描器，可以接受用户的输入。</li>
+<li>创建该对象，即声明变量。</li>
+<li>调用里面的功能，定义输入的值变量，键盘输入的值赋值给谁？？注意Scanner包中拥有next方法,仔细查看Javaapi文档，next用于将输入的下一个标记为对应的类型，包括nextint，nextlong等等数据类型。</li>
+</ol>
+<p>运行以下代码接受用户的输入年龄，姓名，成绩等</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.引入Java的包</span></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//创建对象用于接受用户的输入，test为一个对象</span></span><br><span class="line">    Scanner test=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    System.out.println(<span class="string">&quot;请输入您的年龄&quot;</span>);</span><br><span class="line">    <span class="type">int</span> age=test.nextInt();</span><br><span class="line">    System.out.println(<span class="string">&quot;请输入您的姓名&quot;</span>);</span><br><span class="line">    String name=test.next();</span><br><span class="line">    System.out.println(<span class="string">&quot;尊敬的&quot;</span>+name+<span class="string">&quot;您的年龄为&quot;</span>+age);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732414.png" alt="image-20220306180610067"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1135,424 +1530,6 @@
 <p>在数组赋值时候，栈中存放的为响应的地址，这也是为什么直接输出n1的时候是一个地址值，而n2数组取值时候接受到n1对应的地址，所以当n1改变时候，n2也会随着改变，这就是引用赋值。</p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311236292.png" alt="image-20220331123609262"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>看到这里学过c语言的小伙伴可以发现，这个其实和c的指针很像，是因为Java把c语言中的指针封装了，在Java中没有指针这一概念的。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/40204.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/40204.html" class="post-title-link" itemprop="url">Java中整数型与浮点数等数据类型的使用细节</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-06 21:59:55" itemprop="dateModified" datetime="2022-06-06T21:59:55+08:00">2022-06-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">Java数据类型</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/40204.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/40204.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="各类型所占大小"><a href="#各类型所占大小" class="headerlink" title="各类型所占大小"></a>各类型所占大小</h1><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>字符数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td>1字节</td>
-</tr>
-<tr>
-<td>char</td>
-<td>2字节</td>
-</tr>
-<tr>
-<td>short</td>
-<td>2字节</td>
-</tr>
-<tr>
-<td>int</td>
-<td>4字节</td>
-</tr>
-<tr>
-<td>float</td>
-<td>4字节</td>
-</tr>
-<tr>
-<td>long</td>
-<td>8字节</td>
-</tr>
-<tr>
-<td>double</td>
-<td>8字节</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>至少1字节</td>
-</tr>
-</tbody></table>
-<p>从Java7开始，加上前缀0b或者0B就可以写二进制数，0b1001表示9。</p>
-<p>一个byte的值b可以不表示范围-128-127，如果表示0-255，也可以使用byte</p>
-<p>下面的这种情况，没有出现我们期望的0.9，主要原因是浮点数采用二进制系统表示，在二进制系统中无法精确表示1&#x2F;10，就好像十进制无法表示分数1&#x2F;3一样。所以这种情况我们 使用大数表示。<a href="https://moonshuo.cn/posts/30946.html">https://moonshuo.cn/posts/30946.html</a></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206062152168.png" alt="image-20220606215246295"></p>
-<h1 id="整数型"><a href="#整数型" class="headerlink" title="整数型"></a>整数型</h1><p>首先Java中默认的整数型为int数据类型，其取值范围为2^31-1——-2^31,而其中long类型的取值范围为2^63-1——-2^63,如果运行以下一段程序，会出现值损失的情况，是因为long表示的数据范围大于int可表示的数据范围，int的类型值存储不了long类型的值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">1</span>;</span><br><span class="line">        <span class="type">long</span> b=<span class="number">2</span>;</span><br><span class="line">        a=b;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311237750.png" alt="image-20220331123731718"></p>
-<p>但是对于byte类型或者short类型的数据赋值给int类型，则其最终的类型为自动升级为更加高级的int类型</p>
-<h1 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h1><p>浮点数&#x3D;符号位+指数位+尾数位（<strong>尾数部分可能会包括不了全部的尾数，会造成精度损失，小数都是近似值</strong>），在浮点型中分为double型与float类型，而Java默认的使用double类型，如果想要使用float类型，必须在数的最后加上f，表示这是一个单精度浮点数，否则会发生值损失错误。运行以下程序，会发生信息报错。而如果在10.2后面加上f，则不会报错。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="comment">/**这是算出函数类型的数据*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getType</span><span class="params">(Object o)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o.getClass().toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">float</span> a=<span class="number">10.2</span>;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311238190.png" alt="image-20220331123817168"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311238885.png" alt="image-20220331123847863"></p>
-<p> 这是因为不加上f，表示double型的数据10.2赋值给float类型的a，由大转小会损失，而加上f之后，就是将float类型赋值给float类型，不会发生值损失。</p>
-<p>浮点型科学计数法的表示，例如int a&#x3D;5.12e2，表示5.12*(10^2)&#x3D;512</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="comment">/**这是算出函数类型的数据*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getType</span><span class="params">(Object o)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o.getClass().toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">double</span> a=<span class="number">5.12e2</span>;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311239445.png" alt="image-20220331123904423"></p>
-<p> <strong>浮点型使用中常见的陷阱问题，</strong>从数学的角度来看，a与b应该完全相等的，但是计算机算出并不是相等，是因为计算机并不快速识别出8.1后面是否还有其他数值，所以计算机选择进行无限接近算出结果。所以并不建议用浮点型除法进行大小比较运算，如果真的要进行比较，通常在计算机中在某个精度范围内进行比较，不超过某个精度，即认为其相等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">double</span> a=<span class="number">8.1</span>/<span class="number">3</span>;</span><br><span class="line">        <span class="type">double</span> b=<span class="number">2.7</span>;</span><br><span class="line">        System.out.println(a!=b?<span class="string">&quot;a与b不相等&quot;</span>:<span class="string">&quot;a与b不想等&quot;</span>);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311239923.png" alt="image-20220331123933887"></p>
-<h1 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h1><p>用单引号引出，并且其中只能包含一个字符，而对应的转义字符也表示一个字符，占据一个符号位，即char类型如果包含转义字符，就不能包含其他字符了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">       <span class="type">char</span> a=<span class="string">&#x27;哈&#x27;</span>;</span><br><span class="line">       <span class="type">char</span> b=<span class="string">&#x27;\t&#x27;</span>;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在Java中char的本质是一个整数，在输出时，是unicode对应的字符，例如a对应的字符编码为97，张的Unicode的对应的编码为24352，运行以下程序</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">       <span class="type">char</span> a=<span class="number">97</span>;</span><br><span class="line">       <span class="type">char</span> b=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">       <span class="type">char</span> c=<span class="string">&#x27;张&#x27;</span>;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        <span class="comment">//这里由于b的类型为char，输出响应的转义字符时需要进行强制类型转换</span></span><br><span class="line">        System.out.println((<span class="type">int</span>)b);</span><br><span class="line">        System.out.println((<span class="type">int</span>)c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h1><p>布尔类型取值只允许取值为true与false，而且仅仅只占有一个字节。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/20212.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/20212.html" class="post-title-link" itemprop="url">Java中自动类型转换与强制类型转换</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-31 12:45:27" itemprop="dateModified" datetime="2022-03-31T12:45:27+08:00">2022-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">Java数据类型</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/20212.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/20212.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h1><p>精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路</p>
-<p>char-&gt;int-&gt;long-&gt;float-&gt;double</p>
-<p>byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double</p>
-<p>实验以下下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//令a的值为一个字符a的值</span></span><br><span class="line">      <span class="type">int</span> a=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">      <span class="comment">//输出的结果为该值对应的ASCII码</span></span><br><span class="line">      System.out.println(a);</span><br><span class="line">      <span class="comment">//其实从某种意义上说，1为本质为byte类型的数据，而我们将其自动转换存储到int数据类型中</span></span><br><span class="line">      <span class="type">int</span> b=<span class="number">1</span>;</span><br><span class="line">      System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311242338.png" alt="image-20220331124233303"></p>
-<h2 id="自动数据类型转换注意细节"><a href="#自动数据类型转换注意细节" class="headerlink" title="自动数据类型转换注意细节"></a>自动数据类型转换注意细节</h2><ol>
-<li>有多种数据类型混合运算时，系统首先将所有的数据转换成容量最大的那一种类型。</li>
-<li>只能将小精度的类型赋值给大类型的数据，而不能将大精度类型赋值小精度。</li>
-<li><strong>byte,short和char之间不会进行数据类型转换（编译器规定无法识别）。</strong></li>
-<li>byte，short，char之间可以相互计算，但是在计算过程中结果为int类型，不可以用byte等类型变量接受结果。</li>
-<li>boolean类型不参与类型转换。</li>
-</ol>
-<h1 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h1><p>自动转换的逆过程，将过程大的数据类型转换为容量小的数据类型。使用时要加上强制转换符号（），但是会造成精度降低或者溢出。</p>
-<p>运行以下程序，仔细观察结果，可以发现发生了精度损失和溢出，当然这些也不一定会出现，当类型足够装下时其大小时，不会发生以上错误。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=(<span class="type">int</span>)<span class="number">1.9</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="type">int</span> j=<span class="number">196</span>;</span><br><span class="line">        <span class="type">byte</span> k=(<span class="type">byte</span>)j;</span><br><span class="line">        System.out.println(k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311243691.png" alt="image-20220331124318663"></p>
-<h2 id="强制类型转换细节"><a href="#强制类型转换细节" class="headerlink" title="强制类型转换细节"></a>强制类型转换细节</h2><ol>
-<li>数据精度大-&gt;小，需要进行强制类型转换。</li>
-<li>强转类型只会对最近的操作数有效（即其遇到的第一个数），往往会使用小括号提高优先级。</li>
-<li>char类型可以保存int类型的常量值，但是不可以保存变量值（保存变量值时可能会发生损失）,需要进行强制类型转换。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//如果强制转换类型对后面所有数据有效，则会输出29，如果仅仅对第一个类型有效，则结果为20</span></span><br><span class="line">        <span class="type">int</span> i=(<span class="type">int</span>)<span class="number">2.9</span>*<span class="number">10</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="type">char</span> c1=<span class="number">100</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;c1保存了常量，可以保存，c1为&quot;</span>+c1);</span><br><span class="line">        <span class="type">int</span>  a=<span class="number">100</span>;</span><br><span class="line">        <span class="type">char</span> c2=(<span class="type">char</span>)a;</span><br><span class="line">        System.out.println(<span class="string">&quot;强制转换之后，以ASCII码的形式进行保存，c2为&quot;</span>+c2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311244314.png" alt="image-20220331124412290"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/25969.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/25969.html" class="post-title-link" itemprop="url">基本数据类型与String之间的转换</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-31 12:42:07" itemprop="dateModified" datetime="2022-03-31T12:42:07+08:00">2022-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">Java数据类型</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/25969.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/25969.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本数据类型转换为String"><a href="#基本数据类型转换为String" class="headerlink" title="基本数据类型转换为String"></a>基本数据类型转换为String</h1><p>利用拼接：String s&#x3D;基本数据类型+” “；运行以下例子，查看结果可以发现仍旧为原来的数，只不过以String类型进行存储。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">100</span>;</span><br><span class="line">        <span class="type">double</span> b=<span class="number">1.2</span>;</span><br><span class="line">        <span class="type">boolean</span> c=<span class="literal">true</span>;</span><br><span class="line">        String s1=a+<span class="string">&quot;&quot;</span>;</span><br><span class="line">        String s2=b+<span class="string">&quot;&quot;</span>;</span><br><span class="line">        String s3=c+<span class="string">&quot;&quot;</span>;</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">        System.out.println(s2);</span><br><span class="line">        System.out.println(s3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311240390.png" alt="image-20220331124055355"></p>
-<h1 id="String转换为基本数据类型"><a href="#String转换为基本数据类型" class="headerlink" title="String转换为基本数据类型"></a>String转换为基本数据类型</h1><p>通过基本数据类型的包装类调用parsexx的方法进行转换，运行以下例子，可以发现运行结果都会发生了转换，其他类型也都可以运用对应的包装类进行转换（char除外）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> a=Integer.parseInt(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">        Double b=Double.parseDouble(<span class="string">&quot;1.2&quot;</span>);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311241010.png" alt="image-20220331124131980"></p>
-<p> 利用charAt将其转换为char，运行以下代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        String a=<span class="string">&quot;i love you&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length();i++)&#123;</span><br><span class="line">            <span class="type">char</span> s=a.charAt(i);</span><br><span class="line">            System.out.print(s+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311241817.png" alt="image-20220331124144789"></p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
-<li>可以把“123”转换为一个int类型，但是“hello”就不可以转换为对应的类型，否则会发生异常，造成程序终止</li>
-</ol>
 
       
     </div>
