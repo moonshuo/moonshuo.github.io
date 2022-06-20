@@ -36,17 +36,17 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-    <meta name="description" content="位逻辑运算符计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。    运算符 含义 举例 解释 结果    &amp; 位与运算符 4&amp;5 0000 0100(4的补码，不是源码)&amp;0000 0101（5的补码），对应的位进行与逻辑运算 0000 0100（4的补码，其结果与源码相同）–&gt;4   | 位或运算符 -4|5">
+    <meta name="description" content="逻辑运算符：https:&#x2F;&#x2F;moonshuo.cn&#x2F;posts&#x2F;59455.html 位运算符计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。    运算符 含义 举例 解释 结果    &amp; 位与运算符 4&amp;5 0000 0100(4的补码，不是源码)&amp;0000 0101（5的补码），对应的位进行与逻辑运算 0000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中位逻辑运算符与位移运算符（从原理进行解释）">
 <meta property="og:url" content="https://moonshuo.cn/posts/29038.html">
 <meta property="og:site_name" content="偷掉月亮">
-<meta property="og:description" content="位逻辑运算符计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。    运算符 含义 举例 解释 结果    &amp; 位与运算符 4&amp;5 0000 0100(4的补码，不是源码)&amp;0000 0101（5的补码），对应的位进行与逻辑运算 0000 0100（4的补码，其结果与源码相同）–&gt;4   | 位或运算符 -4|5">
+<meta property="og:description" content="逻辑运算符：https:&#x2F;&#x2F;moonshuo.cn&#x2F;posts&#x2F;59455.html 位运算符计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。    运算符 含义 举例 解释 结果    &amp; 位与运算符 4&amp;5 0000 0100(4的补码，不是源码)&amp;0000 0101（5的补码），对应的位进行与逻辑运算 0000">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732076.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732957.png">
 <meta property="article:published_time" content="2022-05-29T11:19:35.240Z">
-<meta property="article:modified_time" content="2022-03-30T09:36:35.152Z">
+<meta property="article:modified_time" content="2022-06-15T11:33:50.133Z">
 <meta property="article:author" content="偷掉月亮的阿硕">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732076.png">
@@ -166,7 +166,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">位逻辑运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">位移运算符</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">位移运算符</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -185,7 +185,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -273,7 +273,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:36:35" itemprop="dateModified" datetime="2022-03-30T17:36:35+08:00">2022-03-30</time>
+      <time title="修改时间：2022-06-15 19:33:50" itemprop="dateModified" datetime="2022-06-15T19:33:50+08:00">2022-06-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -320,7 +320,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="位逻辑运算符"><a href="#位逻辑运算符" class="headerlink" title="位逻辑运算符"></a>位逻辑运算符</h1><p><strong>计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。</strong></p>
+        <p> 逻辑运算符：<a href="https://moonshuo.cn/posts/59455.html">https://moonshuo.cn/posts/59455.html</a></p>
+<h1 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h1><p><strong>计算机在运行和存储过程中都是以补码的方式进行的（非常重要！！！），与运算，或运算等都是以补码进行位运算。</strong></p>
 <table>
 <thead>
 <tr>
