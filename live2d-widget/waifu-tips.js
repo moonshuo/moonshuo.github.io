@@ -26,7 +26,6 @@ function loadWidget(config) {
 				<span class="fa fa-lg fa-user-circle"></span>
 				<span class="fa fa-lg fa-street-view"></span>
 				<span class="fa fa-lg fa-camera-retro"></span>
-				<span class="fa fa-lg fa-info-circle"></span>
 				<span class="fa fa-lg fa-times"></span>
 			</div>
 		</div>`);
@@ -65,7 +64,7 @@ function loadWidget(config) {
 				window.ASTEROIDSPLAYERS.push(new Asteroids());
 			} else {
 				const script = document.createElement("script");
-				script.src = "https://cdn.jsdelivr.net/gh/stevenjoezhang/asteroids/asteroids.js";
+				script.src = "https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/plugin/live2d/asteroids.js";
 				document.head.appendChild(script);
 			}
 		});
@@ -76,9 +75,7 @@ function loadWidget(config) {
 			Live2D.captureName = "photo.png";
 			Live2D.captureFrame = true;
 		});
-		document.querySelector("#waifu-tool .fa-info-circle").addEventListener("click", () => {
-			open("https://github.com/stevenjoezhang/live2d-widget");
-		});
+		
 		document.querySelector("#waifu-tool .fa-times").addEventListener("click", () => {
 			localStorage.setItem("waifu-display", Date.now());
 			showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
@@ -202,7 +199,7 @@ function loadWidget(config) {
 	})();
 
 	async function loadModelList() {
-		const response = await fetch(`${cdnPath}model_list.json`);
+		const response = await fetch(`https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/plugin/live2d/model_list.json`);
 		modelList = await response.json();
 	}
 
