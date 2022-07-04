@@ -393,121 +393,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/30946.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/30946.html" class="post-title-link" itemprop="url">BigInteger和BigDecimal</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-20 16:40:30" itemprop="dateModified" datetime="2022-04-20T16:40:30+08:00">2022-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/30946.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/30946.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
-<li>BigDecimal适合保存精度更高的浮点型（小数）</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png" alt="image-20220420161941537"></p>
-<p>应用</p>
-<p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637308.png" alt="image-20220420162048073"></p>
-<p>此时我们就需要运行BigDecimal来进行运算</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637309.png" alt="image-20220420163718264"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/15202.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -629,6 +514,121 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&lt;T,W&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_">Person</span>&lt;Integer, Boolean&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;rawtypes&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Test</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> student.getClass();</span><br><span class="line">        System.out.println(clazz);</span><br><span class="line">        System.out.println(<span class="string">&quot;获取父类对象：&quot;</span> + clazz.getSuperclass());</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * getGenericSuperclass()获得带有泛型的父类</span></span><br><span class="line"><span class="comment">         * Type是 Java 编程语言中所有类型的公共高级接口。它们包括原始类型、参数化类型、数组类型、类型变量和基本类型。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">Type</span> <span class="variable">type</span> <span class="operator">=</span> clazz.getGenericSuperclass();</span><br><span class="line">        System.out.println(type);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ParameterizedType参数化类型，即泛型</span></span><br><span class="line">        <span class="type">ParameterizedType</span> <span class="variable">p</span> <span class="operator">=</span> (ParameterizedType)type;</span><br><span class="line">        <span class="comment">//getActualTypeArguments获取参数化类型的数组，泛型可能有多个</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">c1</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">0</span>];</span><br><span class="line">        System.out.println(c1);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">c2</span> <span class="operator">=</span> (Class)p.getActualTypeArguments()[<span class="number">1</span>];</span><br><span class="line">        System.out.println(c2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 运行结果：</span></span><br><span class="line"><span class="comment"> * 获取父类对象：class com.mycode.test.Person</span></span><br><span class="line"><span class="comment"> * com.mycode.test.Person&lt;java.lang.Integer, java.lang.Boolean&gt;</span></span><br><span class="line"><span class="comment"> * class java.lang.Integer</span></span><br><span class="line"><span class="comment"> * class java.lang.Boolean</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204022105105.png" alt="image-20220402210538555"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/30946.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/30946.html" class="post-title-link" itemprop="url">BigInteger和BigDecimal</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-20 16:40:30" itemprop="dateModified" datetime="2022-04-20T16:40:30+08:00">2022-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/30946.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/30946.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
+<li>BigDecimal适合保存精度更高的浮点型（小数）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png" alt="image-20220420161941537"></p>
+<p>应用</p>
+<p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637308.png" alt="image-20220420162048073"></p>
+<p>此时我们就需要运行BigDecimal来进行运算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637309.png" alt="image-20220420163718264"></p>
 
       
     </div>
@@ -797,111 +797,6 @@
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741642.png" alt="image-20220322084840211"></p>
 <p>注意：</p>
 <p>如果我们使用enum关键字之后，就不可以继承其他类了，Java是单继承机制。但是实质上enum还是一个类，所以可以继承实现接口。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2749.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/2749.html" class="post-title-link" itemprop="url">Math类</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:40:56" itemprop="dateModified" datetime="2022-03-30T17:40:56+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/2749.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/2749.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Math类的常用方法"><a href="#Math类的常用方法" class="headerlink" title="Math类的常用方法"></a>Math类的常用方法</h2><p><strong>Math类都是静态的方法我们只需要直接使用即可</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       <span class="type">double</span> num=-<span class="number">9.2</span>;</span><br><span class="line">       <span class="comment">//ad返回绝对值</span></span><br><span class="line">        System.out.println(Math.abs(num));</span><br><span class="line">        <span class="comment">//pow,求幂</span></span><br><span class="line">        System.out.println(Math.pow(num,<span class="number">2</span>));</span><br><span class="line">        <span class="comment">//ceil求正，求取&gt;=最小的整数</span></span><br><span class="line">        System.out.println(Math.ceil(num));</span><br><span class="line">        <span class="comment">//floor,求取&lt;=的最大整数</span></span><br><span class="line">        System.out.println(Math.floor(num));</span><br><span class="line">        <span class="comment">//round,四舍五入,返回的int</span></span><br><span class="line">        System.out.println(Math.round(num));</span><br><span class="line">        <span class="comment">//sqrt,求开平方</span></span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">9</span>));</span><br><span class="line">        <span class="comment">//求随机数，返回0-1之间的一个随机小数0&lt;=a&lt;1</span></span><br><span class="line">        <span class="comment">//输出2-7之间的一个数</span></span><br><span class="line">        System.out.println(Math.round(Math.random()*<span class="number">5</span>+<span class="number">2</span>));</span><br><span class="line">        System.out.println((<span class="type">int</span>)(Math.random()*<span class="number">6</span>+<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -1377,6 +1272,111 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2749.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/2749.html" class="post-title-link" itemprop="url">Math类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:40:56" itemprop="dateModified" datetime="2022-03-30T17:40:56+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/2749.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/2749.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Math类的常用方法"><a href="#Math类的常用方法" class="headerlink" title="Math类的常用方法"></a>Math类的常用方法</h2><p><strong>Math类都是静态的方法我们只需要直接使用即可</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       <span class="type">double</span> num=-<span class="number">9.2</span>;</span><br><span class="line">       <span class="comment">//ad返回绝对值</span></span><br><span class="line">        System.out.println(Math.abs(num));</span><br><span class="line">        <span class="comment">//pow,求幂</span></span><br><span class="line">        System.out.println(Math.pow(num,<span class="number">2</span>));</span><br><span class="line">        <span class="comment">//ceil求正，求取&gt;=最小的整数</span></span><br><span class="line">        System.out.println(Math.ceil(num));</span><br><span class="line">        <span class="comment">//floor,求取&lt;=的最大整数</span></span><br><span class="line">        System.out.println(Math.floor(num));</span><br><span class="line">        <span class="comment">//round,四舍五入,返回的int</span></span><br><span class="line">        System.out.println(Math.round(num));</span><br><span class="line">        <span class="comment">//sqrt,求开平方</span></span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">9</span>));</span><br><span class="line">        <span class="comment">//求随机数，返回0-1之间的一个随机小数0&lt;=a&lt;1</span></span><br><span class="line">        <span class="comment">//输出2-7之间的一个数</span></span><br><span class="line">        System.out.println(Math.round(Math.random()*<span class="number">5</span>+<span class="number">2</span>));</span><br><span class="line">        System.out.println((<span class="type">int</span>)(Math.random()*<span class="number">6</span>+<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/24227.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1609,7 +1609,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/7588.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/9994.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -1627,7 +1627,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/7588.html" class="post-title-link" itemprop="url">多线程机制</a>
+          <a href="/posts/9994.html" class="post-title-link" itemprop="url">线程中的锁</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1645,7 +1645,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:40:21" itemprop="dateModified" datetime="2022-03-30T17:40:21+08:00">2022-03-30</time>
+      <time title="修改时间：2022-03-30 17:39:26" itemprop="dateModified" datetime="2022-03-30T17:39:26+08:00">2022-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1670,8 +1670,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/7588.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/7588.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/9994.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/9994.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1685,21 +1685,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="线程进行的机制"><a href="#线程进行的机制" class="headerlink" title="线程进行的机制"></a>线程进行的机制</h1><p>在我们运行一个进程的时候，会出现主线程和子线程，主线程并不会因为子线程的运行而发生阻塞。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739729.png" alt="image-20220317101908436"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Cat</span> <span class="variable">cat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat.start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是主线程&quot;</span>);</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;线程发生异常&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**当一个类继承了Thread类，该类就可以当作线程使用，run方法来源于Runnable接口*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">int</span> time=<span class="number">0</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;喵喵，我是小喵咪&quot;</span>);</span><br><span class="line">            time++;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;发生了错误&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (time==<span class="number">20</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h1><p>每一个对象都对应一个可称为“互斥锁”的标记，这个标记用来保证任意时刻，只有一个线程可以访问该对象，但是会导致执行效率比较低，同步方法的锁可以是this，也可以是其他对象，同步方法的锁为当前类的本身。上面买票的问题可以是this本身，也可以object，<strong>但是必须同一个对象,不可以是new的多个对象。</strong></p>
+<p>如果在静态代码中，必须当前对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AA</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sell</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (AA.class)&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739512.png" alt="image-20220317102212202"></p>
-<p>运行以上程序，可以发现主线程的for循环并没有因为子线程cat的运行而进行停滞，而是不断的交替运行。</p>
-<h1 id="为什么使用Start"><a href="#为什么使用Start" class="headerlink" title="为什么使用Start"></a>为什么使用Start</h1><p>使用我们cat.run方法也可以调用这个方法，但是为什么使用start方法？？</p>
-<p>如果我们直接调用Run方法，会发现控制他的线程是main方法，而不是我们的Thread-0线程，这样的就不会交替执行，而是必须将方法执行完毕才可以执行下一个方法。这样就是串行化执行，而不是多线程。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;喵喵，我是小喵咪&quot;</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        time++;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;发生了错误&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (time==<span class="number">20</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="线程死锁"><a href="#线程死锁" class="headerlink" title="线程死锁"></a>线程死锁</h1><p>多线程占用对方的资源，但是不肯相让，导致了死锁。线程一直得不到资源，而一直在相互等待。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        Block block=<span class="keyword">new</span> <span class="title class_">Block</span>(<span class="literal">true</span>);</span><br><span class="line">        Block block1=<span class="keyword">new</span> <span class="title class_">Block</span>(<span class="literal">false</span>);</span><br><span class="line">        block.start();</span><br><span class="line">        block1.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Block</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">boolean</span> flag;</span><br><span class="line">    <span class="keyword">static</span> Object object1=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    <span class="keyword">static</span> Object object2=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Block</span><span class="params">(<span class="type">boolean</span> flag)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.flag=flag;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (object1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;a我进入到了1&quot;</span>);</span><br><span class="line">                <span class="keyword">synchronized</span> (object2)&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;a我进入到了2&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (object2) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;b我进入到了2&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">synchronized</span> (object1) &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;b我进入到了1&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739579.png" alt="image-20220317103303292"></p>
-<h2 id="Start源码"><a href="#Start源码" class="headerlink" title="Start源码"></a>Start源码</h2><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739574.png" alt="image-20220317104213240"></p>
-<p>他的底层调用了start0方法，<strong>但是start0方法是一个native方法，由jvm底层进行调用，而不是由我们程序员进行调用</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301740505.png" alt="image-20220317104331963"></p>
-<p>在start方法调用start0方法之后，线程并不是立刻执行，而是进入了可执行的状态，而最终的运行是由cpu统一进行调度。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739931.png" alt="image-20220318140102914"></p>
+<p>可以看到程序一直卡在这里等待对方释放资源</p>
+<h1 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h1><ol>
+<li>当前线程的同步方法，同步代码块执行结束（正常的执行结束）</li>
+<li>当前线程在同步代码块，同步方法中遇到return，break（不得已而出来）</li>
+<li>当前线程在同步代码块，或者方法遇到了未处理的错误或者异常，导致异常结束</li>
+<li>当前线程在同步代码块，同步方法中执行了对象的wait方法，<strong>当前线程暂停，注意但是sleep方法不会释放锁</strong></li>
+</ol>
+<ul>
+<li><strong>不会释放锁：线程执行同步代码块或者同步方法时，程序调用sleep，yield方法会</strong>暂停当前线程的执行，不会释放锁</li>
+<li>线程执行同步代码块时，其他线程调用了该线程的suspend（）方法将该线程挂起，该线程不会释放锁。</li>
+</ul>
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        Num num=<span class="keyword">new</span> <span class="title class_">Num</span>();</span><br><span class="line">        num.start();</span><br><span class="line"></span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">letter</span> <span class="operator">=</span> scanner.next();</span><br><span class="line">            <span class="keyword">if</span> (letter.equals(<span class="string">&quot;Q&quot;</span>)) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;程序结束&quot;</span>);</span><br><span class="line">                num.flag=<span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Num</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">boolean</span> flag=<span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (flag)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Math.round(Math.random()*<span class="number">100</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739777.png" alt="image-20220318142935716"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Credit credit=<span class="keyword">new</span> <span class="title class_">Credit</span>();</span><br><span class="line">        Thread thread=<span class="keyword">new</span> <span class="title class_">Thread</span>(credit);</span><br><span class="line">        Thread thread1=<span class="keyword">new</span> <span class="title class_">Thread</span>(credit);</span><br><span class="line">        thread.start();</span><br><span class="line">        thread1.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Credit</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">    <span class="type">double</span> balance=<span class="number">1000.00</span>;</span><br><span class="line">    <span class="keyword">static</span> Object object=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (object)&#123;</span><br><span class="line">            <span class="keyword">if</span> (balance&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;您的余额不足&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">                balance=balance-<span class="number">100</span>;</span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">&quot;取出100元，还剩&quot;</span>+balance);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739150.png" alt="image-20220318144512275"></p>
 
       
     </div>

@@ -232,6 +232,128 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11601.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/11601.html" class="post-title-link" itemprop="url">Java中的注解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-03 17:47:48" itemprop="dateModified" datetime="2022-07-03T17:47:48+08:00">2022-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">Java基本知识</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/11601.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/11601.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中的注解"><a href="#Java中的注解" class="headerlink" title="Java中的注解"></a>Java中的注解</h1><h2 id="三种注解"><a href="#三种注解" class="headerlink" title="三种注解"></a>三种注解</h2><h3 id="Override"><a href="#Override" class="headerlink" title="@Override"></a>@Override</h3><p>限定于某个某个方法，重写父类的方法，该注解只能用于方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> season+characteristic;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>源码，下面的并非一个接口，而是一个注解类，是jdk1.5之后添加的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Deprecated"><a href="#Deprecated" class="headerlink" title="@Deprecated"></a>@Deprecated</h3><p>用于表示某个方法已经过时，但是过时并不是表示不可以使用,这个注解可以做到新旧版本的过度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SuppressWarning"><a href="#SuppressWarning" class="headerlink" title="@SuppressWarning"></a>@SuppressWarning</h3><p>抑制编译器警告</p>
+<p>可以使用该注解，取消编译器对这个的警告，例如下面的方法中，就可以抑制所有的警告all，当然我们也可以精确的仅仅抑制某个警告，比如使用unused去抑制编译器对我们从没有使用的一个属性的警告。而我们使用的SuppressWarnings范围囊括这一个方法或者类，如果在main方法前使用，则我们可以抑制main方法的警告，而不妨碍别的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">        System.out.println(Season.SPRING.name());</span><br><span class="line">        System.out.println(Season.SPRING.hashCode());</span><br><span class="line">        <span class="comment">//输出相应的编号，编号从0开始</span></span><br><span class="line">        System.out.println(Season.SPRING.ordinal());</span><br><span class="line">        Season []values=Season.values();</span><br><span class="line">        <span class="keyword">for</span> (Season A :values)&#123;</span><br><span class="line">            System.out.println(A);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Season.valueOf(<span class="string">&quot;SPRING&quot;</span>));</span><br><span class="line">        <span class="comment">//System.out.println(Season.valueOf(&quot;dj&quot;));</span></span><br><span class="line">        System.out.println(Season.SPRING.compareTo(Season.AUTUMN));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>),</span><br><span class="line">    OTHER;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四种元注解"><a href="#四种元注解" class="headerlink" title="四种元注解"></a>四种元注解</h2><ol>
+<li>Retntion（保留）指定注解的作用范围，三种source，class，runtime</li>
+<li>Target 指定注解可以在那些地方使用</li>
+<li>Documented指定该注解是否会在Javadoc中体现在页面中</li>
+<li>Inherited 子类会继承父类注解</li>
+</ol>
+<p>比如下面的类Target表示在方法中使用，而Retenttion表示在源文件中保留注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11723.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -333,128 +455,6 @@
 </ul>
 <p>所有字母都要大写。多个单词时用下划线进行链接。比如：THE_BIGGEST_NUM。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/11601.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/11601.html" class="post-title-link" itemprop="url">Java中的注解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-03 17:47:48" itemprop="dateModified" datetime="2022-07-03T17:47:48+08:00">2022-07-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">Java基本知识</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/11601.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/11601.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中的注解"><a href="#Java中的注解" class="headerlink" title="Java中的注解"></a>Java中的注解</h1><h2 id="三种注解"><a href="#三种注解" class="headerlink" title="三种注解"></a>三种注解</h2><h3 id="Override"><a href="#Override" class="headerlink" title="@Override"></a>@Override</h3><p>限定于某个某个方法，重写父类的方法，该注解只能用于方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> season+characteristic;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>源码，下面的并非一个接口，而是一个注解类，是jdk1.5之后添加的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Deprecated"><a href="#Deprecated" class="headerlink" title="@Deprecated"></a>@Deprecated</h3><p>用于表示某个方法已经过时，但是过时并不是表示不可以使用,这个注解可以做到新旧版本的过度。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="SuppressWarning"><a href="#SuppressWarning" class="headerlink" title="@SuppressWarning"></a>@SuppressWarning</h3><p>抑制编译器警告</p>
-<p>可以使用该注解，取消编译器对这个的警告，例如下面的方法中，就可以抑制所有的警告all，当然我们也可以精确的仅仅抑制某个警告，比如使用unused去抑制编译器对我们从没有使用的一个属性的警告。而我们使用的SuppressWarnings范围囊括这一个方法或者类，如果在main方法前使用，则我们可以抑制main方法的警告，而不妨碍别的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">        System.out.println(Season.SPRING.name());</span><br><span class="line">        System.out.println(Season.SPRING.hashCode());</span><br><span class="line">        <span class="comment">//输出相应的编号，编号从0开始</span></span><br><span class="line">        System.out.println(Season.SPRING.ordinal());</span><br><span class="line">        Season []values=Season.values();</span><br><span class="line">        <span class="keyword">for</span> (Season A :values)&#123;</span><br><span class="line">            System.out.println(A);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Season.valueOf(<span class="string">&quot;SPRING&quot;</span>));</span><br><span class="line">        <span class="comment">//System.out.println(Season.valueOf(&quot;dj&quot;));</span></span><br><span class="line">        System.out.println(Season.SPRING.compareTo(Season.AUTUMN));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>),</span><br><span class="line">    OTHER;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="四种元注解"><a href="#四种元注解" class="headerlink" title="四种元注解"></a>四种元注解</h2><ol>
-<li>Retntion（保留）指定注解的作用范围，三种source，class，runtime</li>
-<li>Target 指定注解可以在那些地方使用</li>
-<li>Documented指定该注解是否会在Javadoc中体现在页面中</li>
-<li>Inherited 子类会继承父类注解</li>
-</ol>
-<p>比如下面的类Target表示在方法中使用，而Retenttion表示在源文件中保留注释</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 

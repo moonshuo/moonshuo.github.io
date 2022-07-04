@@ -350,6 +350,381 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38312.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/38312.html" class="post-title-link" itemprop="url">Java中类与对象以及存在形式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 14:37:20" itemprop="dateModified" datetime="2022-07-04T14:37:20+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/38312.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/38312.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中类与对象以及存在形式"><a href="#Java中类与对象以及存在形式" class="headerlink" title="Java中类与对象以及存在形式"></a>Java中类与对象以及存在形式</h1><h2 id="Java中类与对象"><a href="#Java中类与对象" class="headerlink" title="Java中类与对象"></a>Java中类与对象</h2><p>在Java程序中<strong>类</strong>可以认为成一种自定义发数据类型，而例如int类型是由Java提供的数据类型。比如人类，可以认为是一种包含一个鼻子两个眼睛等等属性和会直立行走等等行为的一个类，而猫类可以认为成由毛茸茸的毛四条腿等等属性和吃老鼠等等行为构成的一个生物集合，也可以认为一个数据类型。</p>
+<p>而对象可以是类中一个具体的示例，比如张奶奶家里的小花猫就是猫类的一个对象，你我也是人类中的其中一个对象。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437504.png" alt="image-20220413094813438"></p>
+<p> 观察以下代码：可以发现一个cat类可以定义好多对象，而且将来可以灵活添加很多属性。类是对象的抽象，对象是类的具体实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437505.png" alt="image-20220413094840226"></p>
+<h2 id="在内存中的存在形式"><a href="#在内存中的存在形式" class="headerlink" title="在内存中的存在形式"></a>在内存中的存在形式</h2><ol>
+<li>栈：一般存放基本数据类型。</li>
+<li>堆：用于存放对象。</li>
+<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
+</ol>
+<p>根据图中可知，Cat类存在于栈中，存储着cat1的地址信息，而cat1在堆中，存储着其属性的地址信息，而真正的属性值在方法区的常量池中。所有类的属性值都存储在方法区中，采用套娃的方式进行存储。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437506.png" alt="image-20220413095040736"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> <span class="keyword">extends</span> <span class="title class_">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437507.png" alt="image-20220413095113870"></p>
+<p> 接下来我们执行一下下一段代码，注意其中对象的机制。直接将对象cat1赋值给cat2，其实相当于将cat1的地址给予的cat2，</p>
+<p> <img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437508.png" alt="image-20220413095134754"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437509.png" alt="image-20220413095217379"></p>
+<p> 最终我们更改cat2的值，看看是否cat1的值也是否会发生改变？？？我们更改了cat2的name，可以发现最终cat1也发生了改变，是因为这里改变直接改变了方法区中的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        cat2.name=<span class="string">&quot;旺旺&quot;</span>;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041437510.png" alt="image-20220413095240876"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/28724.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/28724.html" class="post-title-link" itemprop="url">递归方法调用中内存细节以及代码运行顺序</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 14:37:58" itemprop="dateModified" datetime="2022-07-04T14:37:58+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/28724.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/28724.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="递归方法调用中内存细节以及代码运行顺序"><a href="#递归方法调用中内存细节以及代码运行顺序" class="headerlink" title="递归方法调用中内存细节以及代码运行顺序"></a>递归方法调用中内存细节以及代码运行顺序</h1><p>首先运行以下代码块，观察其运行结果，输出1234，4321而不是。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041428055.png" alt="img"></p>
+<p>我们来仔细看一下代码的运行情况以及运行顺序，可以发现在递归调用的过程中，会占用大量的空间。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041428056.png" alt="image-20220417114354935"></p>
+<p> 最后我们加深一下理解，运行一下以下代码，仅仅在方法区加上了一个else，发现结果仅仅输出了一个1，是因为在其他满足的条件下，就不会区执行输出语句了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041428057.png" alt="image-20220417114447564"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41249.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/41249.html" class="post-title-link" itemprop="url">Java对象中的方法调用机制以及传参陷阱</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 14:31:50" itemprop="dateModified" datetime="2022-07-04T14:31:50+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/41249.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/41249.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java对象中的方法调用机制以及传参陷阱"><a href="#Java对象中的方法调用机制以及传参陷阱" class="headerlink" title="Java对象中的方法调用机制以及传参陷阱"></a>Java对象中的方法调用机制以及传参陷阱</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">doubleSum</span><span class="params">(<span class="type">int</span> num1,<span class="type">int</span> num2)</span>&#123;</span><br><span class="line">        <span class="type">int</span> sum=num1+num2;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431972.png" alt="image-20220413095415163"></p>
+<p>执行上述代码得到结果为30.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line"><span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br></pre></td></tr></table></figure>
+
+<p>这一段代码在main栈里面执行，Test test&#x3D;new Test();执行之后其内存结构如图，会在堆中创建一个对象。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431973.png" alt="image-20220413095448347"></p>
+<p> 而当执行int sumNum&#x3D;test.doubleSum(10,20);时候，栈中会产生一个独立的栈用于运行函数doubleSum。结构如下：</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431974.png" alt="image-20220413095514244"></p>
+<p> 而当在栈中运行到return时，独立的栈运算结束，独立的空间栈被释放，将最终得到的值根据原来保留的地址传回main栈中，并且将值读给sumNum。</p>
+<h2 id="方法传参机制常见陷阱"><a href="#方法传参机制常见陷阱" class="headerlink" title="方法传参机制常见陷阱"></a>方法传参机制常见陷阱</h2><p>首先说明，Java中分为值传递机制与引用传递机制。</p>
+<p> 首先我们回顾以下Java中jvm的虚拟内存存储机制，其中包括栈，堆和方法区</p>
+<ol>
+<li>栈：一般存放基本数据类型。</li>
+<li>堆：用于存放对象。</li>
+<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
+</ol>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431975.png" alt="image-20220413095710506"></p>
+<p> 而当我们更改时，如果调用的方法仅仅涉及独立方法栈（即运行方法时独立开辟的栈）时，除了return值可以将其结果保存下来之外，其他都不会将更改的结果保存，是因为方法栈在中的方法在运行结束后，就立即释放掉。其保存子啊方法栈中所有的信息都会释放掉，但是如果方法栈云运行的数据信息更改到堆或者方法区时，就可以永久保存。</p>
+<p>查看以下的例子：可以发现在运行过程中num1[0]&#x3D;200; num2[0]&#x3D;100;这两个语句的运行结果100，200是保存在堆中，即使方法执行完毕释放，也没有影响到堆中的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        num1[<span class="number">0</span>]=<span class="number">200</span>;</span><br><span class="line">        num2[<span class="number">0</span>]=<span class="number">100</span>;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431976.png" alt="img"></p>
+<p>最后我们来观察以下这个例子：可以发现a数组与b数组的交换只是在栈中的独立方法栈中运行的，exchansum函数结束之后，该栈被立即释放掉。虽然a数组与b数组的地址发生了交换，但是这些改变仅仅在方法栈中运行，并没有传回到堆或者main栈，所以改变并不会被记录。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431977.png" alt="image-20220413095807232"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        <span class="type">int</span> []temp=num1;</span><br><span class="line">        num1=num2;</span><br><span class="line">        num2=temp;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431978.png" alt="image-20220413095834868"></p>
+<p>我们再来运行一段代码，发现函数的作用是将对象置空，这样输出t.name会发生报错，但是结果却是正常的输出，其原因是因为这个过程仅仅在独立方法栈中运行，并没有影响到main中的作用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test t=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        t.exchangeSum(t);</span><br><span class="line">        System.out.println(t.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(Test test)</span>&#123;</span><br><span class="line">       test=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041431979.png" alt="image-20220413095856606"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/12208.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -667,381 +1042,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38312.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/38312.html" class="post-title-link" itemprop="url">Java中类与对象以及存在形式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 11:53:16" itemprop="dateModified" datetime="2022-04-17T11:53:16+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/38312.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/38312.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中类与对象"><a href="#Java中类与对象" class="headerlink" title="Java中类与对象"></a>Java中类与对象</h1><p>在Java程序中<strong>类</strong>可以认为成一种自定义发数据类型，而例如int类型是由Java提供的数据类型。比如人类，可以认为是一种包含一个鼻子两个眼睛等等属性和会直立行走等等行为的一个类，而猫类可以认为成由毛茸茸的毛四条腿等等属性和吃老鼠等等行为构成的一个生物集合，也可以认为一个数据类型。</p>
-<p>而对象可以是类中一个具体的示例，比如张奶奶家里的小花猫就是猫类的一个对象，你我也是人类中的其中一个对象。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130948459.png" alt="image-20220413094813438"></p>
-<p> 观察以下代码：可以发现一个cat类可以定义好多对象，而且将来可以灵活添加很多属性。类是对象的抽象，对象是类的具体实例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130948244.png" alt="image-20220413094840226"></p>
-<h1 id="在内存中的存在形式"><a href="#在内存中的存在形式" class="headerlink" title="在内存中的存在形式"></a>在内存中的存在形式</h1><ol>
-<li>栈：一般存放基本数据类型。</li>
-<li>堆：用于存放对象。</li>
-<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
-</ol>
-<p>根据图中可知，Cat类存在于栈中，存储着cat1的地址信息，而cat1在堆中，存储着其属性的地址信息，而真正的属性值在方法区的常量池中。所有类的属性值都存储在方法区中，采用套娃的方式进行存储。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130950761.png" alt="image-20220413095040736"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> <span class="keyword">extends</span> <span class="title class_">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat2.name=<span class="string">&quot;阿福&quot;</span>;</span><br><span class="line">        cat2.age=<span class="number">3</span>;</span><br><span class="line">        cat2.gender=<span class="string">&#x27;母&#x27;</span>;</span><br><span class="line">        cat2.host=<span class="string">&quot;华妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//访问猫的属性</span></span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130951884.png" alt="image-20220413095113870"></p>
-<p> 接下来我们执行一下下一段代码，注意其中对象的机制。直接将对象cat1赋值给cat2，其实相当于将cat1的地址给予的cat2，</p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130951773.png" alt="image-20220413095134754">![点击并拖拽以移动](</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130952399.png" alt="image-20220413095217379"></p>
-<p> 最终我们更改cat2的值，看看是否cat1的值也是否会发生改变？？？我们更改了cat2的name，可以发现最终cat1也发生了改变，是因为这里改变直接改变了方法区中的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**首先定义猫类，猫拥有名字，年龄，性别，主人等属性*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    String host;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//定义对象cat1，分别给予名字，年龄等等属性</span></span><br><span class="line">        Cat cat1=<span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat1.name=<span class="string">&quot;花花&quot;</span>;</span><br><span class="line">        cat1.age=<span class="number">2</span>;</span><br><span class="line">        cat1.gender=<span class="string">&#x27;公&#x27;</span>;</span><br><span class="line">        cat1.host=<span class="string">&quot;贵妃娘娘&quot;</span>;</span><br><span class="line">        <span class="comment">//定义对象cat2，并且定义等等一系列行为</span></span><br><span class="line">        Cat cat2=cat1;</span><br><span class="line">        cat2.name=<span class="string">&quot;旺旺&quot;</span>;</span><br><span class="line">        System.out.println(cat1.name+cat1.host+cat1.age+cat1.gender);</span><br><span class="line">        System.out.println(cat2.name+cat2.host+cat2.age+cat2.gender);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130952900.png" alt="image-20220413095240876"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/41249.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/41249.html" class="post-title-link" itemprop="url">Java对象中的方法调用机制以及传参陷阱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:46" itemprop="dateModified" datetime="2022-04-17T12:06:46+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/41249.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/41249.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        <span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">doubleSum</span><span class="params">(<span class="type">int</span> num1,<span class="type">int</span> num2)</span>&#123;</span><br><span class="line">        <span class="type">int</span> sum=num1+num2;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130954188.png" alt="image-20220413095415163"></p>
-<p>执行上述代码得到结果为30.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line"><span class="type">int</span> sumNum=test.doubleSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;两数之和为&quot;</span>+sumNum);</span><br></pre></td></tr></table></figure>
-
-<p>这一段代码在main栈里面执行，Test test&#x3D;new Test();执行之后其内存结构如图，会在堆中创建一个对象。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130954371.png" alt="image-20220413095448347"></p>
-<p> 而当执行int sumNum&#x3D;test.doubleSum(10,20);时候，栈中会产生一个独立的栈用于运行函数doubleSum。结构如下：</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130955269.png" alt="image-20220413095514244"></p>
-<p> 而当在栈中运行到return时，独立的栈运算结束，独立的空间栈被释放，将最终得到的值根据原来保留的地址传回main栈中，并且将值读给sumNum。</p>
-<h1 id="方法传参机制常见陷阱"><a href="#方法传参机制常见陷阱" class="headerlink" title="方法传参机制常见陷阱"></a>方法传参机制常见陷阱</h1><p>首先说明，Java中分为值传递机制与引用传递机制。</p>
-<p> 首先我们回顾以下Java中jvm的虚拟内存存储机制，其中包括栈，堆和方法区</p>
-<ol>
-<li>栈：一般存放基本数据类型。</li>
-<li>堆：用于存放对象。</li>
-<li>方法区：常量池（常量，比如字符串等），类加载信息。</li>
-</ol>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130957530.png" alt="image-20220413095710506"></p>
-<p> 而当我们更改时，如果调用的方法仅仅涉及独立方法栈（即运行方法时独立开辟的栈）时，除了return值可以将其结果保存下来之外，其他都不会将更改的结果保存，是因为方法栈在中的方法在运行结束后，就立即释放掉。其保存子啊方法栈中所有的信息都会释放掉，但是如果方法栈云运行的数据信息更改到堆或者方法区时，就可以永久保存。</p>
-<p>查看以下的例子：可以发现在运行过程中num1[0]&#x3D;200; num2[0]&#x3D;100;这两个语句的运行结果100，200是保存在堆中，即使方法执行完毕释放，也没有影响到堆中的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        num1[<span class="number">0</span>]=<span class="number">200</span>;</span><br><span class="line">        num2[<span class="number">0</span>]=<span class="number">100</span>;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130957909.png" alt="image-20220413095741889"></p>
-<p>最后我们来观察以下这个例子：可以发现a数组与b数组的交换只是在栈中的独立方法栈中运行的，exchansum函数结束之后，该栈被立即释放掉。虽然a数组与b数组的地址发生了交换，但是这些改变仅仅在方法栈中运行，并没有传回到堆或者main栈，所以改变并不会被记录。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958256.png" alt="image-20220413095807232"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">        <span class="type">int</span> []b=&#123;<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.exchangeSum(a,b);</span><br><span class="line">        System.out.println(Arrays.toString(a)+Arrays.toString(b));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(<span class="type">int</span>[] num1, <span class="type">int</span> []num2)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">        <span class="type">int</span> []temp=num1;</span><br><span class="line">        num1=num2;</span><br><span class="line">        num2=temp;</span><br><span class="line">        System.out.println(Arrays.toString(num1)+Arrays.toString(num2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958886.png" alt="image-20220413095834868"></p>
-<p>我们再来运行一段代码，发现函数的作用是将对象置空，这样输出t.name会发生报错，但是结果却是正常的输出，其原因是因为这个过程仅仅在独立方法栈中运行，并没有影响到main中的作用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test t=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        t.exchangeSum(t);</span><br><span class="line">        System.out.println(t.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exchangeSum</span><span class="params">(Test test)</span>&#123;</span><br><span class="line">       test=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204130958626.png" alt="image-20220413095856606"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/28724.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/28724.html" class="post-title-link" itemprop="url">递归方法调用中内存细节以及代码运行顺序</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:19" itemprop="dateModified" datetime="2022-04-17T12:06:19+08:00">2022-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/28724.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/28724.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p> 首先运行以下代码块，观察其运行结果，输出1234，4321而不是。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171143875.png" alt="image-20220417114327853"></p>
-<p>我们来仔细看一下代码的运行情况以及运行顺序，可以发现在递归调用的过程中，会占用大量的空间。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171143964.png" alt="image-20220417114354935"></p>
-<p> 最后我们加深一下理解，运行一下以下代码，仅仅在方法区加上了一个else，发现结果仅仅输出了一个1，是因为在其他满足的条件下，就不会区执行输出语句了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">        String name=<span class="string">&quot;你好&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.function(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">function</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            function(n-<span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;n=&quot;</span>+n);&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171145737.png" alt="image-20220417114447564"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/21288.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,7 +1078,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:42" itemprop="dateModified" datetime="2022-04-17T12:06:42+08:00">2022-04-17</time>
+      <time title="修改时间：2022-07-04 14:32:55" itemprop="dateModified" datetime="2022-07-04T14:32:55+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1118,9 +1118,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p> Java中允许同一类中，多个同名方法的存在，但是要求形参列表不一致。</p>
+          <h1 id="Java中方法的重载典型例子"><a href="#Java中方法的重载典型例子" class="headerlink" title="Java中方法的重载典型例子"></a>Java中方法的重载典型例子</h1><p> Java中允许同一类中，多个同名方法的存在，但是要求形参列表不一致。</p>
 <p>在Java中常见的System.out.println(“”);这个输出语句其实也是重载的一种，在Javaapi文档中查看System，println函数可以理解为println(int x),println(char x)等等。可以发现他们都调用了println函数，但是其形参不同。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171146986.png" alt="image-20220417114631182"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041432150.png" alt="image-20220417114631182"></p>
 
       
     </div>
@@ -1183,7 +1183,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 12:06:30" itemprop="dateModified" datetime="2022-04-17T12:06:30+08:00">2022-04-17</time>
+      <time title="修改时间：2022-07-04 14:35:12" itemprop="dateModified" datetime="2022-07-04T14:35:12+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1223,7 +1223,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h1><p> 概念：Java中允许将同一个类中多个同名同功能但是参数个数不同的方法，封装成一个方法，可以通过可变参数实现。一个形参列表中只能有一个可变参数。</p>
+          <h1 id="Java中可变参数与作用域使用细节"><a href="#Java中可变参数与作用域使用细节" class="headerlink" title="Java中可变参数与作用域使用细节"></a>Java中可变参数与作用域使用细节</h1><h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><p> 概念：Java中允许将同一个类中多个同名同功能但是参数个数不同的方法，封装成一个方法，可以通过可变参数实现。一个形参列表中只能有一个可变参数。</p>
 <p>基本语法：</p>
 <p>访问修饰符 返回类型 方法名（数据类型 …形参名）{</p>
 <p>}</p>
@@ -1234,8 +1234,8 @@
 <p>使用可变参数进行实现，这个时候就可以把参数当作数组来进行对待，其用法与数组类似：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**利用递归求取斐波那契数，数量大于2*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.sums(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sums</span><span class="params">(<span class="type">int</span> ...num)</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;参数的个数为&quot;</span>+num.length);</span><br><span class="line">            <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">                res=res+num[i];</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;和为&quot;</span>+res);</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204171148171.png" alt="image-20220417114801844"></p>
-<h1 id="作用域使用细节"><a href="#作用域使用细节" class="headerlink" title="作用域使用细节"></a>作用域使用细节</h1><ol>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041435990.png" alt="image-20220417114801844"></p>
+<h2 id="作用域使用细节"><a href="#作用域使用细节" class="headerlink" title="作用域使用细节"></a>作用域使用细节</h2><ol>
 <li>Java中，主要的变量就是属性（成员变量）与局部变量</li>
 <li>局部变量一般是指成员方法中定义的变量。</li>
 <li>作用域分类：全局变量：就是属性，作用域为整个类体，局部变量：也就是除了属性之外的其他变量，作用域为定义他的代码块</li>
@@ -1304,7 +1304,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-17 22:02:37" itemprop="dateModified" datetime="2022-04-17T22:02:37+08:00">2022-04-17</time>
+      <time title="修改时间：2022-07-04 14:33:59" itemprop="dateModified" datetime="2022-07-04T14:33:59+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1344,13 +1344,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h1><p>修饰符 方法名（形参列表）{</p>
+          <h1 id="Java中构造器"><a href="#Java中构造器" class="headerlink" title="Java中构造器"></a>Java中构造器</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>修饰符 方法名（形参列表）{</p>
 <p>方法体；}</p>
-<h1 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h1><p>主要作用是完成对新对象的初始化，并不去创建对象。</p>
-<h1 id="构造器举例："><a href="#构造器举例：" class="headerlink" title="构造器举例："></a>构造器举例：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//利用构造器进行赋值，完成属性的初始化</span></span><br><span class="line">        Cat test=<span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;阿华&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(test.name+test.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Cat</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//构造器没有返回值，不能用int，void修饰</span></span><br><span class="line">    <span class="comment">//构造器方法名与类名一致</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String pName,<span class="type">int</span> pAge)</span>&#123;</span><br><span class="line">        name=pName;</span><br><span class="line">        age=pAge;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造器被调用了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>主要作用是完成对新对象的初始化，并不去创建对象。</p>
+<h2 id="构造器举例"><a href="#构造器举例" class="headerlink" title="构造器举例"></a>构造器举例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//利用构造器进行赋值，完成属性的初始化</span></span><br><span class="line">        Cat test=<span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;阿华&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(test.name+test.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Cat</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//构造器没有返回值，不能用int，void修饰</span></span><br><span class="line">    <span class="comment">//构造器方法名与类名一致</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String pName,<span class="type">int</span> pAge)</span>&#123;</span><br><span class="line">        name=pName;</span><br><span class="line">        age=pAge;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造器被调用了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204172159622.png" alt="image-20220417115106496"></p>
-<h1 id="构造器的使用细节"><a href="#构造器的使用细节" class="headerlink" title="构造器的使用细节"></a>构造器的使用细节</h1><ol>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041433148.png" alt="image-20220417115106496"></p>
+<h2 id="构造器的使用细节"><a href="#构造器的使用细节" class="headerlink" title="构造器的使用细节"></a>构造器的使用细节</h2><ol>
 <li>一个类可以定义多个不同的构造器，即构造器的重载，构造器也可以仅仅只定义部分属性</li>
 <li>构造器没有返回值</li>
 <li>方法名字与类名字必须一致</li>
@@ -1385,7 +1385,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38603.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/43612.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -1403,7 +1403,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/38603.html" class="post-title-link" itemprop="url">Java中基本算数运算符</a>
+          <a href="/posts/43612.html" class="post-title-link" itemprop="url">Java中的关系运算符</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1421,7 +1421,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:36:40" itemprop="dateModified" datetime="2022-03-30T17:36:40+08:00">2022-03-30</time>
+      <time title="修改时间：2022-03-30 17:32:44" itemprop="dateModified" datetime="2022-03-30T17:32:44+08:00">2022-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1446,8 +1446,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/38603.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/38603.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/43612.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/43612.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1471,70 +1471,51 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>+</td>
-<td>相加</td>
-<td>7+7</td>
-<td>14</td>
+<td>&#x3D;&#x3D;</td>
+<td>比较是否相等</td>
+<td>1&#x3D;&#x3D;1</td>
+<td>1与1相等，结果为true</td>
 </tr>
 <tr>
-<td>字符串相加</td>
-<td>“我爱你”+“我不爱你”</td>
-<td>“我爱你我不爱你”</td>
-<td></td>
+<td>!&#x3D;</td>
+<td>判断是否不等</td>
+<td>1！&#x3D;2</td>
+<td>1与2不相等，结果为true</td>
 </tr>
 <tr>
-<td>-</td>
-<td>相减</td>
-<td>7-7</td>
-<td>0</td>
+<td>&lt;</td>
+<td>小于</td>
+<td>1&lt;2</td>
+<td>true</td>
 </tr>
 <tr>
-<td>*</td>
-<td>相乘</td>
-<td>7*7</td>
-<td>49</td>
+<td>&gt;</td>
+<td>大于</td>
+<td>2&gt;1</td>
+<td>true</td>
 </tr>
 <tr>
-<td>&#x2F;</td>
-<td>相除</td>
-<td>7&#x2F;7</td>
-<td>1</td>
+<td>&lt;&#x3D;</td>
+<td>小于等于</td>
+<td>1&lt;&#x3D;1</td>
+<td>true</td>
 </tr>
 <tr>
-<td>%</td>
-<td>取余数</td>
-<td>11%7</td>
-<td>4</td>
+<td>&gt;&#x3D;</td>
+<td>大于等于</td>
+<td>1&gt;&#x3D;1</td>
+<td>true</td>
 </tr>
 <tr>
-<td>++</td>
-<td>自增前++</td>
-<td>a&#x3D;2;b&#x3D;++a;(在其他运算之前就将a+1)</td>
-<td>a&#x3D;3;b&#x3D;3;</td>
-</tr>
-<tr>
-<td>自增后++</td>
-<td>a&#x3D;2;c&#x3D;a++;</td>
-<td>a&#x3D;3;b&#x3D;2;</td>
-<td></td>
-</tr>
-<tr>
-<td>–</td>
-<td>自减前–</td>
-<td>a&#x3D;2;d&#x3D;–a;</td>
-<td>a&#x3D;1;d&#x3D;1</td>
-</tr>
-<tr>
-<td>自减后–</td>
-<td>a&#x3D;2;e&#x3D;a–;</td>
-<td>a&#x3D;1;e&#x3D;2;</td>
-<td></td>
+<td>instanceof</td>
+<td>检查是否为类的对象instanceof是Java中的二元<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%BF%90%E7%AE%97%E7%AC%A6&spm=1001.2101.3001.7020">运算符</a>，左边是对象，右边是类；当对象是右边类或子类所创建对象时，返回true；否则，返回false,注意左边的对象不能是基本数据类型，左边的对象实例和右边的类不在同一个继承树上。<a target="_blank" rel="noopener" href="https://blog.csdn.net/kuangay/article/details/81563992">instanceof详解参考</a>，后面作者会详细写出应用。</td>
+<td>“hsp” instanceof String</td>
+<td>true</td>
 </tr>
 </tbody></table>
-<p>运行以下示例查看最后结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">      <span class="type">int</span> s1=<span class="number">7</span>;</span><br><span class="line">      <span class="type">int</span> s2=s1+s1;</span><br><span class="line">      <span class="type">int</span> s3=s1-s1;</span><br><span class="line">      <span class="type">int</span> s4=s1*s1;</span><br><span class="line">      <span class="type">int</span> s5=s1/s1;</span><br><span class="line">      <span class="type">int</span> s6=<span class="number">11</span>%<span class="number">7</span>;</span><br><span class="line">      String s7=<span class="string">&quot;我爱你&quot;</span>+<span class="string">&quot;我不爱你&quot;</span>;</span><br><span class="line">      System.out.println(<span class="string">&quot;7+7=&quot;</span>+s2+<span class="string">&quot;\t7-7=&quot;</span>+s3+<span class="string">&quot;\t7*7=&quot;</span>+s4+<span class="string">&quot;\t7/7=&quot;</span>+s5+<span class="string">&quot;\t11%7=&quot;</span>+s6+<span class="string">&quot;\t\&quot;我爱你\&quot;+\&quot;我不爱你\&quot;=&quot;</span>+s7);</span><br><span class="line">      <span class="type">int</span> a=<span class="number">2</span>;</span><br><span class="line">      <span class="type">int</span> b=++a;</span><br><span class="line">      System.out.println(<span class="string">&quot;++a之后a=&quot;</span>+a+<span class="string">&quot;\tb=&quot;</span>+b);</span><br><span class="line">      a=<span class="number">2</span>;</span><br><span class="line">      <span class="type">int</span> c=a++;</span><br><span class="line">      System.out.println(<span class="string">&quot;a++之后a=&quot;</span>+a+<span class="string">&quot;\tc=&quot;</span>+c);</span><br><span class="line">      a=<span class="number">2</span>;</span><br><span class="line">      <span class="type">int</span> d=--a;</span><br><span class="line">      System.out.println(<span class="string">&quot;--a之后a=&quot;</span>+a+<span class="string">&quot;\td=&quot;</span>+d);</span><br><span class="line">      a=<span class="number">2</span>;</span><br><span class="line">      <span class="type">int</span> e=a--;</span><br><span class="line">      System.out.println(<span class="string">&quot;a--之后a=&quot;</span>+a+<span class="string">&quot;\te=&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a==b);</span><br><span class="line">    System.out.println(a!=b);</span><br><span class="line">    System.out.println(a&gt;=b);</span><br><span class="line">    System.out.println(a&lt;=b);</span><br><span class="line">    System.out.println(a&gt;b);</span><br><span class="line">    System.out.println(a&lt;b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732600.png" alt="image-20220306174905757"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301732173.png" alt="image-20220306175303656"></p>
 
       
     </div>
