@@ -199,7 +199,7 @@ function loadWidget(config) {
 	})();
 
 	async function loadModelList() {
-		const response = await fetch(`https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/plugin/live2d/model_list.json`);
+		const response = await fetch(`https://plugin-1309913189.cos.ap-hongkong.myqcloud.com/live2d_api-1.0.1/model_list.json`);
 		modelList = await response.json();
 	}
 
