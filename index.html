@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,6 +223,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/23385.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/23385.html" class="post-title-link" itemprop="url">树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-07-05 09:09:36 / 修改时间：10:38:48" itemprop="dateCreated datePublished" datetime="2022-07-05T09:09:36+08:00">2022-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/23385.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/23385.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><ol>
+<li>树：由称作根的节点以及0个或者多个非空字数组成，这些子树每一个根都被来自根r的一条有向的边所连接。</li>
+<li>儿子&#x2F;父亲&#x2F;兄弟：每一个子树的根叫做根r的儿子，而r是每一个子树的根的父亲，具有相同父亲节点的称为兄弟。</li>
+<li>树叶：没有儿子节点的称为树叶</li>
+</ol>
+<h3 id="树的实现"><a href="#树的实现" class="headerlink" title="树的实现"></a>树的实现</h3><p>实现树的一种方法可以是在每一个节点除数据之外还要有一些链，使得该节点的每一个儿子节点都指向他。<font color='red'>但是每一个节点的儿子是不确定的，在数据结构中直接建立与子节点的链接是不可行的，这样不清楚需要多少个链</font></p>
+<p>但是我们可以将所有的儿子节点放到树节点的链表中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个树节点的定义，这里就不使用泛型了</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span>&#123;</span><br><span class="line">    <span class="comment">//本节点的数据</span></span><br><span class="line">    String data;</span><br><span class="line">    <span class="comment">//第一儿子的链，这样里面相当于嵌套了链表，而firstChild表示头节点</span></span><br><span class="line">    TreeNode firstChild;</span><br><span class="line">    <span class="comment">//下一兄弟节点</span></span><br><span class="line">    TreeNode nextSibling;</span><br><span class="line">    <span class="comment">//定义父节点</span></span><br><span class="line">    TreeNode parent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207050939831.png" alt="image-20220705093937391"></p>
+<p>现在要实现上面的这一个树</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051037365.png" alt="image-20220705103741710"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.树;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022-07-05 09:27:18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TreeImpl</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        TreeNode root=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        TreeNode node1=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        TreeNode node2=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        TreeNode node3=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">        TreeNode node4=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;E&quot;</span>);</span><br><span class="line">        TreeNode node5=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">        TreeNode node6=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;G&quot;</span>);</span><br><span class="line">        TreeNode node7=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;H&quot;</span>);</span><br><span class="line">        TreeNode node8=<span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&quot;I&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根节点添加第一个子节点</span></span><br><span class="line">        root.addAsChild(root,node1);</span><br><span class="line">        <span class="comment">//B节点添加兄弟节点,或者为根节点A添加子节点C,都可以实现</span></span><br><span class="line">        node1.addAsSib(node1,node2);</span><br><span class="line">        <span class="comment">//同理实现其他节点的添加,添加DE</span></span><br><span class="line">        node1.addAsChild(node1,node3);</span><br><span class="line">        node1.addAsChild(node1,node4);</span><br><span class="line">        <span class="comment">//添加F</span></span><br><span class="line">        node2.addAsChild(node2,node5);</span><br><span class="line">        <span class="comment">//添加GHI</span></span><br><span class="line">        node4.addAsChild(node4,node6);</span><br><span class="line">        node4.addAsChild(node4,node7);</span><br><span class="line">        node4.addAsChild(node4,node8);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一个树节点的定义，这里就不使用泛型了</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line">    <span class="comment">//本节点的数据</span></span><br><span class="line">    String data;</span><br><span class="line">    <span class="comment">//第一儿子的链，这样里面相当于嵌套了链表，而firstChild表示头节点</span></span><br><span class="line">    TreeNode firstChild;</span><br><span class="line">    <span class="comment">//下一兄弟节点</span></span><br><span class="line">    TreeNode nextSibling;</span><br><span class="line">    <span class="comment">//定义父节点</span></span><br><span class="line">    TreeNode parent;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TreeNode</span><span class="params">(String data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> node    表示当前节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> newNode 新加入的节点</span></span><br><span class="line"><span class="comment">     *                表示添加子节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAsChild</span><span class="params">(TreeNode node, TreeNode newNode)</span> &#123;</span><br><span class="line">        <span class="comment">//为node添加子节点其实为node的firstChild添加兄弟节点</span></span><br><span class="line">        <span class="comment">//如果是叶子节点，就第一个子节点就是newnode</span></span><br><span class="line">        <span class="keyword">if</span> (isLeaf(node)) &#123;</span><br><span class="line">            node.firstChild = newNode;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//不是子节点，就在子节点的兄弟链上加上一个节点</span></span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">temp</span> <span class="operator">=</span> node.firstChild;</span><br><span class="line">            addAsSib(temp, newNode);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里添加兄弟节点直接添加到最后了</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAsSib</span><span class="params">(TreeNode node, TreeNode newNode)</span> &#123;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">temp</span> <span class="operator">=</span> node;</span><br><span class="line">        <span class="keyword">while</span> (node.nextSibling != <span class="literal">null</span>) &#123;</span><br><span class="line">            node = node.nextSibling;</span><br><span class="line">        &#125;</span><br><span class="line">        node.nextSibling = newNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//是否是叶子节点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isLeaf</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> node.firstChild == <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;TreeNode&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;data=&#x27;&quot;</span> + data + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h3><p>前面已经实现了一个树，那么如果进行遍历？？</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -389,7 +496,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-03 16:54:30" itemprop="dateModified" datetime="2022-07-03T16:54:30+08:00">2022-07-03</time>
+      <time title="修改时间：2022-07-05 09:08:46" itemprop="dateModified" datetime="2022-07-05T09:08:46+08:00">2022-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -699,7 +806,7 @@
 
 <h3 id="计数基数排序"><a href="#计数基数排序" class="headerlink" title="计数基数排序"></a>计数基数排序</h3><p>技术基数排序是对计数排序的优化，不用使用那么临时二维数组进行存储，for循环复杂度也下降</p>
 <p>假如初始的数组如下：</p>
-<p><img data-src="/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/image-20220703163411601.png" alt="image-20220703163411601"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207050830164.png" alt="image-20220703163411601"></p>
 <p>我们统计个位数的个数</p>
 <table>
 <thead>
@@ -1831,141 +1938,6 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#左边的表为主</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">as</span> u <span class="keyword">left</span> <span class="keyword">join</span> topics <span class="keyword">as</span> t <span class="keyword">on</span> u.id<span class="operator">=</span>t.user_id;</span><br><span class="line">#右边的表为主</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> topics <span class="keyword">as</span> t <span class="keyword">right</span> <span class="keyword">join</span> users <span class="keyword">as</span> u <span class="keyword">on</span> u.id<span class="operator">=</span>t.user_id;</span><br></pre></td></tr></table></figure>
 
 <p>当然还有全外链接</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/6722.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/6722.html" class="post-title-link" itemprop="url">稀疏数组与队列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-06-02 09:59:55" itemprop="dateCreated datePublished" datetime="2022-06-02T09:59:55+08:00">2022-06-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-04 22:02:53" itemprop="dateModified" datetime="2022-06-04T22:02:53+08:00">2022-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/6722.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/6722.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="稀疏数组与队列"><a href="#稀疏数组与队列" class="headerlink" title="稀疏数组与队列"></a>稀疏数组与队列</h1><h2 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>当一个数组中大部分元素为0，或者为同一个值的数组时，可以使用稀疏数组来进行保存</p>
-<h3 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h3><ol>
-<li>记录数组一共有几行几列，有多少个不同的值</li>
-<li>把具有不同值的元素的行列及值记录在一个小规模数组中，从而缩小程序的规模</li>
-</ol>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910194.png" alt="image-20220602095921065"></p>
-<p>我们可以看出上面的图片中6*7的数组大小，存储之后可以编程9行3列的数组，缩小了数组的大小</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="二维数组转稀疏数组"><a href="#二维数组转稀疏数组" class="headerlink" title="二维数组转稀疏数组"></a>二维数组转稀疏数组</h4><p>我们首先遍历二维数组，得到有效数据的个数和行列数，然后得到有效数组的位置存储到稀疏数组中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpareArray</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建二维的原始数组</span></span><br><span class="line">        <span class="type">int</span> [][]arrays=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">6</span>][<span class="number">7</span>];</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">3</span>]=<span class="number">22</span>;</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">6</span>]=<span class="number">15</span>;</span><br><span class="line">        arrays[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">11</span>;</span><br><span class="line">        <span class="comment">//输出原始二维数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]row:arrays)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(row));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//转化稀疏数组</span></span><br><span class="line">        <span class="comment">//首先需要获得值的个数确定行数，同时收集二维数组的行与列</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的行</span></span><br><span class="line">        <span class="type">int</span> row=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的列</span></span><br><span class="line">        <span class="type">int</span> col=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> []rows:arrays)&#123;</span><br><span class="line">            <span class="comment">//获得行</span></span><br><span class="line">            row=arrays.length;</span><br><span class="line">            <span class="comment">//获得列</span></span><br><span class="line">            col=rows.length;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i:rows)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//获得稀疏数组的行数</span></span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> [][]spareArray=<span class="keyword">new</span> <span class="title class_">int</span>[count+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">//开始赋值</span></span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">0</span>]=row;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">1</span>]=col;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">2</span>]=count;</span><br><span class="line">        <span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;col;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arrays[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">                    spareArray[flag][<span class="number">0</span>]=i;</span><br><span class="line">                    spareArray[flag][<span class="number">1</span>]=j;</span><br><span class="line">                    spareArray[flag][<span class="number">2</span>]=arrays[i][j];</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]rows:spareArray)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(rows));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910195.png" alt="image-20220602104331351"></p>
-<h4 id="稀疏数组转二维数组"><a href="#稀疏数组转二维数组" class="headerlink" title="稀疏数组转二维数组"></a>稀疏数组转二维数组</h4><p>得到行和列，还原二维数组，将有效数据还原到二维数组中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//稀疏数组转换为二维数组</span></span><br><span class="line">    <span class="type">int</span> [][]newArray=<span class="keyword">new</span> <span class="title class_">int</span>[spareArray[<span class="number">0</span>][<span class="number">0</span>]][spareArray[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">    <span class="comment">//将有效值进行赋值，开始的行数</span></span><br><span class="line">    <span class="type">int</span> flag1=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;spareArray[<span class="number">0</span>][<span class="number">2</span>];i++)&#123;</span><br><span class="line">        newArray[spareArray[flag1][<span class="number">0</span>]][spareArray[flag1][<span class="number">1</span>]]=spareArray[flag1][<span class="number">2</span>];</span><br><span class="line">        flag1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span>[]rows:newArray)&#123;</span><br><span class="line">        System.out.println(Arrays.toString(rows));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列是一个有序列表，可以用数组（有序数组）或者链表（有序链表）来实现，遵从先入先出的原则</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040927082.png" alt="image-20220604092742372"></p>
-<p>第一张图片没有存入数据的时候，rear与front都为-1，当我们加入数据的时候，rear+1，而front不变，当我们取出数据的时候，是从前面开始取出，那么front就开始+1</p>
-<h2 id="队列实现方法"><a href="#队列实现方法" class="headerlink" title="队列实现方法"></a>队列实现方法</h2><h3 id="数组方式普通实现"><a href="#数组方式普通实现" class="headerlink" title="数组方式普通实现"></a>数组方式普通实现</h3><p>而数组队列需要一个front与rear还有maxsize表示最大的容量，当我们加入一个队列的时候，rear+1，而取出的时候，front+1，但是如果rear&#x3D;&#x3D;maxsize-1的时候，就已经满了</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayQueue</span> &#123;</span><br><span class="line">    <span class="type">int</span> maxSize=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> front;</span><br><span class="line">    <span class="type">int</span> rear;</span><br><span class="line">    <span class="type">int</span> []array;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ArrayQueue</span><span class="params">(<span class="type">int</span> maxSize)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">        front=-<span class="number">1</span>;</span><br><span class="line">        rear=-<span class="number">1</span>;</span><br><span class="line">        array=<span class="keyword">new</span> <span class="title class_">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**判断是否为空*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> front==rear;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断是否满了*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> rear==maxSize-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**取出一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">takeNum</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;为空，没有数据可取出&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            front++;</span><br><span class="line">            System.out.println(<span class="string">&quot;取出成功，取出了&quot;</span>+array[front]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**插入一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertNum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列已经满了，无法插入数据&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            rear++;</span><br><span class="line">            array[rear]=n;</span><br><span class="line">            System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**打印当前队列*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=front;i&lt;rear;)&#123;</span><br><span class="line">            System.out.println(array[++i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayQueue arrayQueue=<span class="keyword">new</span> <span class="title class_">ArrayQueue</span>(<span class="number">3</span>);</span><br><span class="line">        System.out.println(arrayQueue.isFull());</span><br><span class="line">        System.out.println(arrayQueue.isEmpty());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//插入数据</span></span><br><span class="line">        arrayQueue.insertNum(<span class="number">1</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">2</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">3</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">4</span>);</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出数据</span></span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041006457.png" alt="image-20220604100621473"></p>
-<p>当然我们这个也是存在错误的，因为我们这个实现方法并没有完成取模，形成环形队列，只能使用一次</p>
-<h3 id="数组方式环形队列实现"><a href="#数组方式环形队列实现" class="headerlink" title="数组方式环形队列实现"></a>数组方式环形队列实现</h3><p>初始情况下front&#x3D;rear&#x3D;0，此时并没有插入数，但是一旦插入数，front指向当前数，即front&#x3D;0，而rear指向最后一个数的下一个位置，此时我们需要预留出来一个位置给rear，也就是说最多存放maxSize-1个数据，方便我们进行判断满或者为空</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042023297.png" alt="image-20220604202326445"></p>
-<p>而当我们插入一个元素的时候</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042025795.png" alt="image-20220604202454858"></p>
-<p>此时我们对判断满的条件进行观察，查看两种情况</p>
-<p>插入123</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042030266.png" alt="image-20220604203013169"></p>
-<p>插入123，取出12，插入45</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042035457.png" alt="image-20220604203538042"></p>
-<p>我们可以看出判断为满的条件为front&#x3D;（rear+1）%maxsize</p>
-<p>那么判断为空的条件也很明显即rear&#x3D;&#x3D;front</p>
-<p><strong>其实这里不明白为什么要留出一个空来，这样做为了方便分别空还是满，如果不留出来这个空间，插入1234，rear为0，front&#x3D;0，但是这也是判断空的条件，容易混淆</strong>，当然不留空也可以，但是需要我们进行多重判断，反而思路比较麻烦</p>
-<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayQueue2</span> &#123;</span><br><span class="line">    <span class="type">int</span> front;</span><br><span class="line">    <span class="type">int</span> rear;</span><br><span class="line">    <span class="type">int</span> maxSize;</span><br><span class="line">    <span class="type">int</span>[] array;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ArrayQueue2</span><span class="params">(<span class="type">int</span> maxSize)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">        front=<span class="number">0</span>;</span><br><span class="line">        rear=<span class="number">0</span>;</span><br><span class="line">        array=<span class="keyword">new</span> <span class="title class_">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断为空*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> front==rear;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断是否满*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (rear+<span class="number">1</span>)%maxSize==front;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**添加一个数，但是添加数的时候，要注意rear的数是否等于了maxsize，大于就需要减去进行进行循环*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertNum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列已经满了，无法插入数据&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            array[rear]=n;</span><br><span class="line">            System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">            rear++;</span><br><span class="line">            <span class="keyword">if</span> (rear==maxSize)&#123;</span><br><span class="line">                rear= <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**取出一个数,这里也要注意front与maxsize的关系*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">takeNum</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;为空，没有数据可取出&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;取出成功，取出了&quot;</span>+array[front]);</span><br><span class="line">            front++;</span><br><span class="line">            <span class="keyword">if</span> (front==maxSize)&#123;</span><br><span class="line">                front=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**按照顺序展示当前队列*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=front;i!=rear;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (i==maxSize)&#123;</span><br><span class="line">                i=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(array[i]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//插入数据</span></span><br><span class="line">        ArrayQueue2 arrayQueue2=<span class="keyword">new</span> <span class="title class_">ArrayQueue2</span>(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">1</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">2</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">3</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出数据</span></span><br><span class="line">        arrayQueue2.takeNum();</span><br><span class="line">        arrayQueue2.takeNum();</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//插入45</span></span><br><span class="line">        arrayQueue2.insertNum(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">5</span>);</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042054508.png" alt="image-20220604205453247"></p>
 
       
     </div>

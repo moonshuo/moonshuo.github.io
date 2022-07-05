@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -232,7 +232,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/56267.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/34931.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -250,7 +250,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/56267.html" class="post-title-link" itemprop="url">List接口（Collection子接口）</a>
+          <a href="/posts/34931.html" class="post-title-link" itemprop="url">Set接口</a>
         </h2>
 
         <div class="post-meta-container">
@@ -268,7 +268,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:38:06" itemprop="dateModified" datetime="2022-03-30T17:38:06+08:00">2022-03-30</time>
+      <time title="修改时间：2022-03-30 17:35:38" itemprop="dateModified" datetime="2022-03-30T17:35:38+08:00">2022-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -293,8 +293,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/56267.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/56267.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/34931.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/34931.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -308,29 +308,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="List接口基本介绍"><a href="#List接口基本介绍" class="headerlink" title="List接口基本介绍"></a>List接口基本介绍</h1><p><strong>首先明确,List接口是Collection接口的子接口</strong></p>
-<ul>
-<li>List集合类中元素有序，与其加入的顺序一致，并且里面的内容可以重复。</li>
-<li>List集合中每一个元素都有器对应的顺序索引，即支持索引</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        list.add(dog4);</span><br><span class="line">        <span class="comment">//支持索引</span></span><br><span class="line">        System.out.println(list.get(<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">for</span> (Object a:list)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="Set接口的基本介绍"><a href="#Set接口的基本介绍" class="headerlink" title="Set接口的基本介绍"></a>Set接口的基本介绍</h1><ol>
+<li>无序的，添加和取出的顺序不一致，没有索引，但是一旦我们取出之后，这个顺序就不会发生改变了，底层有一个算法，会对其进行顺序处理。</li>
+<li>不允许重复的元素，所以最多只能含有一个null</li>
+<li>和List接口一样，set接口也是Collection的子接口，因此，常用方法和Collection接口一样</li>
+<li>Set接口的遍历方式：使用迭代器或者增强for循环，<strong>不能使用索引的方式来获取</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Set set=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        set.add(<span class="number">1</span>);</span><br><span class="line">        set.add(<span class="number">2</span>);</span><br><span class="line">        set.add(<span class="number">3</span>);</span><br><span class="line">        set.add(<span class="number">1</span>);</span><br><span class="line">        set.add(<span class="number">1</span>);</span><br><span class="line">        set.add(<span class="number">1</span>);</span><br><span class="line">        set.add(<span class="literal">null</span>);</span><br><span class="line">        set.add(<span class="literal">null</span>);</span><br><span class="line">        set.add(<span class="literal">null</span>);</span><br><span class="line">        <span class="comment">//可以发现我们添加了许多重复的元素，但是只输出了一个，而且null是最后添加的，但是却第一个输出</span></span><br><span class="line">        System.out.println(set);</span><br><span class="line">        Iterator iterator= set.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">obiect</span> <span class="operator">=</span>iterator.next();</span><br><span class="line">            System.out.println(obiect);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301737670.png" alt="image-20220307203404215"></p>
-<h1 id="List接口常用的方法"><a href="#List接口常用的方法" class="headerlink" title="List接口常用的方法"></a>List接口常用的方法</h1><p>除了我们前面用到的方法</p>
-<ul>
-<li>插入一个对象,   add方法</li>
-<li>返回元素所在的第一个位置&#x2F;最后的位置  indexOf&#x2F;lastIndexOf</li>
-<li>移除指定index位置的元素，并且返回此元素 remove</li>
-<li>设定指定位置为某个元素 set</li>
-<li>返回某个范围的子集 sublist</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        <span class="comment">//dog4插入到前面</span></span><br><span class="line">        list.add(<span class="number">0</span>,dog4);</span><br><span class="line">        <span class="comment">//返回位置</span></span><br><span class="line">        System.out.println(list.indexOf(dog2));</span><br><span class="line">        System.out.println(list.lastIndexOf(dog2));</span><br><span class="line">        <span class="comment">//移除指定的元素，并且返回</span></span><br><span class="line">        System.out.println(list.remove(<span class="number">2</span>).toString());</span><br><span class="line">        <span class="comment">//指定位置为指定元素</span></span><br><span class="line">        list.set(<span class="number">1</span>,dog4);</span><br><span class="line">        System.out.println(list.subList(<span class="number">0</span>,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301738885.png" alt="image-20220307210720282"></p>
-<h1 id="List遍历方式"><a href="#List遍历方式" class="headerlink" title="List遍历方式"></a>List遍历方式</h1><p>与Collection遍历相同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line"></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        <span class="comment">//迭代器</span></span><br><span class="line">        Iterator iterator=list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">           System.out.println(iterator.next());</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Object o :list) &#123;</span><br><span class="line">            System.out.println(o);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301738716.png" alt="image-20220307211156767"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301735650.png" alt="image-20220308161055228"></p>
 
       
     </div>
@@ -484,144 +470,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/44520.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/44520.html" class="post-title-link" itemprop="url">Collection遍历的两种方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-14 10:34:58" itemprop="dateModified" datetime="2022-06-14T10:34:58+08:00">2022-06-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">Java中的集合</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/44520.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/44520.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><ol>
-<li>Iterator对象称为迭代器，主要用于遍历Collection集合中的元素</li>
-<li>所有实现了Collection接口的集合类都有一个Iterator（）方法，用以返回一个实现了iterator接口的对下个，即可以返回一个迭代器。</li>
-<li>Iterator的结构</li>
-<li>Iterator仅用于遍历集合，Iterator本身并不存放对象。</li>
-</ol>
-<h2 id="迭代器执行原理"><a href="#迭代器执行原理" class="headerlink" title="迭代器执行原理"></a>迭代器执行原理</h2><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206141001711.png" alt="image-20220614092411003" style="zoom:50%;" />
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于remove方法，还方法删除由next返回的最新项，此后我们不能调用remove，直到next再一次调用之后</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Inerator</span>&lt;E&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">	E <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">remove</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>迭代器的删除操作与Collection的remove方法其实效率快很多，当我们一个集合中拥有213456，我们要删除其中的偶数，结果应该为135，如果调用collection方法，每一次删除之前都要重新遍历，事件开销比较大，但是如果使用迭代器的remove方法，效率会快很多。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 其他;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; list=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="number">2</span>);</span><br><span class="line">        list.add(<span class="number">1</span>);</span><br><span class="line">        list.add(<span class="number">3</span>);</span><br><span class="line">        list.add(<span class="number">5</span>);</span><br><span class="line">        IteratorTest iteratorTest=<span class="keyword">new</span> <span class="title class_">IteratorTest</span>();</span><br><span class="line">        iteratorTest.removeEvenVer(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removeEvenVer</span><span class="params">(List&lt;Integer&gt; list)</span>&#123;</span><br><span class="line">        Iterator&lt;Integer&gt; integerIterator= list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (integerIterator.hasNext())&#123;</span><br><span class="line">            <span class="keyword">if</span> (integerIterator.next()%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                integerIterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时有的小伙伴会说我们使用增强for循环，不一样可以实现这个吗</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(List&lt;Integer&gt; list)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Integer i:list)&#123;</span><br><span class="line">        <span class="keyword">if</span> (i%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            list.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206141026578.png" alt="image-20220614102634061"></p>
-<p>但是我们要注意，增强for循环所带来的弊端，增强for循环底层的实现基础迭代器，但是在这个过程中modcount与expectedModCount不同步导致的，在最后的判断中抛出异常，在进行删除添加等操作的时候，尽量不要使用增强for循环。</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3933551.html">Java ConcurrentModificationException异常原因和解决方法 - Matrix海子 - 博客园 (cnblogs.com)</a></p>
-<p>Iterator iterator&#x3D;coll.iterator（）；&#x2F;&#x2F;得到一个集合的迭代器</p>
-<p>&#x2F;&#x2F;hasNext（）判断是否还有下一个元素</p>
-<p>&#x2F;&#x2F;next（）指针向下启动，将下移以后集合位置上的元素返回，所以调用next方法之前，则应该先调用hasNext方法来判断是否已经结束，否则可能会发生异常。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736069.png" alt="image-20220307195612166"></p>
-<p>我们运行以下代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Collection col= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        col.add(<span class="number">123</span>);</span><br><span class="line">        col.add(<span class="number">56</span>);</span><br><span class="line">        col.add(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        col.add(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//要想遍历col集合，需要先得到col对应的迭代器Iterator</span></span><br><span class="line">        Iterator iterator=col.iterator();</span><br><span class="line">        <span class="comment">//利用while循环进行遍历</span></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;遍历完毕&quot;</span>);</span><br><span class="line">        <span class="comment">//重置迭代器</span></span><br><span class="line">        iterator= col.iterator();</span><br><span class="line">        <span class="comment">//下面可以开始二次遍历</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736116.png" alt="image-20220307200714147"></p>
-<p>注意：当我们while循环结束后，这时的迭代器已经指向最后的元素，如果我们再一次输出，就会发生报错。<strong>若我们想要在同一次运行中再一次遍历这个集合，则需要重置我们的迭代器</strong>。</p>
-<h1 id="增强for循环遍历"><a href="#增强for循环遍历" class="headerlink" title="增强for循环遍历"></a>增强for循环遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Collection col= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        col.add(<span class="number">123</span>);</span><br><span class="line">        col.add(<span class="number">56</span>);</span><br><span class="line">        col.add(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        col.add(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Object a:col)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736106.png" alt="image-20220307201434888"></p>
-<p>注意，虽然还是for循环，但是本质还是利用了迭代器，利用debug的方法可以进入，是简化版本的die’dai’qi</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736811.png" alt="image-20220307201623985"></p>
-<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        Collection collection=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        collection.add(dog1);</span><br><span class="line">        collection.add(dog2);</span><br><span class="line">        collection.add(dog3);</span><br><span class="line">        Iterator iterator=collection.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//迭代器指针归位</span></span><br><span class="line">        iterator=collection.iterator();</span><br><span class="line">        <span class="keyword">for</span> (Object a:collection)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736020.png" alt="image-20220307202429693"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/38297.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -736,7 +584,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/24759.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/56267.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -754,7 +602,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/24759.html" class="post-title-link" itemprop="url">集合的简介</a>
+          <a href="/posts/56267.html" class="post-title-link" itemprop="url">List接口（Collection子接口）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -772,7 +620,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:36:30" itemprop="dateModified" datetime="2022-03-30T17:36:30+08:00">2022-03-30</time>
+      <time title="修改时间：2022-07-04 18:08:16" itemprop="dateModified" datetime="2022-07-04T18:08:16+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -797,8 +645,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/24759.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/24759.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/56267.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/56267.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -812,15 +660,164 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="集合的好处"><a href="#集合的好处" class="headerlink" title="集合的好处"></a>集合的好处</h1><ol>
-<li><strong>可以动态保存</strong>任意多个对象，使用比较方便</li>
-<li>提供了一系列方便的操作对象的方法：add，remove，set，get等</li>
-<li>使用集合添加，删除新元素的示意代码，简介明了</li>
+          <h1 id="List接口基本介绍"><a href="#List接口基本介绍" class="headerlink" title="List接口基本介绍"></a>List接口基本介绍</h1><p><strong>首先明确,List接口是Collection接口的子接口</strong></p>
+<ul>
+<li>List集合类中元素有序，与其加入的顺序一致，并且里面的内容可以重复。</li>
+<li>List集合中每一个元素都有器对应的顺序索引，即支持索引</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        list.add(dog4);</span><br><span class="line">        <span class="comment">//支持索引</span></span><br><span class="line">        System.out.println(list.get(<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">for</span> (Object a:list)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="List接口常用的方法"><a href="#List接口常用的方法" class="headerlink" title="List接口常用的方法"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041808664.png" alt="image-20220704180534499">List接口常用的方法</h1><p>除了我们前面用到的方法</p>
+<ul>
+<li>插入一个对象,   add方法</li>
+<li>返回元素所在的第一个位置&#x2F;最后的位置  indexOf&#x2F;lastIndexOf</li>
+<li>移除指定index位置的元素，并且返回此元素 remove</li>
+<li>设定指定位置为某个元素 set</li>
+<li>返回某个范围的子集 sublist</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        <span class="comment">//dog4插入到前面</span></span><br><span class="line">        list.add(<span class="number">0</span>,dog4);</span><br><span class="line">        <span class="comment">//返回位置</span></span><br><span class="line">        System.out.println(list.indexOf(dog2));</span><br><span class="line">        System.out.println(list.lastIndexOf(dog2));</span><br><span class="line">        <span class="comment">//移除指定的元素，并且返回</span></span><br><span class="line">        System.out.println(list.remove(<span class="number">2</span>).toString());</span><br><span class="line">        <span class="comment">//指定位置为指定元素</span></span><br><span class="line">        list.set(<span class="number">1</span>,dog4);</span><br><span class="line">        System.out.println(list.subList(<span class="number">0</span>,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="List遍历方式"><a href="#List遍历方式" class="headerlink" title="List遍历方式"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041808665.png" alt="image-20220704180643800">List遍历方式</h1><p>与Collection遍历相同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line"></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog3);</span><br><span class="line">        <span class="comment">//迭代器</span></span><br><span class="line">        Iterator iterator=list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">           System.out.println(iterator.next());</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Object o :list) &#123;</span><br><span class="line">            System.out.println(o);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041808666.png" alt="image-20220704180742962"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/44520.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/44520.html" class="post-title-link" itemprop="url">Collection遍历的两种方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 18:02:44" itemprop="dateModified" datetime="2022-07-04T18:02:44+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">Java中的集合</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/44520.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/44520.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><ol>
+<li>Iterator对象称为迭代器，主要用于遍历Collection集合中的元素</li>
+<li>所有实现了Collection接口的集合类都有一个Iterator（）方法，用以返回一个实现了iterator接口的对下个，即可以返回一个迭代器。</li>
+<li>Iterator的结构</li>
+<li>Iterator仅用于遍历集合，Iterator本身并不存放对象。</li>
 </ol>
-<h1 id="集合的框架体系"><a href="#集合的框架体系" class="headerlink" title="集合的框架体系"></a>集合的框架体系</h1><p>下面是我们Collection集合（单列集合）常见的重要的子类，在集合放的是单个的子类</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736186.png" alt="image-20220306155730346"></p>
-<p>还有Map（双列集合）集合的重要的框架图，存放的k-V的集合，即可以存放两个集合。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301736018.png" alt="image-20220306155946618"></p>
+<h2 id="迭代器执行原理"><a href="#迭代器执行原理" class="headerlink" title="迭代器执行原理"></a>迭代器执行原理</h2><p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757004.png" alt="image-20220704175415899"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于remove方法，还方法删除由next返回的最新项，此后我们不能调用remove，直到next再一次调用之后</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Inerator</span>&lt;E&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">	E <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">remove</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>迭代器的删除操作与Collection的remove方法其实效率快很多，当我们一个集合中拥有213456，我们要删除其中的偶数，结果应该为135，如果调用collection方法，每一次删除之前都要重新遍历，事件开销比较大，但是如果使用迭代器的remove方法，效率会快很多。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 其他;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; list=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="number">2</span>);</span><br><span class="line">        list.add(<span class="number">1</span>);</span><br><span class="line">        list.add(<span class="number">3</span>);</span><br><span class="line">        list.add(<span class="number">5</span>);</span><br><span class="line">        IteratorTest iteratorTest=<span class="keyword">new</span> <span class="title class_">IteratorTest</span>();</span><br><span class="line">        iteratorTest.removeEvenVer(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removeEvenVer</span><span class="params">(List&lt;Integer&gt; list)</span>&#123;</span><br><span class="line">        Iterator&lt;Integer&gt; integerIterator= list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (integerIterator.hasNext())&#123;</span><br><span class="line">            <span class="keyword">if</span> (integerIterator.next()%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                integerIterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时有的小伙伴会说我们使用增强for循环，不一样可以实现这个吗</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(List&lt;Integer&gt; list)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Integer i:list)&#123;</span><br><span class="line">        <span class="keyword">if</span> (i%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            list.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757005.png" alt="image-20220614102634061"></p>
+<p>但是我们要注意，增强for循环所带来的弊端，增强for循环底层的实现基础迭代器，但是在这个过程中modcount与expectedModCount不同步导致的，在最后的判断中抛出异常，在进行删除添加等操作的时候，尽量不要使用增强for循环。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3933551.html">Java ConcurrentModificationException异常原因和解决方法 - Matrix海子 - 博客园 (cnblogs.com)</a></p>
+<p>Iterator iterator&#x3D;coll.iterator（）；&#x2F;&#x2F;得到一个集合的迭代器</p>
+<p>&#x2F;&#x2F;hasNext（）判断是否还有下一个元素</p>
+<p>&#x2F;&#x2F;next（）指针向下启动，将下移以后集合位置上的元素返回，所以调用next方法之前，则应该先调用hasNext方法来判断是否已经结束，否则可能会发生异常。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757006.png" alt="image-20220307195612166"></p>
+<p>我们运行以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Collection col= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        col.add(<span class="number">123</span>);</span><br><span class="line">        col.add(<span class="number">56</span>);</span><br><span class="line">        col.add(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        col.add(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//要想遍历col集合，需要先得到col对应的迭代器Iterator</span></span><br><span class="line">        Iterator iterator=col.iterator();</span><br><span class="line">        <span class="comment">//利用while循环进行遍历</span></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;遍历完毕&quot;</span>);</span><br><span class="line">        <span class="comment">//重置迭代器</span></span><br><span class="line">        iterator= col.iterator();</span><br><span class="line">        <span class="comment">//下面可以开始二次遍历</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041756549.png" alt="image-20220704175559182" style="zoom:67%;" />
+
+<p>注意：当我们while循环结束后，这时的迭代器已经指向最后的元素，如果我们再一次输出，就会发生报错。<strong>若我们想要在同一次运行中再一次遍历这个集合，则需要重置我们的迭代器</strong>。</p>
+<h1 id="增强for循环遍历"><a href="#增强for循环遍历" class="headerlink" title="增强for循环遍历"></a>增强for循环遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Collection col= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        col.add(<span class="number">123</span>);</span><br><span class="line">        col.add(<span class="number">56</span>);</span><br><span class="line">        col.add(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        col.add(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Object a:col)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757007.png" alt="image-20220704175649647"></p>
+<p>注意，虽然还是for循环，但是本质还是利用了迭代器，利用debug的方法可以进入，是简化版本的die’dai’qi</p>
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757008.png" alt="image-20220704175711885">练习</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        <span class="comment">//迭代器遍历</span></span><br><span class="line">        Collection collection=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        collection.add(dog1);</span><br><span class="line">        collection.add(dog2);</span><br><span class="line">        collection.add(dog3);</span><br><span class="line">        Iterator iterator=collection.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//迭代器指针归位</span></span><br><span class="line">        iterator=collection.iterator();</span><br><span class="line">        <span class="keyword">for</span> (Object a:collection)&#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041757009.png" alt="image-20220704175724420"></p>
 
       
     </div>
@@ -954,6 +951,116 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/24759.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/24759.html" class="post-title-link" itemprop="url">集合的简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 18:03:42" itemprop="dateModified" datetime="2022-07-04T18:03:42+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">Java中的集合</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/24759.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/24759.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="集合的好处"><a href="#集合的好处" class="headerlink" title="集合的好处"></a>集合的好处</h1><ol>
+<li><strong>可以动态保存</strong>任意多个对象，使用比较方便</li>
+<li>提供了一系列方便的操作对象的方法：add，remove，set，get等</li>
+<li>使用集合添加，删除新元素的示意代码，简介明了</li>
+</ol>
+<h1 id="集合的框架体系"><a href="#集合的框架体系" class="headerlink" title="集合的框架体系"></a>集合的框架体系</h1><p>下面是我们Collection集合（单列集合）常见的重要的子类，在集合放的是单个的子类</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041803952.png" alt="image-20220704180327305">还有Map（双列集合)集合的重要的框架图，存放的k-V的集合，即可以存放两个集合。</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041803953.png" alt="image-20220704180334057"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/63960.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -990,7 +1097,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-15 10:30:35" itemprop="dateModified" datetime="2022-06-15T10:30:35+08:00">2022-06-15</time>
+      <time title="修改时间：2022-07-04 18:09:08" itemprop="dateModified" datetime="2022-07-04T18:09:08+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1037,23 +1144,23 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahhua&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;a&quot;</span>,<span class="number">15</span>);</span><br><span class="line">        Dog dog3=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line">        Dog dog4=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ah&quot;</span>,<span class="number">13</span>);</span><br><span class="line"></span><br><span class="line">        List list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(dog1);</span><br><span class="line">        list.add(dog2);</span><br><span class="line">        list.add(<span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">for</span> (Object o :list) &#123;</span><br><span class="line">            <span class="comment">//可以存储，但是不可以遍历</span></span><br><span class="line">            System.out.println(o.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Dog&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151026649.png" alt="image-20220615102549866"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753698.png" alt="image-20220615102549866"></p>
 <h1 id="ArrayList的底层结构和源码分析"><a href="#ArrayList的底层结构和源码分析" class="headerlink" title="ArrayList的底层结构和源码分析"></a>ArrayList的底层结构和源码分析</h1><h2 id="无参构造器的扩容"><a href="#无参构造器的扩容" class="headerlink" title="无参构造器的扩容"></a>无参构造器的扩容</h2><p>首先我们运行以下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//先调用ArrayList的无参构造其</span></span><br><span class="line">        ArrayList arrayList=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        <span class="comment">//第一个for不扩容，&lt;=10</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">            arrayList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//第二个for扩容，已经大于默认的10</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">11</span>;i&lt;<span class="number">15</span>;i++)&#123;</span><br><span class="line">            arrayList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>但我们调用无参构造器时，调用了以下方法，<strong>并且定义的类型为Object[]数组类型，我们可以确认ArrayList的底层使用的是数组存储</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029480.png" alt="image-20220615102633892"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029481.png" alt="image-20220615102641148"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753699.png" alt="image-20220615102633892"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753700.png" alt="image-20220615102641148"></p>
 <p>我们可以看到在运行到add方法时，进入到了一个boolean的方法，此方法先决定是否要进行扩容，而add方法的第一行的函数如下一张图</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029482.png" alt="image-20220615102658151"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753701.png" alt="image-20220615102658151"></p>
 <p>首先判断该存储的数组是否为空，如果为空，则进行比较，并且选取两个数的一个最大数作为初始集合的大小，应该为10。而该方法的最后一行的代码，则是确定是否还进行底层扩容，大于minCapacity则进行扩容。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029483.png" alt="image-20220615102758224"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753702.png" alt="image-20220615102758224"></p>
 <p>当我们决定扩容时，则调用下面的函数，扩容为原来的1.5倍，而copyof方法会保持地址不变，直接增加数。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029484.png" alt="image-20220615102827255"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753703.png" alt="image-20220615102827255"></p>
 <p>当我们运行之后</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029485.png" alt="image-20220615102840971"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753704.png" alt="image-20220615102840971"></p>
 <p>15个空间不够时，我们许需要扩容，扩容之后</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151029486.png" alt="image-20220615102850520"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041753705.png" alt="image-20220615102850520"></p>
 <p>其实在这个过程中进行扩容这么大，是因为在这个arraylist添加和删除的过程中，成本比较大，每一次添加个删除都要不可避免的移动元素，保证空间的连续性，每一次大小变为原来的两倍，避免不得不再一次改变容量</p>
 <h2 id="有参构造器"><a href="#有参构造器" class="headerlink" title="有参构造器"></a>有参构造器</h2><p>有参构造器，我们可以给他附上初始值，而每一次扩容依然是原来的1.5倍，运行的原理和上面的一样，只是初始值为我们赋值的那个数，而不是10.</p>
 
@@ -1339,133 +1446,6 @@
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301743429.png" alt="点击并拖拽以移动"></p>
 <p>但是注意只要存在基本数据类型，&#x3D;&#x3D;就是判断的值是否相等，就不要去管对象的事情了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/65075.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/65075.html" class="post-title-link" itemprop="url">日期类</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:42:59" itemprop="dateModified" datetime="2022-03-30T17:42:59+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/65075.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/65075.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第一代日期类"><a href="#第一代日期类" class="headerlink" title="第一代日期类"></a>第一代日期类</h2><ul>
-<li><p>Date：精确到毫秒i，代表特定的瞬间</p>
-</li>
-<li><p>SimpleDateFormate：格式和解析日期的类</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException &#123;</span><br><span class="line">        Date date=<span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        System.out.println(date);</span><br><span class="line">        <span class="comment">//格式转换</span></span><br><span class="line">        SimpleDateFormat simpleDateFormat=<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy年MM月dd日 hh:mm:ss E&quot;</span>);</span><br><span class="line">        String format=simpleDateFormat.format(date);</span><br><span class="line">        System.out.println(format);</span><br><span class="line"></span><br><span class="line">        String s=<span class="string">&quot;2022年03月02日 05:10:37 周三&quot;</span>;</span><br><span class="line">        <span class="type">Date</span> <span class="variable">parse</span> <span class="operator">=</span>simpleDateFormat.parse(s);</span><br><span class="line">        System.out.println(parse);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742615.png" alt="image-20220302171411298"></p>
-<h2 id="第二代日期类"><a href="#第二代日期类" class="headerlink" title="第二代日期类"></a>第二代日期类</h2><p>Calendar日历类，是一种抽象类，构造器私有化，通过getInstance得到实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException &#123;</span><br><span class="line">        <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span>Calendar.getInstance();</span><br><span class="line">        System.out.println(calendar.get(Calendar.YEAR));</span><br><span class="line">        <span class="comment">//月份从0开始，所以我们要+1</span></span><br><span class="line">        System.out.println(calendar.get(Calendar.MONTH)+<span class="number">1</span>);</span><br><span class="line">        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));</span><br><span class="line">        <span class="comment">//输出24进制的时间</span></span><br><span class="line">        System.out.println(calendar.get(Calendar.HOUR_OF_DAY));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742734.png" alt="image-20220302172357501"></p>
-<h2 id="第三代日期类"><a href="#第三代日期类" class="headerlink" title="第三代日期类"></a>第三代日期类</h2><p>jdk8之后存在</p>
-<ul>
-<li>LocalDate（只有年月日）</li>
-<li>LocalTime（只有时间）</li>
-<li>LocalDateTime（日期+时间）</li>
-<li>DateTimeFormat格式化日期类</li>
-<li>Instant 时间戳</li>
-<li>除了上述之外还增加了是否闰年，增加时间等等方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">import</span> java.time.Instant;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(LocalDate.now());</span><br><span class="line">        System.out.println(LocalTime.now());</span><br><span class="line">        System.out.println(LocalDateTime.now());</span><br><span class="line">        <span class="comment">//英文月</span></span><br><span class="line">        System.out.println(LocalDateTime.now().getMonth());</span><br><span class="line">        <span class="comment">//数字日</span></span><br><span class="line">        System.out.println(LocalDateTime.now().getMonthValue());</span><br><span class="line">        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy年MM月dd日 hh:mm:ss&quot;</span>);</span><br><span class="line">        System.out.println(dateTimeFormatter.format(LocalDateTime.now()));</span><br><span class="line">        <span class="comment">//与第一代日期类的转换</span></span><br><span class="line">        Instant instant=Instant.now();</span><br><span class="line">        System.out.println(instant);</span><br><span class="line">        Date date=Date.from(instant);</span><br><span class="line">        System.out.println(date);</span><br><span class="line">        <span class="comment">//转换回来</span></span><br><span class="line">        instant =date.toInstant();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742186.png"></p>
 
       
     </div>

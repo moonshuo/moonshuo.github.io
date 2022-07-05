@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,6 +223,141 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/6722.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/6722.html" class="post-title-link" itemprop="url">稀疏数组与队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-02 09:59:55" itemprop="dateCreated datePublished" datetime="2022-06-02T09:59:55+08:00">2022-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 22:02:53" itemprop="dateModified" datetime="2022-06-04T22:02:53+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/6722.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/6722.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="稀疏数组与队列"><a href="#稀疏数组与队列" class="headerlink" title="稀疏数组与队列"></a>稀疏数组与队列</h1><h2 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>当一个数组中大部分元素为0，或者为同一个值的数组时，可以使用稀疏数组来进行保存</p>
+<h3 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h3><ol>
+<li>记录数组一共有几行几列，有多少个不同的值</li>
+<li>把具有不同值的元素的行列及值记录在一个小规模数组中，从而缩小程序的规模</li>
+</ol>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910194.png" alt="image-20220602095921065"></p>
+<p>我们可以看出上面的图片中6*7的数组大小，存储之后可以编程9行3列的数组，缩小了数组的大小</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="二维数组转稀疏数组"><a href="#二维数组转稀疏数组" class="headerlink" title="二维数组转稀疏数组"></a>二维数组转稀疏数组</h4><p>我们首先遍历二维数组，得到有效数据的个数和行列数，然后得到有效数组的位置存储到稀疏数组中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpareArray</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建二维的原始数组</span></span><br><span class="line">        <span class="type">int</span> [][]arrays=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">6</span>][<span class="number">7</span>];</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">3</span>]=<span class="number">22</span>;</span><br><span class="line">        arrays[<span class="number">0</span>][<span class="number">6</span>]=<span class="number">15</span>;</span><br><span class="line">        arrays[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">11</span>;</span><br><span class="line">        <span class="comment">//输出原始二维数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]row:arrays)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(row));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//转化稀疏数组</span></span><br><span class="line">        <span class="comment">//首先需要获得值的个数确定行数，同时收集二维数组的行与列</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的行</span></span><br><span class="line">        <span class="type">int</span> row=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//二维数组的列</span></span><br><span class="line">        <span class="type">int</span> col=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> []rows:arrays)&#123;</span><br><span class="line">            <span class="comment">//获得行</span></span><br><span class="line">            row=arrays.length;</span><br><span class="line">            <span class="comment">//获得列</span></span><br><span class="line">            col=rows.length;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i:rows)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//获得稀疏数组的行数</span></span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> [][]spareArray=<span class="keyword">new</span> <span class="title class_">int</span>[count+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">//开始赋值</span></span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">0</span>]=row;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">1</span>]=col;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">2</span>]=count;</span><br><span class="line">        <span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;col;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arrays[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">                    spareArray[flag][<span class="number">0</span>]=i;</span><br><span class="line">                    spareArray[flag][<span class="number">1</span>]=j;</span><br><span class="line">                    spareArray[flag][<span class="number">2</span>]=arrays[i][j];</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[]rows:spareArray)&#123;</span><br><span class="line">            System.out.println(Arrays.toString(rows));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040910195.png" alt="image-20220602104331351"></p>
+<h4 id="稀疏数组转二维数组"><a href="#稀疏数组转二维数组" class="headerlink" title="稀疏数组转二维数组"></a>稀疏数组转二维数组</h4><p>得到行和列，还原二维数组，将有效数据还原到二维数组中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//稀疏数组转换为二维数组</span></span><br><span class="line">    <span class="type">int</span> [][]newArray=<span class="keyword">new</span> <span class="title class_">int</span>[spareArray[<span class="number">0</span>][<span class="number">0</span>]][spareArray[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">    <span class="comment">//将有效值进行赋值，开始的行数</span></span><br><span class="line">    <span class="type">int</span> flag1=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;spareArray[<span class="number">0</span>][<span class="number">2</span>];i++)&#123;</span><br><span class="line">        newArray[spareArray[flag1][<span class="number">0</span>]][spareArray[flag1][<span class="number">1</span>]]=spareArray[flag1][<span class="number">2</span>];</span><br><span class="line">        flag1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span>[]rows:newArray)&#123;</span><br><span class="line">        System.out.println(Arrays.toString(rows));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列是一个有序列表，可以用数组（有序数组）或者链表（有序链表）来实现，遵从先入先出的原则</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206040927082.png" alt="image-20220604092742372"></p>
+<p>第一张图片没有存入数据的时候，rear与front都为-1，当我们加入数据的时候，rear+1，而front不变，当我们取出数据的时候，是从前面开始取出，那么front就开始+1</p>
+<h2 id="队列实现方法"><a href="#队列实现方法" class="headerlink" title="队列实现方法"></a>队列实现方法</h2><h3 id="数组方式普通实现"><a href="#数组方式普通实现" class="headerlink" title="数组方式普通实现"></a>数组方式普通实现</h3><p>而数组队列需要一个front与rear还有maxsize表示最大的容量，当我们加入一个队列的时候，rear+1，而取出的时候，front+1，但是如果rear&#x3D;&#x3D;maxsize-1的时候，就已经满了</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayQueue</span> &#123;</span><br><span class="line">    <span class="type">int</span> maxSize=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> front;</span><br><span class="line">    <span class="type">int</span> rear;</span><br><span class="line">    <span class="type">int</span> []array;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ArrayQueue</span><span class="params">(<span class="type">int</span> maxSize)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">        front=-<span class="number">1</span>;</span><br><span class="line">        rear=-<span class="number">1</span>;</span><br><span class="line">        array=<span class="keyword">new</span> <span class="title class_">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**判断是否为空*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> front==rear;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断是否满了*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> rear==maxSize-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**取出一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">takeNum</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;为空，没有数据可取出&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            front++;</span><br><span class="line">            System.out.println(<span class="string">&quot;取出成功，取出了&quot;</span>+array[front]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**插入一个数*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertNum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列已经满了，无法插入数据&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            rear++;</span><br><span class="line">            array[rear]=n;</span><br><span class="line">            System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**打印当前队列*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=front;i&lt;rear;)&#123;</span><br><span class="line">            System.out.println(array[++i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayQueue arrayQueue=<span class="keyword">new</span> <span class="title class_">ArrayQueue</span>(<span class="number">3</span>);</span><br><span class="line">        System.out.println(arrayQueue.isFull());</span><br><span class="line">        System.out.println(arrayQueue.isEmpty());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//插入数据</span></span><br><span class="line">        arrayQueue.insertNum(<span class="number">1</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">2</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">3</span>);</span><br><span class="line">        arrayQueue.insertNum(<span class="number">4</span>);</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出数据</span></span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        arrayQueue.takeNum();</span><br><span class="line">        <span class="comment">//展示列表</span></span><br><span class="line">        arrayQueue.show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206041006457.png" alt="image-20220604100621473"></p>
+<p>当然我们这个也是存在错误的，因为我们这个实现方法并没有完成取模，形成环形队列，只能使用一次</p>
+<h3 id="数组方式环形队列实现"><a href="#数组方式环形队列实现" class="headerlink" title="数组方式环形队列实现"></a>数组方式环形队列实现</h3><p>初始情况下front&#x3D;rear&#x3D;0，此时并没有插入数，但是一旦插入数，front指向当前数，即front&#x3D;0，而rear指向最后一个数的下一个位置，此时我们需要预留出来一个位置给rear，也就是说最多存放maxSize-1个数据，方便我们进行判断满或者为空</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042023297.png" alt="image-20220604202326445"></p>
+<p>而当我们插入一个元素的时候</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042025795.png" alt="image-20220604202454858"></p>
+<p>此时我们对判断满的条件进行观察，查看两种情况</p>
+<p>插入123</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042030266.png" alt="image-20220604203013169"></p>
+<p>插入123，取出12，插入45</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042035457.png" alt="image-20220604203538042"></p>
+<p>我们可以看出判断为满的条件为front&#x3D;（rear+1）%maxsize</p>
+<p>那么判断为空的条件也很明显即rear&#x3D;&#x3D;front</p>
+<p><strong>其实这里不明白为什么要留出一个空来，这样做为了方便分别空还是满，如果不留出来这个空间，插入1234，rear为0，front&#x3D;0，但是这也是判断空的条件，容易混淆</strong>，当然不留空也可以，但是需要我们进行多重判断，反而思路比较麻烦</p>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 数据结构和算法.稀疏数组和队列;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayQueue2</span> &#123;</span><br><span class="line">    <span class="type">int</span> front;</span><br><span class="line">    <span class="type">int</span> rear;</span><br><span class="line">    <span class="type">int</span> maxSize;</span><br><span class="line">    <span class="type">int</span>[] array;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ArrayQueue2</span><span class="params">(<span class="type">int</span> maxSize)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">        front=<span class="number">0</span>;</span><br><span class="line">        rear=<span class="number">0</span>;</span><br><span class="line">        array=<span class="keyword">new</span> <span class="title class_">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断为空*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> front==rear;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**判断是否满*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (rear+<span class="number">1</span>)%maxSize==front;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**添加一个数，但是添加数的时候，要注意rear的数是否等于了maxsize，大于就需要减去进行进行循环*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertNum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列已经满了，无法插入数据&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            array[rear]=n;</span><br><span class="line">            System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">            rear++;</span><br><span class="line">            <span class="keyword">if</span> (rear==maxSize)&#123;</span><br><span class="line">                rear= <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**取出一个数,这里也要注意front与maxsize的关系*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">takeNum</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;为空，没有数据可取出&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;取出成功，取出了&quot;</span>+array[front]);</span><br><span class="line">            front++;</span><br><span class="line">            <span class="keyword">if</span> (front==maxSize)&#123;</span><br><span class="line">                front=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**按照顺序展示当前队列*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=front;i!=rear;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (i==maxSize)&#123;</span><br><span class="line">                i=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(array[i]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//插入数据</span></span><br><span class="line">        ArrayQueue2 arrayQueue2=<span class="keyword">new</span> <span class="title class_">ArrayQueue2</span>(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">1</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">2</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">3</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出数据</span></span><br><span class="line">        arrayQueue2.takeNum();</span><br><span class="line">        arrayQueue2.takeNum();</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//插入45</span></span><br><span class="line">        arrayQueue2.insertNum(<span class="number">4</span>);</span><br><span class="line">        arrayQueue2.insertNum(<span class="number">5</span>);</span><br><span class="line">        arrayQueue2.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206042054508.png" alt="image-20220604205453247"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -964,122 +1099,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/35955.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/35955.html" class="post-title-link" itemprop="url">JDBC基础二（PreparedStatemrnt与Statement）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-04 14:12:11" itemprop="dateModified" datetime="2022-06-04T14:12:11+08:00">2022-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/35955.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/35955.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Statement的缺陷"><a href="#Statement的缺陷" class="headerlink" title="Statement的缺陷"></a>Statement的缺陷</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; haha= test.initUi();</span><br><span class="line">        System.out.println(test.login(haha)?<span class="string">&quot;登陆成功&quot;</span>:<span class="string">&quot;登陆失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> Map&lt;String ,String &gt; initUi()&#123;</span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的用户名&quot;</span>);</span><br><span class="line">        String userName=scanner.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的登录密码&quot;</span>);</span><br><span class="line">        String password=scanner.nextLine();</span><br><span class="line">        Map&lt;String,String&gt; userInformation=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        userInformation.put(<span class="string">&quot;username&quot;</span>,userName);</span><br><span class="line">        userInformation.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">        <span class="keyword">return</span> userInformation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">login</span><span class="params">(Map&lt;String,String&gt; userInformation)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> loginY=<span class="literal">false</span>;</span><br><span class="line">        Connection connection=<span class="literal">null</span>;</span><br><span class="line">        Statement statement=<span class="literal">null</span>;</span><br><span class="line">        ResultSet resultset=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">            connection= DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/userinformation&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;200101&quot;</span>);</span><br><span class="line">            statement=connection.createStatement();</span><br><span class="line">            String sql=<span class="string">&quot;select * from user where 用户名= &#x27;&quot;</span>+userInformation.get(<span class="string">&quot;username&quot;</span>)+<span class="string">&quot;&#x27;and 密码= &#x27;&quot;</span>+userInformation.get(<span class="string">&quot;password&quot;</span>)+<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">            resultset=statement.executeQuery(sql);</span><br><span class="line">            <span class="keyword">if</span> (resultset.next())&#123;loginY=<span class="literal">true</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resultset!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;resultset.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (statement!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;statement.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (connection!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;connection.close();&#125;<span class="keyword">catch</span>(Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747560.png" alt="image-20220322161854943"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747273.png" alt="image-20220322162721137"></p>
-<ul>
-<li>大家按照如图中信息去输入，可以惊奇的发现，账号密码完全不对，可是怎么就可以登录？？？</li>
-</ul>
-<p><strong>是因为在编译过程中，数据将密码传输给mysql语句，导致mysql语句句意发生改变，大家仔细查看在调试过程中，sql语句句意发生了改变，导致这个验证根本无效，可以直接通过这个登录。</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747554.png" alt="image-20220322162842524"></p>
-<h1 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h1><p>预编译是将语句首先传入，但是将位置用？留出，等到后面在进行传入。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; haha= test.initUi();</span><br><span class="line">        System.out.println(test.login(haha)?<span class="string">&quot;登陆成功&quot;</span>:<span class="string">&quot;登陆失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> Map&lt;String ,String &gt; initUi()&#123;</span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的用户名&quot;</span>);</span><br><span class="line">        String userName=scanner.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的登录密码&quot;</span>);</span><br><span class="line">        String password=scanner.nextLine();</span><br><span class="line">        Map&lt;String,String&gt; userInformation=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        userInformation.put(<span class="string">&quot;username&quot;</span>,userName);</span><br><span class="line">        userInformation.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">        <span class="keyword">return</span> userInformation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">login</span><span class="params">(Map&lt;String,String&gt; userInformation)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> loginY=<span class="literal">false</span>;</span><br><span class="line">        Connection connection=<span class="literal">null</span>;</span><br><span class="line">        PreparedStatement preparedStatement=<span class="literal">null</span>;</span><br><span class="line">        ResultSet resultset=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">            connection= DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/userinformation&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;200101&quot;</span>);</span><br><span class="line">            String sql=<span class="string">&quot;select * from user where 用户名= ? and 密码= ? &quot;</span>;</span><br><span class="line">            preparedStatement=connection.prepareStatement(sql);</span><br><span class="line">            preparedStatement.setString(<span class="number">1</span>,userInformation.get(<span class="string">&quot;username&quot;</span>));</span><br><span class="line">            preparedStatement.setString(<span class="number">2</span>,userInformation.get(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">            resultset= preparedStatement.executeQuery();</span><br><span class="line">            <span class="keyword">if</span> (resultset.next())&#123;loginY=<span class="literal">true</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resultset!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;resultset.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (preparedStatement!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;preparedStatement.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (connection!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;connection.close();&#125;<span class="keyword">catch</span>(Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747290.png" alt="image-20220322163801146"></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ol>
-<li>在大部分情况下，<strong>PreparedStatement</strong>比<strong>Statement</strong>更加广泛，而且更加安全。</li>
-<li><strong>PreparedStatement</strong>比<strong>Statement</strong>运行更加快速，在mysql中，如果连续两条语句一模一样，这样编译器不会对语句进行重新编译，而是直接将<strong>？</strong>赋值进行操作。</li>
-<li>在部分特殊情况下，还是需要使用<strong>Statement，</strong>因为部分企业需求需要进行注入。（比如我们常见的商品按照价格排序界面，需要有order by desc&#x2F;asc时，利用 <strong>PreparedStatement</strong>传输desc值或者asc值时，会为这两个值带上引号，语句无法识别，此时使用<strong>Statement</strong>更加方便。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/45742.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1217,6 +1236,122 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/35955.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/35955.html" class="post-title-link" itemprop="url">JDBC基础二（PreparedStatemrnt与Statement）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 14:12:11" itemprop="dateModified" datetime="2022-06-04T14:12:11+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/35955.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/35955.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Statement的缺陷"><a href="#Statement的缺陷" class="headerlink" title="Statement的缺陷"></a>Statement的缺陷</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; haha= test.initUi();</span><br><span class="line">        System.out.println(test.login(haha)?<span class="string">&quot;登陆成功&quot;</span>:<span class="string">&quot;登陆失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> Map&lt;String ,String &gt; initUi()&#123;</span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的用户名&quot;</span>);</span><br><span class="line">        String userName=scanner.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的登录密码&quot;</span>);</span><br><span class="line">        String password=scanner.nextLine();</span><br><span class="line">        Map&lt;String,String&gt; userInformation=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        userInformation.put(<span class="string">&quot;username&quot;</span>,userName);</span><br><span class="line">        userInformation.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">        <span class="keyword">return</span> userInformation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">login</span><span class="params">(Map&lt;String,String&gt; userInformation)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> loginY=<span class="literal">false</span>;</span><br><span class="line">        Connection connection=<span class="literal">null</span>;</span><br><span class="line">        Statement statement=<span class="literal">null</span>;</span><br><span class="line">        ResultSet resultset=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">            connection= DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/userinformation&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;200101&quot;</span>);</span><br><span class="line">            statement=connection.createStatement();</span><br><span class="line">            String sql=<span class="string">&quot;select * from user where 用户名= &#x27;&quot;</span>+userInformation.get(<span class="string">&quot;username&quot;</span>)+<span class="string">&quot;&#x27;and 密码= &#x27;&quot;</span>+userInformation.get(<span class="string">&quot;password&quot;</span>)+<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">            resultset=statement.executeQuery(sql);</span><br><span class="line">            <span class="keyword">if</span> (resultset.next())&#123;loginY=<span class="literal">true</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resultset!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;resultset.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (statement!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;statement.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (connection!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;connection.close();&#125;<span class="keyword">catch</span>(Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747560.png" alt="image-20220322161854943"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747273.png" alt="image-20220322162721137"></p>
+<ul>
+<li>大家按照如图中信息去输入，可以惊奇的发现，账号密码完全不对，可是怎么就可以登录？？？</li>
+</ul>
+<p><strong>是因为在编译过程中，数据将密码传输给mysql语句，导致mysql语句句意发生改变，大家仔细查看在调试过程中，sql语句句意发生了改变，导致这个验证根本无效，可以直接通过这个登录。</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747554.png" alt="image-20220322162842524"></p>
+<h1 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h1><p>预编译是将语句首先传入，但是将位置用？留出，等到后面在进行传入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 张硕硕</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; haha= test.initUi();</span><br><span class="line">        System.out.println(test.login(haha)?<span class="string">&quot;登陆成功&quot;</span>:<span class="string">&quot;登陆失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> Map&lt;String ,String &gt; initUi()&#123;</span><br><span class="line">        Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的用户名&quot;</span>);</span><br><span class="line">        String userName=scanner.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您的登录密码&quot;</span>);</span><br><span class="line">        String password=scanner.nextLine();</span><br><span class="line">        Map&lt;String,String&gt; userInformation=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        userInformation.put(<span class="string">&quot;username&quot;</span>,userName);</span><br><span class="line">        userInformation.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">        <span class="keyword">return</span> userInformation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">login</span><span class="params">(Map&lt;String,String&gt; userInformation)</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> loginY=<span class="literal">false</span>;</span><br><span class="line">        Connection connection=<span class="literal">null</span>;</span><br><span class="line">        PreparedStatement preparedStatement=<span class="literal">null</span>;</span><br><span class="line">        ResultSet resultset=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">            connection= DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/userinformation&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;200101&quot;</span>);</span><br><span class="line">            String sql=<span class="string">&quot;select * from user where 用户名= ? and 密码= ? &quot;</span>;</span><br><span class="line">            preparedStatement=connection.prepareStatement(sql);</span><br><span class="line">            preparedStatement.setString(<span class="number">1</span>,userInformation.get(<span class="string">&quot;username&quot;</span>));</span><br><span class="line">            preparedStatement.setString(<span class="number">2</span>,userInformation.get(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">            resultset= preparedStatement.executeQuery();</span><br><span class="line">            <span class="keyword">if</span> (resultset.next())&#123;loginY=<span class="literal">true</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resultset!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;resultset.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (preparedStatement!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;preparedStatement.close();&#125;<span class="keyword">catch</span> (Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line">            <span class="keyword">if</span> (connection!=<span class="literal">null</span>)&#123;<span class="keyword">try</span>&#123;connection.close();&#125;<span class="keyword">catch</span>(Exception e)&#123;e.printStackTrace();&#125;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301747290.png" alt="image-20220322163801146"></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ol>
+<li>在大部分情况下，<strong>PreparedStatement</strong>比<strong>Statement</strong>更加广泛，而且更加安全。</li>
+<li><strong>PreparedStatement</strong>比<strong>Statement</strong>运行更加快速，在mysql中，如果连续两条语句一模一样，这样编译器不会对语句进行重新编译，而是直接将<strong>？</strong>赋值进行操作。</li>
+<li>在部分特殊情况下，还是需要使用<strong>Statement，</strong>因为部分企业需求需要进行注入。（比如我们常见的商品按照价格排序界面，需要有order by desc&#x2F;asc时，利用 <strong>PreparedStatement</strong>传输desc值或者asc值时，会为这两个值带上引号，语句无法识别，此时使用<strong>Statement</strong>更加方便。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/58672.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1320,142 +1455,6 @@
 <h2 id="双指针法"><a href="#双指针法" class="headerlink" title="双指针法"></a>双指针法</h2><p>将寻找环的过程转换为追击问题，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> head, fast = head;</span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="literal">null</span>) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            <span class="keyword">if</span> (fast.next != <span class="literal">null</span>) &#123;</span><br><span class="line">                fast = fast.next.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">ptr</span> <span class="operator">=</span> head;</span><br><span class="line">                <span class="keyword">while</span> (ptr != slow) &#123;</span><br><span class="line">                    ptr = ptr.next;</span><br><span class="line">                    slow = slow.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ptr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/64859.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/64859.html" class="post-title-link" itemprop="url">CSS技术复习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-22 14:04:30" itemprop="dateModified" datetime="2022-04-22T14:04:30+08:00">2022-04-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">前端基础复习</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/64859.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/64859.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h1><p>选择器：浏览器根据选择器决定受CSS样式影响的HTML标签</p>
-<p>属性：要改变的样式名，并且每一个属性都有一个值</p>
-<p>声明：一般有多个声明，需要用分号将每个声明分开</p>
-<h1 id="CSS与HTML的结合方式"><a href="#CSS与HTML的结合方式" class="headerlink" title="CSS与HTML的结合方式"></a>CSS与HTML的结合方式</h1><h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h2><p>在标签的style上设置键值对即可，可读性差，多个标签比较难以定义</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color: chartreuse&quot;</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h2><p>在head标签中根据语法规则进行定义，利用style标签进行辅助，但是只能给一个页面使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">div</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border</span>: <span class="number">1px</span> solid green;</span></span><br><span class="line"><span class="language-css">            size: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a>第三种</h2><p>单独写一个css文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;test.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid green;</span><br><span class="line">    size: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h1><h2 id="标签名选择器"><a href="#标签名选择器" class="headerlink" title="标签名选择器"></a>标签名选择器</h2><p>标签名{</p>
-<p>属性：值</p>
-<p>}</p>
-<p>标签名选择器可以被动的选择</p>
-<h2 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-id">#id1</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: blue;</span></span><br><span class="line"><span class="language-css">            size: <span class="number">19px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">        <span class="selector-id">#id2</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: green;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id2&quot;</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h2><p>.class{</p>
-<p>属性：值</p>
-<p>}</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.class1</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: blue;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.class2</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;class1&quot;</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;class2&quot;</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h2><p>选择器1，选择器2.。。。{</p>
-<p>属性：值</p>
-<p>}</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.class1</span>,<span class="selector-id">#id1</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: blue;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="CSS常用样式"><a href="#CSS常用样式" class="headerlink" title="CSS常用样式"></a>CSS常用样式</h1><p>颜色：color</p>
-<p>宽度高度：width，height</p>
-<p>背景颜色：background-color</p>
-<p>字体样式：font-size字体大小</p>
-<p>边框：border</p>
-<p>div居中：margin-left：auto；margin-right：auto</p>
-<p>超链接去除下划线：text-decoration：none</p>
-<p>列表修饰去除：list-style：none</p>
 
       
     </div>

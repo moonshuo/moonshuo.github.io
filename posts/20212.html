@@ -36,21 +36,21 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-    <meta name="description" content="自动类型转换精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路 char-&gt;int-&gt;long-&gt;float-&gt;double byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double 实验以下下面的代码 1234567891011public class Test &amp;#123;    public">
+    <meta name="description" content="Java中自动类型转换与强制类型转换自动类型转换精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路 char-&gt;int-&gt;long-&gt;float-&gt;double byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double 实验以下下面的代码 1234567891011public class Test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中自动类型转换与强制类型转换">
 <meta property="og:url" content="https://moonshuo.cn/posts/20212.html">
 <meta property="og:site_name" content="偷掉月亮">
-<meta property="og:description" content="自动类型转换精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路 char-&gt;int-&gt;long-&gt;float-&gt;double byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double 实验以下下面的代码 1234567891011public class Test &amp;#123;    public">
+<meta property="og:description" content="Java中自动类型转换与强制类型转换自动类型转换精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路 char-&gt;int-&gt;long-&gt;float-&gt;double byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double 实验以下下面的代码 1234567891011public class Test">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311242338.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311243691.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311244314.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553026.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553027.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553028.png">
 <meta property="article:published_time" content="2022-05-29T11:19:35.162Z">
-<meta property="article:modified_time" content="2022-06-15T11:25:49.634Z">
+<meta property="article:modified_time" content="2022-07-04T07:53:22.627Z">
 <meta property="article:author" content="偷掉月亮的阿硕">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311242338.png">
+<meta name="twitter:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553026.png">
 
 
 <link rel="canonical" href="https://moonshuo.cn/posts/20212.html">
@@ -167,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">自动类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82"><span class="nav-number">1.1.</span> <span class="nav-text">自动数据类型转换注意细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">强制类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E7%BB%86%E8%8A%82"><span class="nav-number">2.1.</span> <span class="nav-text">强制类型转换细节</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%AD%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">Java中自动类型转换与强制类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">自动类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">自动数据类型转换注意细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">强制类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E7%BB%86%E8%8A%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">强制类型转换细节</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +182,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -276,7 +276,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-15 19:25:49" itemprop="dateModified" datetime="2022-06-15T19:25:49+08:00">2022-06-15</time>
+      <time title="修改时间：2022-07-04 15:53:22" itemprop="dateModified" datetime="2022-07-04T15:53:22+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,33 +323,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h1><p>精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路</p>
+        <h1 id="Java中自动类型转换与强制类型转换"><a href="#Java中自动类型转换与强制类型转换" class="headerlink" title="Java中自动类型转换与强制类型转换"></a>Java中自动类型转换与强制类型转换</h1><h2 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h2><p>精度小的值自动转换为精度大的值的数据类型,下面我们看一下自动类型转换的两条线路</p>
 <p>char-&gt;int-&gt;long-&gt;float-&gt;double</p>
 <p>byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double</p>
 <p>实验以下下面的代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//令a的值为一个字符a的值</span></span><br><span class="line">      <span class="type">int</span> a=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">      <span class="comment">//输出的结果为该值对应的ASCII码</span></span><br><span class="line">      System.out.println(a);</span><br><span class="line">      <span class="comment">//其实从某种意义上说，1为本质为byte类型的数据，而我们将其自动转换存储到int数据类型中</span></span><br><span class="line">      <span class="type">int</span> b=<span class="number">1</span>;</span><br><span class="line">      System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311242338.png" alt="image-20220331124233303"></p>
-<h2 id="自动数据类型转换注意细节"><a href="#自动数据类型转换注意细节" class="headerlink" title="自动数据类型转换注意细节"></a>自动数据类型转换注意细节</h2><ol>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553026.png" alt="image-20220331124233303"></p>
+<h3 id="自动数据类型转换注意细节"><a href="#自动数据类型转换注意细节" class="headerlink" title="自动数据类型转换注意细节"></a>自动数据类型转换注意细节</h3><ol>
 <li>有多种数据类型混合运算时，系统首先将所有的数据转换成容量最大的那一种类型。</li>
 <li>只能将小精度的类型赋值给大类型的数据，而不能将大精度类型赋值小精度。</li>
 <li><strong>byte,short和char之间不会进行数据类型转换（编译器规定无法识别）。</strong></li>
 <li>byte，short，char之间可以相互计算，但是在计算过程中结果为int类型，不可以用byte等类型变量接受结果。</li>
 <li>boolean类型不参与类型转换。</li>
 </ol>
-<h1 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h1><p>自动转换的逆过程，将过程大的数据类型转换为容量小的数据类型。使用时要加上强制转换符号（），但是会造成精度降低或者溢出。</p>
+<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p>自动转换的逆过程，将过程大的数据类型转换为容量小的数据类型。使用时要加上强制转换符号（），但是会造成精度降低或者溢出。</p>
 <p>运行以下程序，仔细观察结果，可以发现发生了精度损失和溢出，当然这些也不一定会出现，当类型足够装下时其大小时，不会发生以上错误。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=(<span class="type">int</span>)<span class="number">1.9</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="type">int</span> j=<span class="number">196</span>;</span><br><span class="line">        <span class="type">byte</span> k=(<span class="type">byte</span>)j;</span><br><span class="line">        System.out.println(k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311243691.png" alt="image-20220331124318663"></p>
-<h2 id="强制类型转换细节"><a href="#强制类型转换细节" class="headerlink" title="强制类型转换细节"></a>强制类型转换细节</h2><ol>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553027.png" alt="image-20220331124318663"></p>
+<h3 id="强制类型转换细节"><a href="#强制类型转换细节" class="headerlink" title="强制类型转换细节"></a>强制类型转换细节</h3><ol>
 <li>数据精度大-&gt;小，需要进行强制类型转换。</li>
 <li>强转类型只会对最近的操作数有效（即其遇到的第一个数），往往会使用小括号提高优先级。</li>
 <li>char类型可以保存int类型的常量值，但是不可以保存变量值（保存变量值时可能会发生损失）,需要进行强制类型转换。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="comment">//如果强制转换类型对后面所有数据有效，则会输出29，如果仅仅对第一个类型有效，则结果为20</span></span><br><span class="line">        <span class="type">int</span> i=(<span class="type">int</span>)<span class="number">2.9</span>*<span class="number">10</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="type">char</span> c1=<span class="number">100</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;c1保存了常量，可以保存，c1为&quot;</span>+c1);</span><br><span class="line">        <span class="type">int</span>  a=<span class="number">100</span>;</span><br><span class="line">        <span class="type">char</span> c2=(<span class="type">char</span>)a;</span><br><span class="line">        System.out.println(<span class="string">&quot;强制转换之后，以ASCII码的形式进行保存，c2为&quot;</span>+c2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202203311244314.png" alt="image-20220331124412290"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041553028.png" alt="image-20220331124412290"></p>
 
     </div>
 
@@ -385,8 +385,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/40204.html" rel="next" title="Java中整数型与浮点数等数据类型的使用细节">
-                  Java中整数型与浮点数等数据类型的使用细节 <i class="fa fa-chevron-right"></i>
+                <a href="/posts/39625.html" rel="next" title="Java中基本数据类型赋值机制与数组的赋值机制">
+                  Java中基本数据类型赋值机制与数组的赋值机制 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
