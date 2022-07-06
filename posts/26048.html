@@ -36,20 +36,20 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-    <meta name="description" content="拦截器配置[SpringMvc servlet 拦截器 过滤器关系和区别及执行顺序 - Jomini - 博客园 (cnblogs.com)](https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Jomini&#x2F;p&#x2F;13839743.html#:~:text&#x3D;过滤器和拦截器的区别：,1、过滤器是基于函数回调，拦截器是基于java的反射机制的。 2、过滤器是servlet规范规定的，只能用于web程序中，">
+    <meta name="description" content="拦截器配置过滤器 和 拦截器的 6个区别，别再傻傻分不清了_程序员小富的博客-CSDN博客_过滤器和拦截器 Spring MVC 的拦截器（Interceptor）与 Java Servlet 的过滤器（Filter）类似，它主要用于拦截用户的请求并做相应的处理，通常应用在权限验证、记录请求信息的日志、判断用户是否登录等功能上。 SpringMVC中的拦截器用于拦截控制器方法的执行 SpringM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拦截器">
 <meta property="og:url" content="https://moonshuo.cn/posts/26048.html">
 <meta property="og:site_name" content="偷掉月亮">
-<meta property="og:description" content="拦截器配置[SpringMvc servlet 拦截器 过滤器关系和区别及执行顺序 - Jomini - 博客园 (cnblogs.com)](https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Jomini&#x2F;p&#x2F;13839743.html#:~:text&#x3D;过滤器和拦截器的区别：,1、过滤器是基于函数回调，拦截器是基于java的反射机制的。 2、过滤器是servlet规范规定的，只能用于web程序中，">
+<meta property="og:description" content="拦截器配置过滤器 和 拦截器的 6个区别，别再傻傻分不清了_程序员小富的博客-CSDN博客_过滤器和拦截器 Spring MVC 的拦截器（Interceptor）与 Java Servlet 的过滤器（Filter）类似，它主要用于拦截用户的请求并做相应的处理，通常应用在权限验证、记录请求信息的日志、判断用户是否登录等功能上。 SpringMVC中的拦截器用于拦截控制器方法的执行 SpringM">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305872.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305874.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207061521457.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207061521458.png">
 <meta property="article:published_time" content="2022-05-29T11:19:35.444Z">
-<meta property="article:modified_time" content="2022-05-09T15:06:02.916Z">
+<meta property="article:modified_time" content="2022-07-06T07:56:17.458Z">
 <meta property="article:author" content="偷掉月亮的阿硕">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305872.png">
+<meta name="twitter:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207061521457.png">
 
 
 <link rel="canonical" href="https://moonshuo.cn/posts/26048.html">
@@ -181,7 +181,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -275,7 +275,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-09 23:06:02" itemprop="dateModified" datetime="2022-05-09T23:06:02+08:00">2022-05-09</time>
+      <time title="修改时间：2022-07-06 15:56:17" itemprop="dateModified" datetime="2022-07-06T15:56:17+08:00">2022-07-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,8 +318,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="拦截器配置"><a href="#拦截器配置" class="headerlink" title="拦截器配置"></a>拦截器配置</h1><p>[SpringMvc servlet 拦截器 过滤器关系和区别及执行顺序 - Jomini - 博客园 (cnblogs.com)](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jomini/p/13839743.html#:~:text=%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A,1%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E6%98%AF%E5%9F%BA%E4%BA%8E%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%EF%BC%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E6%98%AF%E5%9F%BA%E4%BA%8Ejava%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E3%80%82">https://www.cnblogs.com/Jomini/p/13839743.html#:~:text=过滤器和拦截器的区别：,1、过滤器是基于函数回调，拦截器是基于java的反射机制的。</a> 2、过滤器是servlet规范规定的，只能用于web程序中，而拦截器是在spring容器中，它不依赖servlet容器。)</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69060111#:~:text=%E6%8B%A6%E6%88%AA%E5%99%A8%E6%98%AF%E5%9C%A8%E9%9D%A2%E5%90%91%E5%88%87,%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%82">过滤器、监听器、拦截器的区别 - 知乎 (zhihu.com)</a></p>
+        <h1 id="拦截器配置"><a href="#拦截器配置" class="headerlink" title="拦截器配置"></a>拦截器配置</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xinzhifu1/article/details/106356958">过滤器 和 拦截器的 6个区别，别再傻傻分不清了_程序员小富的博客-CSDN博客_过滤器和拦截器</a></p>
 <p><a target="_blank" rel="noopener" href="http://c.biancheng.net/spring/">Spring</a> MVC 的拦截器（Interceptor）与 <a target="_blank" rel="noopener" href="http://c.biancheng.net/java/">Java</a> <a target="_blank" rel="noopener" href="http://c.biancheng.net/servlet/">Servlet</a> 的过滤器（Filter）类似，它主要用于拦截用户的请求并做相应的处理，通常应用在权限验证、记录请求信息的日志、判断用户是否登录等功能上。</p>
 <p>SpringMVC中的拦截器用于拦截控制器方法的执行</p>
 <p>SpringMVC中的拦截器需要实现HandlerInterceptor</p>
@@ -349,7 +348,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//crtl+o执行方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--preHandle&quot;</span>);</span><br><span class="line">        <span class="comment">//返回true进行拦截</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--postHandle&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1--afterCompletion&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305872.png" alt="image-20220428160643972"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207061521457.png" alt="image-20220428160643972"></p>
 <p>首先和我们的配置的顺序相关，其次会，是一个逐层紧密闭合的过程</p>
 <p>pre</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">applyPreHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="built_in">this</span>.interceptorList.size(); <span class="built_in">this</span>.interceptorIndex = i++) &#123;</span><br><span class="line">        <span class="type">HandlerInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> (HandlerInterceptor)<span class="built_in">this</span>.interceptorList.get(i);</span><br><span class="line">        <span class="keyword">if</span> (!interceptor.preHandle(request, response, <span class="built_in">this</span>.handler)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.triggerAfterCompletion(request, response, (Exception)<span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -358,7 +357,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="built_in">this</span>.interceptorList.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="type">HandlerInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> (HandlerInterceptor)<span class="built_in">this</span>.interceptorList.get(i);</span><br><span class="line">    interceptor.postHandle(request, response, <span class="built_in">this</span>.handler, mv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="return-false"><a href="#return-false" class="headerlink" title="return false"></a>return false</h2><p>如果我将第二个拦截器返回false，那么</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202205092305874.png" alt="image-20220428162725939"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207061521458.png" alt="image-20220428162725939"></p>
 <p>其实在第二个返回false的时候，第二个的post与after都不会执行了，</p>
 
     </div>

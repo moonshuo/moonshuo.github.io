@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,6 +223,315 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/16634.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/16634.html" class="post-title-link" itemprop="url">HTTP协议与Session会话以及cookies</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 14:11:07" itemprop="dateModified" datetime="2022-06-04T14:11:07+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/16634.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/16634.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>HTTP,超文本传输协议。最大的作用就是确定了请求和响应数据的格式，浏览器发送给服务器数据：请求报文；服务i去返回给浏览器数据 ：响应报文。</p>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>请求包含三个部分：</p>
+<ul>
+<li>请求行：请求的方式,请求的URL,请求的协议（一般都是HTTP1.1)</li>
+</ul>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322405.png" alt="image-20220407131452781"></p>
+<ul>
+<li><p>请求消息头：通过具体的参数对本次请求进行详细说明，以键值对的方式进行展现。</p>
+<p>Accept代表可以接受的文件类型，其他表示编码格式，接受的用语言等等</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539385.png" alt="image-20220402143706322"></p>
+<p>比较重要的消息头：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td>服务器的主机地址</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>声明当前能够接受的媒体类型</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>当前请求来源页面的地址</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>请求内容的长度</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>请求体的内容类型</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>浏览器访问服务器时携带的Cookie数据</td>
+</tr>
+</tbody></table>
+<ul>
+<li>请求体</li>
+</ul>
+<p>它将一个页面表单中的组件值通过param1&#x3D;value1&amp;param2&#x3D;value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“&#x2F;chapter15&#x2F;user.html? param1&#x3D;value1&amp;param2&#x3D;value2”的方式传递请求参数。</p>
+<p>get方式，没有请求体，但是有一个queryString，在URL之后</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322406.png" alt="image-20220407132139686"></p>
+<p>post方式，有请求体，from data</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322407.png" alt="image-20220407132212295"></p>
+<p>json格式，有请求体，request payload</p>
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><ul>
+<li><p>响应行：协议+响应状态码+响应状态</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071406806.png" alt="image-20220407132537095"></p>
+</li>
+<li><p>响应头</p>
+</li>
+</ul>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071406807.png" alt="image-20220407132607612"></p>
+<ul>
+<li>响应体</li>
+</ul>
+<p>响应的实际内容，响应的使响应的标签等</p>
+</li>
+</ul>
+<h2 id="Http是无状态的"><a href="#Http是无状态的" class="headerlink" title="Http是无状态的"></a>Http是无状态的</h2><p>当我们传输两次请求时，服务器无法区分是否是同一个客户端发送过来的，比如第一次请求是添加购物车，第二次是请求结账，但是服务器无法判断两次请求的主题是否为同一人。</p>
+<h1 id="Session会话"><a href="#Session会话" class="headerlink" title="Session会话"></a>Session会话</h1><p>Session会话是浏览器通过给不同的请求分配id，标记同一个主体所发送的请求事务，达到跟踪的效果</p>
+<p>在控制台获得打印session的消息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        HttpSession httpSession= req.getSession();</span><br><span class="line">        System.out.println(httpSession.getId());</span><br><span class="line">        System.out.println(httpSession.isNew());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现两次的请求的session都是相同的，但是第一次请求会创建一个，但是第二次不会去新创建一个session</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539388.png" alt="image-20220402151448524"></p>
+<p>常用的API，<strong>注意session的有效会话为半个小时</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前会话</span></span><br><span class="line">HttpSession httpSession= req.getSession();</span><br><span class="line"><span class="comment">//获取sessionid</span></span><br><span class="line">System.out.println(httpSession.getId());</span><br><span class="line"><span class="comment">//判断是否为新的</span></span><br><span class="line">System.out.println(httpSession.isNew());</span><br><span class="line"><span class="comment">//获取最大会话时间</span></span><br><span class="line">System.out.println(httpSession.getMaxInactiveInterval());</span><br><span class="line"><span class="comment">//强制会话失效</span></span><br><span class="line">httpSession.invalidate();</span><br><span class="line"><span class="comment">//获取会话的时间等</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Session保存作用域"><a href="#Session保存作用域" class="headerlink" title="Session保存作用域"></a>Session保存作用域</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向当前的session保存作用域保存一个数据，可以通过另外一个组件获得响应的值，但是与对应的sessionid相对应</span></span><br><span class="line">httpSession.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;java&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.servlets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GetServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        Object nameObj=req.getSession().getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(nameObj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539389.png" alt="image-20220402153847848"></p>
+<p><strong>但是 注意，当我们使用两种不同的浏览器获取数据时，其对应的主体对象不同，其session也会不同，所以我们无法通过再次访问另外一个页面再次对其进行访问</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021549047.png" alt="image-20220402154450198"></p>
+<h1 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155024.png" alt="image-20220415211406461"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &#123;&quot;/Demo01&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">//创建一个cookie对象</span></span><br><span class="line">        Cookie cookie=<span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="comment">//将cookie对象保存到浏览器</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        req.getRequestDispatcher(<span class="string">&quot;hello.html&quot;</span>).forward(req,resp);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码之后，可以在这里找到cookies保存的地址</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155582.png" alt="image-20220415212718679"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155181.png" alt="image-20220415212935029"></p>
+<p>我们也可以对其进行设置时常，保证cookie保存的时间，时间过去，浏览器会进行删除,cookie可以帮助我们记住用户名和密码，并且设置时间，并且设置几天免登录等等操作。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/60271.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/60271.html" class="post-title-link" itemprop="url">Java中可变参数与作用域使用细节</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 14:35:12" itemprop="dateModified" datetime="2022-07-04T14:35:12+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/60271.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/60271.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中可变参数与作用域使用细节"><a href="#Java中可变参数与作用域使用细节" class="headerlink" title="Java中可变参数与作用域使用细节"></a>Java中可变参数与作用域使用细节</h1><h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><p> 概念：Java中允许将同一个类中多个同名同功能但是参数个数不同的方法，封装成一个方法，可以通过可变参数实现。一个形参列表中只能有一个可变参数。</p>
+<p>基本语法：</p>
+<p>访问修饰符 返回类型 方法名（数据类型 …形参名）{</p>
+<p>}</p>
+<p>举个例子</p>
+<p>首先大家看一下以下一段代码，如果想要求得100个，那岂不是很麻烦，这个时候就可以使用可变参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Function</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2, <span class="type">int</span> n3)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2 + n3;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sun</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2, <span class="type">int</span> n3, <span class="type">int</span> n4)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2 + n3 + n4;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用可变参数进行实现，这个时候就可以把参数当作数组来进行对待，其用法与数组类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**利用递归求取斐波那契数，数量大于2*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        Test test=<span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.sums(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sums</span><span class="params">(<span class="type">int</span> ...num)</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;参数的个数为&quot;</span>+num.length);</span><br><span class="line">            <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">                res=res+num[i];</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;和为&quot;</span>+res);</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041435990.png" alt="image-20220417114801844"></p>
+<h2 id="作用域使用细节"><a href="#作用域使用细节" class="headerlink" title="作用域使用细节"></a>作用域使用细节</h2><ol>
+<li>Java中，主要的变量就是属性（成员变量）与局部变量</li>
+<li>局部变量一般是指成员方法中定义的变量。</li>
+<li>作用域分类：全局变量：就是属性，作用域为整个类体，局部变量：也就是除了属性之外的其他变量，作用域为定义他的代码块</li>
+<li>全局变量使用可以不赋值，系统自动匹配默认值，而局部变量必须赋值后才能使用。</li>
+<li>全局变量可以加上修饰符，但是局部变量不可加修饰符。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1337,267 +1646,6 @@
 <h2 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        Scanner lineAccept=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入您想要查看的杨辉三角的行数&quot;</span>);</span><br><span class="line">        <span class="type">int</span> lineNum=lineAccept.nextInt();</span><br><span class="line">        <span class="type">int</span>[][] pascalTriangle =<span class="keyword">new</span> <span class="title class_">int</span>[lineNum][];</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;lineNum;i++)&#123;</span><br><span class="line">           <span class="comment">//将每一行中每一列的值定义下来</span></span><br><span class="line">           System.out.println();</span><br><span class="line">           <span class="type">int</span> columnNum=i+<span class="number">1</span>;</span><br><span class="line">           pascalTriangle[i]=<span class="keyword">new</span> <span class="title class_">int</span>[columnNum];</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;columnNum;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span> (j==<span class="number">0</span>||j==i)&#123;pascalTriangle[i][j]=<span class="number">1</span>;&#125;</span><br><span class="line">               <span class="keyword">else</span> &#123;pascalTriangle[i][j]=pascalTriangle[i-<span class="number">1</span>][j-<span class="number">1</span>]+pascalTriangle[i-<span class="number">1</span>][j];&#125;</span><br><span class="line">               System.out.print(pascalTriangle[i][j]);</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041555643.png" alt="image-20220407181632501"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2894.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/2894.html" class="post-title-link" itemprop="url">Java中数组基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 15:56:04" itemprop="dateModified" datetime="2022-07-04T15:56:04+08:00">2022-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">Java数组</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/2894.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/2894.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中数组基础"><a href="#Java中数组基础" class="headerlink" title="Java中数组基础"></a>Java中数组基础</h1><p> 数组可以存放多个同一类型的数据，数组也可以认为是一种数据类型，是引用类型。</p>
-<h2 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h2><p>动态初始化：数据类型 数组名[] &#x3D;new 数据类型[大小]</p>
-<p>int a[]&#x3D;new int[5];创建了一个数组，名字为a，可以存放五个数据，数据可以后面定义。可以发现当定义之后默认为int类型数组每个数默认为0，自己可以采用循环的方式对其进行重新定义。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []array=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">            array[i]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041555150.png" alt="image-20220407180622715"></p>
-<p>静态初始化：数据类型 数组名[]&#x3D;{元素1，元素2，元素3…..}；</p>
-<p>int []array&#x3D;{1,2,3,4,5,6},表示int类型的数组，名称为array，包含1，2，3，4，5，6这六个元素，数组的大小不可以改变，但是数组的每一个值可以重新赋值改变。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []array=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">            array[i]=i+<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041555151.png" alt="image-20220407180652678"></p>
-<h2 id="数组使用细节"><a href="#数组使用细节" class="headerlink" title="数组使用细节"></a>数组使用细节</h2><ol>
-<li><p>数组是多个相同的类型数据的集合，实现对这些数据的统一管理。（如果为不同类型，则数组类型的精度要可以大于数组包含的值的精度） </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> []array=&#123;<span class="number">1.1</span>,<span class="number">12</span>,<span class="number">15</span>&#125;;可以   <span class="type">int</span> []array=&#123;<span class="number">1.1</span>,<span class="number">12</span>,<span class="number">15</span>&#125;;不可以</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组创建后，如果没有赋值，则都是有默认值的。注意：boolean默认false，String默认为null，char默认为<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041555152.png" alt="img"><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">。</p>
-</li>
-<li><p>数组的下标都是从0开始的</p>
-</li>
-<li><p>数组的下表不要出现越界异常。</p>
-</li>
-<li><p>数组属于引用数据类型，数组型数据的对象为object。</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/1807.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/1807.html" class="post-title-link" itemprop="url">泛型说明</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-03 17:43:40" itemprop="dateModified" datetime="2022-07-03T17:43:40+08:00">2022-07-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E6%B3%9B%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">Java中泛型</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/1807.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/1807.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="泛型说明"><a href="#泛型说明" class="headerlink" title="泛型说明"></a>泛型说明</h1><h2 id="泛型的引入"><a href="#泛型的引入" class="headerlink" title="泛型的引入"></a>泛型的引入</h2><ol>
-<li>不能够对加入集合的的数据类型进行约束（不安全）</li>
-<li>遍历的时候，需要进行类型转换，如果集合中的数据量比较大，对效率有影响</li>
-</ol>
-<p>不使用泛型</p>
-<p>我在添加狗对象的时候，不小心添加了一个猫对象，会报异常的错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList arrayList=<span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;asc&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahn&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;ahn&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        <span class="keyword">for</span> (Object o:arrayList)&#123;</span><br><span class="line">            Dog dog=(Dog) o;</span><br><span class="line">            System.out.println(dog.getName()+dog.getAge());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>而当我们使用泛型，就可以直接辨别出来我们加入的对象，并且在遍历的时候，我们可以直接传入Dog对象，而不是再次进行类型转换。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Dog&gt; arrayList=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Dog&gt;();</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;asc&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;ahn&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        <span class="comment">//arrayList.add(new Cat(&quot;ahn&quot;,15));</span></span><br><span class="line">        <span class="keyword">for</span> (Dog dog:arrayList)&#123;</span><br><span class="line">            System.out.println(dog.getName()+dog.getAge());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742099.png" alt="image-20220703174055627"></p>
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742100.png" alt="image-20220703174109186"></p>
-<h2 id="泛型理解"><a href="#泛型理解" class="headerlink" title="泛型理解"></a>泛型理解</h2><p>泛型又称数据化类型，是jdk5之后出现的新特性，解决数据类型安全性的问题，在类声明或实例化只要指定好需要的具体类型即可。泛型可以保证在程序编译时没有发生警告，运行时就不会产生ClassCastException的异常，同时代码更加简介，健壮。</p>
-<p>泛型可以在类声明时通过一个标识表示类中某个属性的类型，或者时某个方法返回值的类型，或者时参数类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        AA&lt;String&gt; aa=<span class="keyword">new</span> <span class="title class_">AA</span>&lt;String&gt;(<span class="string">&quot;HUAHAU&quot;</span>);</span><br><span class="line">        System.out.println(aa);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AA</span>&lt;E&gt;&#123;</span><br><span class="line">    E s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">AA</span><span class="params">(E s)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.s = s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;AA&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;s=&quot;</span> + s +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742101.png" alt="image-20220703174140109"></p>
-<h2 id="泛型的语法"><a href="#泛型的语法" class="headerlink" title="泛型的语法"></a>泛型的语法</h2><p>接口和类都可以拥有泛型，interface接口<T>{},和class类&lt;k,v&gt;{},尖括号里面并不表示值，而是表示类型，常用T来表示，是Type的缩写。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Student student=<span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;amin&quot;</span>);</span><br><span class="line">        Student student1=<span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;amin&quot;</span>);</span><br><span class="line">        System.out.println(student.hashCode());</span><br><span class="line">        System.out.println(student1.hashCode());</span><br><span class="line">        HashMap&lt;String,Student&gt; hashMap=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String,Student&gt;();</span><br><span class="line">        hashMap.put(student.getName(), student);</span><br><span class="line">        hashMap.put(student1.getName(), student1);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String name: hashMap.keySet())&#123;</span><br><span class="line">            System.out.println(name+hashMap.get(name));</span><br><span class="line">        &#125;</span><br><span class="line">        Set&lt;Map.Entry&lt;String,Student&gt;&gt; entries=hashMap.entrySet();</span><br><span class="line">        Iterator&lt;Map.Entry&lt;String,Student&gt;&gt; iterator= entries.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            Map.Entry&lt;String,Student&gt;  next=  iterator.next();</span><br><span class="line">            System.out.println(next.getKey()+next.getValue());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742102.png" alt="image-20220703174210168"></p>
-<h2 id="泛型的使用细节"><a href="#泛型的使用细节" class="headerlink" title="泛型的使用细节"></a>泛型的使用细节</h2><ol>
-<li>在接口泛型或者类泛型的时候，T或者E只能是引用类型，不可以是基本数据类型</li>
-<li>在指定泛型基本类型后，可以使用其子类的类型。B类继承了student类，那么我们也可以传入子类。!<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742103.png" alt="image-20220703174223853"></li>
-<li>在实际的开发中，编译器会进行类型推断，所以我们会进行简写，编译器会进行类型推断，比如：HashMap&lt;String,Student&gt; hashMap&#x3D;new HashMap&lt;&gt;();</li>
-<li>如果我们不使用泛型的&lt;&gt;,默认使用的Object的泛型。HashMap hashMap&#x3D;new HashMap();也可以将比较方法进行封装</li>
-</ol>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Employee&gt; arrayList=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;花花&quot;</span>,<span class="number">563.23</span>,<span class="keyword">new</span> <span class="title class_">MyDate</span>(<span class="number">2001</span>,<span class="number">1</span>,<span class="number">3</span>)));</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;鬼鬼&quot;</span>,<span class="number">56375.23</span>,<span class="keyword">new</span> <span class="title class_">MyDate</span>(<span class="number">2002</span>,<span class="number">1</span>,<span class="number">3</span>)));</span><br><span class="line">        arrayList.add(<span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;花花&quot;</span>,<span class="number">56355.23</span>,<span class="keyword">new</span> <span class="title class_">MyDate</span>(<span class="number">2003</span>,<span class="number">1</span>,<span class="number">3</span>)));</span><br><span class="line">        System.out.println(arrayList);</span><br><span class="line">        Collections.sort(arrayList, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Employee o1, Employee o2)</span> &#123;</span><br><span class="line">                <span class="type">int</span> i=o1.getName().compareTo(o2.getName());</span><br><span class="line">                <span class="keyword">if</span> (i!=<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="type">int</span> j=o1.getBirthday().getYear()-o2.getBirthday().getYear();</span><br><span class="line">                    <span class="keyword">if</span> (j!=<span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">return</span> j;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> o1.getBirthday().getMonth()-o2.getBirthday().getMonth();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(arrayList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Employee</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> salary;</span><br><span class="line">    <span class="keyword">private</span> MyDate birthday;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String name, <span class="type">double</span> salary, MyDate birthday)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.salary = salary;</span><br><span class="line">        <span class="built_in">this</span>.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name+salary+birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">getSalary</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> salary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> MyDate <span class="title function_">getBirthday</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> birthday;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyDate</span>&#123;</span><br><span class="line">    <span class="keyword">private</span>  <span class="type">int</span> year;</span><br><span class="line">    <span class="keyword">private</span>  <span class="type">int</span> month;</span><br><span class="line">    <span class="keyword">private</span>  <span class="type">int</span> day;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getYear</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> year;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMonth</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> month;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getDay</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> day;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyDate</span><span class="params">(<span class="type">int</span> year, <span class="type">int</span> month, <span class="type">int</span> day)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.year = year;</span><br><span class="line">        <span class="built_in">this</span>.month = month;</span><br><span class="line">        <span class="built_in">this</span>.day = day;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyDate&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;year=&quot;</span> + year +</span><br><span class="line">                <span class="string">&quot;, month=&quot;</span> + month +</span><br><span class="line">                <span class="string">&quot;, day=&quot;</span> + day +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207031742104.png" alt="image-20220703173913177"></p>
 
       
     </div>
