@@ -36,21 +36,21 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-    <meta name="description" content="BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型） BigDecimal适合保存精度更高的浮点型（小数）  1234567891011121314151617181920212223package Learn;import java.math.BigDecimal;import java.math.BigInteger;import java.ut">
+    <meta name="description" content="BigInteger和BigDecimal BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型） BigDecimal适合保存精度更高的浮点型（小数）  1234567891011121314151617181920212223package Learn;import java.math.BigDecimal;import java.math.BigI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BigInteger和BigDecimal">
 <meta property="og:url" content="https://moonshuo.cn/posts/30946.html">
 <meta property="og:site_name" content="偷掉月亮">
-<meta property="og:description" content="BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型） BigDecimal适合保存精度更高的浮点型（小数）  1234567891011121314151617181920212223package Learn;import java.math.BigDecimal;import java.math.BigInteger;import java.ut">
+<meta property="og:description" content="BigInteger和BigDecimal BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型） BigDecimal适合保存精度更高的浮点型（小数）  1234567891011121314151617181920212223package Learn;import java.math.BigDecimal;import java.math.BigI">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637308.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637309.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149076.png">
+<meta property="og:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149077.png">
 <meta property="article:published_time" content="2022-05-29T11:19:34.865Z">
-<meta property="article:modified_time" content="2022-04-20T08:40:30.007Z">
+<meta property="article:modified_time" content="2022-07-05T03:49:48.704Z">
 <meta property="article:author" content="偷掉月亮的阿硕">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png">
+<meta name="twitter:image" content="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png">
 
 
 <link rel="canonical" href="https://moonshuo.cn/posts/30946.html">
@@ -154,7 +154,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -167,6 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BigInteger%E5%92%8CBigDecimal"><span class="nav-number">1.</span> <span class="nav-text">BigInteger和BigDecimal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -181,7 +182,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -275,7 +276,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-20 16:40:30" itemprop="dateModified" datetime="2022-04-20T16:40:30+08:00">2022-04-20</time>
+      <time title="修改时间：2022-07-05 11:49:48" itemprop="dateModified" datetime="2022-07-05T11:49:48+08:00">2022-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -322,19 +323,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <ol>
+        <h1 id="BigInteger和BigDecimal"><a href="#BigInteger和BigDecimal" class="headerlink" title="BigInteger和BigDecimal"></a>BigInteger和BigDecimal</h1><ol>
 <li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
 <li>BigDecimal适合保存精度更高的浮点型（小数）</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png" alt="image-20220420161941537"></p>
-<p>应用</p>
-<p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637308.png" alt="image-20220420162048073"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png" alt="image-20220420161941537"></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149076.png" alt="image-20220420162048073"></p>
 <p>此时我们就需要运行BigDecimal来进行运算</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637309.png" alt="image-20220420163718264"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149077.png" alt="image-20220420163718264"></p>
 
     </div>
 

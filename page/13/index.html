@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,6 +223,289 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/32435.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/32435.html" class="post-title-link" itemprop="url">System类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:42:50" itemprop="dateModified" datetime="2022-03-30T17:42:50+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/32435.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/32435.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="System常见的方法和案例解析"><a href="#System常见的方法和案例解析" class="headerlink" title="System常见的方法和案例解析"></a>System常见的方法和案例解析</h2><ol>
+<li>退出当前程序EXIT，0表示正常状态退出</li>
+<li>获取当前的时间</li>
+<li>拷贝，数组拷贝底层用此代码</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         src – the source array.原数组</span></span><br><span class="line"><span class="comment">         srcPos – starting position in the source array.在原数组的开始位置</span></span><br><span class="line"><span class="comment">         dest – the destination array.目标数组</span></span><br><span class="line"><span class="comment">         destPos – starting position in the destination data.在目标数组的开始位置</span></span><br><span class="line"><span class="comment">         length – the number of array elements to be copied从原数组拷贝多少个数</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">int</span> a[] = &#123;<span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        <span class="type">int</span> b[] = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">        System.arraycopy(b, <span class="number">0</span>, a, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">        System.out.println(Arrays.toString(b));</span><br><span class="line">        <span class="comment">//获取当前时间到1970.1.1的时间，毫秒为单位</span></span><br><span class="line">        <span class="comment">//the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.</span></span><br><span class="line">        <span class="type">long</span> time=System.currentTimeMillis();</span><br><span class="line">        System.out.println(time);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742477.png" alt="image-20220302160950870"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/16468.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/16468.html" class="post-title-link" itemprop="url">包装类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:43:12" itemprop="dateModified" datetime="2022-03-30T17:43:12+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/16468.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/16468.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>针对8中基本数据类型相应的引用类型——包装类，有了类的特点，就可以调用类中的方法是</p>
+<table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Interger</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+</tbody></table>
+<ul>
+<li>案例展示</li>
+</ul>
+<p>int与Interger之间的转换，jdk5之前采用手动装箱与拆箱，其中装箱：基本数据类型——&gt;包装类型，相反的则为拆箱。而jdk5之后采用自动装箱与拆箱的方法。自动装箱底层掉哦用的valueof（）方法，比如Interger.valueOf（）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//手动装箱</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">1000</span>;</span><br><span class="line">        <span class="comment">//Integer integer=new Integer(i);</span></span><br><span class="line">        <span class="comment">//或者</span></span><br><span class="line">        Integer integer1=Integer.valueOf(i);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//手动拆箱</span></span><br><span class="line">        <span class="type">int</span> g=integer1.intValue();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*jdk5之后，就可以自动装箱和自动拆箱了,从本质上来说，其底层还是调用的valueOf（）方法</span></span><br><span class="line"><span class="comment">        这是jdk5之后的源码，仍旧可以方法返回了一个valueOf方法</span></span><br><span class="line"><span class="comment">         *@IntrinsicCandidate</span></span><br><span class="line"><span class="comment">    public static Integer valueOf(int i) &#123;</span></span><br><span class="line"><span class="comment">        if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span></span><br><span class="line"><span class="comment">            return IntegerCache.cache[i + (-IntegerCache.low)];</span></span><br><span class="line"><span class="comment">        return new Integer(i);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * */</span></span><br><span class="line"></span><br><span class="line">        Integer integer2=i;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//自动拆箱</span></span><br><span class="line">        <span class="type">int</span> n1=integer2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>练习</li>
+</ul>
+<p>结果为1.0，其中三元运算符为一个整体，所以最终要进行类型提升，最终的输出类型为double类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Object obj=<span class="literal">false</span>;</span><br><span class="line">        System.out.println(obj.equals(<span class="literal">false</span>)?<span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>):<span class="keyword">new</span> <span class="title class_">Double</span>(<span class="number">1.2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301743468.png" alt="image-20220317190943341"></p>
+<ul>
+<li>包装类型与String类型的转换</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//自动装箱</span></span><br><span class="line">        Integer i=<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//第一种转换方式</span></span><br><span class="line">        String n1=i+<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="comment">//第二种转换方法</span></span><br><span class="line">        String n2=i.toString();</span><br><span class="line">        <span class="comment">//第三种方法，使用valueof方法，由于此方法需要传入一个对象，而我们包装之后便是存在一个对象</span></span><br><span class="line">        String n3=String.valueOf(i);</span><br><span class="line"></span><br><span class="line">        String n4=<span class="string">&quot;12345&quot;</span>;</span><br><span class="line">        <span class="comment">//String类型转换成int类型</span></span><br><span class="line">        <span class="comment">//第一种public static int parseInt(String s) throws NumberFormatException &#123;</span></span><br><span class="line">        <span class="comment">//        return parseInt(s,10);</span></span><br><span class="line">        <span class="comment">//    &#125;</span></span><br><span class="line">        Integer n5=Integer.parseInt(n4);</span><br><span class="line">        <span class="comment">//第二种，利用Integer自带的构造器</span></span><br><span class="line">        Integer n6=<span class="keyword">new</span> <span class="title class_">Integer</span>(n4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>常用的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      Integer n1=<span class="number">100</span>;</span><br><span class="line">      Integer n2=<span class="number">1000</span>;</span><br><span class="line">      System.out.println(Integer.MAX_VALUE);</span><br><span class="line">      <span class="comment">//输出Integer范围的最大值与最小值</span></span><br><span class="line">      System.out.println(Integer.MIN_VALUE);</span><br><span class="line">      <span class="comment">//判断是不是字母，数字</span></span><br><span class="line">      System.out.println(Character.isDigit(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">      System.out.println(Character.isLetter(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">      System.out.println(Character.isUpperCase(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">      System.out.println(Character.isLowerCase(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">      <span class="comment">//转换大小写</span></span><br><span class="line">      System.out.println(Character.toUpperCase(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">      System.out.println(Character.toLowerCase(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>练习</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      Integer n1=<span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">100</span>);</span><br><span class="line">      Integer n2=<span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">100</span>);</span><br><span class="line">      <span class="comment">//在这里将其封装new一个对象，但是n1与n2对象不相等，但是值相等，===比较的是对象，equal比较值</span></span><br><span class="line">      System.out.println(n1==n2);</span><br><span class="line">      System.out.println(n1.equals(n2));</span><br><span class="line">      <span class="comment">/*在这里我们知道自动转换类型使用了valueof方法，在这里当我们传输的i对象在范围（-128-127）之间时，</span></span><br><span class="line"><span class="comment">      我们返回的是数字，但是当不满足源码中的条件时，则返回一个new对象，这也就解释了下面两组数据同样的赋值方法，结果不同的原因</span></span><br><span class="line"><span class="comment">      * public static Integer valueOf(int i) &#123;</span></span><br><span class="line"><span class="comment">        if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span></span><br><span class="line"><span class="comment">            return IntegerCache.cache[i + (-IntegerCache.low)];</span></span><br><span class="line"><span class="comment">        return new Integer(i);</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">      <span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">integer1</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">      System.out.println(integer==integer1);</span><br><span class="line">      System.out.println(integer.equals(integer1));</span><br><span class="line"></span><br><span class="line">      Integer integer3= <span class="number">1000</span>;</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">integer4</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line">      System.out.println(integer3==integer4);</span><br><span class="line">      System.out.println(integer3.equals(integer4));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301743429.png" alt="点击并拖拽以移动"></p>
+<p>但是注意只要存在基本数据类型，&#x3D;&#x3D;就是判断的值是否相等，就不要去管对象的事情了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -703,7 +986,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-20 16:40:30" itemprop="dateModified" datetime="2022-04-20T16:40:30+08:00">2022-04-20</time>
+      <time title="修改时间：2022-07-05 11:49:48" itemprop="dateModified" datetime="2022-07-05T11:49:48+08:00">2022-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -743,19 +1026,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ol>
+          <h1 id="BigInteger和BigDecimal"><a href="#BigInteger和BigDecimal" class="headerlink" title="BigInteger和BigDecimal"></a>BigInteger和BigDecimal</h1><ol>
 <li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
 <li>BigDecimal适合保存精度更高的浮点型（小数）</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637306.png" alt="image-20220420161941537"></p>
-<p>应用</p>
-<p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637308.png" alt="image-20220420162048073"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png" alt="image-20220420161941537"></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149076.png" alt="image-20220420162048073"></p>
 <p>此时我们就需要运行BigDecimal来进行运算</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204201637309.png" alt="image-20220420163718264"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149077.png" alt="image-20220420163718264"></p>
 
       
     </div>
@@ -1269,7 +1551,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-15 20:09:22" itemprop="dateModified" datetime="2022-06-15T20:09:22+08:00">2022-06-15</time>
+      <time title="修改时间：2022-07-05 11:11:19" itemprop="dateModified" datetime="2022-07-05T11:11:19+08:00">2022-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1316,14 +1598,14 @@
 </li>
 <li><p>字符串通常使用Unicode字符编码，一个字符（不管时字母还是汉字）占用两个字节</p>
 </li>
-<li><p>字符串String拥有很多的构造器<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301740238.png" alt="image-20220228153256063" style="zoom:50%;" /></p>
+<li><p>字符串String拥有很多的构造器<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051052157.png" alt="image-20220705105223155"></p>
 </li>
 <li><p>String类时final类，不能被其他的类所继承。private final byte[] value;String类拥有value属性，并且为final性质，表示不能被做出修改。比如从TOM变成TOO。也就是一句话，当我们的str发生更改之后，其地址已经改变，原地址的内容不会发生改变。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> <span class="type">char</span> c[]=&#123;<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;0&#x27;</span>&#125;;</span><br><span class="line">      <span class="comment">//这里我们可以发现我们成功更改了c的值，并且没有报错</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt; c.length;i++)&#123;</span><br><span class="line">         c[i]=<span class="string">&#x27;v&#x27;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    System.out.println(c);</span><br><span class="line">     <span class="comment">//但是当我们重新写一个数组</span></span><br><span class="line">     <span class="keyword">final</span> <span class="type">char</span> b[]=&#123;<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;0&#x27;</span>&#125;;</span><br><span class="line">     <span class="comment">//下面的这个赋值就是错误的</span></span><br><span class="line">     <span class="comment">//c=b;</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">//说完上面的，我们来看一下String类不可变的</span></span><br><span class="line">     String str1=<span class="string">&quot;tom&quot;</span>;</span><br><span class="line">     System.out.println(str1.hashCode());</span><br><span class="line">     System.out.println(str1);</span><br><span class="line">     <span class="comment">//我将m替换为o,我们可以根据结果发现，这个根本就没有改变,而且地址没有改变</span></span><br><span class="line">        <span class="comment">//说明在replace过程中其实创建的新的去存储这个字符串，而源地址的字符串是不会发生改变的</span></span><br><span class="line">     str1.replace(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">     System.out.println(str1.hashCode());</span><br><span class="line">     System.out.println(str1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="comment">//但是我们在平常的时候，明明可以改变String的值，这是因为我们new了一个string对象，str1指向的对象地址改变了</span></span><br><span class="line">     String str2=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">     str1=str2;</span><br><span class="line">     System.out.println(str1);</span><br><span class="line">     System.out.println(str1.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741416.png" alt="image-20220228164504701"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051053077.png" alt="image-20220705105255820"></p>
 </li>
-<li><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741840.png" alt="image-20220228152642490"></p>
+<li><p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051053812.png" alt="image-20220705105304838"></p>
 </li>
 </ol>
 <p>查看上述的图可以发现，String继承了以上的接口，而<strong>继承Serializable表示该字符可以在网络上传输</strong>，而对于Comparable则表示可以用于比较。</p>
@@ -1332,7 +1614,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str1=<span class="string">&quot;jack&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>先从常量池查看是否有”jack“是数据空间，如果有，则直接指向；如果没有，则重新创建，然后指向。str1最终指向的是常量池的地址空间。</p>
-<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741152.png" alt="image-20220228165840549" style="zoom:50%;" />
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051053988.png" alt="image-20220705105320961"></p>
 </li>
 <li><p>调用构造器：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;tom&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -1340,50 +1622,35 @@
 <p>先在堆中创建空间，里面维护了value属性，指向常量池tom空间。如果常量池没有tom，重写创建，如果有，直接通过value指向。最终指向的是堆中的空间地址。但是由于value是String的私有方法，所以我们无法查看value的值</p>
 </li>
 </ol>
-<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741974.png" alt="image-20220228170245003" style="zoom:50%;" />
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051053300.png" alt="image-20220705105340537"></p>
+<h3 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str1=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        System.out.println(str1==str2);</span><br><span class="line">        System.out.println(str1.equals(str2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>练习1：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str1=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        System.out.println(str1==str2);</span><br><span class="line">        System.out.println(str1.equals(str2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741988.png" alt="image-20220228170612270"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111699.png" alt="image-20220705105607057"></p>
 <p>他们虽然值相等，但是他们的地址却不相等。</p>
-<p>练习2：</p>
-<ul>
-<li><h4 id="intern"><a href="#intern" class="headerlink" title="intern"></a>intern</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public String intern()</span><br></pre></td></tr></table></figure>
+<h3 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a>练习2</h3><ul>
+<li><h4 id="intern"><a href="#intern" class="headerlink" title="intern"></a>intern</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">intern</span><span class="params">()</span></span><br></pre></td></tr></table></figure>
 
 <p>返回字符串对象的规范表示。</p>
 <p>最初为空的字符串池由<code>String</code>类<code>String</code> 。 </p>
 <p>当调用intern方法时，如果池已经包含与<a href="../../java/lang/String.html#equals-java.lang.Object-"><code>equals(Object)</code></a>方法确定的相当于此<code>String</code>对象的字符串，则返回来自池的字符串。  否则，此<code>String</code>对象将添加到池中，并返回对此<code>String</code>对象的引用。 </p>
 <p>由此可见，对于任何两个字符串<code>s</code>和<code>t</code> ， <code>s.intern() ==  t.intern()</code>是<code>true</code>当且仅当<code>s.equals(t)</code>是<code>true</code>  。 </p>
 <p>所有文字字符串和字符串值常量表达式都被实体化。 字符串文字在The Java™ Language  Specification的 3.10.5节中定义。 </p>
-<ul>
-<li><p>结果 </p>
+<p>结果 </p>
 <p>一个字符串与该字符串具有相同的内容，但保证来自一个唯一的字符串池。</p>
-</li>
-</ul>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str1=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">        System.out.println(str1==str2);</span><br><span class="line">        System.out.println(str1.equals(str2));</span><br><span class="line">        System.out.println(str2.intern()==str1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741387.png" alt="image-20220228171425835"></p>
-<p>练习3：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        Person person2=<span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        person1.name=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        person2.name=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        System.out.println(person1==person2);</span><br><span class="line">        System.out.println(person1.name== person2.name);</span><br><span class="line">        System.out.println(person1.name.equals(person2.name));</span><br><span class="line"></span><br><span class="line">        String str1=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        System.out.println(str1==str2);</span><br><span class="line">        System.out.println(str1.equals(str2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111700.png" alt="image-20220705105704532">练习3</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        Person person2=<span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        person1.name=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        person2.name=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        System.out.println(person1==person2);</span><br><span class="line">        System.out.println(person1.name== person2.name);</span><br><span class="line">        System.out.println(person1.name.equals(person2.name));</span><br><span class="line"></span><br><span class="line">        String str1=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        String str2=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        System.out.println(str1==str2);</span><br><span class="line">        System.out.println(str1.equals(str2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741529.png" alt="image-20220228172436684"></p>
-<h2 id="String类型字符串的特性"><a href="#String类型字符串的特性" class="headerlink" title="String类型字符串的特性"></a>String类型字符串的特性</h2><ul>
+<h2 id="String类型字符串的特性"><a href="#String类型字符串的特性" class="headerlink" title="String类型字符串的特性"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051100652.png" alt="image-20220705110015100">String类型字符串的特性</h2><ul>
 <li><p>编译器会堆常量池的对象进行优化。下面的一段代码中，按照本意会生成三个对象，但是编译器会自动识别出其中的关系，从而仅仅创建一个adcdac对象。查看以下代码之后我们可以看出，在str3中是创建了一个新对象的，否则不会与4和5的对象不相同。在3执行的过程，首先创建了StringBuilder对象，利用append接受str1与str2，然后在将值给与str3，由于使用了StringBuilder，所以本次的str3与String str3&#x3D;new String（“adcdac”）;效果相同。所以常量的相加在，常量池中进行操作，如果是变量则是在堆中进行操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">       String str1=<span class="string">&quot;adc&quot;</span>;</span><br><span class="line">       String str2=<span class="string">&quot;dac&quot;</span>;</span><br><span class="line">       String str3=str1+str2;</span><br><span class="line">       String str4=<span class="string">&quot;adcdac&quot;</span>;</span><br><span class="line">       String str5=<span class="string">&quot;adc&quot;</span>+<span class="string">&quot;dac&quot;</span>;</span><br><span class="line">       System.out.println(str1.hashCode());</span><br><span class="line">       System.out.println(str2.hashCode());</span><br><span class="line">       System.out.println(str3.hashCode());</span><br><span class="line">       System.out.println(str4.equals(str3));</span><br><span class="line">       System.out.println(str4==str3);</span><br><span class="line">       System.out.println(str5==str3);</span><br><span class="line">       System.out.println(str4==str4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        String str1=<span class="string">&quot;adc&quot;</span>;</span><br><span class="line">        String str2=<span class="string">&quot;dac&quot;</span>;</span><br><span class="line">        String str3=str1+str2;</span><br><span class="line">        String str4=<span class="string">&quot;adcdac&quot;</span>;</span><br><span class="line">        String str5=<span class="string">&quot;adc&quot;</span>+<span class="string">&quot;dac&quot;</span>;</span><br><span class="line">        System.out.println(str1.hashCode());</span><br><span class="line">        System.out.println(str2.hashCode());</span><br><span class="line">        System.out.println(str3.hashCode());</span><br><span class="line">        System.out.println(str4.equals(str3));</span><br><span class="line">        System.out.println(str4==str3);</span><br><span class="line">        System.out.println(str5==str3);</span><br><span class="line">        System.out.println(str4==str5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741026.png" alt="image-20220228192334015"></p>
-<ul>
-<li>Java中当数组与字符串在方法中被更改时</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String str=<span class="string">&quot;java&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">char</span>[]c=&#123;<span class="string">&#x27;j&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;v&#x27;</span>,<span class="string">&#x27;a&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">change</span><span class="params">(String str,<span class="type">char</span>[]c)</span>&#123;</span><br><span class="line">        str=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        c[<span class="number">0</span>]=<span class="string">&#x27;s&#x27;</span>;</span><br><span class="line">        System.out.println(str.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.change(test.str, test.c);</span><br><span class="line">        System.out.println(test.str);</span><br><span class="line">        System.out.println(test.c);</span><br><span class="line">        String str2=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        System.out.println(str2.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051104179.png" alt="image-20220705110448855">Java中当数组与字符串在方法中被更改时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String str=<span class="string">&quot;java&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">char</span>[]c=&#123;<span class="string">&#x27;j&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;v&#x27;</span>,<span class="string">&#x27;a&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">change</span><span class="params">(String str,<span class="type">char</span>[]c)</span>&#123;</span><br><span class="line">        str=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        c[<span class="number">0</span>]=<span class="string">&#x27;s&#x27;</span>;</span><br><span class="line">        System.out.println(str.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        test.change(test.str, test.c);</span><br><span class="line">        System.out.println(test.str);</span><br><span class="line">        System.out.println(test.str.hashCode());</span><br><span class="line">        System.out.println(test.c);</span><br><span class="line">        String str2=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        System.out.println(str2.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741798.png"></p>
-<h2 id="String类的常见方法"><a href="#String类的常见方法" class="headerlink" title="String类的常见方法"></a>String类的常见方法</h2><table>
+<h2 id="String类的常见方法"><a href="#String类的常见方法" class="headerlink" title="String类的常见方法"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051108468.png" alt="image-20220705110807142">String类的常见方法</h2><table>
 <thead>
 <tr>
 <th>方法名</th>
@@ -1425,7 +1692,7 @@
 </tbody></table>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str=<span class="string">&quot;java&quot;</span>;</span><br><span class="line">        String str1=<span class="string">&quot;JAva&quot;</span>;</span><br><span class="line">        System.out.println(str.equals(str1));</span><br><span class="line">        System.out.println(str.equalsIgnoreCase(str1));</span><br><span class="line">        System.out.println(str.indexOf(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">        System.out.println(str.indexOf(<span class="string">&quot;av&quot;</span>));</span><br><span class="line">        System.out.println(str.lastIndexOf(<span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">        System.out.println(str.substring(<span class="number">0</span>,<span class="number">2</span>));</span><br><span class="line">        System.out.println(str.charAt(<span class="number">0</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;  hello&quot;</span>.trim());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741244.png" alt="image-20220228201807858"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111701.png" alt="image-20220705110943469"></p>
 <table>
 <thead>
 <tr>
@@ -1468,248 +1735,14 @@
 </tbody></table>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str2=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">        String str1=<span class="string">&quot;JAva&quot;</span>;</span><br><span class="line">        System.out.println(str1.toUpperCase());</span><br><span class="line">        System.out.println(str1.toLowerCase());</span><br><span class="line">        System.out.println(str1.concat(str2));</span><br><span class="line">        System.out.println(str1.replace(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;n&#x27;</span>));</span><br><span class="line">        String poem=<span class="string">&quot;楚河，焊接，北京&quot;</span>;</span><br><span class="line">        String []a=poem.split(<span class="string">&quot;，&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            System.out.println(a[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(str1.compareTo(str2));</span><br><span class="line">        System.out.println(str1.compareTo(<span class="string">&quot;JAvaFH&quot;</span>));</span><br><span class="line">        System.out.println(str1.toCharArray());</span><br><span class="line">        System.out.println(String.format(<span class="string">&quot;我是字符串%s&quot;</span>,str1));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741787.png" alt="image-20220228204530714"></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>对于喜欢使用表情包的同学，例如，其实表情包的表示使用的是两个代码单元，这是想要如果我们想要得到的第三个char字符不是最后一个，如果此时想要精确使用，就需要我们调用另外的方法。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111702.png" alt="image-20220705110925625">注意</h2><p>对于喜欢使用表情包的同学，例如，其实表情包的表示使用的是两个代码单元，这是想要如果我们想要得到的第三个char字符不是最后一个，如果此时想要精确使用，就需要我们调用另外的方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String str=<span class="string">&quot;😄你好&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> i:str.toCharArray())&#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206151949166.png" alt="image-20220615194949831"></p>
-<p>此时我们输出length为4，如果想要输出正确的结果，需要首先转换为数组</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111703.png" alt="image-20220705111045879">此时我们输出length为4，如果想要输出正确的结果，需要首先转换为数组</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 21050</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;😄你好&quot;</span>;</span><br><span class="line">        <span class="comment">//此时我们需要先将其转换为一个数组</span></span><br><span class="line">        System.out.println(str.length());</span><br><span class="line">        <span class="type">int</span> []array=str.codePoints().toArray();</span><br><span class="line">        System.out.println(array.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202206152001207.png" alt="image-20220615200102299"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051111704.png" alt="image-20220705111105430"></p>
 <p>额，怎么顺利遍历正在思考中。。。，<strong>在《Java技术核心卷》</strong>中建议不要使用charAt方法，</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/24227.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/24227.html" class="post-title-link" itemprop="url">多线程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:53:05" itemprop="dateModified" datetime="2022-03-30T17:53:05+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java线程基础</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/24227.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/24227.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Cat</span> <span class="variable">cat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">        <span class="comment">//不可调用</span></span><br><span class="line">        <span class="comment">//cat.run();</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(cat);</span><br><span class="line">        Thread thread1=<span class="keyword">new</span> <span class="title class_">Thread</span>(dog);</span><br><span class="line">        thread.start();</span><br><span class="line">        thread1.start();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**当一个类继承了Thread类，该类就可以当作线程使用，run方法来源于Runnable接口*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;喵喵&quot;</span>);</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);&#125;</span><br><span class="line">            <span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;喵喵出问题&quot;</span>);</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">            <span class="keyword">if</span> (j==<span class="number">5</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;汪汪&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;汪汪出问题&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">        <span class="keyword">if</span> (i&gt;=<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301738761.png" alt="image-20220317113800843"></p>
-<p>上述中一个主线程和两个子线程，主线程执行优先执行完毕，但是子线程还没由结束，主线程会提结束，而子线程继续执行。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/53201.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/53201.html" class="post-title-link" itemprop="url">多线程售票问题以及线程同步机制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:39:39" itemprop="dateModified" datetime="2022-03-30T17:39:39+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java线程基础</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/53201.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/53201.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="售票问题"><a href="#售票问题" class="headerlink" title="售票问题"></a>售票问题</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> windowSale;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WindowSale1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>  countTicket=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Window1</span> <span class="variable">window1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Window1</span>();</span><br><span class="line">        <span class="type">Window1</span> <span class="variable">window2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Window1</span>();</span><br><span class="line">        <span class="type">Window1</span> <span class="variable">window3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Window1</span>();</span><br><span class="line">        window1.start();</span><br><span class="line">        window2.start();</span><br><span class="line">        window3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Window1</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">boolean</span> judge=<span class="literal">true</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (judge)&#123;</span><br><span class="line">            sell();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">sell</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (WindowSale1.countTicket&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            judge=<span class="literal">false</span>;</span><br><span class="line">            System.out.println(<span class="string">&quot;售票结束&quot;</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">50</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            WindowSale1.countTicket = WindowSale1.countTicket - <span class="number">1</span>;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;售卖一张票&quot;</span> + <span class="string">&quot;还剩&quot;</span> + WindowSale1.countTicket);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">           <span class="comment">// System.out.println();</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>三个窗口售卖，会发现我们的票数剩余0张还可以继续售卖。这是因为在我们的票数还有两张时，我们的1号窗口进来还没有进行减去操作，2号与3号都进来，导致2张票被买了三次。</p>
-<h1 id="线程同步机制"><a href="#线程同步机制" class="headerlink" title="线程同步机制"></a>线程同步机制</h1><p>在多线程编程，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证数据在任意同一时刻，最多由一个线程访问，保证数据的完整性。</p>
-<h2 id="同步的具体方法"><a href="#同步的具体方法" class="headerlink" title="同步的具体方法"></a>同步的具体方法</h2><ul>
-<li>synchronized(对象){&#x2F;&#x2F;得到对象的锁，才能操作同步带代码</li>
-</ul>
-<p>​			&#x2F;&#x2F;需要被同步的代码}，操作的必须是同一个对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> windowSale;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WindowSale1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SellTicket sellTicket=<span class="keyword">new</span> <span class="title class_">SellTicket</span>();</span><br><span class="line">        Thread thread1=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread2=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread3=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SellTicket</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">int</span> ticketNum=<span class="number">100</span>;</span><br><span class="line">    <span class="type">boolean</span> judge=<span class="literal">true</span>;</span><br><span class="line">    Object obj=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (judge)&#123;</span><br><span class="line">            sell();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">sell</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="built_in">this</span>.obj)&#123;</span><br><span class="line">        <span class="keyword">if</span> (ticketNum&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;售票结束&quot;</span>);</span><br><span class="line">            judge=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ticketNum--;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;售卖一张票，号数为&quot;</span>+(ticketNum+<span class="number">1</span>)+<span class="string">&quot;还剩&quot;</span>+ticketNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>synchronized还可以放在方法声明中，表示整个方法为同步方法</li>
-</ul>
-<p>public synchronized void m（String name）{</p>
-<p>}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> windowSale;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WindowSale1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SellTicket sellTicket=<span class="keyword">new</span> <span class="title class_">SellTicket</span>();</span><br><span class="line">        Thread thread1=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread2=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread3=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SellTicket</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">int</span> ticketNum=<span class="number">100</span>;</span><br><span class="line">    <span class="type">boolean</span> judge=<span class="literal">true</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (judge)&#123;</span><br><span class="line">            sell();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">sell</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ticketNum&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;售票结束&quot;</span>);</span><br><span class="line">            judge=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ticketNum--;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;售卖一张票，号数为&quot;</span>+(ticketNum+<span class="number">1</span>)+<span class="string">&quot;还剩&quot;</span>+ticketNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739006.png" alt="image-20220318091456954"></p>
-<p>此时发现没有超票售出，但是售票的顺序却不正确，而且其实内部已经发生了超卖现象，但是我们只不过用代码块掩盖 了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> windowSale;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WindowSale1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SellTicket sellTicket=<span class="keyword">new</span> <span class="title class_">SellTicket</span>();</span><br><span class="line">        Thread thread1=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread2=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        Thread thread3=<span class="keyword">new</span> <span class="title class_">Thread</span>(sellTicket);</span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SellTicket</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">int</span> ticketNum=<span class="number">100</span>;</span><br><span class="line">    <span class="type">boolean</span> judge=<span class="literal">true</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (judge)&#123;</span><br><span class="line">            sell();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">sell</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ticketNum&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;售票结束&quot;</span>);</span><br><span class="line">            judge=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ticketNum--;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;售卖一张票，号数为&quot;</span>+(ticketNum+<span class="number">1</span>)+<span class="string">&quot;还剩&quot;</span>+ticketNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301739552.png" alt="image-20220318092230291"></p>
 
       
     </div>

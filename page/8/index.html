@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,6 +223,468 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/43816.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/43816.html" class="post-title-link" itemprop="url">服务器内部转发与客户端重定向</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:53:41" itemprop="dateModified" datetime="2022-05-03T14:53:41+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/43816.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/43816.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="内部转发"><a href="#内部转发" class="headerlink" title="内部转发"></a>内部转发</h1><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021620724.png" alt="image-20220402160305352" style="zoom:80%;" />
+
+<p>这是一次响应的时间，服务器内部经过了多少组件浏览器并不知道</p>
+<p>下面时两个组件之间的关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        req.getRequestDispatcher(<span class="string">&quot;hi&quot;</span>).forward(req,resp);</span><br><span class="line">        System.out.println(<span class="string">&quot;我是组件一&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GetServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是组件2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.TestServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>TestServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/add<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>GetServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zss.servlets.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>GetServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hi<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021620725.png" alt="image-20220402161455991"></p>
+<p>成功将一个页面的处理，经过了两个组件‘</p>
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021620726.png" alt="image-20220402160545843" style="zoom:80%;" />
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是组件一&quot;</span>);</span><br><span class="line">        resp.sendRedirect(<span class="string">&quot;hi&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们重定向的时候，标志状态为302，将页面重新定向到hi</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021620727.png" alt="image-20220402161939291"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/33706.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/33706.html" class="post-title-link" itemprop="url">监听器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-03 14:53:36" itemprop="dateModified" datetime="2022-05-03T14:53:36+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/33706.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/33706.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.Listener;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextEvent;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextListener;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@WebListener</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Listener</span> <span class="keyword">implements</span> <span class="title class_">ServletContextListener</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我监听到了上下文的初始化动作&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我监听到了上下文的销毁动作&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204131616191.png" alt="image-20220413161624081"></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我们在dispatcher中，初始化的调用了ClassPathXmlApplicationContext，明确了依赖关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.init();</span><br><span class="line">    beanFactory=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们的在初始化的时候进行依赖关系的确认，这样我们后端对前端的响应速度会降低，那么如果我们将依赖关系调用到listener中，在监听上下文的时候就进行依赖关系的确认，虽然启动速度会降低。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebListener</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ContextLoaderListener</span> <span class="keyword">implements</span> <span class="title class_">ServletContextListener</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">        BeanFactory beanFactory=<span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>();</span><br><span class="line">        ServletContext application=sce.getServletContext();</span><br><span class="line">        application.setAttribute(<span class="string">&quot;beanFactory&quot;</span>,beanFactory);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.init();</span><br><span class="line">    ServletContext application=getServletContext();</span><br><span class="line">    Object object=application.getAttribute(<span class="string">&quot;beanFactory&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (object!=<span class="literal">null</span>)&#123;</span><br><span class="line">        beanFactory=(BeanFactory) object;</span><br><span class="line">     &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;ioc容器获取失败，依赖关系加载错误&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>copy来源于<a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_1servletcontextlistener">代码重工 (gitee.io)</a></p>
+<h3 id="①ServletContextListener"><a href="#①ServletContextListener" class="headerlink" title="①ServletContextListener"></a>①ServletContextListener</h3><p>作用：监听ServletContext对象的创建与销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>contextInitialized(ServletContextEvent sce)</td>
+<td>ServletContext创建时调用</td>
+</tr>
+<tr>
+<td>contextDestroyed(ServletContextEvent sce)</td>
+<td>ServletContext销毁时调用</td>
+</tr>
+</tbody></table>
+<p>ServletContextEvent对象代表从ServletContext对象身上捕获到的事件，通过这个事件对象我们可以获取到ServletContext对象。</p>
+<h3 id="②HttpSessionListener"><a href="#②HttpSessionListener" class="headerlink" title="#②HttpSessionListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_2httpsessionlistener">#</a>②HttpSessionListener</h3><p>作用：监听HttpSession对象的创建与销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sessionCreated(HttpSessionEvent hse)</td>
+<td>HttpSession对象创建时调用</td>
+</tr>
+<tr>
+<td>sessionDestroyed(HttpSessionEvent hse)</td>
+<td>HttpSession对象销毁时调用</td>
+</tr>
+</tbody></table>
+<p>HttpSessionEvent对象代表从HttpSession对象身上捕获到的事件，通过这个事件对象我们可以获取到触发事件的HttpSession对象。</p>
+<h3 id="③ServletRequestListener"><a href="#③ServletRequestListener" class="headerlink" title="#③ServletRequestListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_3servletrequestlistener">#</a>③ServletRequestListener</h3><p>作用：监听ServletRequest对象的创建与销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requestInitialized(ServletRequestEvent sre)</td>
+<td>ServletRequest对象创建时调用</td>
+</tr>
+<tr>
+<td>requestDestroyed(ServletRequestEvent sre)</td>
+<td>ServletRequest对象销毁时调用</td>
+</tr>
+</tbody></table>
+<p>ServletRequestEvent对象代表从HttpServletRequest对象身上捕获到的事件，通过这个事件对象我们可以获取到触发事件的HttpServletRequest对象。另外还有一个方法可以获取到当前Web应用的ServletContext对象。</p>
+<h3 id="④ServletContextAttributeListener"><a href="#④ServletContextAttributeListener" class="headerlink" title="#④ServletContextAttributeListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_4servletcontextattributelistener">#</a>④ServletContextAttributeListener</h3><p>作用：监听ServletContext中属性的创建、修改和销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>attributeAdded(ServletContextAttributeEvent scab)</td>
+<td>向ServletContext中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(ServletContextAttributeEvent scab)</td>
+<td>从ServletContext中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(ServletContextAttributeEvent scab)</td>
+<td>当ServletContext中的属性被修改时调用</td>
+</tr>
+</tbody></table>
+<p>ServletContextAttributeEvent对象代表属性变化事件，它包含的方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getServletContext()</td>
+<td>获取ServletContext对象</td>
+</tr>
+</tbody></table>
+<h3 id="⑤HttpSessionAttributeListener"><a href="#⑤HttpSessionAttributeListener" class="headerlink" title="#⑤HttpSessionAttributeListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_5httpsessionattributelistener">#</a>⑤HttpSessionAttributeListener</h3><p>作用：监听HttpSession中属性的创建、修改和销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>attributeAdded(HttpSessionBindingEvent se)</td>
+<td>向HttpSession中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(HttpSessionBindingEvent se)</td>
+<td>从HttpSession中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(HttpSessionBindingEvent se)</td>
+<td>当HttpSession中的属性被修改时调用</td>
+</tr>
+</tbody></table>
+<p>HttpSessionBindingEvent对象代表属性变化事件，它包含的方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getSession()</td>
+<td>获取触发事件的HttpSession对象</td>
+</tr>
+</tbody></table>
+<h3 id="⑥ServletRequestAttributeListener"><a href="#⑥ServletRequestAttributeListener" class="headerlink" title="#⑥ServletRequestAttributeListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_6servletrequestattributelistener">#</a>⑥ServletRequestAttributeListener</h3><p>作用：监听ServletRequest中属性的创建、修改和销毁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>attributeAdded(ServletRequestAttributeEvent srae)</td>
+<td>向ServletRequest中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(ServletRequestAttributeEvent srae)</td>
+<td>从ServletRequest中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(ServletRequestAttributeEvent srae)</td>
+<td>当ServletRequest中的属性被修改时调用</td>
+</tr>
+</tbody></table>
+<p>ServletRequestAttributeEvent对象代表属性变化事件，它包含的方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getServletRequest ()</td>
+<td>获取触发事件的ServletRequest对象</td>
+</tr>
+</tbody></table>
+<h3 id="⑦HttpSessionBindingListener"><a href="#⑦HttpSessionBindingListener" class="headerlink" title="#⑦HttpSessionBindingListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_7httpsessionbindinglistener">#</a>⑦HttpSessionBindingListener</h3><p>作用：监听某个对象在Session域中的创建与移除</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>valueBound(HttpSessionBindingEvent event)</td>
+<td>该类的实例被放到Session域中时调用</td>
+</tr>
+<tr>
+<td>valueUnbound(HttpSessionBindingEvent event)</td>
+<td>该类的实例从Session中移除时调用</td>
+</tr>
+</tbody></table>
+<p>HttpSessionBindingEvent对象代表属性变化事件，它包含的方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getName()</td>
+<td>获取当前事件涉及的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取当前事件涉及的属性值</td>
+</tr>
+<tr>
+<td>getSession()</td>
+<td>获取触发事件的HttpSession对象</td>
+</tr>
+</tbody></table>
+<h3 id="⑧HttpSessionActivationListener"><a href="#⑧HttpSessionActivationListener" class="headerlink" title="#⑧HttpSessionActivationListener"></a><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/chapter11/verse02.html#_8httpsessionactivationlistener">#</a>⑧HttpSessionActivationListener</h3><p>作用：监听某个对象在Session中的序列化与反序列化。</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sessionWillPassivate(HttpSessionEvent se)</td>
+<td>该类实例和Session一起钝化到硬盘时调用</td>
+</tr>
+<tr>
+<td>sessionDidActivate(HttpSessionEvent se)</td>
+<td>该类实例和Session一起活化到内存时调用</td>
+</tr>
+</tbody></table>
+<p>HttpSessionEvent对象代表事件对象，通过getSession()方法获取事件涉及的HttpSession对象。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1249,228 +1711,6 @@
 <li>全局变量使用可以不赋值，系统自动匹配默认值，而局部变量必须赋值后才能使用。</li>
 <li>全局变量可以加上修饰符，但是局部变量不可加修饰符。</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/45467.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/45467.html" class="post-title-link" itemprop="url">Java中构造器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 14:33:59" itemprop="dateModified" datetime="2022-07-04T14:33:59+08:00">2022-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/45467.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/45467.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中构造器"><a href="#Java中构造器" class="headerlink" title="Java中构造器"></a>Java中构造器</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>修饰符 方法名（形参列表）{</p>
-<p>方法体；}</p>
-<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>主要作用是完成对新对象的初始化，并不去创建对象。</p>
-<h2 id="构造器举例"><a href="#构造器举例" class="headerlink" title="构造器举例"></a>构造器举例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="comment">//利用构造器进行赋值，完成属性的初始化</span></span><br><span class="line">        Cat test=<span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;阿华&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(test.name+test.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span>  <span class="title class_">Cat</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//构造器没有返回值，不能用int，void修饰</span></span><br><span class="line">    <span class="comment">//构造器方法名与类名一致</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cat</span><span class="params">(String pName,<span class="type">int</span> pAge)</span>&#123;</span><br><span class="line">        name=pName;</span><br><span class="line">        age=pAge;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造器被调用了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041433148.png" alt="image-20220417115106496"></p>
-<h2 id="构造器的使用细节"><a href="#构造器的使用细节" class="headerlink" title="构造器的使用细节"></a>构造器的使用细节</h2><ol>
-<li>一个类可以定义多个不同的构造器，即构造器的重载，构造器也可以仅仅只定义部分属性</li>
-<li>构造器没有返回值</li>
-<li>方法名字与类名字必须一致</li>
-<li>参数列表与成员方法一样的规则</li>
-<li>构造器的调用系统完成</li>
-<li>如果没有去定义构造器，系统会自动给类生成一个默认的无参构造方法，比如Cat（）{}，可以用Javap（反编译）命令查看—–javap 类名.class</li>
-<li>一旦自己定义构造器，默认的构造器就被覆盖了</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/21288.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/21288.html" class="post-title-link" itemprop="url">Java中方法的重载典型例子</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 14:32:55" itemprop="dateModified" datetime="2022-07-04T14:32:55+08:00">2022-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">Java对象</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/21288.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/21288.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中方法的重载典型例子"><a href="#Java中方法的重载典型例子" class="headerlink" title="Java中方法的重载典型例子"></a>Java中方法的重载典型例子</h1><p> Java中允许同一类中，多个同名方法的存在，但是要求形参列表不一致。</p>
-<p>在Java中常见的System.out.println(“”);这个输出语句其实也是重载的一种，在Javaapi文档中查看System，println函数可以理解为println(int x),println(char x)等等。可以发现他们都调用了println函数，但是其形参不同。</p>
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041432150.png" alt="image-20220417114631182"></p>
 
       
     </div>
