@@ -175,13 +175,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">150</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -223,6 +223,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/17647.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/17647.html" class="post-title-link" itemprop="url">集合的总结（在何种情况下使用什么类型的集合）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:38:40" itemprop="dateModified" datetime="2022-03-30T17:38:40+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">Java中的集合</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/17647.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/17647.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h1><ol>
+<li>先判断是否为一组对象或者一组键值对，判断使用单列的集合还是双列</li>
+<li>一组对象中，<strong>允许重复的我们使用List</strong>，对于增删多的使用LinkedList（底层维护了双向链表），<strong>而不允许重复的我们使用Set</strong>，对于无序使用HashSet（数组+链表+红黑树），排序的通TreeSet，抽出和取出的顺序一致，我们使用LinkedHashSet，底层维护了数组+双向链表</li>
+<li>一组键值对Map，<strong>键无序</strong>，使用HashMap（数组+链表+红黑树），<strong>键排序</strong>，使用TreeMap，键插入和取出顺序一致：LinkedHashMap</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -880,6 +987,120 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/30946.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/30946.html" class="post-title-link" itemprop="url">BigInteger和BigDecimal</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-05 11:49:48" itemprop="dateModified" datetime="2022-07-05T11:49:48+08:00">2022-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/30946.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/30946.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="BigInteger和BigDecimal"><a href="#BigInteger和BigDecimal" class="headerlink" title="BigInteger和BigDecimal"></a>BigInteger和BigDecimal</h1><ol>
+<li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
+<li>BigDecimal适合保存精度更高的浮点型（小数）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png" alt="image-20220420161941537"></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149076.png" alt="image-20220420162048073"></p>
+<p>此时我们就需要运行BigDecimal来进行运算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149077.png" alt="image-20220420163718264"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/33507.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,288 +1236,6 @@
 <h2 id="练习：按照书的价格大小顺序输出"><a href="#练习：按照书的价格大小顺序输出" class="headerlink" title="练习：按照书的价格大小顺序输出"></a>练习：按照书的价格大小顺序输出</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exercise</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Book []books=<span class="keyword">new</span> <span class="title class_">Book</span>[<span class="number">4</span>];</span><br><span class="line">        books[<span class="number">0</span>]=<span class="keyword">new</span> <span class="title class_">Book</span>(<span class="string">&quot;ho&quot;</span>,<span class="number">45</span>);</span><br><span class="line">        books[<span class="number">1</span>]=<span class="keyword">new</span> <span class="title class_">Book</span>(<span class="string">&quot;h7&quot;</span>,<span class="number">450</span>);</span><br><span class="line">        books[<span class="number">2</span>]=<span class="keyword">new</span> <span class="title class_">Book</span>(<span class="string">&quot;h4737&quot;</span>,<span class="number">272</span>);</span><br><span class="line">        books[<span class="number">3</span>]=<span class="keyword">new</span> <span class="title class_">Book</span>(<span class="string">&quot;737&quot;</span>,<span class="number">753</span>);</span><br><span class="line">        Arrays.sort(books, <span class="keyword">new</span> <span class="title class_">Comparator</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Object o1, Object o2)</span> &#123;</span><br><span class="line">                Book book1=(Book) o1;</span><br><span class="line">                Book book2=(Book) o2;</span><br><span class="line">                <span class="keyword">return</span> book1.price-book2.price;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt; books.length;i++)&#123;</span><br><span class="line">            System.out.println(books[i].name+books[i].price);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(books));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> price;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Book</span><span class="params">(String name,<span class="type">int</span> price)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">        <span class="built_in">this</span>.price=price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Book&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, price=&quot;</span> + price +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301742625.png" alt="image-20220302155533439"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/30946.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/30946.html" class="post-title-link" itemprop="url">BigInteger和BigDecimal</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-05 11:49:48" itemprop="dateModified" datetime="2022-07-05T11:49:48+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/30946.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/30946.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="BigInteger和BigDecimal"><a href="#BigInteger和BigDecimal" class="headerlink" title="BigInteger和BigDecimal"></a>BigInteger和BigDecimal</h1><ol>
-<li>BigInteger适合保存比较大的整型（同时他的也就只能专用的加减乘除来操作，而且也是这个类型）</li>
-<li>BigDecimal适合保存精度更高的浮点型（小数）</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        BigInteger bigInteger=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;654655646565154484846546546548&quot;</span>);</span><br><span class="line">        BigInteger bigInteger1=<span class="keyword">new</span> <span class="title class_">BigInteger</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        System.out.println(bigInteger);</span><br><span class="line">        bigInteger1= bigInteger1.add(bigInteger);</span><br><span class="line">        System.out.println(bigInteger1);</span><br><span class="line"></span><br><span class="line">        BigDecimal bigDecimal=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.256465156165484986465165&quot;</span>);</span><br><span class="line">        BigDecimal bigDecimal1=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1.2564651561654849&quot;</span>);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">        bigDecimal= bigDecimal.add(bigDecimal1);</span><br><span class="line">        System.out.println(bigDecimal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149075.png" alt="image-20220420161941537"></p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在实际应用中double类型进行相加减，会存在精度的问题，比如<img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149076.png" alt="image-20220420162048073"></p>
-<p>此时我们就需要运行BigDecimal来进行运算</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Double xj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Double <span class="title function_">getXj</span><span class="params">()</span> &#123;</span><br><span class="line">    BigDecimal bigDecimalPrice=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBook().getPrice());</span><br><span class="line">    BigDecimal bigDecimalBuyCount=<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;&quot;</span>+getBuyCount());</span><br><span class="line">    BigDecimal bigDecimalxj=bigDecimalPrice.multiply(bigDecimalBuyCount);</span><br><span class="line">    xj=bigDecimalxj.doubleValue();</span><br><span class="line">    <span class="keyword">return</span> xj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207051149077.png" alt="image-20220420163718264"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/19773.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/19773.html" class="post-title-link" itemprop="url">Java中枚举类</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:34" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:34+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:41:57" itemprop="dateModified" datetime="2022-03-30T17:41:57+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">Java中重要的类</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/19773.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/19773.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们现在需要一个枚举出四季以及他们各自的特点，四季只有春夏秋冬这四个季节，而且特点固定，所以我们不需要用户去创建新的季节对象。</p>
-<h1 id="自定义枚举"><a href="#自定义枚举" class="headerlink" title="自定义枚举"></a>自定义枚举</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**定义四个季节的特点,使用static使得在main方法中不用创建实例对象，但是会造成类的加载，所以再加上final变成常量值，避免了类的加载*/</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">SPRING</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">SUMMER</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">AUTUMN</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">WINTER</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741898.png" alt="image-20220322084509210"></p>
-<ol>
-<li>不需要提供set方法，因为枚举对象值通常为只读。</li>
-<li>对枚举对象属性使用final+static共同修饰，实现底层优化</li>
-<li>枚举对象属于常量，通常全部大写</li>
-</ol>
-<h1 id="enum关键字枚举"><a href="#enum关键字枚举" class="headerlink" title="enum关键字枚举"></a>enum关键字枚举</h1><p>将定义的常量对象定义在最前面</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>);</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741453.png" alt="image-20220322084543249"></p>
-<p>注意事项：</p>
-<ul>
-<li><p>当我们使用enum关键字时，默认会继承enum类，我们反编译一下文件，可以发现同时也是final类型<img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741071.png" alt="image-20220322084630144"></p>
-</li>
-<li><p>如果使用无参构造器，则实参列表与小括号都可以省略。例如下面的OTHER</p>
-</li>
-</ul>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741905.png" alt="image-20220322084718169"></p>
-<ul>
-<li><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741177.png" alt="img"><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">这个也是正确的，默认调用的无参构造器。</li>
-</ul>
-<h1 id="枚举中常用的方法"><a href="#枚举中常用的方法" class="headerlink" title="枚举中常用的方法"></a>枚举中常用的方法</h1><p>上面我们说到，enum其实是继承了ENUM类的，所以也会继承其方法</p>
-<table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>name</td>
-<td>输出对象的名字</td>
-</tr>
-<tr>
-<td>ordinal</td>
-<td>输出该对象在枚举中的位置（从0开始）</td>
-</tr>
-<tr>
-<td>hascode</td>
-<td>输出对应的对象地址编号</td>
-</tr>
-<tr>
-<td>value</td>
-<td>将枚举填入数组中</td>
-</tr>
-<tr>
-<td>valueof</td>
-<td>到对应的对象中去寻找，如果找到了，返回该对象，否则为false</td>
-</tr>
-<tr>
-<td>compareTo</td>
-<td>比较两个对象的枚举编号，是他们顺序号的差值，可以crtl+B查看源码</td>
-</tr>
-</tbody></table>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">        System.out.println(Season.SPRING.name());</span><br><span class="line">        System.out.println(Season.SPRING.hashCode());</span><br><span class="line">        <span class="comment">//输出相应的编号，编号从0开始</span></span><br><span class="line">        System.out.println(Season.SPRING.ordinal());</span><br><span class="line">        Season []values=Season.values();</span><br><span class="line">        <span class="keyword">for</span> (Season A :values)&#123;</span><br><span class="line">            System.out.println(A);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Season.valueOf(<span class="string">&quot;SPRING&quot;</span>));</span><br><span class="line">        <span class="comment">//System.out.println(Season.valueOf(&quot;dj&quot;));</span></span><br><span class="line">        System.out.println(Season.SPRING.compareTo(Season.AUTUMN));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>),</span><br><span class="line">    OTHER;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741176.png" alt="image-20220322084756180"></p>
-<p> 练习：输出每一周的星期</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exercise</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Week [] weeks= Week.values();</span><br><span class="line">        <span class="keyword">for</span> (Week week :weeks)&#123;</span><br><span class="line">            System.out.println(week.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Week</span>&#123;</span><br><span class="line">    Monday(<span class="string">&quot;星期一&quot;</span>),</span><br><span class="line">    Tuesday(<span class="string">&quot;星期二&quot;</span>),</span><br><span class="line">    Wednesday(<span class="string">&quot;星期三&quot;</span>),</span><br><span class="line">    Thursday(<span class="string">&quot;星期四&quot;</span>),</span><br><span class="line">    Friday(<span class="string">&quot;星期五&quot;</span>),</span><br><span class="line">    Saturday(<span class="string">&quot;星期六&quot;</span>),</span><br><span class="line">    Sunday(<span class="string">&quot;星期日&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String week;</span><br><span class="line">    Week(String week)&#123;</span><br><span class="line">        <span class="built_in">this</span>.week=week;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span>  week ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741642.png" alt="image-20220322084840211"></p>
-<p>注意：</p>
-<p>如果我们使用enum关键字之后，就不可以继承其他类了，Java是单继承机制。但是实质上enum还是一个类，所以可以继承实现接口。</p>
 
       
     </div>
@@ -1470,7 +1409,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/2749.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/19773.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -1488,7 +1427,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/2749.html" class="post-title-link" itemprop="url">Math类</a>
+          <a href="/posts/19773.html" class="post-title-link" itemprop="url">Java中枚举类</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1506,7 +1445,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:40:56" itemprop="dateModified" datetime="2022-03-30T17:40:56+08:00">2022-03-30</time>
+      <time title="修改时间：2022-03-30 17:41:57" itemprop="dateModified" datetime="2022-03-30T17:41:57+08:00">2022-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1531,8 +1470,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/2749.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/2749.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/19773.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/19773.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1546,9 +1485,72 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Math类的常用方法"><a href="#Math类的常用方法" class="headerlink" title="Math类的常用方法"></a>Math类的常用方法</h2><p><strong>Math类都是静态的方法我们只需要直接使用即可</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       <span class="type">double</span> num=-<span class="number">9.2</span>;</span><br><span class="line">       <span class="comment">//ad返回绝对值</span></span><br><span class="line">        System.out.println(Math.abs(num));</span><br><span class="line">        <span class="comment">//pow,求幂</span></span><br><span class="line">        System.out.println(Math.pow(num,<span class="number">2</span>));</span><br><span class="line">        <span class="comment">//ceil求正，求取&gt;=最小的整数</span></span><br><span class="line">        System.out.println(Math.ceil(num));</span><br><span class="line">        <span class="comment">//floor,求取&lt;=的最大整数</span></span><br><span class="line">        System.out.println(Math.floor(num));</span><br><span class="line">        <span class="comment">//round,四舍五入,返回的int</span></span><br><span class="line">        System.out.println(Math.round(num));</span><br><span class="line">        <span class="comment">//sqrt,求开平方</span></span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">9</span>));</span><br><span class="line">        <span class="comment">//求随机数，返回0-1之间的一个随机小数0&lt;=a&lt;1</span></span><br><span class="line">        <span class="comment">//输出2-7之间的一个数</span></span><br><span class="line">        System.out.println(Math.round(Math.random()*<span class="number">5</span>+<span class="number">2</span>));</span><br><span class="line">        System.out.println((<span class="type">int</span>)(Math.random()*<span class="number">6</span>+<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>我们现在需要一个枚举出四季以及他们各自的特点，四季只有春夏秋冬这四个季节，而且特点固定，所以我们不需要用户去创建新的季节对象。</p>
+<h1 id="自定义枚举"><a href="#自定义枚举" class="headerlink" title="自定义枚举"></a>自定义枚举</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**定义四个季节的特点,使用static使得在main方法中不用创建实例对象，但是会造成类的加载，所以再加上final变成常量值，避免了类的加载*/</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">SPRING</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">SUMMER</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">AUTUMN</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>);</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">final</span> <span class="type">Season</span> <span class="variable">WINTER</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Season</span>(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741898.png" alt="image-20220322084509210"></p>
+<ol>
+<li>不需要提供set方法，因为枚举对象值通常为只读。</li>
+<li>对枚举对象属性使用final+static共同修饰，实现底层优化</li>
+<li>枚举对象属于常量，通常全部大写</li>
+</ol>
+<h1 id="enum关键字枚举"><a href="#enum关键字枚举" class="headerlink" title="enum关键字枚举"></a>enum关键字枚举</h1><p>将定义的常量对象定义在最前面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>);</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741453.png" alt="image-20220322084543249"></p>
+<p>注意事项：</p>
+<ul>
+<li><p>当我们使用enum关键字时，默认会继承enum类，我们反编译一下文件，可以发现同时也是final类型<img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741071.png" alt="image-20220322084630144"></p>
+</li>
+<li><p>如果使用无参构造器，则实参列表与小括号都可以省略。例如下面的OTHER</p>
+</li>
+</ul>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741905.png" alt="image-20220322084718169"></p>
+<ul>
+<li><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741177.png" alt="img"><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">这个也是正确的，默认调用的无参构造器。</li>
+</ul>
+<h1 id="枚举中常用的方法"><a href="#枚举中常用的方法" class="headerlink" title="枚举中常用的方法"></a>枚举中常用的方法</h1><p>上面我们说到，enum其实是继承了ENUM类的，所以也会继承其方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>输出对象的名字</td>
+</tr>
+<tr>
+<td>ordinal</td>
+<td>输出该对象在枚举中的位置（从0开始）</td>
+</tr>
+<tr>
+<td>hascode</td>
+<td>输出对应的对象地址编号</td>
+</tr>
+<tr>
+<td>value</td>
+<td>将枚举填入数组中</td>
+</tr>
+<tr>
+<td>valueof</td>
+<td>到对应的对象中去寻找，如果找到了，返回该对象，否则为false</td>
+</tr>
+<tr>
+<td>compareTo</td>
+<td>比较两个对象的枚举编号，是他们顺序号的差值，可以crtl+B查看源码</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Season.SPRING.toString());</span><br><span class="line">        System.out.println(Season.SUMMER.toString());</span><br><span class="line">        System.out.println(Season.AUTUMN.toString());</span><br><span class="line">        System.out.println(Season.WINTER.toString());</span><br><span class="line">        System.out.println(Season.SPRING.name());</span><br><span class="line">        System.out.println(Season.SPRING.hashCode());</span><br><span class="line">        <span class="comment">//输出相应的编号，编号从0开始</span></span><br><span class="line">        System.out.println(Season.SPRING.ordinal());</span><br><span class="line">        Season []values=Season.values();</span><br><span class="line">        <span class="keyword">for</span> (Season A :values)&#123;</span><br><span class="line">            System.out.println(A);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Season.valueOf(<span class="string">&quot;SPRING&quot;</span>));</span><br><span class="line">        <span class="comment">//System.out.println(Season.valueOf(&quot;dj&quot;));</span></span><br><span class="line">        System.out.println(Season.SPRING.compareTo(Season.AUTUMN));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Season</span>&#123;</span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;温暖&quot;</span>),</span><br><span class="line">    SUMMER (<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;炎热&quot;</span>),</span><br><span class="line">    AUTUMN (<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;凉爽&quot;</span>),</span><br><span class="line">    WINTER (<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;寒冷&quot;</span>),</span><br><span class="line">    OTHER;</span><br><span class="line">    <span class="keyword">private</span> String season, characteristic;</span><br><span class="line">    <span class="comment">/**将构造其私有化，防止在main方法中直接new对象*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Season</span><span class="params">(String season,String characteristic)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.season=season;</span><br><span class="line">        <span class="built_in">this</span>.characteristic=characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season+characteristic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741176.png" alt="image-20220322084756180"></p>
+<p> 练习：输出每一周的星期</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exercise</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Week [] weeks= Week.values();</span><br><span class="line">        <span class="keyword">for</span> (Week week :weeks)&#123;</span><br><span class="line">            System.out.println(week.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Week</span>&#123;</span><br><span class="line">    Monday(<span class="string">&quot;星期一&quot;</span>),</span><br><span class="line">    Tuesday(<span class="string">&quot;星期二&quot;</span>),</span><br><span class="line">    Wednesday(<span class="string">&quot;星期三&quot;</span>),</span><br><span class="line">    Thursday(<span class="string">&quot;星期四&quot;</span>),</span><br><span class="line">    Friday(<span class="string">&quot;星期五&quot;</span>),</span><br><span class="line">    Saturday(<span class="string">&quot;星期六&quot;</span>),</span><br><span class="line">    Sunday(<span class="string">&quot;星期日&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String week;</span><br><span class="line">    Week(String week)&#123;</span><br><span class="line">        <span class="built_in">this</span>.week=week;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span>  week ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301741642.png" alt="image-20220322084840211"></p>
+<p>注意：</p>
+<p>如果我们使用enum关键字之后，就不可以继承其他类了，Java是单继承机制。但是实质上enum还是一个类，所以可以继承实现接口。</p>
 
       
     </div>

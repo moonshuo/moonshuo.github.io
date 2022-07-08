@@ -175,13 +175,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">150</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -223,6 +223,134 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/25534.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/25534.html" class="post-title-link" itemprop="url">数据库事务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-04 14:12:20" itemprop="dateModified" datetime="2022-06-04T14:12:20+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/25534.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/25534.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> 事务集应该作为一个整体进行操作，而不是单个语句的执行，一个逻辑操作单元。</p>
+<p><strong>要么所有的事物都被提交，否则就发生事务回滚</strong></p>
+<p>那些操作发生数据提交：</p>
+<ol>
+<li>增删改一旦执行，就会提交</li>
+<li>关闭链接，也会自动</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一步：事务是自动提交的我们 手动关闭自动提交</span><br><span class="line">conn.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">第二步：如果没有异常就提交事务</span><br><span class="line">conn.commit();</span><br><span class="line">第三步：如果抛出异常 我们我们就让他回滚</span><br><span class="line">conn.rollback();</span><br></pre></td></tr></table></figure>
+
+<p>在以下这个表格中，AA与BB进行相互转账，为保证操作的可靠性，我们需要通过事务保障操作的可行性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TransferAccount</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, SQLException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src\\Information.properties&quot;</span>));</span><br><span class="line">        String jdbc= properties.getProperty(<span class="string">&quot;jdbcJar&quot;</span>);</span><br><span class="line">        String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String password= properties.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        Class.forName(jdbc);</span><br><span class="line">        Connection connection= DriverManager.getConnection(url,user,password);</span><br><span class="line">        String sql1=<span class="string">&quot;update user_table set balance=balance-100 where user=(?) &quot;</span>;</span><br><span class="line">        String sql2=<span class="string">&quot;update user_table set balance=balance+100 where user=(?) &quot;</span>;</span><br><span class="line">        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);</span><br><span class="line">        PreparedStatement preparedStatement2= connection.prepareStatement(sql2);</span><br><span class="line">        preparedStatement1.setString(<span class="number">1</span>,<span class="string">&quot;AA&quot;</span>);</span><br><span class="line">        preparedStatement2.setString(<span class="number">1</span>,<span class="string">&quot;BB&quot;</span>);</span><br><span class="line">        <span class="comment">//AA转账</span></span><br><span class="line">        preparedStatement1.executeUpdate();</span><br><span class="line">        <span class="comment">//发生故障</span></span><br><span class="line">        System.out.println(<span class="number">10</span>/<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//BB接受账单</span></span><br><span class="line">        preparedStatement2.executeUpdate();</span><br><span class="line">        preparedStatement1.close();</span><br><span class="line">        preparedStatement2.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301711325.png" alt="image-20220330160902140"></p>
+<p>我们可以发现一笔钱无缘无故的消失了，但是当我们使用事务进行处理时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TransferAccount</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, SQLException &#123;</span><br><span class="line">        Properties properties=<span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;src\\Information.properties&quot;</span>));</span><br><span class="line">        String jdbc= properties.getProperty(<span class="string">&quot;jdbcJar&quot;</span>);</span><br><span class="line">        String url= properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        String password= properties.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        String user= properties.getProperty(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        Class.forName(jdbc);</span><br><span class="line">        Connection connection= DriverManager.getConnection(url,user,password);</span><br><span class="line">        connection.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">        String sql1=<span class="string">&quot;update user_table set balance=balance-100 where user=(?) &quot;</span>;</span><br><span class="line">        String sql2=<span class="string">&quot;update user_table set balance=balance+100 where user=(?) &quot;</span>;</span><br><span class="line">        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);</span><br><span class="line">        PreparedStatement preparedStatement2= connection.prepareStatement(sql2);</span><br><span class="line">        preparedStatement1.setString(<span class="number">1</span>,<span class="string">&quot;AA&quot;</span>);</span><br><span class="line">        preparedStatement2.setString(<span class="number">1</span>,<span class="string">&quot;BB&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//AA转账</span></span><br><span class="line">        preparedStatement1.executeUpdate();</span><br><span class="line">        <span class="comment">//发生故障</span></span><br><span class="line">        <span class="comment">//System.out.println(10/0);</span></span><br><span class="line">        <span class="comment">//BB接受账单</span></span><br><span class="line">        preparedStatement2.executeUpdate();&#125;<span class="keyword">catch</span> (ArithmeticException arithmeticException)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;交易发生异常，事务进行回滚&quot;</span>);</span><br><span class="line">            connection.rollback();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果没有发生异常则提交数据</span></span><br><span class="line">        connection.commit();</span><br><span class="line">        preparedStatement1.close();</span><br><span class="line">        preparedStatement2.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/moonshuo.github.io/202203301711326.png" alt="image-20220330161443587"></p>
+<p>我们可以看出数据交易正常进行</p>
+<h1 id="事务的属性"><a href="#事务的属性" class="headerlink" title="事务的属性"></a>事务的属性</h1><p>ACID:</p>
+<ol>
+<li>原子性：事务不可分割，要么都发生，要么都不发生。</li>
+<li>一致性：必须使数据库从一个一致性状态变换到另外一个一致性状态，比如金钱的总数</li>
+<li>隔离性：事务不可以被其他事务干扰，内部操作必须是不被其他事务影响</li>
+<li>持久性：数据一旦提交，数据中的改变是永久性的，其他操作均无法对其产生影响</li>
+</ol>
+<h2 id="数据库的并发问题"><a href="#数据库的并发问题" class="headerlink" title="数据库的并发问题"></a>数据库的并发问题</h2><ol>
+<li>脏读：1与2两个事务，1读取了2已经更改但是还没有提交的字段，但是随后2发生了回滚，1读取的内容就变的无根据</li>
+<li>不可重复读：1读取一个字段，2对其进行了更改，后来1再次重新读取时，值不相同</li>
+<li>幻读：1对表中的全部行进行了同一操作，2又插入了一行，但是新插入的行并没有更改，和幻觉一样，也包含两次读取表格的数据不一致</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1437,144 +1565,6 @@
 <li>理论上没有数据长度的限制</li>
 </ol>
 <h4 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">div标签默认不在一行</span></span><br><span class="line"><span class="comment">span他的长度是封装数据的长度</span></span><br><span class="line"><span class="comment">p段落标签默认会在段落上方或者下方空出一行</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>span1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>span1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>你好呀<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/52598.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/52598.html" class="post-title-link" itemprop="url">数组类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-20 23:13:49" itemprop="dateModified" datetime="2022-04-20T23:13:49+08:00">2022-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/52598.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/52598.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>刷题路线和资料来自：<a target="_blank" rel="noopener" href="https://programmercarl.com/other/kstar.html">代码随想录知识星球 | 代码随想录 (programmercarl.com)</a></p>
-<h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>数组在Java中的存储与赋值机制<a href="https://moonshuo.cn/JavaSE/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/Java%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%B5%8B%E5%80%BC%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E8%B5%8B%E5%80%BC%E6%9C%BA%E5%88%B6/index.html?_sw-precache=2346726dfff272cb3c9f9073cc45aade">Java中基本数据类型赋值机制与数组的赋值机制 | 偷掉月亮 (moonshuo.cn)</a></p>
-<p>可以知道在Java中数组值存储在堆中，<strong>而在栈空间中存储的是数组的地址，与基本数据类型不同</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204181959206.png" alt="image-20220331123609262"></p>
-<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search/">704. 二分查找 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">search</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span>(left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (target&gt;nums[mid])&#123;</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的二分查找用法是两边都闭合的，所以可以肯定int right&#x3D;nums.length-1;如果是两边的闭合不同，需要使right值取值不同。</p>
-<h1 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-element/">27. 移除元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h2 id="巧妙交换"><a href="#巧妙交换" class="headerlink" title="巧妙交换"></a>巧妙交换</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">每一次找到之后，将找到的数与最后一个数交换，并将length--，防止死循环，同时i--，将交换过来的数在检查一次！！！</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i]==val)&#123;</span><br><span class="line">                <span class="type">int</span> temp=nums[length-<span class="number">1</span>];</span><br><span class="line">                nums[nums.length-<span class="number">1</span>]=nums[i];</span><br><span class="line">                nums[i]=temp;</span><br><span class="line">                i--;</span><br><span class="line">                length--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="双指针法"><a href="#双指针法" class="headerlink" title="双指针法"></a>双指针法</h2><p>快慢指针都从0开始，如果遇到目标的数，看快指针增加一，满指针不改变，但是一旦遇到不是目标的数，慢指针立即接受快指针的数，将的目标数覆盖。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 快慢指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">fastIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> slowIndex;</span><br><span class="line">        <span class="keyword">for</span> (slowIndex = <span class="number">0</span>; fastIndex &lt; nums.length; fastIndex++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[fastIndex] != val) &#123;</span><br><span class="line">                nums[slowIndex] = nums[fastIndex];</span><br><span class="line">                slowIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slowIndex;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="有序数组的平方"><a href="#有序数组的平方" class="headerlink" title="有序数组的平方"></a>有序数组的平方</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/squares-of-a-sorted-array/">977. 有序数组的平方 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h2 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            nums[i]=nums[i]*nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="type">int</span> []array=<span class="keyword">new</span> <span class="title class_">int</span>[length];</span><br><span class="line">        <span class="type">int</span> right=array.length-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> flag=array.length-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right&gt;=left) &#123;</span><br><span class="line">            <span class="keyword">if</span> (Math.abs(nums[right]) &gt;= Math.abs(nums[left])) &#123;</span><br><span class="line">                array[flag]=nums[right]*nums[right];</span><br><span class="line">                flag--;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                array[flag]=nums[left]*nums[left];</span><br><span class="line">                flag--;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h1><h2 id="暴力解法-1"><a href="#暴力解法-1" class="headerlink" title="暴力解法"></a>暴力解法</h2><p>这里是求连续的数组，所以可以确定开始的位置，和结束的位置，就可以确定所有的情况，不需要去考虑太多情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="type">int</span> result=length;</span><br><span class="line">        <span class="type">boolean</span> flag=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=i;j&lt;length;j++)&#123;</span><br><span class="line">                sum=sum+nums[j];</span><br><span class="line">                <span class="keyword">if</span> (sum&gt;=target)&#123;</span><br><span class="line">                    <span class="keyword">if</span> (result&gt;=j-i+<span class="number">1</span>)&#123;</span><br><span class="line">                        flag=<span class="literal">true</span>;</span><br><span class="line">                        result=j-i+<span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>我的错误解法，忽略的窗口滑动过程中窗口的逐渐缩小的过程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> slowIndex;</span><br><span class="line">    <span class="type">int</span> fastIndex=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> result=nums.length;</span><br><span class="line">    <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="type">boolean</span> flag=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (slowIndex=<span class="number">0</span>;fastIndex&lt;nums.length;fastIndex++)&#123;</span><br><span class="line">        sum=sum+nums[fastIndex];</span><br><span class="line">        <span class="keyword">if</span> (sum&gt;=target&amp;&amp;result&gt;=fastIndex-slowIndex+<span class="number">1</span>)&#123;</span><br><span class="line">            flag=<span class="literal">true</span>;</span><br><span class="line">            sum=sum-nums[slowIndex]-nums[fastIndex];</span><br><span class="line">            result=fastIndex-slowIndex+<span class="number">1</span>;</span><br><span class="line">            slowIndex++;</span><br><span class="line">            fastIndex--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 滑动窗口</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> s, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//利用result的赋值巧妙赋值避开result=num.length的错误</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; right &lt; nums.length; right++) &#123;</span><br><span class="line">            sum += nums[right];</span><br><span class="line">            <span class="keyword">while</span> (sum &gt;= s) &#123;</span><br><span class="line">                result = Math.min(result, right - left + <span class="number">1</span>);</span><br><span class="line">                sum -= nums[left++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">return</span> <span class="variable">result</span> <span class="operator">=</span>= Integer.MAX_VALUE ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95">代码随想录 (programmercarl.com)</a></p>
-<h1 id="螺旋矩阵"><a href="#螺旋矩阵" class="headerlink" title="螺旋矩阵"></a>螺旋矩阵</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">/*我们</span></span><br><span class="line"><span class="comment">    1.首先需要确定在何时转弯</span></span><br><span class="line"><span class="comment">    2.向什么方向放生转弯*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> [][]array=<span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">        <span class="comment">//代表当前填充的数</span></span><br><span class="line">        <span class="type">int</span> num=<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//代表每一组已经填充的数</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//flag代表圈数</span></span><br><span class="line">        <span class="type">int</span> flag=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//代表方向</span></span><br><span class="line">        <span class="type">int</span> position=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> hang=n;</span><br><span class="line">        <span class="type">int</span> temp=n;</span><br><span class="line">        <span class="keyword">if</span> (n%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">            array[n/<span class="number">2</span>][n/<span class="number">2</span>]=hang*hang;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (num&lt;=hang*hang&amp;&amp;temp&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            count=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (position==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                array[flag][flag+count]=num;</span><br><span class="line">                num++;</span><br><span class="line">                count++;</span><br><span class="line">                &#125;</span><br><span class="line">                position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>) &#123;</span><br><span class="line">                array[count+flag][n - flag-<span class="number">1</span>] = num;</span><br><span class="line">                num++;</span><br><span class="line">                count++;</span><br><span class="line">                &#125;</span><br><span class="line">            position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">3</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                    array[n-flag-<span class="number">1</span>][n-count-flag-<span class="number">1</span>]=num;</span><br><span class="line">                    count++;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                position++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position==<span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span> (count&lt;temp-<span class="number">1</span>)&#123;</span><br><span class="line">                    array[n-count-flag-<span class="number">1</span>][flag]=num;</span><br><span class="line">                    num++;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">                position=<span class="number">1</span>;</span><br><span class="line">                flag++;</span><br><span class="line">                temp=temp-<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       Solution solution=<span class="keyword">new</span> <span class="title class_">Solution</span>();</span><br><span class="line">       System.out.println(Arrays.deepToString(solution.generateMatrix(<span class="number">3</span>)));</span><br><span class="line">       <span class="comment">//System.out.println(solution.minSubArrayLe2(4, new int[]&#123;1,4,4&#125;));</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在判断时候，一定要对其进行分组，并且注意二维数组的行列等等</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li><p>对于数组要删除的元素，是不能完成删除的，但是可以将这个进行覆盖，利用双指针方法可以巧妙将删除的数进行覆盖（图片来自<a target="_blank" rel="noopener" href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html#%E6%80%9D%E8%B7%AF">代码随想录 (programmercarl.com)</a>），当然也可以将其和最后的一个交换。<img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204202311244.gif" alt="27.移除元素-双指针法"></p>
-</li>
-<li><p>而对于要求数组连续的值，可以使用双指针的变形，滑动窗口方法进行破解。图片来自<a target="_blank" rel="noopener" href="https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3">代码随想录 (programmercarl.com)</a></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204202311245.gif" alt="209.长度最小的子数组"></p>
-</li>
-<li><p>而对于螺旋矩阵，需要思路清晰，分析好每一个方向的情况，同样比较复杂的其他情况要进行分类。</p>
-</li>
-</ol>
-
       
     </div>
 
