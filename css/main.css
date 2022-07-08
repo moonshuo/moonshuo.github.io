@@ -18,10 +18,10 @@ body {
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #1b1918;
-  --highlight-foreground: #a8a19f;
-  --highlight-gutter-background: #292625;
-  --highlight-gutter-foreground: #999391;
+  --highlight-background: #0c1118;
+  --highlight-foreground: #afaba2;
+  --highlight-gutter-background: #1c2025;
+  --highlight-gutter-foreground: #9e9b94;
   color-scheme: light;
 }
 html {
@@ -363,12 +363,12 @@ td {
   transform: rotate(-45deg);
 }
 /*!
-  Theme: Atelier Forest
-  Author: Bram de Haan (http://atelierbramdehaan.nl)
+  Theme: Equilibrium Dark
+  Author: Carlo Abelli
   License: ~ MIT (or more permissive) [via base16-schemes-source]
   Maintainer: @highlightjs/core-team
   Version: 2021.09.0
-*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#a8a19f;background:#1b1918}.hljs ::selection,.hljs::selection{background-color:#68615e;color:#a8a19f}.hljs-comment{color:#766e6b}.hljs-tag{color:#9c9491}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#a8a19f}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#f22c40}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#df5320}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#c38418}.hljs-strong{font-weight:700;color:#c38418}.hljs-addition,.hljs-code,.hljs-string,.hljs-title.class_.inherited__{color:#7b9726}.hljs-built_in,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp{color:#3d97b8}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#407ee7}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#6666ea}.hljs-emphasis{color:#6666ea;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#c33ff3}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#afaba2;background:#0c1118}.hljs ::selection,.hljs::selection{background-color:#22262d;color:#afaba2}.hljs-comment{color:#7b776e}.hljs-tag{color:#949088}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#afaba2}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#f04339}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#df5923}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#bb8801}.hljs-strong{font-weight:700;color:#bb8801}.hljs-addition,.hljs-code,.hljs-string,.hljs-title.class_.inherited__{color:#7f8b00}.hljs-built_in,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp{color:#00948b}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#008dd1}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#6a7fd2}.hljs-emphasis{color:#6a7fd2;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#e3488e}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}
 .highlight:hover .copy-btn,
 pre:hover .copy-btn {
   opacity: 1;
@@ -422,7 +422,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: JetBrains Mono, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: 宋体, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
 }
 code {
   border-radius: 3px;
@@ -1087,10 +1087,10 @@ pre code {
   --btn-default-hover-bg: #666;
   --btn-default-hover-color: #ccc;
   --btn-default-hover-border-color: #666;
-  --highlight-background: #1b1918;
-  --highlight-foreground: #a8a19f;
-  --highlight-gutter-background: #292625;
-  --highlight-gutter-foreground: #999391;
+  --highlight-background: #0c1118;
+  --highlight-foreground: #afaba2;
+  --highlight-gutter-background: #1c2025;
+  --highlight-gutter-foreground: #9e9b94;
 }
 .darkmode--activated img {
   opacity: 0.75;
@@ -1898,7 +1898,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: 华文楷体, 华文新魏, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 宋体, 华文新魏, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2093,7 +2093,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: 华文楷体, 华文新魏, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 宋体, 华文新魏, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }

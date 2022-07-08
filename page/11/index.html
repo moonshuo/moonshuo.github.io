@@ -232,119 +232,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/65209.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/65209.html" class="post-title-link" itemprop="url">Java中的自定义异常</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 15:59:35" itemprop="dateModified" datetime="2022-07-04T15:59:35+08:00">2022-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">Java异常</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/65209.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/65209.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中的自定义异常"><a href="#Java中的自定义异常" class="headerlink" title="Java中的自定义异常"></a>Java中的自定义异常</h1><p> 当我们的程序中出现某种错误，但是我们的Exception并没有对其进行详细的描述，这时我们可以自定义异常，来显示信息。</p>
-<ol>
-<li>我们自定义异常类去继承Exception类或者RuntimeException</li>
-<li>如果继承Exception则属于编译异常</li>
-<li>如果继承RuntimeException，则输入运行异常</li>
-</ol>
-<p>下面的这中情况是自定义编译异常，必须在main方法中抛出或者处理异常。</p>
-<p>但是我们默认情况下使用运行异常，这种情况下系统可以自己调用，而不用我们自己手写相关的代码情况。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Judge &#123;</span><br><span class="line">        <span class="type">int</span> age=<span class="number">152</span>;</span><br><span class="line">        <span class="keyword">if</span> (age&lt;=<span class="number">10</span>||age&gt;=<span class="number">120</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span>  <span class="title class_">Judge</span>(<span class="string">&quot;年龄错误&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Judge</span> <span class="keyword">extends</span> <span class="title class_">Exception</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Judge</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041558531.png" alt="image-20220704155853115"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/16063.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -444,6 +331,119 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AA</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">f1</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">int</span> a=<span class="number">10</span>/<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BB</span> <span class="keyword">extends</span> <span class="title class_">AA</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">f1</span><span class="params">()</span> <span class="keyword">throws</span> ArithmeticException&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/65209.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/65209.html" class="post-title-link" itemprop="url">Java中的自定义异常</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 15:59:35" itemprop="dateModified" datetime="2022-07-04T15:59:35+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">Java异常</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/65209.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/65209.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中的自定义异常"><a href="#Java中的自定义异常" class="headerlink" title="Java中的自定义异常"></a>Java中的自定义异常</h1><p> 当我们的程序中出现某种错误，但是我们的Exception并没有对其进行详细的描述，这时我们可以自定义异常，来显示信息。</p>
+<ol>
+<li>我们自定义异常类去继承Exception类或者RuntimeException</li>
+<li>如果继承Exception则属于编译异常</li>
+<li>如果继承RuntimeException，则输入运行异常</li>
+</ol>
+<p>下面的这中情况是自定义编译异常，必须在main方法中抛出或者处理异常。</p>
+<p>但是我们默认情况下使用运行异常，这种情况下系统可以自己调用，而不用我们自己手写相关的代码情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Learn;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Judge &#123;</span><br><span class="line">        <span class="type">int</span> age=<span class="number">152</span>;</span><br><span class="line">        <span class="keyword">if</span> (age&lt;=<span class="number">10</span>||age&gt;=<span class="number">120</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span>  <span class="title class_">Judge</span>(<span class="string">&quot;年龄错误&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Judge</span> <span class="keyword">extends</span> <span class="title class_">Exception</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Judge</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041558531.png" alt="image-20220704155853115"></p>
 
       
     </div>
@@ -1306,7 +1306,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/21054.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/58678.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -1324,7 +1324,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/21054.html" class="post-title-link" itemprop="url">HashTable与Properties(Map接口的实现类)</a>
+          <a href="/posts/58678.html" class="post-title-link" itemprop="url">HashSet（Set接口实现类）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1342,7 +1342,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 18:23:15" itemprop="dateModified" datetime="2022-07-04T18:23:15+08:00">2022-07-04</time>
+      <time title="修改时间：2022-07-04 18:22:26" itemprop="dateModified" datetime="2022-07-04T18:22:26+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1367,8 +1367,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/21054.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/21054.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/58678.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/58678.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1382,31 +1382,51 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Hahstable的说明"><a href="#Hahstable的说明" class="headerlink" title="Hahstable的说明"></a>Hahstable的说明</h1><ol>
-<li>hashtable的键和值都不能为空</li>
-<li>hashTable使用方法基本和HashMap一样</li>
-<li><strong>hashTable是线程安全的，hashMap是线程不安全的</strong></li>
-<li>其底层也是一个数组，初始化为11，临界值为8</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Hashtable;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Hashtable hashtable=<span class="keyword">new</span> <span class="title class_">Hashtable</span>();</span><br><span class="line">        hashtable.put(<span class="string">&quot;法拉利&quot;</span>,<span class="string">&quot;123456元&quot;</span>);</span><br><span class="line">        hashtable.put(<span class="literal">null</span>,<span class="literal">null</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="HasSet说明"><a href="#HasSet说明" class="headerlink" title="HasSet说明"></a>HasSet说明</h1><p>HasSet的底层其实调用了HasMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">HashSet</span><span class="params">()</span> &#123;</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Hashtable与hashMap的比较"><a href="#Hashtable与hashMap的比较" class="headerlink" title="Hashtable与hashMap的比较"></a><img data-src="/HashTable(Map%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB)/image-20220312155153819.png" alt="image-20220312155153819">Hashtable与hashMap的比较</h2><table>
-<thead>
-<tr>
-<th>HashMap</th>
-<th>线程不安全</th>
-<th>高</th>
-<th>允许空值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Hashtable</td>
-<td>安全</td>
-<td>较低</td>
-<td>不允许空值</td>
-</tr>
-</tbody></table>
-<h1 id="Properties说明"><a href="#Properties说明" class="headerlink" title="Properties说明"></a>Properties说明</h1><p>Properties可以从properties文件中，加载到Properties对象，并且进行读取和修改，经常作为配置文件，继承了Hashtable，其对应的方法也相同。</p>
+<p>Hashset可以存放null，只能存放一个</p>
+<p>HashSet不保证元素是有序的，取决与hash后，在确定索引的结果</p>
+<h2 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h2><p>简单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">1</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">1</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">1</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">1</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">2</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">3</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="number">4</span>));</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">        hashSet.remove(<span class="number">1</span>);</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821827.png" alt="image-20220704181147390"></p>
+<p>进阶</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        System.out.println(hashSet.add(<span class="string">&quot;jack&quot;</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="string">&quot;jack&quot;</span>));</span><br><span class="line">        System.out.println(hashSet.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;jack&quot;</span>)));</span><br><span class="line">        System.out.println(hashSet.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;jack&quot;</span>)));</span><br><span class="line">        System.out.println(hashSet.add(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;rose&quot;</span>)));</span><br><span class="line">        System.out.println(hashSet.add(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;rose&quot;</span>)));</span><br><span class="line">        System.out.println(hashSet.add(<span class="string">&quot;jack&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//new操作之后，地址不同</span></span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821828.png" alt="image-20220704181243139"></p>
+<h1 id="HashSet的底层机制"><a href="#HashSet的底层机制" class="headerlink" title="HashSet的底层机制"></a>HashSet的底层机制</h1><p>HashSet的底层机制是HashMap，HashMap的底层是（数组+链表+红黑树）</p>
+<p>数组+链表：提高存储的效率</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821829.png" alt="image-20220704181253005">而红黑树则是数组的存储到达64时，并且链表存储到达8时，形成层次性更强的树</p>
+<h2 id="HasSet的扩容机制"><a href="#HasSet的扩容机制" class="headerlink" title="HasSet的扩容机制"></a>HasSet的扩容机制</h2><ol>
+<li>添加一个元素的时候，会先得到hash值，根据此值转成索引值</li>
+<li>找到存放数据的表，看这个索引值对应的位置是否已经存放元素</li>
+<li>如果没有则直接加入，如果有则调用equals比较，如果相同，就放弃添加（<strong>这也就解释了为什么不能添加相同的元素的原因</strong>），如果不相同，则添加到最后</li>
+<li>在java8中如果一条链表个数超过8，并且table的大小&gt;&#x3D;64,会变成红黑树</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        hashSet.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">        hashSet.add(<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        hashSet.add(<span class="string">&quot;java&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在debug的模式下尝试第一次add，首先进入add方法</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821830.png" alt="image-20220704181309618">调用put方法，value是一个占位符，用于满足hashmap的方法</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821831.png" alt="image-20220704181321325">而这里的算法得到的值是将key.hashcode右移16位</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821832.png" alt="image-20220704181334435">而我们第一刺进putVal方法时，此时的table[]为空，调用resize方法进行扩容为16位，同时该方法也会检测table数组的使用是否达到了12（16*加载因子（0.75）)位，如果达到，就再一次进行扩容达到32，而检测是树也达到了24</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821833.png" alt="image-20220704181410967"></p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821834.png" alt="image-20220704181525397"></p>
+<p>而当我们进行第二次扩容，经过内置的算法计算出lili应该放在8号索引位置，步骤与上述的相同</p>
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821835.png" alt="image-20220704181438068">但是当我们进行第三次扩容时，由于加入相同的字符串对象，算法算出的hash值相等，得出同样都在3的索引位置，然后进行equals的比较，比较他们的值是否相同。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>针对上面的练习的进阶，我们运行以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">        String str1=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str2=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str3=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        String str4=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;as&quot;</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;as&quot;</span>);</span><br><span class="line">        System.out.println(str1.hashCode());</span><br><span class="line">        System.out.println(str2.hashCode());</span><br><span class="line">        System.out.println(str3.hashCode());</span><br><span class="line">        System.out.println(str4.hashCode());</span><br><span class="line">        System.out.println(dog1.hashCode());</span><br><span class="line">        System.out.println(dog2.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821836.png" alt="image-20220704181543608">所以说hashset能否允许新元素的加入，key.hashCode()决定了它在数组的索引位置，而最终的比较还需要看equals方法的定义，<strong>当然在比较的过程中系统调用了equals方法，程序员也可以自己定义重写equals方法，改变比较的规则，比较hashcode是系统默认给出的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        String str1=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str2=<span class="string">&quot;jack&quot;</span>;</span><br><span class="line">        String str3=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        String str4=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;lili&quot;</span>);</span><br><span class="line">        Dog dog1=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;as&quot;</span>);</span><br><span class="line">        Dog dog2=<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;as&quot;</span>);</span><br><span class="line">        System.out.println(str1.hashCode());</span><br><span class="line">        System.out.println(str2.hashCode());</span><br><span class="line">        System.out.println(str3.hashCode());</span><br><span class="line">        System.out.println(str4.hashCode());</span><br><span class="line">        System.out.println(dog1.hashCode());</span><br><span class="line">        System.out.println(dog2.hashCode());</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        hashSet.add(dog1);</span><br><span class="line">        hashSet.add(dog2);</span><br><span class="line">        hashSet.add(str1);</span><br><span class="line">        hashSet.add(str2);</span><br><span class="line">        hashSet.add(str3);</span><br><span class="line">        hashSet.add(str4);</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) &#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span> (Dog) o;</span><br><span class="line">        <span class="keyword">return</span> Objects.equals(name, dog.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="练习1-1"><a href="#练习1-1" class="headerlink" title="练习1"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821837.png" alt="image-20220704181952021">练习1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        hashSet.add(<span class="keyword">new</span> <span class="title class_">E</span>(<span class="string">&quot;DSC&quot;</span>,<span class="string">&quot;12&quot;</span>));</span><br><span class="line">        hashSet.add(<span class="keyword">new</span> <span class="title class_">E</span>(<span class="string">&quot;DSC&quot;</span>,<span class="string">&quot;12&quot;</span>));</span><br><span class="line">        hashSet.add(<span class="keyword">new</span> <span class="title class_">E</span>(<span class="string">&quot;DSC&quot;</span>,<span class="string">&quot;12&quot;</span>));</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">E</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    String age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">E</span><span class="params">(String name, String age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*@Override</span></span><br><span class="line"><span class="comment">    public boolean equals(Object obj)&#123;</span></span><br><span class="line"><span class="comment">        if (obj==null)&#123;</span></span><br><span class="line"><span class="comment">            retur</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="comment">//比较两个的值是否相同</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (o==<span class="built_in">this</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        E e=(E) o;</span><br><span class="line">        <span class="keyword">if</span> (Objects.equals(age,e.age)&amp;&amp;Objects.equals(name,e.name))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;<span class="keyword">return</span>  <span class="literal">false</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//将所有员工放入到一个数组格格中</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(name, age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821838.png" alt="image-20220704182022266">练习2</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        LocalDate localDate1= LocalDate.parse(<span class="string">&quot;2021-02-03&quot;</span>);</span><br><span class="line">        Employee employee1=<span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;阿硕&quot;</span>,<span class="number">12</span>,localDate1);</span><br><span class="line">        LocalDate localDate2= LocalDate.parse(<span class="string">&quot;2021-02-03&quot;</span>);</span><br><span class="line">        Employee employee2=<span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;阿硕&quot;</span>,<span class="number">12</span>,localDate2);</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        hashSet.add(employee1);</span><br><span class="line">        hashSet.add(employee2);</span><br><span class="line">        System.out.println(hashSet.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    LocalDate birthday;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String name, <span class="type">int</span> age, LocalDate birthday)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(name,birthday);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o==<span class="built_in">this</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Employee employee=(Employee) o;</span><br><span class="line">        <span class="keyword">if</span> (Objects.equals(<span class="built_in">this</span>.birthday,employee.birthday)&amp;&amp;Objects.equals(<span class="built_in">this</span>.name,employee.name))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Employee&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, birthday=&quot;</span> + birthday +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821839.png" alt="image-20220704182104594">练习3</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Person p1=<span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;花花&quot;</span>,<span class="string">&quot;12&quot;</span>);</span><br><span class="line">        Person p2=<span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;猫猫&quot;</span>,<span class="string">&quot;25&quot;</span>);</span><br><span class="line">        HashSet hashSet=<span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">        hashSet.add(p1);</span><br><span class="line">        hashSet.add(p2);</span><br><span class="line">        System.out.println(p1.hashCode());</span><br><span class="line">        p1.name=<span class="string">&quot;ahua&quot;</span>;</span><br><span class="line">        System.out.println(p1.hashCode());</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">        System.out.println(hashSet.remove(p1));</span><br><span class="line">        System.out.println(hashSet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name, String id)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> (Person) o;</span><br><span class="line">        <span class="keyword">return</span> Objects.equals(name, person.name) &amp;&amp; Objects.equals(id, person.id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(name, id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, id=&#x27;&quot;</span> + id + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041821840.png" alt="image-20220704182141502"></p>
 
       
     </div>

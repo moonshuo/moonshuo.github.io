@@ -232,7 +232,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/16634.html">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/12208.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.jpg">
@@ -250,7 +250,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/16634.html" class="post-title-link" itemprop="url">HTTP协议与Session会话以及cookies</a>
+          <a href="/posts/12208.html" class="post-title-link" itemprop="url">Get与Post的区别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -268,7 +268,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-04 14:11:07" itemprop="dateModified" datetime="2022-06-04T14:11:07+08:00">2022-06-04</time>
+      <time title="修改时间：2022-06-04 14:10:58" itemprop="dateModified" datetime="2022-06-04T14:10:58+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,8 +289,8 @@
     </span>
     <span class="post-meta-item-text">Valine：</span>
   
-    <a title="valine" href="/posts/16634.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/16634.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/12208.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/12208.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -304,96 +304,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>HTTP,超文本传输协议。最大的作用就是确定了请求和响应数据的格式，浏览器发送给服务器数据：请求报文；服务i去返回给浏览器数据 ：响应报文。</p>
-<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>请求包含三个部分：</p>
-<ul>
-<li>请求行：请求的方式,请求的URL,请求的协议（一般都是HTTP1.1)</li>
-</ul>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322405.png" alt="image-20220407131452781"></p>
-<ul>
-<li><p>请求消息头：通过具体的参数对本次请求进行详细说明，以键值对的方式进行展现。</p>
-<p>Accept代表可以接受的文件类型，其他表示编码格式，接受的用语言等等</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539385.png" alt="image-20220402143706322"></p>
-<p>比较重要的消息头：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Host</td>
-<td>服务器的主机地址</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>声明当前能够接受的媒体类型</td>
-</tr>
-<tr>
-<td>Referer</td>
-<td>当前请求来源页面的地址</td>
-</tr>
-<tr>
-<td>Content-Length</td>
-<td>请求内容的长度</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>请求体的内容类型</td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>浏览器访问服务器时携带的Cookie数据</td>
-</tr>
-</tbody></table>
-<ul>
-<li>请求体</li>
-</ul>
-<p>它将一个页面表单中的组件值通过param1&#x3D;value1&amp;param2&#x3D;value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“&#x2F;chapter15&#x2F;user.html? param1&#x3D;value1&amp;param2&#x3D;value2”的方式传递请求参数。</p>
-<p>get方式，没有请求体，但是有一个queryString，在URL之后</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322406.png" alt="image-20220407132139686"></p>
-<p>post方式，有请求体，from data</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071322407.png" alt="image-20220407132212295"></p>
-<p>json格式，有请求体，request payload</p>
-<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><ul>
-<li><p>响应行：协议+响应状态码+响应状态</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071406806.png" alt="image-20220407132537095"></p>
+          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>GET用来获取资源，他只是查询，获取数据，不会修改服务器的数据；这也说明了他的一定的安全性。因为他是读取的，因此可以对get请求进行缓存。</p>
+<p>Post可以向服务器发送修改请求，进行数据的修改。但是post<strong>请求不会进行缓存</strong>。如果对数据的修改缓存到本地，而服务器什么也没做，那么我们的修改没有意义。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>参考（抄袭）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135454697">GET 和 POST 的区别？ - 知乎 (zhihu.com)</a></p>
+<blockquote>
+<p>我们常说的一些区别都是一些表面上的，比如：<code>GET</code>没有<code>POST</code>安全、<code>GET</code>请求时<code>URL</code>的长度是有限制的、<code>GET</code>没有<code>body</code>而<code>POST</code>有<code>body</code>等等。这些都是针对浏览器中的要求， 在使用<code>HTTP</code>作为接口进行传输时，就没有这么多条条框框了，此时<code>GET</code>和<code>POST</code>只是<code>HTTP</code>协议中的两种请求方式，而<code>HTTP</code>协议是基于<code>TCP/IP</code>的应用层协议， 无论<code>GET</code>还是<code>POST</code>，用的都是同一个传输层协议，所以在传输上没有区别</p>
+<ol>
+<li><p>我们前面说，无论是<code>GET</code>请求还是<code>POST</code>请求，其本质都是不安全的，为什么这样说呢？如果仅仅从<code>GET</code>请求的参数在地址栏是可见的，<code>POST</code>是不可见的，那就太肤浅了。 由于<code>HTTP</code>自己本身是一个明文协议，每个<code>HTTP</code>请求和返回的数据在网络上都是明文传播，无论是<code>url</code>、<code>header</code>还是<code>body</code>。 只要在网络节点捉包，就能获取完整的数据报文，要防止泄密的唯一手段就是使用<code>HTTPS</code>（用<code>SSL</code>协议协商出的密钥加密明文<code>HTTP</code>数据）。</p>
 </li>
-<li><p>响应头</p>
+<li><p>为什么在浏览器中<code>GET</code>请求方式的<code>url</code>长度有限制呢？这是因为浏览器要对<code>url</code>进行解析，而解析的时候就要分配内存。对于一个字节流的解析，必须分配<code>buffer</code>来保存所有要存储的数据。而<code>url</code>这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果<code>url</code>太长，而并发又很高，就容易挤爆服务器的内存。</p>
 </li>
-</ul>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204071406807.png" alt="image-20220407132607612"></p>
-<ul>
-<li>响应体</li>
-</ul>
-<p>响应的实际内容，响应的使响应的标签等</p>
+<li><p><code>POST</code>是发送两个请求吗？ 上面提到<code>POST</code>请求可以被分为“请求头”和“请求体”两个部分，那这两部分是一起发送出去呢？还是先发“请求头”，再发“请求体”呢？ 在<code>HTTP</code>协议中并没有明确说明<code>POST</code>会产生两个数据包。之所以会发两个数据包，则是出于以下考虑：如果服务器先收到“请求头”，则会对其进行校验，如果校验通过，则回复客户端“100 - Continue”，客户端再把”请求体“发给服务器。如果请求被拒了，服务器就回复个400之类的错误，这个交互就终止了。这样做的优点是可以避免浪费带宽传输请求体，但是代价就是会多一次Round Trip。如果刚好请求体的数据也不多，那么一次性全部发给服务器可能反而更好。所以说，这和<code>POST</code>完全没有关系，只是基于两端的一种优化手段罢了。</p>
 </li>
-</ul>
-<h2 id="Http是无状态的"><a href="#Http是无状态的" class="headerlink" title="Http是无状态的"></a>Http是无状态的</h2><p>当我们传输两次请求时，服务器无法区分是否是同一个客户端发送过来的，比如第一次请求是添加购物车，第二次是请求结账，但是服务器无法判断两次请求的主题是否为同一人。</p>
-<h1 id="Session会话"><a href="#Session会话" class="headerlink" title="Session会话"></a>Session会话</h1><p>Session会话是浏览器通过给不同的请求分配id，标记同一个主体所发送的请求事务，达到跟踪的效果</p>
-<p>在控制台获得打印session的消息</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        HttpSession httpSession= req.getSession();</span><br><span class="line">        System.out.println(httpSession.getId());</span><br><span class="line">        System.out.println(httpSession.isNew());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现两次的请求的session都是相同的，但是第一次请求会创建一个，但是第二次不会去新创建一个session</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539388.png" alt="image-20220402151448524"></p>
-<p>常用的API，<strong>注意session的有效会话为半个小时</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前会话</span></span><br><span class="line">HttpSession httpSession= req.getSession();</span><br><span class="line"><span class="comment">//获取sessionid</span></span><br><span class="line">System.out.println(httpSession.getId());</span><br><span class="line"><span class="comment">//判断是否为新的</span></span><br><span class="line">System.out.println(httpSession.isNew());</span><br><span class="line"><span class="comment">//获取最大会话时间</span></span><br><span class="line">System.out.println(httpSession.getMaxInactiveInterval());</span><br><span class="line"><span class="comment">//强制会话失效</span></span><br><span class="line">httpSession.invalidate();</span><br><span class="line"><span class="comment">//获取会话的时间等</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Session保存作用域"><a href="#Session保存作用域" class="headerlink" title="Session保存作用域"></a>Session保存作用域</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向当前的session保存作用域保存一个数据，可以通过另外一个组件获得响应的值，但是与对应的sessionid相对应</span></span><br><span class="line">httpSession.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;java&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zss.servlets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zss</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GetServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        Object nameObj=req.getSession().getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        System.out.println(nameObj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021539389.png" alt="image-20220402153847848"></p>
-<p><strong>但是 注意，当我们使用两种不同的浏览器获取数据时，其对应的主体对象不同，其session也会不同，所以我们无法通过再次访问另外一个页面再次对其进行访问</strong></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204021549047.png" alt="image-20220402154450198"></p>
-<h1 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h1><p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155024.png" alt="image-20220415211406461"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &#123;&quot;/Demo01&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Servlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">//创建一个cookie对象</span></span><br><span class="line">        Cookie cookie=<span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="comment">//将cookie对象保存到浏览器</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        req.getRequestDispatcher(<span class="string">&quot;hello.html&quot;</span>).forward(req,resp);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行以上代码之后，可以在这里找到cookies保存的地址</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155582.png" alt="image-20220415212718679"></p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/moonshuo/images/202204152155181.png" alt="image-20220415212935029"></p>
-<p>我们也可以对其进行设置时常，保证cookie保存的时间，时间过去，浏览器会进行删除,cookie可以帮助我们记住用户名和密码，并且设置时间，并且设置几天免登录等等操作。</p>
+</ol>
+</blockquote>
+<p>Get方法会产生一个TCP数据包，浏览器会把Header和Data一并发送出去，服务器响应200（OK），并回传相应的数据</p>
+<h2 id="Post方法"><a href="#Post方法" class="headerlink" title="Post方法"></a>Post方法</h2><ol>
+<li>post请求不会被缓存</li>
+<li>post请求不会保存在浏览器记录中</li>
+<li>post对数据长度没有要求</li>
+<li>效率低</li>
+<li>刷新之后数据会被重新提交</li>
+</ol>
+<h2 id="Get方法"><a href="#Get方法" class="headerlink" title="Get方法"></a>Get方法</h2><ol>
+<li>刷新无害</li>
+<li>可以被缓存</li>
+<li>会保存在浏览器记录中</li>
+<li>对数据长度有限制</li>
+<li>url是可见的</li>
+<li>效率较快</li>
+</ol>
+<h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><p><a href="https://moonshuo.cn/Javaweb/HTTP%E5%8D%8F%E8%AE%AE/index.html?_sw-precache=7da6fa13554a70fa233a46db0a39bb7a#%E8%AF%B7%E6%B1%82">HTTP协议与Session会话 | 偷掉月亮 (moonshuo.cn)</a></p>
 
       
     </div>
@@ -939,148 +880,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59455.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.jpg">
-      <meta itemprop="name" content="偷掉月亮的阿硕">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="偷掉月亮">
-      <meta itemprop="description" content="温故而知新">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 偷掉月亮">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/59455.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-04 17:47:47" itemprop="dateModified" datetime="2022-07-04T17:47:47+08:00">2022-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Valine：</span>
-  
-    <a title="valine" href="/posts/59455.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/59455.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中的逻辑运算符与赋值运算符三元运算符"><a href="#Java中的逻辑运算符与赋值运算符三元运算符" class="headerlink" title="Java中的逻辑运算符与赋值运算符三元运算符"></a>Java中的逻辑运算符与赋值运算符三元运算符</h1><h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>作用</th>
-<th>举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&amp;&amp;</td>
-<td>与，两边判断值都为真才为真</td>
-<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
-</tr>
-<tr>
-<td>||</td>
-<td>或，只要一边为真，结果就为真</td>
-<td>true||false&#x3D;true</td>
-</tr>
-<tr>
-<td>！</td>
-<td>取反，结果与原来相反</td>
-<td>！true&#x3D;fasle</td>
-</tr>
-<tr>
-<td>^</td>
-<td>异或，不相同的时候取反</td>
-<td>fasle^true&#x3D;true</td>
-</tr>
-</tbody></table>
-<h2 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h2><p>&#x3D;，简单的将右边的值赋值给左边</p>
-<h2 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h2><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
-<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
-<p>运行以下代码，可以查看出相应的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/Java%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6/image-20220704174732071.png" alt="image-20220704174732071"></p>
-<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041747657.png" alt="image-20220704174742517"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/43612.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1212,6 +1011,148 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a==b);</span><br><span class="line">    System.out.println(a!=b);</span><br><span class="line">    System.out.println(a&gt;=b);</span><br><span class="line">    System.out.println(a&lt;=b);</span><br><span class="line">    System.out.println(a&gt;b);</span><br><span class="line">    System.out.println(a&lt;b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041745992.png" alt="image-20220306175303656"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://moonshuo.cn/posts/59455.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.jpg">
+      <meta itemprop="name" content="偷掉月亮的阿硕">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="偷掉月亮">
+      <meta itemprop="description" content="温故而知新">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 偷掉月亮">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/59455.html" class="post-title-link" itemprop="url">Java中的逻辑运算符与赋值运算符三元运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-29 19:19:35" itemprop="dateCreated datePublished" datetime="2022-05-29T19:19:35+08:00">2022-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 17:47:47" itemprop="dateModified" datetime="2022-07-04T17:47:47+08:00">2022-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/Java%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url" rel="index"><span itemprop="name">Java运算符</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/posts/59455.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/59455.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java中的逻辑运算符与赋值运算符三元运算符"><a href="#Java中的逻辑运算符与赋值运算符三元运算符" class="headerlink" title="Java中的逻辑运算符与赋值运算符三元运算符"></a>Java中的逻辑运算符与赋值运算符三元运算符</h1><h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>与，两边判断值都为真才为真</td>
+<td>true&amp;true&#x3D;true;true&amp;false&#x3D;false</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或，只要一边为真，结果就为真</td>
+<td>true||false&#x3D;true</td>
+</tr>
+<tr>
+<td>！</td>
+<td>取反，结果与原来相反</td>
+<td>！true&#x3D;fasle</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或，不相同的时候取反</td>
+<td>fasle^true&#x3D;true</td>
+</tr>
+</tbody></table>
+<h2 id="基本赋值运算符"><a href="#基本赋值运算符" class="headerlink" title="基本赋值运算符"></a>基本赋值运算符</h2><p>&#x3D;，简单的将右边的值赋值给左边</p>
+<h2 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h2><p>+&#x3D;，&#x2F;&#x3D;，-&#x3D;，%&#x3D;。简单说明以下+&#x3D;，其他基本都一样。</p>
+<p>a+&#x3D;b;—-&gt;a&#x3D;a+b;</p>
+<p>运行以下代码，可以查看出相应的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    a=a+b;</span><br><span class="line">    b/=a;</span><br><span class="line">   System.out.println(a);</span><br><span class="line">   System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/Java%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6/image-20220704174732071.png" alt="image-20220704174732071"></p>
+<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p> 基本语法：条件表达式？运行结果1：运行结果2;(如果为真，则运行结果1，假则运行结果2)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">9</span>;</span><br><span class="line">    <span class="type">int</span> b=<span class="number">8</span>;</span><br><span class="line">    System.out.println(a&gt;b?<span class="string">&quot;a大于b&quot;</span>:<span class="string">&quot;a小于b&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://moonshuo-1309913189.cos.ap-chengdu.myqcloud.com/img/202207041747657.png" alt="image-20220704174742517"></p>
 
       
     </div>
